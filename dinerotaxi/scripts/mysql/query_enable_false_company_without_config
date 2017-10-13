@@ -1,0 +1,9 @@
+update user set enabled = false where 
+wlconfig_id in ( select ff.id from (
+SELECT  l.wlconfig_id as id
+FROM    user l
+LEFT JOIN
+        configuration_app r
+ON      r.id = l.wlconfig_id
+WHERE   r.id IS NULL
+group by l.wlconfig_id) ff)

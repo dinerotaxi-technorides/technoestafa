@@ -1,0 +1,37 @@
+.pageheader
+  h2
+    i.fa.fa-globe
+    | Cities
+
+.contentpanel
+  .row
+    .form-group.col-sm-8
+      button.btn.btn-success.btn-sm(ng-click="cities.unset()" modal="views/modals/city-add.html" modal-title="Add city template") + Add city
+    
+    .form-group.col-sm-4
+      .input-group
+        input.input-sm(placeholder="Search here" ng-model="searchString" ng-change="cities.get(1, searchField, searchString)")    
+        select.input-sm(style={margin:"0 .5em"} ng-model="searchField" ng-options="option as option for option in cities.searchFields" ng-init="searchField=cities.searchFields[0]")
+    
+    .table-responsive
+      table.table.table-striped.table-hover.field-table
+        thead
+          tr
+            th(ng-repeat="field in cities.fields" ng-click="cities.get(1, searchField, searchString, field)")
+              a(href="")
+                {{"cities." + field | translate}}
+                i.fa.fa-chevron-up(ng-if="field==cities.currentOrderField && cities.currentOrder == 'desc'")
+                i.fa.fa-chevron-down(ng-if="field==cities.currentOrderField && cities.currentOrder == 'asc'")
+            th.text-center(colspan="2" translate="general.actions")
+        tbody
+          tr(ng-repeat="city in cities.list")
+            td(ng-repeat="field in cities.fields") {{city[field]}}
+            td.text-center
+              a.label.label-danger(ng-click="cities.set(city)" modal="views/modals/city-delete.html" modal-title="Delete city" href="")
+                i.fa.fa-times-circle-o
+              span &nbsp;
+              a.label.label-success(ng-click="cities.set(city)" modal="views/modals/city-edit.html" modal-title="Edit city" href="")
+                i.fa.fa-pencil    
+                
+div(ng-include="'views/paginator.html'")
+div(ng-include="'/common/scripts/modal/async.html'")

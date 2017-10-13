@@ -1,0 +1,656 @@
+doctype html
+html(dir='ltr'  lang='en-US' ng-app='technoridesApp' ng-controller='landingCtrl')
+  head
+    meta(http-equiv='content-type', content='text/html; charset=utf-8')     
+    meta(name='author', content='SemiColonWeb')
+    //Stylesheets
+    link(href='http://fonts.googleapis.com/css?family=Exo:300,400,600,700|Roboto:300,400,500,600,700|Lato:300,400,400italic' rel='stylesheet' type='text/css')
+     
+    link(rel='stylesheet', href='/landings/4/styles/bootstrap.css', type='text/css')
+     
+    link(rel='stylesheet', href='/landings/4/styles/style.css', type='text/css')
+    // One Page Module Specific Stylesheet
+    link(rel='stylesheet', href='/landings/4/styles/onepage.css', type='text/css')
+
+    link(rel='icon', type='image/png', href='/landings/4/assets/favicon.png')
+     
+    link(rel='stylesheet', href='/landings/4/styles/dark.css', type='text/css')
+     
+    link(rel='stylesheet', href='/landings/4/styles/font-icons.css', type='text/css')
+     
+    link(rel='stylesheet', href='/landings/4/styles/et-line.css', type='text/css')
+     
+    link(rel='stylesheet', href='/landings/4/styles/animate.css', type='text/css')
+     
+    link(rel='stylesheet', href='/landings/4/styles/magnific-popup.css', type='text/css')
+     
+     
+    link(rel='stylesheet', href='/landings/4/styles/responsive.css', type='text/css')
+     
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    
+    
+
+    script(type='text/javascript', src='/common/scripts/landingJs/jquery.js')
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+    
+    // Angular
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js')
+     
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-animate.min.js')
+     
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.js')
+     
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-cookies.js')
+     
+    script(src='https://cdn.jsdelivr.net/angular.translate/2.1.0/angular-translate.min.js')
+     
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-animate.min.js')
+    
+    // Config
+    script(src="/landings/4/scripts/landing4.js")
+    script(src="/technorides/scripts/config/routes.js")
+    
+    // Api
+    script(src="/common/scripts/api/api.js")
+    script(src="/technorides/scripts/services/api/apiHandler.js")
+    script(src="/technorides/scripts/services/api/apiAdapter.js")
+    
+    
+    
+    // controller
+    script(src="/landings/4/scripts/controllers/landingCtrl.js")
+    
+    // settings
+    script(src="/common/scripts/settings.js")
+    script(src="/landings/4/config/locale.js")
+  
+    // Error
+    script(src='/common/scripts/messages.js')
+    
+    // Analytics
+    script(src="/common/libs/angulartics.min.js")
+    script(src="/common/libs/angulartics-ga.min.js")
+    
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-45881678-1', 'auto');
+      ga('send', 'pageview');
+  
+    //pixel FB code
+    script.
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','//connect.facebook.net/en_US/fbevents.js');
+
+      fbq('init', '1700222866892100');
+      fbq('track', 'Lead');
+    
+    title Technorides | {{'dispatch' | translate}}
+  
+  body.stretched.side-push-panel
+    .body-overlay
+     
+    #side-panel.dark
+      #side-panel-trigger-close.side-panel-trigger
+        a(href='#')
+          i.icon-line-cross
+        
+      .side-panel-wrap
+        .widget.widget_links.clearfix
+          h4 {{'about' | translate}} 
+              
+          div(style='font-size: 14px; line-height: 1.7;')
+            address(style='line-height: 1.7;')
+              strong {{'usa' | translate}}
+              br
+              | 2295 26th Ave.
+              br
+              | San Francisco, CA 94107
+              br
+              
+              abbr(title='Phone Number')
+                strong {{'phone' | translate}}:
+                |  +1 754 300 3167
+              br   
+            
+            .clear.topmargin-sm
+                 
+            address(style='line-height: 1.7')
+              strong {{'argentina' | translate}}
+              br
+              |  Tte. Gral. Juan Domingo Per&oacute;n 315
+              br
+              |  Buenos Aires, CP1038
+              br
+                     
+                     
+              abbr(title='Phone Number')
+                strong {{'phone' | translate}}:
+                |  +54 911 4342 5383
+              br
+           
+        .widget.quick-contact-widget.clearfix
+          h4 {{'connectSocially' | translate}}
+              
+          a.social-icon.si-small.si-colored.si-facebook(href='https://www.facebook.com/technorides', title='Facebook', target='_blank')
+            i.icon-facebook
+                 
+            i.icon-facebook
+              
+          a.social-icon.si-small.si-colored.si-twitter(href='https://twitter.com/technorides', title='Twitter', target='_blank')
+            i.icon-twitter
+                 
+            i.icon-twitter
+              
+          a.social-icon.si-small.si-colored.si-youtube(href='https://www.youtube.com/channel/UClMZkxQjQBCLfRx_CYhdWtw', title='YouTube', target='_blank')
+            i.icon-youtube
+                 
+            i.icon-youtube
+              
+          a.social-icon.si-small.si-colored.si-linkedin(href='https://ar.linkedin.com/company/dinerotaxi', title='LinkedIn', target='_blank')
+            i.icon-linkedin
+                 
+            i.icon-linkedin
+              
+          a.social-icon.si-small.si-colored.si-technorides(href='http://www.technorides.com', title='Technorides', target='_blank')
+            i.icon-globe
+                 
+            i.icon-globe
+    //
+      Document Wrapper
+      =============================================
+    #wrapper.clearfix
+      //
+        Header
+        =============================================
+      header#header.full-header.static-sticky
+        #header-wrap
+          .container.clearfix
+            #primary-menu-trigger
+              i.icon-reorder
+            //
+              Logo
+              =============================================
+            #logo
+              a.standard-logo(href='https://technorides.com/', data-dark-logo='assets/logo.png')
+                img(src='assets/logo.png', alt='Technorides')
+                    
+              a.retina-logo(href='https://technorides.com/', data-dark-logo='assets/logo@2x.png')
+                img(src='assets/logo@2x.png', alt='Technorides')
+               
+            // #logo end
+            //
+              Primary Navigation
+              =============================================
+            nav#primary-menu
+              ul.one-page-menu(data-easing='easeInOutExpo', data-speed='1250', data-offset='65')
+                li
+                  a(href='#', data-href='#wrapper')
+                    div {{'home' | translate}}
+                       
+                li
+                  a(href='#', data-href='#section-services', data-offset='60')
+                    div {{'services' | translate}}
+                       
+                li
+                  a(href='#', data-href='#section-features')
+                    div {{'features' | translate}}
+                    
+                       
+                li
+                  a(href='#', data-href='#section-testimonials')
+                    div {{'testimonials' | translate}}
+                       
+                li
+                  a(href='#', data-href='#section-pricing')
+                    div {{'pricing' | translate}}
+                    
+              #side-panel-trigger.side-panel-trigger
+                a(href='#')
+                  i.icon-reorder
+            // #primary-menu end
+      // #header end
+      //
+        Slider
+        =============================================
+      section#slider.slider-parallax.full-screen
+        .slider-parallax-inner(style="background: url('assets/main.jpg')")
+          .col-md-7.col-sm-6.full-screen.center.nopadding(style="background-color: transparent;') center center no-repeat; background-size: cover;")
+            .vertical-middle.dark.center.clearfix(style='z-index: 2;')
+              .emphasis-title.nobottommargin
+                h1
+                  span.text-rotater.nocolor(data-separator='|', data-rotate='fadeIn', data-speed='4000')
+                    span.t-rotate.t700.font-body.opm-medium-word TechnoRides|{{'enhance' | translate}}|{{track | translate}}|{{'go mobile' | translate}}|{{'keep moving' | translate}}
+                 
+            .video-wrap(style='position: absolute; z-index:1; height:100%;')
+              .video-overlay(style='background-color: rgba(0,0,0,0.2);')
+              
+          .col-md-5.col-sm-6.full-screen(style='background-color: rgba(0,0,0,0.8)')
+            .vertical-middle.subscribe-widget(data-loader='button')
+              .col-padding
+                .heading-block.nobottomborder.bottommargin-sm
+                  h1(style='line-height: 1.4;font-size: 24px;') {{'formTitle1' | translate}}
+                          
+                  span.t300(style='font-size:16px; top-margin: 20px;') {{'formTitle2' | translate}}
+                       
+                .widget-subscribe-form-result
+                       
+                form#slider-subscribe-form.nobottommargin(name="send2" ng-submit="send2.$valid && sendTrial(freeTrial)")
+                  .col_half
+                    input.sm-form-control.required(type="text" ng-model="freeTrial.name" required ng-pattern="/[a-zA-Z,\. ]+/" name="name" placeholder="{{'firstName' | translate}}")
+                          
+                  .col_half.col_last
+                    input.sm-form-control.required(type="text" ng-model="freeTrial.companyName" required name="companyname" placeholder="{{'company' | translate}}")
+                          
+                  .clear
+                          
+                  .col_full
+                    input.sm-form-control.required(type="email" ng-model="freeTrial.email" required name="email" placeholder="{{'enterEmail' | translate}}")
+                  .clear
+                  
+                  .col_half
+                    select.sm-form-control.required(ng-model="freeTrial.country" ng-options="country for country in countries" ng-init="freeTrial.country = countries[0]" required)
+                      option(value="{{location}}" ng-if="!freeTrial.country")    
+                  
+                  .col_half.col_last
+                    input.sm-form-control.required(type="number" ng-model="freeTrial.phone" required  placeholder="{{'phone' | translate}}")
+                  
+                  .col_full
+                    input.sm-form-control.required(type="number" ng-model="freeTrial.mobile" required placeholder="{{'altPhone' |  translate }}")
+                          
+                  .col_full
+                    input.sm-form-control.required(type="number" step="1" ng-model="freeTrial.fleet" required  placeholder="{{'fleet' | translate}}" name="fleet") 
+                     
+                  button.button.button-3d.button-rounded.btn-block.nomargin(ng-click="send2.submited = true" type="submit")
+                    i.icon-star3
+                    |  {{'formButton' | translate}}
+                 
+            a.one-page-arrow(href='#', data-scrollto='#section-about', data-easing='easeInOutExpo', data-speed='1250', data-offset='65')
+              i.icon-angle-down.infinite.animated.fadeInDown
+      // #slider end
+      //
+        Content
+        =============================================
+      section#content
+        .content-wrap.nopadding
+          #section-services.page-section.notoppadding.nobottompadding
+            .divider.divider-short.divider-center
+              i.icon-circle
+                 
+            .heading-block.title-center
+              h2 {{'panel1Title1' | translate}}
+                     
+              span {{'panel1Title2' | translate}}
+                 
+            .container.clearfix
+              .col_one_third
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn')
+                    a(href='#')
+                      img(src='assets/icons/features/1.png', alt='Responsive Layout')
+                          
+                  h3 {{'panel1Item9Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item9Text' | translate}}
+                    
+              .col_one_third
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn', data-delay='200')
+                    a(href='#')
+                      img(src='assets/icons/features/2.png', alt='Retina Graphics')
+                          
+                  h3 {{'panel1Item1Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item1Text' | translate}}
+                    
+              .col_one_third.col_last
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn', data-delay='400')
+                    a(href='#')
+                      img(src='assets/icons/features/3.png', alt='Powerful Performance')
+                          
+                  h3 {{'panel1Item2Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item2Text' | translate}}
+                    
+              .clear
+                    
+              .col_one_third
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn', data-delay='600')
+                    a(href='#')
+                      img(src='assets/icons/features/4.png', alt='Responsive Layout')
+                          
+                  h3 {{'panel1Item3Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item3Text' | translate}}
+                    
+              .col_one_third
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn', data-delay='800')
+                    a(href='#')
+                      img(src='assets/icons/features/5.png', alt='Retina Graphics')
+                          
+                  h3 {{'panel1Item4Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item4Text' | translate}}
+                    
+              .col_one_third.col_last
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn', data-delay='1000')
+                    a(href='#')
+                      img(src='assets/icons/features/6.png', alt='Powerful Performance')
+                          
+                  h3 {{'panel1Item5Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item5Text' | translate}}
+                    
+              .clear
+                    
+              .col_one_third
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn', data-delay='1200')
+                    a(href='#')
+                      img(src='assets/icons/features/7.png', alt='Responsive Layout')
+                          
+                  h3 {{'panel1Item6Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item6Text' | translate}}
+                    
+              .col_one_third
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn', data-delay='1400')
+                    a(href='#')
+                      img(src='assets/icons/features/8.png', alt='Retina Graphics')
+                          
+                  h3 {{'panel1Item7Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item7Text' | translate}}
+                    
+              .col_one_third.col_last
+                .feature-box.fbox-plain
+                  .fbox-icon(data-animate='bounceIn', data-delay='1600')
+                    a(href='#')
+                      img(src='assets/icons/features/9.png', alt='Powerful Performance')
+                          
+                  h3 {{'panel1Item8Title' | translate}}
+                          
+                  p
+                    | {{'panel1Item8Text' | translate}}
+              
+          #section-features.center.page-section
+            .divider.divider-short.divider-center
+              i.icon-circle
+                 
+            .container.center.clearfix
+              .heading-block.center
+                h2 {{'panel2Title1' | translate}}
+                      
+                span
+                  | {{'panel2Title2' | translate}} 
+
+                   
+              div(style='position: relative;', data-height-lg='624', data-height-md='518', data-height-sm='397', data-height-xs='242', data-height-xxs='154')
+                img(src='assets/services/fbrowser.png', style='position: absolute; top: 0; left: 0;', data-animate='fadeInUp', data-delay='100', alt='Chrome')
+                      
+                img(src='assets/services/fmobile.png', style='position: absolute; top: 0; left: 0;', data-animate='fadeInUp', data-delay='400', alt='iPad')
+                      
+                img(src='assets/services/{{lang}}_fbrowser.png', style='position: absolute; top: 0; left: 0;', data-animate='fadeIn', data-delay='1200', alt='iPad')
+              
+          #section-testimonials.page-section.nomargin
+            .section.dark.nomargin
+              .divcenter.center(style='max-width: 900px;')
+                h2.nobottommargin.t300.ls1
+                  | {{'panel3Question' | translate}}
+                  a.button.button-border.button-circle.button-light.button-large.notopmargin.nobottommargin(href='#', data-scrollto='#wrapper', data-offset='140', data-easing='easeInOutExpo', data-speed='1250', style='position: relative; top: -3px;') {{'panel3Button' | translate}}
+                 
+            .section.parallax.dark.nomargin(style="background-image: url('assets/testimonials.jpg'); padding: 100px 0;", data-stellar-background-ratio='0.4')
+              .heading-block.center
+                h3 {{'panel3Clients' | translate}}
+                   
+              .fslider.testimonial.testimonial-full(data-animation='fade', data-arrows='false')
+                .flexslider
+                  .slider-wrap
+                  
+                    .slide
+                      .testi-image
+                        a(href='#')
+                          img(src='assets/testimonials2.jpg', alt='Customer Testimonails')
+                               
+                      .testi-content
+                        p
+                          | {{'panel3ClientsTest1' | translate}}
+                                  
+                        .testi-meta
+                          | {{'panel3ClientsName2' | translate}}
+                          span {{'panel3ClientsCity1' | translate}}
+                            
+                    .slide
+                      .testi-image
+                        a(href='#')
+                          img(src='assets/testimonials1.jpg', alt='Customer Testimonails')
+                               
+                      .testi-content
+                        p
+                          | {{'panel3ClientsTest2' | translate}}
+                                  
+                        .testi-meta
+                          | {{'panel3ClientsName1' | translate}}
+                          span {{'panel3ClientsCity' | translate}}
+                
+            #section-pricing.page-section.notoppadding
+              .divider.divider-short.divider-center
+                i.icon-circle
+                   
+              .heading-block.title-center.nobottomborder
+                h2 {{'panel4Title1' | translate}}
+                      
+                span {{'panel4Title2' | translate}}
+                   
+              .container.clearfix
+                .pricing-box.pricing-extended.bottommargin.clearfix
+                  .pricing-desc
+                    .pricing-title
+                      h3 {{'panel4ItemTitle' | translate}}
+                            
+                    .pricing-features
+                      ul.iconlist-color.clearfix
+                        li
+                          i.icon-phone-landscape
+                          |  {{'panel4Item1Text' | translate}}
+                                  
+                        li
+                          i.icon-location-arrow
+                          |  {{'panel4Item2Text' | translate}}
+                        
+                                  
+                        li
+                          i.icon-briefcase
+                          |  {{'panel4Item3Text' | translate}}
+
+                                  
+                        li
+                          i.icon-bullhorn2
+                          |  {{'panel4Item4Text' | translate}}
+
+                                  
+                        li
+                          i.icon-money
+                          |  {{'panel4Item5Text' | translate}}
+                                  
+                        li
+                          i.icon-credit
+                          |  {{'panel4Item6Text' | translate}}
+                                  
+                        li
+                          i.icon-desktop
+                          |  {{'panel4Item7Text' | translate}}
+                                  
+                        li
+                          i.icon-tag
+                          |  {{'panel4Item8Text' | translate}}
+                         
+                  .pricing-action-area
+                    .pricing-meta
+                      | {{'panel4BoxTitle' | translate}}
+                            
+                    .pricing-price
+                      span.price-unit 
+                      | $ 2,50
+                      span.price-tenure {{'monthly' | translate}}
+                            
+                    .pricing-action
+                      a.button.button-3d.button-large.btn-block.nomargin(href='#', data-scrollto='#wrapper') {{'panel4BoxButton' | translate}}
+                
+            .clear
+                
+            .notoppadding
+              .row.noleftmargin.norightmargin.bottommargin-lg.common-height
+                #headquarters-map.col-md-8.col-sm-6.gmap.hidden-xs
+                  img(style="height: inherit; max-width:100%" src="assets/map.png" )  
+                  //- https://technorides.com/landings/4/assets/icons/map-icon.png  
+                .col-md-4.col-sm-6(style='background-color: #F5F5F5;')
+                  .col-padding.max-height
+                    h3.font-body.t400.ls1 {{'headquarters' | translate}}
+                            
+                    div(style='font-size: 16px; line-height: 1.7;')
+                      address(style='line-height: 1.7;')
+                        strong {{'usa' | translate}}
+                        br
+                        |  2295 26th Ave.
+                        br
+                        |  San Francisco, CA 94107
+                        br
+                        
+                        abbr(title='Phone Number')
+                          strong {{'phone' | translate}}:
+                          |  +1 754 300 3167
+                        br
+                                
+                      .clear.topmargin-sm
+                               
+                      address(style='line-height: 1.7;')
+                        strong {{'argentina' | translate}}
+                        br
+                        |  Tte. Gral. Juan Domingo Per&oacute;n 315
+                        br
+                        |  Buenos Aires, CP1038
+                        br
+                               
+                               
+                        abbr(title='Phone Number')
+                          strong {{'phone' | translate}}:
+                          |  +54 911 4342 5383
+                        br
+                      .clear.topmargin
+                               
+                      abbr(title='Email Address')
+                        strong Email:
+                      |  sales@technorides.com
+                
+            .page-section.notoppadding
+              .container.clearfix
+                .heading-block.title-center.nobottomborder
+                  h2 {{'footerTitle' | translate}}
+                         
+                  span
+                    | {{ 'footerTitle2' | translate}}
+                    
+                      
+                .center
+                  a.button.button-3d.button-technorides.button-xlarge.nobottommargin(href='#', data-scrollto='#wrapper', data-animate='tada')
+                    i.icon-star3
+                    | {{'footerButton1' | translate}}
+                  |  - OR -
+                  a.button.button-3d.button-blue.button-xlarge.nobottommargin(href='http://www.technorides.com/signup/')
+                    i.icon-user2
+                    | {{'footerButton2' | translate}}
+      // #content end
+      //
+        Footer
+        =============================================
+      footer#footer.dark
+        //
+          Copyrights
+          =============================================
+        #copyrights
+          .container.clearfix
+            .col_half
+              | Copyrights &copy; 2016 All Rights Reserved by Technorides
+              br
+              // <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+                 
+            .col_half.col_last.tright
+              .fright.clearfix
+                a.social-icon.si-small.si-borderless.si-facebook(href='https://www.facebook.com/technorides', target='_blank')
+                  i.icon-facebook
+                          
+                  i.icon-facebook
+                       
+                a.social-icon.si-small.si-borderless.si-twitter(href='https://twitter.com/technorides', target='_blank')
+                  i.icon-twitter
+                          
+                  i.icon-twitter
+                       
+                a.social-icon.si-small.si-borderless.si-youtube(href='https://www.youtube.com/channel/UClMZkxQjQBCLfRx_CYhdWtw', target='_blank')
+                  i.icon-youtube
+                          
+                  i.icon-youtube
+                       
+                a.social-icon.si-small.si-borderless.si-linkedin(href='https://ar.linkedin.com/company/dinerotaxi', target='_blank')
+                  i.icon-linkedin
+                          
+                  i.icon-linkedin
+                       
+                a.social-icon.si-small.si-borderless.si-technorides(href='http://www.technorides.com', target='_blank')
+                  i.icon-globe
+                          
+                  i.icon-globe
+                    
+              .clear
+                    
+              i.icon-envelope2
+              |  sales@technorides.com
+              span.middot &middot;
+          
+              i.icon-headphones
+              |  +54 911 4342 5383
+              span.middot &middot;
+              
+        // #copyrights end
+    // #wrapper end
+    //
+      Go To Top
+      =============================================
+    #gotoTop.icon-angle-up
+    //
+      External JavaScripts
+      =============================================
+     
+    script(type='text/javascript', src='/common/scripts/landingJs/plugins.js')
+    script(type='text/javascript', src='/common/scripts/landingJs/gmap.js')
+    //
+      Google Map JavaScripts
+      =============================================
+    script(type='text/javascript', src='https://maps.google.com/maps/api/js')
+     
+    //
+      Footer Scripts
+      =============================================
+    script(type='text/javascript', src='/common/scripts/landingJs/functions.js')
+     
+  

@@ -1,0 +1,56 @@
+/* CSS Document */
+@media print { 
+	img 
+	{ 
+		max-width:100% important!
+	}
+}
+
+body{background:red;}
+
+#header_right_top, #header_right_bottom, #copyright, #logoBW-footer, 
+#taximetro, #ver-tarifas, #adicionales-tarifa, #boton-tarifa-especial, #boton-tarifa-normal,
+#select-destino, #select-origen, #boton-calcular, #invertir,
+#input-mapa-origen, #input-mapa-destino
+{display:none;}
+
+
+#contenido-calcular{
+	height:80px;
+}
+#print-datosCalculo{
+	display:block;
+	height:70px;
+	width:100%;
+	margin-left:5px;
+}
+#tarifas
+{
+	display: inline;
+	height: 155px; 
+	padding-top: 20px; 
+}
+#print-tarifa-normal, #print-tarifa-especial
+{
+	display:block;
+	width:100%;
+	text-align:center;
+	font-size:18px;
+	font-weight:bold;
+}
+#print-destino, #print-origen
+{
+	font-weight:bold;
+	display:inline;
+	font-size:14px;
+}
+.inputs-ruta{
+	display:inline;
+	width:10px;
+	position:relative;
+	width:80%;}
+
+#input-origen, #input-destino
+	{
+		width:48%;
+	}

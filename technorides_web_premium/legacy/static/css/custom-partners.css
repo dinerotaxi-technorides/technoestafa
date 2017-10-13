@@ -1,0 +1,70 @@
+.city-company ul{
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  #main-description .main-description-action {
+    text-align: center;
+  }
+  #tr-footer-contact {
+    display: none;
+  }
+  #formNewsletter {
+    display: none;
+  }
+}
+
+@media (max-width: 1198px) {
+    #secondary-info p {
+      max-width: none;
+    }
+    #asociados h1 {
+      margin-top: 88px;
+    }
+    #asociados h1 {
+      padding-left: 0px;
+    }
+    #asociados ul {
+      padding-left: 0;
+    }
+    #asociados ul li {
+      margin-top: 6px;
+    }
+}
+
+@media (max-width: 991px) {
+    #asociados h1 {
+      font-size: 24px;
+      margin-top: 14px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    #asociados ul {
+      font-size: 12px;
+      padding: 5px 0 0 15px;
+      text-align: center;
+      list-style: none;
+    }
+    #secondary-info {
+      text-align: center;
+    }
+    #secondary-info img,
+    #secondary-info ul {
+      float: none;
+      padding: 0;
+    }
+    #secondary-info ul li {
+      display: inline;
+      margin: 0 5px;
+    }
+    #secondary-info img {
+      margin: 0 auto;
+    }
+}
+
+
+@media (max-width: 769px) {
+  .phoneContact {
+    margin-top: 15px;
+  }
+}

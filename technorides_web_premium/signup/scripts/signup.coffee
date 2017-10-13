@@ -1,0 +1,1 @@
+window.technoridesApp = angular.module 'technoridesApp', ['ngRoute','pascalprecht.translate','ngCookies','ngSanitize','ngAnimate','angulartics','mgcrea.ngStrap','angulartics.google.analytics','ui.bootstrap.datetimepicker']

@@ -1,0 +1,880 @@
+/* ../static Document */
+html{
+	background:#
+}
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	
+}
+#header
+{
+	height:117px;
+	background-color:#eeeeee;
+	border-bottom:3px solid #c1bfbf;
+}
+
+.titulo1
+{	color:#3e3e3e;
+	font-weight:bold;
+	font-size:13px;
+}
+.titulo2
+{	color:#e2b906;
+	font-weight:bold;
+	font-size:14px;
+	margin:0;
+	margin-bottom:2px;
+}
+#selector_ciudad
+{
+	height:116px;
+	background:url('../../images/mapsnw/background-selectorCiudad.png') repeat-x #ffd521;
+	border-top:4px solid #000;
+}
+#content
+{
+	min-height:350px;/*528px;*/
+	background:url('../../images/mapsnw/background-content.jpg') center top repeat-y;
+	
+}
+#footer
+{
+	height:73px;/*93 - 20*/
+	padding-top:20px;
+	color:#cecece;
+	background:url('../../images/mapsnw/background-footer.jpg') repeat-x;
+}
+#copyright
+{
+	height:30px;
+	background:url('../../images/mapsnw/background-copyright.jpg') center top repeat-y;
+	color:#797979;
+	line-height:30px;
+	font-size:11px;
+	font-weight:bold;
+}
+
+
+.header_left
+{
+	padding-top:22px;
+	
+}
+#header_right_top{
+	height:40px;
+	padding-top:31px;
+	float:right;
+	padding-right:13px;
+}
+#header_idiomas
+{
+	display:inline;
+	color:#6b6b6b;
+	top:-2px;
+	left:12px;
+	position:relative;
+}
+#header_idiomas a
+{
+	text-decoration:none;
+	text-transform:none;
+	color:#6b6b6b;
+}
+#header_right_bottom
+{
+	margin-top:9px;
+	height:40px;
+}
+.bajada_botonera
+{
+	margin-left:3px;
+	background:url('../../images/mapsnw/bajada-botonera.png') no-repeat;
+	height:40px;
+	width:12px;
+	float:right;
+}
+.botonera
+{
+	height:40px;
+	width:auto;
+	background:url('../../images/mapsnw/background-botonera.jpg') repeat-x;
+	float:right;	
+}
+#header_right_bottom .boton
+{
+	display:block;
+	height:40px;	
+
+/*	padding-top:14px;*/
+	float:left;
+	/*text-align:center;*/
+}
+#header_right_bottom .boton2
+{
+	display:block;
+	height:26px;	
+	background:url('../../images/mapsnw/background-botonera2.jpg') repeat-x;
+	padding-top:14px;
+	float:left;
+	text-align:center;
+}
+#header_right_bottom .separador
+{
+	border-left:1px solid #f1bb14;
+}
+
+#btn-empresa{ 	   width:134px;
+				   background:url('../../images/mapsnw/empresas.jpg') no-repeat; 
+				   background-position:0 0; }
+#btn-empresa:hover{background-position:-137px 0;}
+#btn-empresa2     {width:134px;
+				   background:url('../../images/mapsnw/empresas.jpg') no-repeat; 
+				   background-position:-274px 0;}
+
+
+#btn-contacto{   	width:89px;
+					background:url('../../images/mapsnw/contacto.jpg') no-repeat; 
+				    background-position:0 0; }
+#btn-contacto:hover{background-position:-89px 0;}
+#btn-contacto2{     width:89px;
+					background:url('../../images/mapsnw/contacto.jpg') no-repeat; 
+					background-position:-178px 0;}
+					
+					
+#btn-publicite{   	width:110px;
+					background:url('../../images/mapsnw/publicite.png') no-repeat;
+				    background-position:0 0; }
+
+
+#btn-quejas{ 	  width:124px;
+			      background:url('../../images/mapsnw/opinion.jpg') no-repeat; 
+				  background-position:0 0; }
+#btn-quejas:hover{background-position:-124px 0;}
+#btn-quejas2{     width:124px;
+			      background:url('../../images/mapsnw/opinion.jpg') no-repeat; 
+     		      background-position:-248px 0;}
+
+#btn-ciudad{ 	  width:89px;
+			      background:url('../../images/mapsnw/ciudad.jpg') no-repeat; 
+				  background-position:0 0; }
+#btn-ciudad:hover{background-position:-89px 0;}
+#btn-ciudad2{     width:89px;
+			      background:url('../../images/mapsnw/ciudad.jpg') no-repeat; 
+				  background-position:-178px 0;}
+/*
+#btn-legales { 	width:76px; }
+#btn-contacto { width:88px; }
+#btn-quejas { width:124px; }
+*/
+#formConsulta
+{margin-top:10px;
+}
+.dropDown_conteiner {
+	width: 430px;
+	height: 35px;
+	background-image: url('../../images/mapsnw/dropdownlist.png');
+	background-repeat: no-repeat;
+
+}
+.dropDown_Selected {
+	position: absolute;
+	z-index: 1;
+	line-height: 35px;
+	height: 35px;
+	padding-left: 9px;
+	width:390px;
+	overflow:hidden;
+
+}
+
+.dropdownlist1 {
+	width: 430px;
+	height: 35px;
+	float: left;
+	position: absolute;
+	z-index: 2;
+	margin-top: 2px;
+	padding-top: 8px;
+	display: inline;
+	background-color: white;
+	-moz-opacity: 0;
+	 filter: alpha(opacity: 0);
+	opacity: 0;
+	cursor: pointer;wo
+}
+
+
+#content-left{
+	background:#f3f3f3;
+	width:475px;
+	
+}
+
+.content-index{
+	height:350px; /*528px - 20px*/
+	width:475px;
+	padding-top:20px;
+}
+
+#content-right{
+	background:#efefef;
+	width:475px;
+}
+
+.banner-index{
+	width:430px;
+	height:87px;
+}
+#ultimasConsultas{
+	margin-bottom:40px;
+	border-top:1px #c1bfbf solid;
+	border-bottom:1px #c1bfbf solid;
+	width:430px;
+	height:240px;/*212*/
+	overflow:hidden;
+}
+#ul_ultimas{}
+.li_consulta{height:31px;overflow:hidden;}
+.ultimas-consultas-item{
+	font-size:12px;
+	padding-left:9px;
+	line-height:31px;
+	
+}
+.odd
+{
+	background:#fcd150;
+	left:9px;
+}
+.even
+{
+	background:#efefef;
+	left:9px;
+}
+
+
+
+/* Ciudades  */
+#content-ciudades{	
+	background: #F3F3F3;
+	height:auto;
+}
+.contenido_calcular{	
+	height:116px;
+	background:url('../../images/mapsnw/background-selectorCiudad.png') repeat-x #ffd521;
+	border-top:4px solid #000;
+}
+
+
+#input-origen{
+	margin-top:26px;
+	background:url('../../images/mapsnw/background-input-calcular.jpg');
+	height:	35px;
+	position:relative;
+	
+}
+
+.select-poi{
+	opacity:0;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)";
+	height:35px;
+	width:230px;
+	position: absolute;
+    z-index: 1;
+	
+}
+
+.input-mapa{
+	line-height:20px;
+	border:1px solid #ffdd50;
+	margin-left:10px;
+	width:170px;
+	padding-left:10px;
+	height: 19px;
+	background:#3f3f3f;
+	color: white;
+	font-family: Arial;
+	font-weight: bold;
+	font-size:10px;
+	cursor: pointer;
+	margin-top:32px;
+}
+
+#input-destino{
+	margin-top:26px;
+	margin-left:12px;
+	background:url('../../images/mapsnw/background-input-calcular.jpg');
+	height:	35px;
+}
+
+.inputs-ruta{
+	position:absolute;
+	width:195px;
+	margin-left:5px;
+	border:none;
+	background:url('../../images/mapsnw/hackIE.png') repeat-x;
+	height:32px;
+	display:block;
+	line-height:32px;
+	font-family:Arial;
+	color:#3e3e3e;
+	font-weight:bold;
+	z-index: 2;
+}
+
+
+#invertir-rutas{
+	margin-top:26px;
+	border:none;
+	background:url(../../images/mapsnw/boton-invertir-rutas.jpg');
+	height:	35px;
+	width:37px;
+	cursor:pointer;
+	
+}
+
+#invertir-rutas:hover{
+	
+	background:url(../../images/mapsnw/boton-invertir-rutas-over.jpg');
+	
+	
+}
+
+.boton{
+	cursor:pointer;
+}
+
+#boton-calcular{
+	border:none;
+	background:url('../../images/mapsnw/boton-calcular-completo.jpg');
+	width:240px;
+	height: 78px;
+	margin-top:16px;
+	cursor:pointer;
+}
+#select-origen, #select-destino
+{cursor:pointer;}
+
+
+#boton-calcular:hover{
+	background-position:480px 0;
+
+}
+
+#boton-calcular:active{	
+	background-position:240px 0;
+	
+}
+
+
+
+
+
+#contenedor-cartel{
+	margin-top:16px;
+	margin-left:12px;
+	width:110px;
+	height:93px;
+}
+#cartel-real
+{
+	paddin-top:16px;
+	display:block;
+	background:url('../../images/mapsnw/libre.jpg');
+	background-position:0 0;
+	width:110px;
+	height:77px;
+}
+
+#ver-tarifas {
+		cursor:pointer;
+		width:150px;
+		height:19px;		
+		background-image: url(''../../images/mapsnw/ver-tarifas-completo.jpg')
+}
+#ver-tarifas:hover{
+		background-position: 150px 0px;
+}
+
+#tarifas{
+	padding-top:20px;
+	height:220px;
+	border-bottom:3px solid #fece2c;
+	background:#eaeaea;
+	display:none;
+	
+}
+
+#tarifa-normal{
+	
+	background:#efefef;
+}
+.check-adicional{
+	margin-right:4px;
+}
+
+#tarifa-especial{
+	background: #e7e7e7;
+	
+}
+
+#boton-tarifa-normal{
+	
+	background:url('../../images/mapsnw/boton-tarifa-normal.jpg');
+	height:33px;
+	
+}
+
+.tarifa-contenido{
+	height:130px;
+	border-bottom:1px solid #d6d6d6
+	
+}
+
+.precio-tarifa{
+	background: #e1e1e1 ;
+	border: 1px solid #e5e5e5;
+	height: 30px;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	color:#333333;
+	text-align:center;
+	
+}
+
+.texto-tarifa{	
+	color:#777777;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	text-align:left;
+	line-height:35px;
+}
+
+.alto_10{margin-top:10px;}
+.alto_5{margin-top:5px;}
+
+
+#adicionales-tarifa{margin-top:10px}
+.adicional-tarifa{
+	color:#727272;
+	font-family: Arial;
+	font-weight:bold;
+	height:28px;	
+}
+
+
+.checkbox  {
+    width: 17px;
+    height: 17px;
+    padding: 0px;
+    background: url("../../images/mapsnw/checkbox-back.jpg");
+    display: block;
+    clear: left;
+    float: left;
+ }
+
+.checked {
+     background-position: 17px 0px;   
+}
+
+.tarifa-adicional-checkbox{
+	
+
+    width: 19px;
+    height: 20px;
+    padding: 0px;
+    background: url("../../images/mapsnw/checkbox-back.jpg");
+    display: block;
+    clear: left;
+    float: left;
+ }
+
+
+
+ 
+
+
+#map_canvas{
+	height:530px;
+}
+
+
+
+
+/* contacto */
+#bigfatdick{
+	background:#fed029;
+	height:25px;
+	border-top:4px solid #000;
+}
+#contacto-content{
+	background:#f3f3f3;
+	padding-top:21px;
+}
+.cabecera1
+{
+	background:url('../../images/mapsnw/background-titulo1.jpg') repeat-x;
+	height:34px;
+	line-height:34px;
+	padding-left:8px;
+	font-size:14px;
+	font-weight:bold;
+	width:662px;
+}
+#contacto-content .contenido
+{
+	background:#e9e8e8;
+	width:630px;
+	padding-left:40px;
+	color:#2c2c2c;
+	font-size:12px;
+}
+.textbox2
+{
+	border:none;
+	background:#c9c9c9;
+	height:33px;
+	line-height:33px;
+	-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+padding-left:10px;
+width:420px;
+}
+.textarea
+{
+	height:125px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#boton-enviar{
+	border:none;
+	background:url('../../images/mapsnw/enviar.png');
+	width:150px;
+	height:50px;
+	display:block;
+	cursor:pointer;
+}
+#boton-enviar:hover{
+	background-position:300px 0;
+	cursor:pointer;
+}
+
+
+/* taximetro*/
+
+img {  
+  
+border: none;  
+  
+}  
+
+a img {  
+  
+border: none;  
+  
+}  
+#taximetro{
+	color:white;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	display:none;
+	opacity:1;
+	width:364px;
+	height:264px;
+	position:relative;
+	background:url('../../images/mapsnw/taximetro/taximetro-background.png') center center no-repeat;
+	background-position:95px 0;
+	
+}
+
+
+#recuadro-precio{position:absolute;min-width:100px;right:22%;top:40px;float:left;}
+#recuadro-precio .izquierda{ background:url('../../images/mapsnw/taximetro/tarifa-background-left.png');height:94px;width:4px;float:left;}
+#recuadro-precio .centro{background:url('../../images/mapsnw/taximetro/tarifa-background-middle.png');height:94px;width:auto;float:left;}
+#recuadro-precio .derecha{background:url('../../images/mapsnw/taximetro/tarifa-background-right.png');height:94px;width:4px;float:left;}
+
+#tarifa{}
+#tarifa .izquierda{ background:url('../../images/mapsnw/taximetro/tarifa2-background-left.png');width:4px;margin-left:5px;}
+#tarifa .centro{background:url('../../images/mapsnw/taximetro/tarifa2-background-middle.png');width:auto;font-weight: bold;line-height: 23px;}
+#tarifa .derecha{background:url('../../images/mapsnw/taximetro/tarifa2-background-right.png');width:4px;margin-right:5px;}
+#tarifa .comunes{
+	float:left;
+	margin-top:7px;
+
+	height:81px;
+}
+.left{float:left;}
+.right{float:right;}
+.mas-info-left{ background:url('../../images/mapsnw/taximetro/mas-info-left.png');width:3px;}
+.mas-info-centro{background:url('../../images/mapsnw/taximetro/mas-info-middle.png');width:auto;font-weight: bold;line-height: 23px;}
+.mas-info-right{background:url('../../images/mapsnw/taximetro/mas-info-right.png');width:3px}
+.mas-info-comun{ height:23px;font-size:20px;color:black;}
+
+#taximetro-mas-rapido{
+	width:73px;
+	height:37px;
+	background: url("../../images/mapsnw/taximetro/mas-rapido-completo.png");
+	background-position: 73px 0px;	
+}
+
+#taximetro-mas-rapido:hover{
+	background-position: 146px 0px;
+}
+#taximetro-mas-rapido:active{
+	background-position: 0px 0px;
+}
+#taximetro-mas-rapido.activado{
+	background-position: 0px 0px;
+}
+
+
+#taximetro-mas-corto{
+	
+	width:73px;
+	height:37px;
+	background: url("../../images/mapsnw/taximetro/mas-corto-completo.png");
+	background-position: 73px 0px;	
+}
+#taximetro-mas-corto:hover{
+	background-position: 146px 0px;
+}
+#taximetro-mas-corto:active{
+	background-position: 0px 0px;
+}
+#taximetro-mas-corto.activado{
+	background-position: 0px 0px;
+}
+
+
+#taximetro-otro{
+	
+	width:73px;
+	height:37px;
+	background: url("../../images/mapsnw/taximetro/otro-completo.png");
+	background-position: 73px 0px;	
+}
+#taximetro-otro:hover{
+	background-position: 146px 0px;
+}
+#taximetro-otro:active{
+	background-position: 0px 0px;
+}
+#taximetro-otro.activado{
+	background-position: 0px 0px;
+}
+
+
+
+#taximetro-print{
+	
+	width:36px;
+	height:36px;
+	background: url("../../images/mapsnw/taximetro/print.png");
+		
+}
+#taximetro-print:hover{
+	background-position: 36px 0px;
+}
+
+
+
+#taximetro-compartir{
+	
+	width:37px;
+	height:34px;
+	background: url("../../images/mapsnw/taximetro/compartir.png");
+		
+}
+#taximetro-compartir:hover{
+	background-position: 37px 0px;
+}
+
+
+
+
+
+/* quejas */
+
+#quejas-content{
+	background:#f3f3f3;
+	padding-top:21px;
+}
+
+/* empresas  */
+
+#empresa-content{
+	background:#f3f3f3;
+	padding-top:21px;
+}
+
+#empresa-content .contenido{
+	background:#e9e8e8;
+	width:670px;
+	color:#2c2c2c;
+	font-size:12px;
+}
+#empresa-content{
+	min-height:360px;
+}
+
+.nombre-empresa{
+	background:#333333;
+	height:24px;
+	line-height:24px;
+	color:white;
+	text-transform:uppercase;
+	display:inline;
+	padding:0px 10px 0px 40px;
+	font-size:14px;
+	font-weight:bold;
+}
+.ubicacion-empresa{
+	padding-left:35px;
+}
+.texto2
+{
+	color:#333333;
+	display:inline;
+	font-size:14px;
+	font-weight:bold;
+}
+.masdatos-empresa{
+	margin-left:40px;
+	margin-bottom:9px;
+	width:590px;
+	padding:6px 0px 6px 0px;
+	border-bottom:1px solid #b2b1b1;
+}
+	
+	
+	/*  legales  */
+	
+	
+
+#legales-content{
+	background:#f3f3f3;
+	padding-top:21px;
+}
+
+#legales-content .contenido
+{
+	background:#e9e8e8;
+	width:670px;
+	color:#2c2c2c;
+	font-size:12px;
+}
+#legales-content{
+	min-height:360px;
+}
+.cabecera2{
+	background:#333333;
+	color:white;
+	font-weight:bold;
+	text-align:center;
+	margin-top:10px;
+	height:24px;
+	font-size:14px;
+	line-height:24px;
+	
+}
+
+.texto3
+{
+	padding:15px 40px 10px 40px;
+	font-size:12px;
+}
+#print-destino, #print-origen
+{
+	font-weight:bold;
+	font-size:14px;
+	display:none;
+}
+#print-datosCalculo
+{
+	font-size:14px;
+
+}
+#print-datosCalculo div
+{
+	display:inline;
+}
+#contenido-calcular{
+	height:116px;
+}
+#print-datosCalculo{
+	display:none;
+}
+#print-tarifa-normal, #print-tarifa-especial
+{
+	display:none;
+}
+
+
+
+ 
+/* Z-index of #mask must lower than #boxes .window */
+#mask {
+  position:absolute;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+   
+#boxes .window {
+  position:fixed;
+  width:440px;
+  height:220px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+ 
+ 
+/* Customize your modal window here, you can add background image too */
+#boxes #dialog {
+  width:510px; 
+  height:220px;
+  background:white;
+  border: 6px solid #ffd71d;
+}
+
+
+.redes-sociales{
+	margin-left:15px;
+	height:35px;
+	width:35px ;
+	display: inline-block;
+	background: url('../../images/mapsnw/redes-sociales.html');		
+}
+
+.redes-sociales:hover{
+	background-position-x:177px;
+	
+}
+
+.redes-sociales.google{
+	
+	display: inline-block;
+	background: url('../../images/mapsnw/redes-sociales.html') 72px 0px;		
+}
+
+.redes-sociales.google:hover{
+	
+	
+	background-position-x:36px;	
+}
+
+.redes-sociales.tw{
+	
+	display: inline-block;
+	background: url('../../images/mapsnw/redes-sociales.html') 142px 0px;		
+}
+
+.redes-sociales.tw:hover{
+	background-position-x:107px;
+	
+}

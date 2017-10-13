@@ -1,0 +1,479 @@
+{
+<<<<<<< Updated upstream
+    "env":"ci",
+    "ssl": {
+      "port": 8443,
+      "wss":8344,
+      "is_enabled":false,
+      "key":"ssl/technorides.co.key",
+      "certificate":"ssl/technorides.co.crt"
+    },
+    "sockets": {
+      "port": 2000,
+      "port1":8345
+    },
+
+    "rest": {
+      "ports": [2001, 8843]
+    },
+    "google_maps": {
+      "key": "AIzaSyDETwlXKIG-v6rZeV_7uWbuWdpB3IThysI",
+      "booking_key": "AIzaSyDVz_ywjT3iiX-xsEIy7z2s8YqseVxTYms"
+    },
+    "default_currency": "USD",
+    "apple": {
+      "production": true,
+      "address"   : "gateway.push.apple.com",
+      "rute_s"      : "ssl/push/sandbox",
+      "rute_driver_s": "ssl/push/sandbox/driver",
+      "rute"      : "ssl/push/production",
+      "rute_driver": "ssl/push/production/driver"
+    },
+    "stripe":{
+      "pushable_key":"pk_test_d3DommaS7lxzmIKAFTBDEuXT",
+      "secret_key"  :"sk_test_yTjgf0rFtrLXsZCaAAssoSty"
+    },
+    "mysql": {
+      "host": "10.0.0.131",
+      "password": "root_beta",
+      "user"    : "root",
+      "database": "dtax_ci"
+    },
+
+    "mysql_pool": {
+      "min": 2,
+      "max": 10
+    },
+
+    "mongo": {
+      "host": "10.0.0.131",
+      "db"  : "neosocket-ci",
+      "port": 27017
+    },
+
+    "redis": {
+        "host": "10.0.0.131",
+        "db_name": "neosocket-ic",
+        "port": 6379,
+        "pass": null
+    },
+
+    "tasks": {
+        "inconcistentOperation": {
+            "timer": "1000 seconds",
+            "foo": "bar",
+            "active": true
+        },
+        "configRelease": {
+            "timer": "20 seconds",
+            "active": true
+        },
+        "updateAllCompaniesConfig": {
+          "timer": "10 seconds",
+          "active": true
+        },
+        "updateParkings": {
+            "timer": "12 hours",
+            "active": true
+        },
+        "timeoutConnections": {
+            "timer": "100 seconds",
+            "active": true
+        },
+        "timeoutMessages": {
+            "timer": "100 seconds",
+            "active": true
+        },
+        "ping": {
+            "timer": "10 seconds",
+            "active": false
+        },
+        "zones": {
+            "timer": "12 hours",
+            "active": true
+        },
+        "refreshDriversQueue": {
+            "timer": "50 seconds",
+            "active": true
+        },
+        "updateDrivers": {
+            "timer": "12 hours",
+            "active": true
+        },
+
+        "respawnTrips": {
+            "timer": "60 seconds",
+            "active": true
+        },
+
+        "fareCalculator": {
+            "timer": "30 seconds",
+            "active": true
+        },
+
+        "driverDispatcherFunction": {
+            "timer": "15 seconds",
+            "active": true
+        },
+        "queueDriver": {
+            "timer": "5 seconds",
+            "active": true
+        },
+        "pushService": {
+            "timer": "5 seconds",
+            "active": false
+        },
+        "disconectBlockedUsers": {
+            "timer": "60 seconds",
+            "active": true
+        }
+    },
+
+
+    "oper_status":{
+      "pending" : ["PENDING"],
+      "assigned" : ["ASSIGNEDRADIOTAXI","ASSIGNEDTAXI","REASIGNTRIP"],
+      "holding" : ["HOLDINGUSER"],
+      "in_tx" : [ "HOLDINGUSER","INTRANSACTION","INTRANSACTIONRADIOTAXI","SETAMOUNT"],
+      "completed" :["COMPLETED","CALIFICATED"],
+      "cancel" : ["CANCELED","CANCELED_EMP","CANCELTIMETRIP","CANCELOFFLINERTAXI","CANCELED_TAXI","","CANCELED_DRIVER"],
+      "nin_tx" :["PENDING","CANCELED","CANCELED_EMP","CANCELED_DRIVER","CANCELTIMETRIP","CANCELOFFLINERTAXI","CANCELED_TAXI"]
+    },
+    "driver":{
+      "not_tx" : ["ONLINE","OFFLINE","DISCONNECTED"]
+    },
+    "adyen_users":{
+      "TaxiplusCOM" : {"user":"ws@Company.Taxiplus", "password":"=g*jIZ~7%EBWxZdW9wGib(cLN"},
+      "TECHNORIDESCOM" : {"user":" ws@Company.TECHNORIDES", "password":"cTr=6kX2~~=fLfrSYf5f*&9pK"}
+    },
+    "google_api":{
+      "key":"AIzaSyDA81JRvQjVsf9-Jk9n5YkcEjuxWYWUbQo",
+      "description":"dinerotaxi from matiasbaglieri@"
+    },
+
+    "zoho_token":"217b5be8ef2cf49a59223af950248d33",
+    "logging":{
+      "log" : true,
+      "log_i" : false,
+      "log_d" : false,
+      "log_v" : false,
+      "log_w" : false,
+      "handleExceptions" : false,
+      "exitOnError" : false
+
+    },
+    "query":{
+      "get_operation_charges":"select IFNULL(SUM(charge),0) charge,IFNULL(type_charge,'INITIAL_COST') type_charge from operation_charges where operation_id = ? and type_charge= 'INITIAL_COST' union select IFNULL(SUM(charge),0) charge,IFNULL(type_charge,'TIME') type_charge from operation_charges where operation_id = ? and type_charge= 'TIME' union select IFNULL(SUM(charge),0) charge,IFNULL(type_charge,'DISTANCE') type_charge from operation_charges where operation_id = ? and type_charge= 'DISTANCE' union select IFNULL(SUM(charge),0) charge,IFNULL(type_charge,'WAIT') type_charge from operation_charges where operation_id = ? and type_charge= 'WAIT'",
+      "get_operation_charge_driver":"select IFNULL(SUM(charge),0) charge,'PRICE' type_charge from operation_charges where operation_id = ? and type_charge= 'PRICE' union select IFNULL(SUM(charge),0) charge,'TIME' type_charge from operation_charges where operation_id = ? and type_charge in ('TIME','WAIT','INITIAL_COST' ) union select IFNULL(SUM(charge),0) charge,'DISTANCE' type_charge from operation_charges where operation_id =? and type_charge= 'DISTANCE'",
+      "get":""
+    },
+    "time_find_driver":20000,
+    "time_find_driver_in_parking":20000,
+    "time_out_cancel_trip_pending" : 1800,
+    "parking_time_out_cancel_operation" : 120,
+    "time_out_disconnect_driver" : 280,
+    "ping_limit_user" : 300000,
+    "time_out_messages" : 900,
+    "token_admin" : "d303be78d55dfdf8df06031a76cd9065",
+
+    "max_distance_show_driver_to_user" : 1,
+
+    "parking_v2"             : true,
+    "parking_v2_seconds_sub" : 60,
+    "reports"                : false,
+    "monitor_reports"        : true,
+    "send_mail"              : false,
+    "sendgrid":{
+      "user" : "mbaglieri",
+      "password" : "dTaxi021"
+    },
+    "walkie_talkie"          : true,
+    "fare_calculator"        : {
+      "log"       : false,
+      "activated" : true
+    },
+    "bids_algorithm": {
+      "seconds_ajust_alarm": 0,
+      "moment":0
+    },
+    "prepaid":{
+      "mtaxifullcarg":{
+        "rtaxi"       : "@mastertaxi.com",
+        "limit"       : 10000,
+        "payment_mode": "full_carga"
+      }
+    },
+    "ajust_my_sql_clock":0,
+    "send_msg_ex_force_close": true,
+    "new_chat"               : true,
+    "rest_create_trip":true,
+    "job_respawn_trips":false,
+    "job_respawn_trips_broadcast":false,
+    "ajust_my_sql_clock":0,
+    "parking": true,
+    "master" : true,
+    "show_ip": true,
+    "validate_login_token":false,
+    "validate_login_token_constructor":false,
+    "validate_login_driver_token":false,
+    "api_host":"http://grails-beta-LB-1359583157.us-east-1.elb.amazonaws.com:8080/",
+
+    "log_directory": "neosocket.log",
+
+    "payments":{
+      "paypal":{
+        "host": "https://api-3t.sandbox.paypal.com",
+        "path": "/nvp",
+        "url_cancel": "http://ec2-107-21-193-193.compute-1.amazonaws.com:8843/paypal/url/cancel",
+        "url_return": "http://ec2-107-21-193-193.compute-1.amazonaws.com:8843/paypal/url/return"
+      }
+    },
+
+    "swagger":{
+      "info":{
+        "title": "Technorides Spec",
+        "version": "1.0.0",
+        "description": "Demonstrating how to describe a RESTful API with Swagger"
+      },
+      "host": "ec2-107-21-193-193.compute-1.amazonaws.com:8843",
+      "basepath": "/"
+=======
+  "env":"development",
+  "ssl": {
+    "port": 8443,
+    "wss":8344,
+    "is_enabled":false,
+    "key":"ssl/technorides.co.key",
+    "certificate":"ssl/technorides.co.crt"
+  },
+  "sockets": {
+    "port": 2000,
+    "port1":8345
+  },
+
+  "rest": {
+    "ports": [2001, 8843]
+  },
+  "google_maps": {
+    "key": "AIzaSyDETwlXKIG-v6rZeV_7uWbuWdpB3IThysI",
+    "booking_key": "AIzaSyDVz_ywjT3iiX-xsEIy7z2s8YqseVxTYms"
+  },
+  "default_currency": "USD",
+  "apple": {
+    "production": true,
+    "address"   : "gateway.push.apple.com",
+    "rute_s"      : "ssl/push/sandbox",
+    "rute_driver_s": "ssl/push/sandbox/driver",
+    "rute"      : "ssl/push/production",
+    "rute_driver": "ssl/push/production/driver"
+  },
+  "stripe":{
+    "pushable_key":"pk_test_d3DommaS7lxzmIKAFTBDEuXT",
+    "secret_key"  :"sk_test_yTjgf0rFtrLXsZCaAAssoSty"
+  },
+  "mysql": {
+    "host": "127.0.0.1",
+    "password": "root",
+    "user"    : "root",
+    "database": "dtax"
+  },
+
+  "mysql_pool": {
+    "min": 2,
+    "max": 10
+  },
+
+  "mongo": {
+    "host": "127.0.0.1",
+    "db"  : "neosocket",
+    "port": 27017
+  },
+
+  "redis": {
+    "host": "127.0.0.1",
+    "db_name": "neosocket",
+    "port": 6379,
+    "pass": null
+  },
+
+  "tasks": {
+    "inconcistentOperation": {
+      "timer": "1000 seconds",
+      "foo": "bar",
+      "active": true
+    },
+    "configRelease": {
+      "timer": "12 hours",
+      "active": true
+    },
+    "updateAllCompaniesConfig": {
+      "timer": "10 seconds",
+      "active": false
+    },
+    "updateParkings": {
+      "timer": "12 hours",
+      "active": true
+    },
+    "timeoutConnections": {
+      "timer": "100 seconds",
+      "active": true
+    },
+    "timeoutMessages": {
+      "timer": "100 seconds",
+      "active": true
+    },
+    "ping": {
+      "timer": "10 seconds",
+      "active": false
+    },
+    "zones": {
+      "timer": "12 hours",
+      "active": true
+    },
+    "refreshDriversQueue": {
+      "timer": "50 seconds",
+      "active": true
+    },
+    "updateDrivers": {
+      "timer": "12 hours",
+      "active": true
+    },
+
+    "respawnTrips": {
+      "timer": "60 seconds",
+      "active": true
+    },
+    "fareCalculator": {
+      "timer": "30 seconds",
+      "active": false
+    },
+
+    "driverDispatcherFunction": {
+      "timer": "15 seconds",
+      "active": true
+    },
+    "queueDriver": {
+      "timer": "5 seconds",
+      "active": true
+    },
+    "pushService": {
+      "timer": "5 seconds",
+      "active": false
+    },
+    "disconectBlockedUsers": {
+      "timer": "60 seconds",
+      "active": true
+>>>>>>> Stashed changes
+    }
+  },
+
+
+  "oper_status":{
+    "pending" : ["PENDING"],
+    "assigned" : ["ASSIGNEDRADIOTAXI","ASSIGNEDTAXI","REASIGNTRIP"],
+    "holding" : ["HOLDINGUSER"],
+    "in_tx" : [ "HOLDINGUSER","INTRANSACTION","INTRANSACTIONRADIOTAXI","SETAMOUNT"],
+    "completed" :["COMPLETED","CALIFICATED"],
+    "cancel" : ["CANCELED","CANCELED_EMP","CANCELTIMETRIP","CANCELOFFLINERTAXI","CANCELED_TAXI","","CANCELED_DRIVER"],
+    "nin_tx" :["PENDING","CANCELED","CANCELED_EMP","CANCELED_DRIVER","CANCELTIMETRIP","CANCELOFFLINERTAXI","CANCELED_TAXI"]
+  },
+  "driver":{
+    "not_tx" : ["ONLINE","OFFLINE","DISCONNECTED"]
+  },
+  "adyen_users":{
+    "TaxiplusCOM" : {"user":"ws@Company.Taxiplus", "password":"=g*jIZ~7%EBWxZdW9wGib(cLN"},
+    "TECHNORIDESCOM" : {"user":" ws@Company.TECHNORIDES", "password":"cTr=6kX2~~=fLfrSYf5f*&9pK"}
+  },
+  "google_api":{
+    "key":"AIzaSyDA81JRvQjVsf9-Jk9n5YkcEjuxWYWUbQo",
+    "description":"dinerotaxi from matiasbaglieri@"
+  },
+
+  "zoho_token":"217b5be8ef2cf49a59223af950248d33",
+  "logging":{
+    "log" : true,
+    "log_i" : false,
+    "log_d" : false,
+    "log_v" : false,
+    "log_w" : false,
+    "handleExceptions" : false,
+    "exitOnError" : false
+
+  },
+  "query":{
+    "get_operation_charges":"select IFNULL(SUM(charge),0) charge,IFNULL(type_charge,'INITIAL_COST') type_charge from operation_charges where operation_id = ? and type_charge= 'INITIAL_COST' union select IFNULL(SUM(charge),0) charge,IFNULL(type_charge,'TIME') type_charge from operation_charges where operation_id = ? and type_charge= 'TIME' union select IFNULL(SUM(charge),0) charge,IFNULL(type_charge,'DISTANCE') type_charge from operation_charges where operation_id = ? and type_charge= 'DISTANCE' union select IFNULL(SUM(charge),0) charge,IFNULL(type_charge,'WAIT') type_charge from operation_charges where operation_id = ? and type_charge= 'WAIT'",
+    "get_operation_charge_driver":"select IFNULL(SUM(charge),0) charge,'PRICE' type_charge from operation_charges where operation_id = ? and type_charge= 'PRICE' union select IFNULL(SUM(charge),0) charge,'TIME' type_charge from operation_charges where operation_id = ? and type_charge in ('TIME','WAIT','INITIAL_COST' ) union select IFNULL(SUM(charge),0) charge,'DISTANCE' type_charge from operation_charges where operation_id =? and type_charge= 'DISTANCE'",
+    "get":""
+  },
+  "time_find_driver":20000,
+  "time_find_driver_in_parking":20000,
+  "time_out_cancel_trip_pending" : 1800,
+  "parking_time_out_cancel_operation" : 120,
+  "time_out_disconnect_driver" : 280,
+  "ping_limit_user" : 300000,
+  "time_out_messages" : 900,
+  "token_admin" : "d303be78d55dfdf8df06031a76cd9065",
+
+  "max_distance_show_driver_to_user" : 1,
+
+  "parking_v2"             : true,
+  "parking_v2_seconds_sub" : 60,
+  "reports"                : false,
+  "monitor_reports"        : true,
+  "send_mail"              : false,
+  "sendgrid":{
+    "user" : "mbaglieri",
+    "password" : "dTaxi021"
+  },
+  "walkie_talkie"          : true,
+  "fare_calculator"        : {
+    "log"       : false,
+    "activated" : true
+  },
+  "bids_algorithm": {
+    "seconds_ajust_alarm": 0,
+    "moment":0
+  },
+  "prepaid":{
+    "mtaxifullcarg":{
+      "rtaxi"       : "@mastertaxi.com",
+      "limit"       : 10000,
+      "payment_mode": "full_carga"
+    }
+  },
+  "ajust_my_sql_clock":0,
+  "send_msg_ex_force_close": true,
+  "new_chat"               : true,
+  "rest_create_trip":true,
+  "job_respawn_trips":false,
+  "job_respawn_trips_broadcast":false,
+  "ajust_my_sql_clock":0,
+  "parking": true,
+  "master" : true,
+  "show_ip": true,
+  "validate_login_token":false,
+  "validate_login_token_constructor":false,
+  "validate_login_driver_token":false,
+  "api_host":"http://localhost:8080/",
+
+  "log_directory": "neosocket.log",
+
+  "payments":{
+    "paypal":{
+      "host": "https://api-3t.sandbox.paypal.com",
+      "path": "/nvp",
+      "url_cancel": "http://ec2-107-21-193-193.compute-1.amazonaws.com:8843/paypal/url/cancel",
+      "url_return": "http://ec2-107-21-193-193.compute-1.amazonaws.com:8843/paypal/url/return"
+    }
+  },
+
+  "swagger":{
+    "info":{
+      "title": "Technorides Spec",
+      "version": "1.0.0",
+      "description": "Demonstrating how to describe a RESTful API with Swagger"
+    },
+    "host": "localhost:8843",
+    "basepath": "/"
+  }
+}

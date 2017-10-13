@@ -1,0 +1,175 @@
+.login(style="background-color: #f2f2f2")
+  div(ng-include="'/common/views/partials/version.html'")
+  nav
+    .main-nav
+      .container 
+        ul.pull-right
+          li.uppercase
+            a(href="#/" ng-click="changePage('home')" typed-translate="") index.sections.home 
+          
+          li(ng-init="login = false")
+            a(href="" ng-click="login=!login")  
+              span.special.uppercase(typed-translate="") index.sections.login
+            ul.login-special(ng-if="login")
+              form(ng-show="!forgotPassword" role='log' name="userLogin" ng-submit="userLogin.$valid && user.login(user, company.rtaxi)") 
+                .form-group
+                  label(typed-translate="") index.labels.user
+                  input.form-control(ng-model="user.email")
+                .form-group
+                  label(typed-translate="") index.labels.password
+                  input.form-control(ng-model="user.password" type="password")
+                .form-group.text-center
+                  button.orange-btn.btn-block.uppercase(type="submit" typed-translate="") index.sections.login
+                  a(ng-click="forgotToggle()" href="" typed-translate="") index.login.forgotPass 
+                  
+              form(ng-show="forgotPassword" name="retrivePass" ng-submit="retrivePass.$valid && user.forgotPassword(company.info.adminMail)" ) 
+                .form-group
+                  label(typed-translate="") index.labels.user
+                  input.form-control(ng-model="user.email")
+                .form-group.text-center
+                  button.orange-btn.btn-block.uppercase(type="submit" typed-translate="") index.login.retrive
+                  button.btn.btn-block.btn-default(ng-click="forgotToggle()" type="button" style="border-radius:0" typed-translate="") index.labels.cancel
+        .logo 
+          a(href="#/" ng-click="changePage('home')") {{company.info.name}}
+  .signup
+    .container
+      h2.uppercase.text-center
+        span(typed-translate="") home.separatedTitle1 
+        span &nbsp;
+        span.special(typed-translate="")  home.separatedTitle2
+        span , &nbsp;
+        span(typed-translate="") home.separatedTitle3
+      p.text-center(style="margin-bottom:40px" typed-translate="") signup.subtitle
+      .col-xs-12.col-md-6
+        .panel.panel-default
+          .panel-body
+            .col-xs-12
+              button.fb-button.btn-block.social(ng-click="facebook.login()").hidden
+                i.fa.fa-facebook
+                span.uppercase(typed-translate="") signup.useFacebook 
+                //sign up with facebook
+              button.google-button.btn-block.social.hidden
+                i.fa.fa-google-plus
+                span.uppercase(typed-translate="") signup.useGoogle
+                //sign up with google +
+            .col-xs-12
+              form.row(name="signup" ng-submit="signup.$valid && user.signUp(company.rtaxi)")
+                .col-xs-12
+                  .form-group
+                    label(typed-translate="") index.labels.youare
+                    select.form-control(ng-model="user.userType" required)
+                      option(value="passenger" typed-translate="") index.labels.passenger
+                      option(value="driver" typed-translate="") index.labels.driverInfo
+                      option(value="enterprise" typed-translate="") index.labels.enterprise
+                .col-xs-6
+                  .form-group
+                    label(typed-translate="" ng-if="user.userType!='enterprise'") index.labels.name
+                    label(typed-translate="" ng-if="user.userType=='enterprise'") index.labels.companyName
+                    input.form-control(ng-model="user.name" required)
+                .col-xs-6 
+                  .form-group
+                    label(typed-translate="" ng-if="user.userType!='enterprise'") index.labels.lastName
+                    label(typed-translate="" ng-if="user.userType=='enterprise'") index.labels.contactName
+                    input.form-control(ng-model="user.lastName" required)
+                .col-xs-12
+                  .form-group(ng-if="user.userType=='passenger'")
+                    label(typed-translate="") index.labels.email
+                    input.form-control(ng-model="user.email" type="text" required  ng-unique="") 
+
+
+                    
+                    p.text-danger(ng-show="signup.correo.$error.unique" typed-translate="") signup.unique 
+                  .form-group(ng-if="user.userType!='passenger'")
+                    label(typed-translate="") index.labels.email
+                    input.form-control(ng-model="user.email" type="email" ng-unique="" required)  
+                  .form-group
+                    label(typed-translate="") index.labels.phone 
+                    input.form-control(ng-model="user.phone" required)
+                  .form-group(ng-if="user.userType == 'passenger'")
+                    label(typed-translate="") index.labels.password
+                    input.form-control(type="password" ng-model="user.password" required)
+                .col-xs-12
+                  .form-group
+                    button.orange-btn.uppercase.btn-block(type="submit" typed-translate="") index.sections.signup
+                    
+  
+      .col-xs-12.col-md-6
+        h5(typed-translate="") signup.features.title
+        div(ng-switch="user.userType")
+          div(ng-switch-when="passenger")
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/driver/hand_feature1.png" ng-click="changeTabSlider(1)" ng-hide="featTab==1" style="max-width: 65px;")
+                img.media-object.img-circle(src="assets/driver/hand_feature1_active.png" ng-show="featTab==1" style="max-width: 65px;")
+              .media-body(style="padding-top:10px")
+                h4.media-heading.uppercase(ng-class="{special: featTab==1}" typed-translate="") passenger.advantages.feature1.title
+                p(typed-translate="") passenger.advantages.feature1.description 
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/driver/hand_feature2.png" ng-click="changeTabSlider(2)" ng-hide="featTab==2" style="max-width: 65px;")
+                img.media-object.img-circle(src="assets/driver/hand_feature2_active.png" ng-show="featTab==2" style="max-width: 65px;")
+              .media-body(style="padding-top:10px")
+                h4.media-heading.uppercase(ng-class="{special: featTab==2}" typed-translate="") passenger.advantages.feature2.title
+                p(typed-translate="") passenger.advantages.feature2.description 
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/driver/hand_feature3.png" ng-click="changeTabSlider(3)" ng-hide="featTab==3" style="max-width: 65px;")
+                img.media-object.img-circle(src="assets/driver/hand_feature3_active.png" ng-show="featTab==3" style="max-width: 65px;")
+              .media-body(style="padding-top:10px")
+                h4.media-heading.uppercase(ng-class="{special: featTab==3}" typed-translate="") passenger.advantages.feature3.title
+                p(typed-translate="") passenger.advantages.feature3.description 
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/driver/hand_feature4.png" ng-click="changeTabSlider(4)" ng-hide="featTab==4" style="max-width: 65px;")
+                img.media-object.img-circle(src="assets/driver/hand_feature4_active.png" ng-show="featTab==4" style="max-width: 65px;")
+              .media-body(style="padding-top:10px")
+                h4.media-heading.uppercase(ng-class="{special: featTab==4}" typed-translate="") passenger.advantages.feature4.title
+                p(typed-translate="") passenger.advantages.feature4.description 
+          div(ng-switch-when="driver")
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/driver/hand_feature1.png" ng-click="changeTabSlider(1)" ng-hide="featTab==1" style="max-width: 65px;")
+                img.media-object.img-circle(src="assets/driver/hand_feature1_active.png" ng-show="featTab==1" style="max-width: 65px;")
+              .media-body(style="padding-top:10px")
+                h4.media-heading.uppercase(ng-class="{special: featTab==1}" typed-translate="") driver.advantages.feature1.title
+                p(typed-translate="") driver.advantages.feature1.description 
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/driver/hand_feature2.png" ng-click="changeTabSlider(2)" ng-hide="featTab==2" style="max-width: 65px;")
+                img.media-object.img-circle(src="assets/driver/hand_feature2_active.png" ng-show="featTab==2" style="max-width: 65px;")
+              .media-body(style="padding-top:10px")
+                h4.media-heading.uppercase(ng-class="{special: featTab==2}" typed-translate="") driver.advantages.feature2.title
+                p(typed-translate="") driver.advantages.feature2.description 
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/driver/hand_feature3.png" ng-click="changeTabSlider(3)" ng-hide="featTab==3" style="max-width: 65px;")
+                img.media-object.img-circle(src="assets/driver/hand_feature3_active.png" ng-show="featTab==3" style="max-width: 65px;")
+              .media-body(style="padding-top:10px")
+                h4.media-heading.uppercase(ng-class="{special: featTab==3}" typed-translate="") driver.advantages.feature3.title
+                p(typed-translate="") driver.advantages.feature3.description 
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/driver/hand_feature4.png" ng-click="changeTabSlider(4)" ng-hide="featTab==4" style="max-width: 65px;")
+                img.media-object.img-circle(src="assets/driver/hand_feature4_active.png" ng-show="featTab==4" style="max-width: 65px;")
+              .media-body(style="padding-top:10px")
+                h4.media-heading.uppercase(ng-class="{special: featTab==4}" typed-translate="") driver.advantages.feature4.title
+                p(typed-translate="") driver.advantages.feature4.description 
+          div(ng-switch-when="enterprise")
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/ic_enterprise_metrics.png") 
+              .media-body
+                h4.media-heading.uppercase(typed-translate="")  home.features.enterprises.feat1
+                p(typed-translate="") home.features.enterprises.feat1Text
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/ic_enterprise_employees.png") 
+              .media-body
+                h4.media-heading.uppercase(typed-translate="") home.features.enterprises.feat2
+                p(typed-translate="") home.features.enterprises.feat2Text
+
+       
+
+
+// This modal takes data from service $modal
+div(ng-include="'views/modal/async.html'")

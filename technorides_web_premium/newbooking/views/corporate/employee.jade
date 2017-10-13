@@ -1,0 +1,87 @@
+h2.title
+  span.fa-stack
+    i.fa.fa-circle-thin.fa-stack-2x
+    i.fa.fa-user.fa-stack-1x
+  span {{employees.employee.name}} {{employees.employee.lastName}}
+.container-fluid
+  .row
+    .col-xs-12
+      ol.breadcrumb
+        li(ng-hide="user.superUser")
+          a(href="" ng-click="changeTab('employees');employees.get()" typed-translate="") corporate.sections.employees
+        li(ng-show="user.superUser")
+          a(href="" ng-click="changeTab('costprofile')") {{corporate.costCenter.name}}
+        li.active {{employees.employee.name}} {{employees.employee.lastName}} EMMA
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-xs-12.col-md-8
+              .row
+                .col-xs-12.col-md-4.col-lg-3
+                  img.img-responsive(src="https://dummyimage.com/200x200/0ccccc/fff&text={{employees.employee.name | limitTo:1 | uppercase}}" width="200" heigth="200" style="margin:0 auto")
+                .col-xs-12.col-md-8.col-lg-9
+                  h4.underline 
+                    span {{employees.employee.name | uppercase}} {{employees.employee.lastName | uppercase}}
+                    small.pull-right.edit-profile()
+                      a(href="" modal="views/modal/corporate/edit-employee.html" modal-title="Edit employee")
+                        i.fa.fa-pencil
+
+                  .pull-left
+                    ul.profile-info
+                      li(ng-show="!employees.employee.enabled")
+                        strong.text-success.uppercase(typed-translate="") corporate.employee.active
+                      
+                      li(ng-show="employees.employee.enabled")
+                        strong.text-danger.uppercase(typed-translate="") corporate.employee.blocked
+
+                      li 
+                        i.fa.fa-envelope
+                        span {{employees.employee.email}}
+                      li 
+                        i.fa.fa-phone
+                        span {{employees.employee.phone}}
+
+                      li(ng-if="employees.employee.admin")
+                        i.fa.fa-star
+                        span(typed-translate="") corporate.labels.admin
+                      li 
+                        i.fa.fa-ban.text-danger 
+                        span(typed-translate="") corporate.employee.blockUser  
+                        toggle-switch.switch-small(ng-model="employees.employee.enabled" ng-change="employees.activate()")
+
+
+            .col-xs-12.col-md-4
+              .row
+                .col-xs-12.col-md-6
+                  .box.box-technorides(style="min-height: 150px")
+                    h2(typed-translate="") corporate.employee.totalTrips
+                    br  
+                    h2  {{employees.employee.metrics.operations}}
+                .col-xs-12.col-md-6
+                  .box.box-blue(style="min-height: 150px")
+                    h2(typed-translate="") corporate.employee.totalExpenses
+                    br  
+                    h2 {{company.info.currency}} {{employees.employee.metrics.amount | number: 2}}
+                    span.pull-right(style="font-size: 10px;margin-right: 5px" typed-translate="")  corporate.employee.monthly
+  .row
+    .col-xs-12
+      .panel.panel-default
+        .panel-body
+          .table-responsive
+            table.table
+              thead
+                tr
+                  th(typed-translate="") corporate.labels.id
+                  th(typed-translate="") corporate.labels.date
+                  th(typed-translate="") corporate.labels.passenger
+                  th(typed-translate="") corporate.labels.from
+                  th(typed-translate="") corporate.labels.status
+                  th(typed-translate="") corporate.labels.amount
+              tbody
+                tr(ng-repeat="operation in employees.operations.list")
+                  td {{operation.id}}
+                  td {{operation.date | date}}
+                  td {{operation.name}} {{operation.lastName}}
+                  td {{operation.address.from.street}}
+                  td {{operation.status}}
+                  td {{operation.amount}}

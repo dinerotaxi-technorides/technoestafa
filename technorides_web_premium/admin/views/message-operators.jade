@@ -1,0 +1,25 @@
+.pageheader
+  h2
+    i.fa.fa-bullhorn
+    | Messages to Operators
+.contentpanel
+  .col-xs-6
+      label Send the following text to all operators
+      textarea.form-control(ng-model="messages.message" required)
+      br
+      button.btn.btn-small.btn-success(ng-click="messages.send()") Send
+.modal.fade.modal-success(tabindex="-1", role="dialog", aria-labelledby="reload-zone", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title Congrats
+        .panel-body
+          form(name="delete",ng-submit="reloadZones()")
+            p message has been sended
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") Close
+              

@@ -1,0 +1,35 @@
+
+form(name="edit",ng-submit="operation.exportHistory(exportDate, corporate.costCenter.id)")
+  .row
+    .col-xs-12.col-sm-6
+      .form-group
+        label(typed-translate="") corporate.labels.dateFrom 
+        .dropdown
+          a.dropdown-toggle#dropdown3(role="button" data-toggle="dropdown" data-target="#")
+            .input-group.input-group-sm
+              span.input-group-addon
+                i.fa.fa-calendar
+              span.form-control(ng-if="exportDate.startDate") {{exportDate.startDate | date: 'dd/MM/yyyy'}}
+              span.form-control(ng-if="!exportDate.startDate")  --/--/----
+          ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+            datetimepicker(data-ng-model="exportDate.startDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown3', startView:'day',minView:'day'}" tabindex="1" required)
+            
+    .col-xs-12.col-sm-6
+      .form-group
+        label( typed-translate="") corporate.labels.dateTo
+        .dropdown
+          a.dropdown-toggle#dropdown4(role="button" data-toggle="dropdown" data-target="#")
+            .input-group.input-group-sm
+              span.input-group-addon
+                i.fa.fa-calendar
+              span.form-control(ng-if="exportDate.endDate") {{exportDate.endDate | date: 'dd/MM/yyyy'}}
+              span.form-control(ng-if="!exportDate.endDate")  --/--/----
+          ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+            datetimepicker(data-ng-model="exportDate.endDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown4', startView:'day',minView:'day'}" tabindex="2" required)
+    .col-xs-12
+      .form-group
+        label(typed-translate="") corporate.labels.email
+        input.form-control(ng-model="exportDate.email" type="email" required)
+    .col-xs-12    
+      button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button" typed-translate="") corporate.labels.cancel
+      button.btn.btn-success.btn-md.pull-right(type="submit" style="margin-right:5px" typed-translate="") corporate.labels.ok

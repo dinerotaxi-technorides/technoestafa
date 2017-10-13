@@ -1,0 +1,90 @@
+#booking
+  div(ng-include="'/common/views/partials/version.html'")
+  nav.navbar.navbar-default.shadow-bottom
+    .container-fluid
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          img.navbar-brand(src="https://technorides.com/common/assets/newbooking/{{user.rtaxi}}/logo-top.png" height="50")
+
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li(ng-if="user.corporateAdmin")
+              a(href="" ng-click="backToAdmin()")
+                i.fa.fa-bar-chart
+            li
+              a(ng-click="user.logout(user.rtaxi)" href="")
+                i.fa.fa-power-off
+    .alert.alert-warning.alertChrome
+      button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+      strong {{ 'alertChrome' | translate }}                          
+  
+  section.menu.pull-left
+    nav.booking-nav
+      ul
+        li(ng-class="{active: tab == 'order'}")
+          a(ng-click="tab = 'order'" href="")
+            i.fa.fa-cab
+            small(typed-translate="") booking.navbar.order
+        li(ng-class="{active: tab == 'favorites'}").hidden
+          a(ng-click="tab = 'favorites'" href="")
+            i.fa.fa-star
+            small(typed-translate="") booking.navbar.favorites
+        li(ng-class="{active: tab == 'profile'}")
+          a(href="" ng-click="tab = 'profile'")
+            i.fa.fa-user
+            small(typed-translate="") booking.navbar.profile
+        li(ng-class="{active: tab == 'history'}")
+          a(href="" ng-click="tab = 'history';operation.getHistory()" )
+            i.fa.fa-history
+            small(typed-translate="") booking.navbar.history
+        li(ng-class="{active: tab == 'scheduled'}")
+          a(href="" ng-click="tab = 'scheduled';operation.getScheduled()" )
+            i.fa.fa-calendar
+            small(typed-translate="") booking.navbar.scheduled
+        li(ng-class="{active: tab == 'contact'}")
+          a(href="" ng-click="tab = 'contact'")
+            i.fa.fa-envelope
+            small(typed-translate="") booking.navbar.contact
+      a.help.hidden
+        i.fa.fa-question-circle
+    .display(ng-switch="tab")
+      .tab(ng-switch-when="order")
+        .inside-tab(ng-include="'views/booking/order.html'")
+      .tab(ng-switch-when="favorites")
+        .inside-tab(ng-include="'views/booking/favorites.html'")
+      .tab(ng-switch-when="profile")
+        .inside-tab(ng-include="'views/booking/profile.html'")
+      .tab(ng-switch-when="history")
+        .inside-tab(ng-include="'views/booking/history.html'")
+      .tab(ng-switch-when="contact")
+        .inside-tab(ng-include="'views/booking/contact.html'")
+      .tab(ng-switch-when="scheduled")
+        .inside-tab(ng-include="'views/booking/scheduled.html'")
+      // APP LINKS
+      #footer.text-center.col-xs-12
+        div(ng-class="{'hidden': company.info.ios == '','col-xs-12' : company.info.ios != '' && company.info.android == '','col-md-6' : company.info.ios != '' && company.info.android != ''}").text-center
+          a.ios(href="{{company.info.ios}}" target="_blank")
+            img.img-responsive(src="/newbooking/assets/booking_appstore.png" )
+        div(ng-class="{'hidden': company.info.android == '','col-xs-12' : company.info.android != '' && company.info.ios == '','col-md-6' : company.info.android != '' && company.info.ios != ''}").text-center
+          a.android(href="{{company.info.android}}" target="_blank")
+            img.img-responsive(src="/newbooking/assets/booking_playstore.png")
+
+  section.map.pull-left
+    .transparent.text-right
+      small
+        span(typed-translate="") booking.navbar.welcome
+        span.name  {{user.name}}
+    button.btn.btn-default(type="button" ng-click="map.geolocate(operation.setOrigin);operation.geolocalazing = true" ng-if="!operation.geolocalazing")
+      i.fa.fa-location-arrow
+    button.btn.btn-default(type="button" ng-if="operation.geolocalazing")
+      i.fa.fa-spinner.fa-pulse
+    #map_canvas
+
+// This modal takes data from service $modal
+div(ng-include="'views/modal/async.html'")

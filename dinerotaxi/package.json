@@ -1,0 +1,9 @@
+{
+  "name": "dinerotaxi",
+  "version": "1.0.0",
+  "scripts": {
+  	"war": "grails prod war",
+    "copy-ci": "npm run war && scp -i ~/Downloads/beta.pem target/dinerotaxi.war ubuntu@54.152.110.137:.",
+    "copy-beta": "npm run war && scp -i ~/Downloads/beta.pem target/dinerotaxi.war ubuntu@52.207.224.236:."
+  }
+}

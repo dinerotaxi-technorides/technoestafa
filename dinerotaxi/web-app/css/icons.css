@@ -1,0 +1,30 @@
+/* Icons ✰ Rwasn */
+
+button i { background: url('../img/sprites/sprite_pictos.png') no-repeat; display: inline-block; width:14px; height:14px; margin: 0 4px -4px 0; }
+button:hover i, button:focus i { background: url('../img/sprites/sprite_pictos_hover.png') no-repeat; }
+button:active i { background: url('../img/sprites/sprite_pictos_white.png') no-repeat; }
+
+i.home, i.user, i.search, i.edit, i.save, i.del, i.archive, i.refresh { }
+
+i.edit { background-position:-260px -182px; } 
+
+
+i.noname { background-position:-0px -0px;}
+i.noname { background-position:-26px -0px;}
+i.noname { background-position:-52px -0px;}
+i.noname { background-position:-78px -0px;}
+i.noname { background-position:-104px -0px;}
+i.noname { background-position:-130px -0px;}
+i.noname { background-position:-156px -0px;}
+i.noname { background-position:-182px -0px;}
+i.noname { background-position:-208px -0px;}
+i.noname { background-position:-234px -0px;}
+i.noname { background-position:-260px -0px;}
+i.video { background-position:-286px -0px;}
+i.noname { background-position:-312px -0px;}
+i.noname { background-position:-338px -0px;}
+i.noname { background-position:-364px -0px;}
+i.refresh { background-position:-390px -0px;}
+i.noname { background-position:-390px -0px;}
+i.noname { background-position:-416px -0px;}
+

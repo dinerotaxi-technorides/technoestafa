@@ -1,0 +1,192 @@
+doctype html
+html(lang="{{lang}}" ng-app="technoridesApp",ng-controller="corporateCtrl")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+    meta(name="description", content="")
+    meta(name="author", content="")
+    link(rel="icon" href="/common/assets/logo/favicon.ico" type="image/x-icon")
+    title {{'dashboardPageTitle' | translate}}
+    link(href="/common/libs/template/css/jquery.gritter.css" rel="stylesheet")
+    link(href="/common/libs/template/css/style.default.css", rel="stylesheet")
+    link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", rel="stylesheet")
+    link(href='https://fonts.googleapis.com/css?family=Exo:400,400italic' rel='stylesheet' type='text/css')
+    // Angular
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-cookies.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-sanitize.js")
+    script(src="//cdn.jsdelivr.net/angular.translate/2.1.0/angular-translate.min.js")
+    link(href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet")
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css" rel="stylesheet")
+
+    // Map
+    script(src="https://maps.googleapis.com/maps/api/js?libraries=weather,visualization&sensor=false&language=en&v=3.13")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js")
+    script(src="/common/libs/angular-google-maps.min.js")
+
+    //datetimepicker
+    link(rel="stylesheet", type="text/css", href="/common/libs/datetimepicker.css")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js")
+    script(src="/common/libs/datetimepicker.js")
+
+    // Module
+    script(src="scripts/corporate.js")
+
+    // Api
+    script(src="/common/scripts/api/api.js")
+    script(src="scripts/services/api/apiAdapter.js")
+    script(src="scripts/services/api/apiHandler.js")
+
+    // scroll
+    script(src="/common/libs/angular-scroll.min.js")
+
+    // config files
+    script(src="/common/scripts/settings.js")
+    script(src="/common/scripts/versionDetector.js")
+    script(src="scripts/config/route.js")
+    script(src="scripts/config/locale.js")
+
+    // controller
+    script(src="scripts/controllers/corporateCtrl.js")
+    
+      
+    // Models
+    script(src="/booking/scripts/services/models/user.js")
+    script(src="/common/scripts/map.js")
+    script(src="/booking/scripts/services/models/company.js")
+    script(src="scripts/services/grid.js")
+
+    // cookies fix
+    script(src="/common/libs/angular-cookie.js")
+
+    // Days Between
+    script(src="/common/libs/days-between.js")
+
+    // Feedback
+    script(src="/common/scripts/feedback.js")
+    
+    // Error
+    script(src="/common/scripts/messages.js")
+
+
+    // Underscore
+    script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js")
+
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    // if lt IE 9
+      script(src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js")
+      script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
+    
+    // custom styles
+    link(href="/dashboard/styles/dashboard.css", rel="stylesheet")
+
+    // Analytics
+    script(aync src="https://www.google-analytics.com/analytics.js")
+    script(src="/common/libs/angulartics.min.js")
+    script(src="/common/libs/angulartics-ga.min.js")
+    script.
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-45881678-1', 'auto');
+              //ga('send', 'pageview');
+              
+    // Libraries
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+    script(src="/common/libs/jquery.scrollTo.min.js")
+    script(src="https://cdn.bootcss.com/holder/2.3.2/holder.min.js")
+    script(src="/common/libs/template/js/jquery-migrate-1.2.1.min.js")
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+    script(src="/common/libs/template/js/modernizr.min.js")
+    script(src="/common/libs/template/js/jquery.sparkline.min.js")
+    script(src="/common/libs/template/js/toggles.min.js")
+    //script(src="/common/libs/template/js/retina.min.js")
+    script(src="/common/libs/template/js/jquery.cookies.js")
+    script(src="/common/libs/template/js/morris.min.js")
+    script(src="/common/libs/template/js/raphael-2.1.0.min.js")
+    script(src="/common/libs/template/js/custom.js")
+    script(src="/common/libs/template/js/jquery.gritter.min.js")
+    script(src="/common/libs/template/js/dashboard.js")
+    script(src="/common/libs/autocomplete.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js")
+    script(ng-src="{{grid.lang}}")
+    script(src="/common/libs/tinymce-angular.js")
+    script(src="/common/libs/tinymce/tinymce.min.js")
+    
+  body
+    div(ng-include="'/common/views/partials/version.html'")
+    // Preloader
+    #preloader
+      #status
+        i.fa.fa-spinner.fa-spin.fa-3x
+    section
+      .leftpanel
+        .logopanel
+          h1 
+            p Techno
+              span Rides
+        // logopanel
+        .leftpanelinner
+          ul.nav.nav-pills.nav-stacked.nav-bracket
+            
+            li(ng-class="{active: activetab == '/employees'}")
+              a(href="#employees")
+                i.fa.fa-male
+                span {{'Employees' | translate}}
+            
+            li(ng-class="{active: activetab == '/billing'}")
+              a(href="#billing")
+                i.fa.fa-money
+                span {{'Billing' | translate}}
+
+            li(ng-class="{active: activetab == '/operations'}")
+              a(href="#operations")
+                i.fa.fa-briefcase
+                span {{'Operations' | translate}}
+
+      .mainpanel
+        .headerbar
+          a.menutoggle
+            i.fa.fa-bars
+          .header-right
+            ul.headermenu
+              li
+                .btn-group
+                  button.btn.btn-default.dropdown-toggle(type="button" data-toggle="dropdown" aria-expanded="false")
+                    img(ng-src="/technorides/assets/lang/{{user.lang}}.png")
+                    span(ng-if="user.lang == 'es'") Español
+                    span(ng-if="user.lang == 'en'") English
+                    span(ng-if="user.lang == 'fr'") Francais
+                    span.caret
+                  ul.dropdown-menu#langdrop(role="menu")
+                    li.new-lang
+                      a(ng-click="changeLanguage('en')")
+                        img(ng-src="/technorides/assets/lang/en.png") 
+                        | English
+                    li.new-lang
+                      a(ng-click="changeLanguage('es')")
+                        img(ng-src="/technorides/assets/lang/es.png")
+                        | Español
+                    li.new-lang
+                      a(ng-click="changeLanguage('fr')")
+                        img(ng-src="/technorides/assets/lang/fr.png")
+                        | Francais            
+              li
+                .btn-group
+                  button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
+                    img(src="/common/assets/user/profile.png", alt="")
+                    | {{user.firstName}} {{user.lastName}}
+                    span.caret
+                  ul.dropdown-menu.dropdown-menu-usermenu.pull-right
+                    li
+                      a(href="#", ng-click="logout()")
+                        i.fa.fa-power-off
+                        | {{'Logout' | translate}}
+        div(ng-view="")
+        div(ng-include="'/common/views/partials/modals/feedback.html'")
+        
+  div(ng-include="'/common/views/partials/modals/messages.html'")

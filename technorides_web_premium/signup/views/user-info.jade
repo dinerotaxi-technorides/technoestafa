@@ -1,0 +1,27 @@
+.text-center
+  h2.uppercase {{'step1Title' | translate}}
+.row
+  form(name="formStep1" ng-submit="checkStep1()")
+    .col-xs-12.col-lg-6
+      label {{'Name' | translate}}*
+      input.form-control(type="text" ng-model="user.name" required)
+      br
+      label {{'lastName' | translate}}*
+      input.form-control(type="text" ng-model="user.lastName" required)
+      br
+      label {{'Email' | translate}}*
+      input.form-control(type="email" ng-model="user.email" required)
+    .col-xs-12.col-lg-6
+      label {{'Passaport' | translate}}*
+      input.form-control(type="number" ng-model="user.passaport" required)
+      br
+      label {{'Phone' | translate}}*
+      input.form-control(type="number" required ng-model="user.phone")
+      br
+      label {{'AltPhone' | translate}}
+      input.form-control(type="number" ng-model="user.altphone")
+      br
+      small.pull-right (*){{'dataRequired' | translate}}
+      br
+      br
+      button.btn.btn-technorides.pull-right.uppercase(type="submit") {{'Next' | translate}}

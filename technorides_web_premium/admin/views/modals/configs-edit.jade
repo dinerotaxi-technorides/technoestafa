@@ -1,0 +1,49 @@
+form( name="edit" ng-submit="edit.$valid && configs.edit('edit')" ng-init="initTooltips()")
+  ul.nav.nav-tabs.nav-justified
+    li(role="presentation" ng-click="currentTab=0" ng-class="{active: currentTab==0}" ng-init="currentTab=0")
+      a(href="") Email Api 
+    li(role="presentation" ng-click="currentTab=1" ng-class="{active: currentTab==1}")
+      a(href="") Push Notifications
+    li(role="presentation" ng-click="currentTab=2" ng-class="{active: currentTab==2}")
+      a(href="") Apps Url  
+    li(role="presentation" ng-click="currentTab=3" ng-class="{active: currentTab==3}")
+      a(href="") Web Config  
+    li(role="presentation" ng-click="currentTab=4" ng-class="{active: currentTab==4}")
+      a(href="") Trip Config  
+    li(role="presentation" ng-click="currentTab=5" ng-class="{active: currentTab==5}")
+      a(href="") Parking Config
+    li(role="presentation" ng-click="currentTab=6" ng-class="{active: currentTab==6}")
+      a(href="") Driver Payment 
+    li(role="presentation" ng-click="currentTab=7" ng-class="{active: currentTab==7}")
+      a(href="") Zones     
+    li(role="presentation" class="dropdown")
+      a(href="" data-toggle="dropdown" class="dropdown-toggle") More
+        span(class="caret")
+      ul(role="menu" class="dropdown-menu pull-right")
+        li(role="presentation"  ng-class="{active: currentTab==8}")
+          a(href="" ng-click="currentTab=8" ) Driver Show/Hide in Dispatch   
+        li(role="presentation"  ng-class="{active: currentTab==9}")
+          a(href="" ng-click="currentTab=9" ) Fare Calculator         
+
+  .panel-body  
+    .form-group.form-bordered  
+      .col-xs-4(ng-repeat="(field, fieldSettings) in configs.fields" ng-if="currentTab==fieldSettings.tab" style=" min-height: 90px")
+        .form-control(style=" min-height: 90px")
+          label.control-label(translate="configs.{{field}}")  
+          a.label.label-warning.pull-right
+            i.fa.fa-wrench(title="{{'configs.' + field | translate}}")
+          input.checkbox(type="{{fieldSettings.type}}" ng-model="configs.config[field]" ng-required="fieldSettings.type !='checkbox'") 
+      
+      .col-xs-4.pull-right(ng-if="currentTab == 4")
+        .form-control
+          label.control-label(translate="configs.queueTripType")  
+          a.label.label-warning.pull-right
+            i.fa.fa-wrench(title="{{ 'configs.queueTripType' | translate}}")
+          select.form-control(ng-model="configs.config.queueTripType" ng-required="fields.type !='checkbox'")
+            option(ng-repeat="option in configs.fields.queueTripType.options" value="{{option}}") {{option}}
+          
+    .col-xs-12
+      br
+      .form-group
+        button.btn.btn-danger.pull-right(data-dismiss="modal") Cancel
+        button.btn.btn-success.pull-right(style="margin-right:5px") Save

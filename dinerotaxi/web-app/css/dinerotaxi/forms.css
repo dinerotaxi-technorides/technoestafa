@@ -1,0 +1,13 @@
+/*
+	Description: 3BO Modal Windows Stylesheet
+	Media: Screen
+	Version: 1.5
+	Author: Rodrigo Galindez
+	Author URI: http://www.rodrigogalindez.com
+	Requires: master.css
+	Description: Use .common-form for regular forms (no inline-edition)
+*/
+
+form.common-form {
+	text-align: left;
+}

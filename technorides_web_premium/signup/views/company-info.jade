@@ -1,0 +1,121 @@
+.text-center
+  h2.uppercase {{'step2Title' | translate}}
+.row
+  form(name="formStep2" ng-submit="checkStep2()")
+    .col-xs-12.col-lg-6
+      label {{'CompanyName' | translate}}*
+      input.form-control(type="text" ng-model="user.company.name" required)
+      br
+      label {{'CompanyCategory' | translate}}*
+      input.form-control(type="text" ng-model="user.company.category" required)
+      br
+      .dropdown
+        label {{'CompanyBirth' | translate}}
+        a.dropdown-toggle#dropdown1(role="button" data-toggle="dropdown" data-target="#")
+          .input-group
+            span.form-control
+              span(ng-if="user.company.birthDate") {{user.company.birthDate | date : 'dd/MM/yyyy'}}
+              span(ng-if="!user.company.birthDate") --/--/----
+            span.input-group-addon
+              i.fa.fa-calendar
+        ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+          datetimepicker(data-ng-model="user.company.birthDate" name="date" required data-datetimepicker-config="{ dropdownSelector: '#dropdown1', startView:'day', minView:'day'}" tabindex="11")
+      br
+      label {{'CompanyCuit' | translate}}*
+      input.form-control(type="text" required ng-model="user.company.cuit")
+      br
+      label {{'Region' | translate}}*
+      button.btn.btn-default.form-control#flag(ng-model="user.company.region" data-html="1" ng-options="icon.value as icon.label for icon in icons" bs-select type="button") 
+        | Action
+        span.caret
+    
+    .col-xs-12.col-lg-6
+      label {{'CompanyEmail' | translate}}*
+      input.form-control(type="email" required ng-model="user.company.email")
+      br
+      label {{'CompanyType' | translate}}*
+      input.form-control(type="text" required ng-model="user.company.type")
+      br
+      label {{'CompanyPhone' | translate}}*
+      input.form-control(type="number" pattern=".{8,}" required ng-model="user.company.phone")
+      br
+      label {{'CompanyBookingPhone' | translate}}*
+      input.form-control(type="number" pattern=".{8,}" required ng-model="user.company.bookingPhone")
+      br
+      label {{'CompanyAddress' | translate}}*
+      input.form-control(type="text" required ng-model="user.company.address")
+      br
+      br
+    
+    .col-xs-12
+      .row
+        h3.pull-left.uppercase(style="margin-left:10px") {{'administrador' | translate}}
+  
+    .col-xs-12.col-lg-6
+      label {{'Name' | translate}}*
+      input.form-control(type="text" ng-model="user.administrator.name" required)
+      br
+      label {{'lastName' | translate}}*
+      input.form-control(type="text" ng-model="user.administrator.lastName" required)
+      br
+      label {{'Email' | translate}}*
+      input.form-control(type="email" ng-model="user.administrator.email" required)
+    .col-xs-12.col-lg-6
+      label {{'Phone' | translate}}*
+      input.form-control(type="number" pattern=".{8,}" required ng-model="user.administrator.phone")
+      br
+      label {{'cell'| translate}}
+      input.form-control(type="number" pattern=".{8,}" ng-model="user.administrator.altphone")
+      br
+      br 
+        
+    .col-xs-12.marginal
+      .row
+        h3.pull-left.uppercase(style="margin-left:10px") {{'accountant' | translate}}
+  
+    .col-xs-12.col-lg-6
+      label {{'Name' | translate}}*
+      input.form-control(type="text" ng-model="user.accountant.name" required)
+      br
+      label {{'lastName' | translate}}*
+      input.form-control(type="text" ng-model="user.accountant.lastName" required)
+      br
+      label {{'Email' | translate}}*
+      input.form-control(type="email" ng-model="user.accountant.email" required)
+    .col-xs-12.col-lg-6
+      label {{'Phone' | translate}}*
+      input.form-control(type="number" pattern=".{8,}" required ng-model="user.accountant.phone")
+      br
+      label {{'cell'| translate}}
+      input.form-control(type="number" pattern=".{8,}" ng-model="user.accountant.altphone")
+      br
+      br     
+    
+    .col-xs-12.marginal
+      .row
+        h3.pull-left.uppercase(style="margin-left:10px") {{'opChief' | translate}}
+  
+    .col-xs-12.col-lg-6
+      label {{'Name' | translate}}*
+      input.form-control(type="text" ng-model="user.opChief.name" required)
+      br
+      label {{'lastName' | translate}}*
+      input.form-control(type="text" ng-model="user.opChief.lastName" required)
+      br
+      label {{'Email' | translate}}*
+      input.form-control(type="email" ng-model="user.opChief.email" required)
+    .col-xs-12.col-lg-6
+      label {{'Phone' | translate}}*
+      input.form-control(type="number" pattern=".{8,}" required ng-model="user.opChief.phone")
+      br
+      label {{'cell'| translate}}
+      input.form-control(type="number" pattern=".{8,}" ng-model="user.opChief.altphone")
+      br
+      small.pull-right (*){{'dataRequired' | translate}}
+      br
+      br 
+    
+    
+    .col-xs-12.marginal
+      button.btn.btn-technorides.pull-left.uppercase(type="button" ng-click="backToStep(1)") {{'Back' | translate}}
+      button.btn.btn-technorides.pull-right.uppercase(type="submit") {{'Next' | translate}}

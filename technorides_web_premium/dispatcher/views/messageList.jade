@@ -1,0 +1,22 @@
+.table-responsive.op-list(ng-if="menu.tab == 'message'")
+  table.table.table-email
+    tbody
+      tr(ng-repeat="message in radio.messages | orderBy:'id':true" ng-class="{'unread' : !message.played}")
+        td.hidden
+        td
+          span.fa-stack.fa-lg(ng-click="message.play()")
+            i.fa.fa-square.fa-stack-2x
+            i.fa.fa-play.fa-inverse.fa-stack-1x(ng-if="!message.played")
+            i.fa.fa-repeat.fa-inverse.fa-stack-1x(ng-if="message.played")
+        td
+          .media
+            .media-body  
+              h4.text-primary(ng-click="playSound(sound)")
+                | {{message.sender}}
+                &nbsp;
+
+                span.media-meta {{ message.time | date: "d MMM. hh:mm a" }}
+
+              
+                
+ 

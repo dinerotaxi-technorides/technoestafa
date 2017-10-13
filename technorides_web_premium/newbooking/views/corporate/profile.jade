@@ -1,0 +1,52 @@
+h2.title
+  span.fa-stack
+    i.fa.fa-circle-thin.fa-stack-2x
+    i.fa.fa-user.fa-stack-1x
+  span(typed-translate="") corporate.sections.profile
+.container-fluid
+  .col-xs-12.col-sm-6
+    .panel.panel-technorides
+      .panel-heading
+        h5.panel-title(typed-translate="") corporate.profile.basicInformation
+      .panel-body
+        form(name="companydata" ng-submit="companydata.$valid && corporate.edit()")
+          .form-group
+            label(typed-translate="") corporate.profile.companyName
+            input.form-control(ng-model="corporate.company.name" required)
+          .form-group
+            label(typed-translate="") corporate.profile.taxIdentification
+            input.form-control(ng-model="corporate.company.cuit" required)
+          .form-group
+            label(typed-translate="") corporate.profile.phone
+            input.form-control(ng-model="corporate.company.phone" required)
+          .form-group
+            button.btn.btn-technorides.square.pull-right(typed-translate="" type="submit") corporate.labels.save   
+    .panel.panel-technorides
+      .panel-heading
+        h5.panel-title(typed-translate="") corporate.labels.password
+      .panel-body
+        form(name="changePass" ng-submit="changePass.$valid && user.editPassword()")
+          .form-group
+            label(typed-translate="") booking.profile.currentPass
+            input.form-control(ng-model="user.password" name="old" required type="password")
+          .form-group  
+            label(typed-translate="") booking.profile.newPass
+            input.form-control(ng-model="user.newPassword" name="new" required type="password")
+          .form-group  
+            label(typed-translate="") booking.profile.repeatNewPass
+            input.form-control(ng-model="user.repeatNewPassword" pw-check="{{user.newPassword}}" name="repeated"  required type="password")
+            div(ng-show="!changePass.repeated.$valid && changePass.$submitted") 
+              p(ng-if="changePass.repeated.$error.correct" typed-translate="") booking.profile.mustBeSamePass 
+          input.btn.btn-technorides.square.pull-right(type="submit" value="{{'corporate.labels.save' | translate}}")   
+  .col-xs-12.col-sm-6
+    .panel.panel-technorides
+      .panel-heading
+        h5.panel-title(typed-translate="") corporate.profile.location
+      .panel-body
+        form(name="editLocation" ng-submit="editLocation.$valid && corporate.edit()")
+          .form-group
+            label(typed-translate="") corporate.profile.address
+            input.form-control(ng-model="corporate.company.legalAddress" required ng-change="corporate.updateLocation()")
+          #map_canvas
+          br
+          button.btn.btn-technorides.square.pull-right(typed-translate="") corporate.labels.save 

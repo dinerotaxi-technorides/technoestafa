@@ -1,0 +1,68 @@
+ES
+
+COBRO A CONDUCTORES
+
+Cobranzas
+
+Configure cómo desea cobrarle a sus conductores por la recepción de viajes através de su empresa.
+
+Si el método seleccionado es por porcentaje, el “Monto a cobrar” de las operaciones debe ser obligatorio para la aplicaciònconductor. El porcentaje elegido sera al total facturado por el conductor en el período determinado.
+
+Método de cobro (Monto fijo / Porcentaje)
+
+Monto (por período)
+
+
+Período de facturación
+
+Determine el lapso de tiempo en base al cual se aplicarà el mètodo de cobro se-leccionado anteriormente.
+
+Período (Diario, Semanal, Mensual)
+
+
+Bloqueo automático de conductores
+
+Establecer Límite de deuda para el bloqueo del conductor.
+
+Límite de deuda
+
+Sin límite
+
+
+GUARDAR / REVERTIR CAMBIOS
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EN
+
+CHARGE MY DRIVERS
+
+
+Collection Method
+
+Set up how you charge your drivers to receive rides dispatched from your company.
+
+f percentage is selected, set amount will be automatically enabled and it will be applied to the total turnover from the driverin the selected period.  
+
+Collection Method (Flat fee / Percent)
+
+Fee (per period)
+
+
+Collection Period
+
+Choose the lenght of the collection period. The selected collection method will beapplied according to this period.
+
+Collection period (Daily, Weekly, Monthly)
+
+
+Automatic block of drivers
+
+Set up the Amount due limit to block drivers from receiving trips from your company.
+
+Amount due limit
+
+No limit
+
+
+SAVE / REVERT CHANGES

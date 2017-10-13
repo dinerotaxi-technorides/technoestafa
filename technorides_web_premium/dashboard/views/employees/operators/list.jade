@@ -1,0 +1,159 @@
+.pageheader
+  h2
+    i.fa.fa-male
+    | {{'Employees' | translate}}
+.contentpanel
+  input.form-control(type="text", name="keyword", placeholder="{{'Search' | translate}}", ng-model="search", ng-change="employees.getEmployees(false, 1, search)")
+
+  br
+  .row
+    .col-lg-2.col-md-4.col-xs-12.list-drivers
+      .panel.panel-default
+        .panel-body
+          a(ng-click="employees.addEmployee(false,employee, false); employee = {} " href="")
+            h1.text-center(style="margin: 83px 0")
+             i.fa.fa-plus
+    .col-lg-10.col-md-8.col-xs-12(ng-if="employees.list.length == 0")
+      ul.list-group
+        li.list-group-item.text-center {{'noElementsFound' | translate}}
+    .col-lg-2.col-md-4.col-xs-12.list-drivers(ng-repeat="(id, employee) in employees.list" ng-class="{disabled: !employee.enabled}")
+      .panel.panel-default
+          .panel-body
+            .row
+              .col-xs-12
+                .pull-right
+                  a.pull-left(href="" ng-click="employees.editEmployee(false,false,employee)" style="margin-right:8px;font-size:11px;text-decoration:none")
+                    i.fa.fa-pencil.text-success
+                  a.text-danger.pull-left(href="" style="margin:0;font-weight:bold;text-decoration:none" ng-click="employees.deleteEmployee(false, employee.id, false)" ) &times;
+            .row
+              .col-xs-12
+                h4.text-success(style="margin:0") {{employee.firstName | limitTo:10}} 
+                h4.text-success(style="margin:0") {{ employee.lastName | limitTo:10}} 
+              .col-xs-12
+                strong.text-success.uppercase(ng-if="employee.agree") {{'Active' | translate}}
+                strong.text-danger.uppercase(ng-if="!employee.agree") {{'Bloqued' | translate}}
+                label {{'Phone' | translate}}
+                span {{employee.phone}}
+                br
+                label {{'user' | translate}}
+                span {{employee.typeEmploy.value}}
+                br
+                label {{'Email' | translate}}
+                span {{employee.username +'@'+ employee.host | limitTo:15}} {{(employee.username +'@'+ employee.host).length > 15 ? '...' : ''}}
+
+  .row
+    .text-center
+      ul.pagination
+        li(ng-repeat="page in employees.pages" ng-class="{active: page == employees.page}")
+          a(ng-click="employees.getEmployees(false ,page, search)" href="") {{page}}
+
+.modal.fade.add-employee(tabindex="-1", role="dialog", aria-labelledby="addDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'NewEmployee' | translate}}
+        .panel-body
+          form(name="add",ng-submit="add.$valid && employees.addEmployee(false, employee, true)")
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label {{'User' | translate}} *
+                  input.form-control(placeholder="", ng-model="employee.user", required tabindex="1")
+                .form-group
+                  label {{'Name' | translate}} *
+                  input.form-control(ng-model="employee.firstName", required tabindex="3")
+                .form-group
+                  label {{'Phone' | translate}} *
+                  input.form-control(ng-model="employee.phone", required tabindex="5" )
+
+              .col-xs-12.col-sm-6
+                .form-group
+                  label {{'Password' | translate}} *
+                  input.form-control(type="password" ng-model="employee.password", required  tabindex="2")
+                .form-group
+                  label {{'LastName' | translate}} *
+                  input.form-control(ng-model="employee.lastName", required tabindex="4" )
+                .form-group
+                  label {{'Active' | translate}} *
+                  br
+                  input(type="checkbox" ng-model="employee.active", tabindex="8" )
+              .col-xs-12
+                .form-group
+                  //- .hidden {{employee.role = employees.types[0]}}
+                  label {{'Role' | translate}}*
+                  select.form-control(ng-model="employee.role", required tabindex="6" ng-options="type.value | translate for type in employees.types track by type.value")
+
+            .row
+              .col-xs-12
+                br
+                .form-group
+                  button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                  input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Create' | translate}}")
+
+.modal.fade.delete-employee(tabindex="-1", role="dialog", aria-labelledby="deleteDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'deleteEmployee' | translate}}
+        .panel-body
+          form(name="cancel",ng-submit="cancelOperation(toCancel)")
+            p {{'sureDeleteEmployee' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" ng-click="employees.deleteEmployee(false,'',true)")
+
+.modal.fade.edit-employee(tabindex="-1", role="dialog", aria-labelledby="addDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'EditEmployee' | translate}}
+        .panel-body
+          form(name="edit",ng-submit="edit.$valid && employees.editEmployee(false, true, employee)")
+
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label {{'User' | translate}} *
+                  input.form-control(placeholder="", ng-model="employees.employee.username", required tabindex="1")
+                .form-group
+                  label {{'Name' | translate}} *
+                  input.form-control(ng-model="employees.employee.firstName", required tabindex="3")
+                .form-group
+                  label {{'Phone' | translate}} *
+                  input.form-control(ng-model="employees.employee.phone", required tabindex="5" )
+
+              .col-xs-12.col-sm-6
+                .form-group
+                  label {{'Password' | translate}} *
+                  input.form-control(type="password" ng-model="employees.employee.password" tabindex="2")
+                .form-group
+                  label {{'LastName' | translate}} *
+                  input.form-control(ng-model="employees.employee.lastName", required tabindex="4" )
+                .form-group
+                  label {{'Active' | translate}} *
+                  br
+                  input(type="checkbox" ng-model="employees.employee.agree", tabindex="8" )
+              .col-xs-12
+                .form-group
+                  
+                  label {{'Role' | translate}}*
+                  select.form-control(ng-model="employees.employee.typeEmploy", required tabindex="6" ng-options="type.value | translate for type in employees.types track by type.value")
+
+            .row
+              .col-xs-12
+                br
+                .form-group
+                  button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                  button.btn.btn-success.pull-right(style="margin-right:5px") {{'Ok' | translate}}

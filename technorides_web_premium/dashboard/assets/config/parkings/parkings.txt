@@ -1,0 +1,60 @@
+ES
+
+PARADAS
+
+Sistema de paradas
+
+Este sistema le permite crear áreas, donde sus conductores podrán formar colas para recibir automáticamente los pedidos realizados dentro de las mismas.
+
+Paradas ON/OFF
+
+Administrar paradas (#712d7d)
+
+
+Distancia del conductor a la parada
+
+Distancia máxima entre el conductor y el punto de parada.
+
+Metros (radio)
+
+
+Distancia del usuario a la parada
+
+Distancia máxima entre el usuario y el punto de parada.
+
+Metros (radio)
+
+
+
+GUARDAR / REVERTIR CAMBIOS
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EN
+
+PARKINGS
+
+Parking system
+
+Use this system to create areas where your drivers will form a queue to automatically receive the orders made within this ratio.
+
+Parkings ON/OFF
+
+Manage parkings (#712d7d)
+
+
+Driver parking distance
+
+Maximum distance between parking point and driver
+
+Meters (ratio)
+
+
+User parking distance
+
+Maximum distance between parking point and passengers
+
+Meters (ratio)
+
+
+SAVE / REVERT CHANGES

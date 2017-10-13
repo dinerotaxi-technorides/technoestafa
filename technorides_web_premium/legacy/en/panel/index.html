@@ -1,0 +1,656 @@
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8"/>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/panels/operator/panel.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/panels/telephonist/panel.css"/>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="http://www.google.com/jsapi"></script>
+<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer.js"></script>
+
+<script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/libs/contextmenu.js"> </script>
+<script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/libs/jquery.dateFormat-1.0.js"></script>
+
+<script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/libs/jquery.countdown.js"></script>
+<script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/libs/reconnecting-websocket-extended.js"></script>
+<script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/libs/jquery.loader.js"></script>
+
+<script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/libs/markerwithlabel.js"></script>
+
+<script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/libs/inheritance.js"></script>
+
+<script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/libs/jquery.cookie.js"></script>
+
+
+  <!-- Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-45881678-1', 'technorides.com');
+    ga('send', 'pageview');
+
+  </script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/panels/telephonist/jquery.ui.timepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/panels/telephonist/jquery.ui.timepicker.css"/>
+    <title>Technorides - Control Panel</title>
+  </head>
+  <body oncontextmenu="return false">
+    <div id="panel">
+      <div id="header" class="ui-helper-clearfix ui-widget-header">
+        <img src="/static/images/panels/operator/logo.png"/>
+        <div id="menu">
+          <a rel="/es/panel" href="/dispatcher-2" class="button">Back to the other panel</a>
+          <a href="#" class="button" id="pan_to_my_location_link">
+            <span class="ui-icon ui-icon-home"></span>
+          </a>
+          <a href="#" class="button" id="new_operation_link">
+            <span class="ui-icon ui-icon-plus"></span>
+          </a>
+          <a href="#" class="button" id="driver_panel_link">
+            <span class="ui-icon ui-icon-zoomin"></span>
+          </a>
+          <a href="#" class="button" id="settings_link">
+            <span class="ui-icon ui-icon-gear"></span>
+          </a>
+          <a href="#" class="button" id="help_link" style="display: none">
+            <span class="ui-icon ui-icon-help"></span>
+          </a>
+          <a href="#" class="button" id="tutorial_link">
+            <span class="ui-icon ui-icon-info"></span>
+          </a>
+          <a href="#" class="button" id="logout_link">
+            <span class="ui-icon ui-icon-power"></span>
+          </a>
+        </div>
+      </div>
+      <div id="map">
+        <div id="map_canvas"></div>
+      </div>
+
+        <div id="grid">
+          <div id="operations_container">
+            <ul>
+              <li><a href="#pending_operations_tab">Pending operations<span id="pending_operations_counters"></span></a></li>
+              <li><a href="#intransaction_operations_tab">In transaction operations<span id="intransaction_operations_counters"></span></a></li>
+              <li><a href="#completed_operations_tab">Operations history<span id="completed_operations_counters"></span></a></li>
+              <li><a href="#scheduled_operations_tab">Scheduled operations<span id="scheduled_operations_counters"></span></a></li>
+            </ul>
+            <div id="pending_operations_tab" class="operations_tab">
+              <table id="pending_operations" class="operations">
+                <thead class="ui-widget-header">
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Phone</th>
+                  <th>Name</th>
+                  <th>Place from</th>
+                  <th>Place to</th>
+                  <th>Options</th>
+                  <th>Comments</th>
+                  <th>Driver</th>
+                  <th style="display: none;"></th>
+                  <th style="display: none;"></th>
+                  <th>Corporate?</th>
+                  <th>Status</th>
+                </thead>
+                <tbody class="ui-widget-content">
+                </tbody>
+              </table>
+            </div>
+            <div id="intransaction_operations_tab" class="operations_tab">
+              <table id="intransaction_operations" class="operations">
+                <thead class="ui-widget-header">
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Phone</th>
+                  <th>Name</th>
+                  <th>Place from</th>
+                  <th>Place to</th>
+                  <th>Options</th>
+                  <th>Comments</th>
+                  <th>Driver</th>
+                  <th>Amount</th>
+                  <th>Estimated time</th>
+                  <th>Corporate?</th>
+                  <th>Status</th>
+                </thead>
+                <tbody class="ui-widget-content">
+                </tbody>
+              </table>
+            </div>
+            <div id="completed_operations_tab" class="operations_tab">
+              <table id="completed_operations" class="operations">
+                <thead class="ui-widget-header">
+
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Phone</th>
+                  <th>Name</th>
+                  <th>Place from</th>
+                  <th>Place to</th>
+                  <th>Options</th>
+                  <th>Comments</th>
+                  <th>Driver</th>
+                  <th>Amount</th>
+                  <th>Estimated time</th>
+                  <th>Corporate?</th>
+                  <th>Status</th>
+                </thead>
+                <tbody class="ui-widget-content">
+                </tbody>
+              </table>
+            </div>
+            <div id="scheduled_operations_tab" class="operations_tab">
+              <table id="scheduled_operations" class="operations">
+                <thead class="ui-widget-header">
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Phone</th>
+                  <th>Name</th>
+                  <th>Place from</th>
+                  <th>Place to</th>
+                  <th>Options</th>
+                  <th>Comments</th>
+                  <th>Driver</th>
+                  <th style="display: none;"></th>
+                  <th style="display: none;"></th>
+                  <th>Corporate?</th>
+                  <th>Status</th>
+                </thead>
+                <tbody class="ui-widget-content">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul id="contextmenu" class="menu">
+        <li><a href="#" class="assign_operation_link"><span class="ui-icon ui-icon-pencil"></span>Assign</a></li>
+        <li><a href="#" class="find_driver_operation_link"><span class="ui-icon ui-icon-zoomin"></span>Find driver</a></li>
+        <li>---</li>
+        <li><a href="#" class="cancel_operation_link"><span class="ui-icon ui-icon-closethick"></span>Cancel</a></li>
+        <li>---</li>
+        <li><a href="#" class="view_operation_link"><span class="ui-icon ui-icon-pin-s"></span>View</a></li>
+      </ul>
+      <ul id="contextmenu_intransaction" class="menu">
+        <li><a href="#" class="ring_user_operation_link"><span class="ui-icon ui-icon-flag"></span>Ring passenger</a></li>
+        <li><a href="#" class="in_transaction_operation_link"><span class="ui-icon ui-icon-transferthick-e-w"></span>Passenger onboard</a></li>
+        <li><a href="#" class="set_amount_operation_link"><span class="ui-icon ui-icon-calculator"></span>Set amount</a></li>
+        <li><a href="#" class="finish_operation_link"><span class="ui-icon ui-icon-check"></span>Finish</a></li>
+        <li>---</li>
+        <li><a href="#" class="cancel_operation_link"><span class="ui-icon ui-icon-closethick"></span>Cancel</a></li>
+        <li>---</li>
+        <li><a href="#" class="view_operation_link"><span class="ui-icon ui-icon-pin-s"></span>View</a></li>
+      </ul>
+      <ul id="contextmenu_scheduled" class="menu">
+        <li><a href="#" class="assign_scheduled_operation_link"><span class="ui-icon ui-icon-pencil"></span>Assign</a></li>
+        <li><a href="#" class="cancel_scheduled_operation_link"><span class="ui-icon ui-icon-closethick"></span>Cancel</a></li>
+      </ul>
+
+
+<style>
+  .flowplayer{
+    display: block;
+    width: 1110px;
+    height: 600px;
+  }
+</style>
+<script src="/static/js/panels/company/flowplayer/flowplayer-3.2.13.min.js"></script>
+
+    <div id="new_operation_dialog" title="New Operation">
+      <form action="#" id="new_operation_form">
+        <fieldset>
+          <div>
+            <input type="hidden" id="new_operation_id"/>
+            <label for="new_operation_phone_number">Phone*</label>
+            <label for="new_operation_email">Email*</label>
+            <label for="new_operation_name">Name*</label>
+            <label for="new_operation_surname">Surname*</label>
+          </div>
+          <div>
+            <input type="text" name="new_operation_phone_number" id="new_operation_phone_number"/>
+            <input type="text" name="new_operation_email" id="new_operation_email"/>
+            <input type="text" name="new_operation_name" id="new_operation_name"/>
+            <input type="text" name="new_operation_surname" id="new_operation_surname"/>
+          </div>
+          <div>
+            <h4>
+              Address from
+            </h4>
+          </div>
+          <div>
+          </div>
+          <div>
+            <label for="new_operation_address_from" class="big">Address*</label>
+            <label for="new_operation_address_from_street_number" class="small">Number*</label>
+            <label for="new_operation_address_from_floor" class="small">Floor</label>
+            <label for="new_operation_address_from_apartment" class="small">Apt.</label>
+          </div>
+          <div class="address_from">
+            <input type="text" name="new_operation_address_from" id="new_operation_address_from" class="big" />
+            <input type="text" name="new_operation_address_from_street_number" id="new_operation_address_from_street_number" class="small"/>
+            <input type="text" name="new_operation_address_from_floor" id="new_operation_address_from_floor" class="small"/>
+            <input type="text" name="new_operation_address_from_apartment" id="new_operation_address_from_apartment" class="small"/>
+
+            <input type="hidden" name="new_operation_address_from_country" id="new_operation_address_from_country"/>
+            <input type="hidden" name="new_operation_address_from_city" id="new_operation_address_from_city"/>
+            <input type="hidden" name="new_operation_address_from_street" id="new_operation_address_from_street"/>
+            <input type="hidden" name="new_operation_address_from_latitude" id="new_operation_address_from_latitude"/>
+            <input type="hidden" name="new_operation_address_from_longitude" id="new_operation_address_from_longitude"/>
+          </div>
+          <div>
+          </div>
+          <div>
+          </div>
+          <div>
+            <h4>
+              Favorites
+              <a href="#" class="toggle" rel=".favorites"></a>
+            </h4>
+          </div>
+          <div class="favorites hidden">
+            <ul id="favorites_items">
+            </ul>
+          </div>
+          <div>
+            <h4>
+              Address to
+              <a href="#" class="toggle" rel=".address_to"></a>
+            </h4>
+          </div>
+          <div class="address_to">
+            <label for="new_operation_address_to" class="big">Address</label>
+            <label for="new_operation_address_to_street_number" class="small">Number</label>
+            <label for="new_operation_address_to_floor" class="small">Floor</label>
+            <label for="new_operation_address_to_apartment" class="small">Apt.</label>
+          </div>
+          <div class="address_to">
+            <input type="text" name="new_operation_address_to" id="new_operation_address_to" class="big"/>
+            <input type="text" name="new_operation_address_to_street_number" id="new_operation_address_to_street_number" class="small"/>
+            <input type="text" name="new_operation_address_to_floor" id="new_operation_address_to_floor" class="small"/>
+            <input type="text" name="new_operation_address_to_apartment" id="new_operation_address_to_apartment" class="small"/>
+
+            <input type="hidden" name="new_operation_address_to_country" id="new_operation_address_to_country"/>
+            <input type="hidden" name="new_operation_address_to_city" id="new_operation_address_to_city"/>
+            <input type="hidden" name="new_operation_address_to_street" id="new_operation_address_to_street"/>
+            <input type="hidden" name="new_operation_address_to_latitude" id="new_operation_address_to_latitude"/>
+            <input type="hidden" name="new_operation_address_to_longitude" id="new_operation_address_to_longitude"/>
+          </div>
+          <div class="address_to">
+            <label for="new_operation_price" class="small">Price</label>
+          </div>
+          <div class="address_to">
+            <input type="text" name="new_operation_price" id="new_operation_price" class="small" readonly="readonly"/>
+          </div>
+          <div>
+            <h4>
+              Driver
+              <a href="#" class="toggle" rel=".driver_number"></a>
+            </h4>
+          </div>
+          <div class="driver_number">
+            <label for="new_operation_driver_number" class="small">Driver</label>
+          </div>
+          <div class="driver_number">
+            <input type="text" name="new_operation_driver_number" id="new_operation_driver_number" class="small"/>
+          </div>
+          <div>
+            <h4>
+              Scheduled trip
+              <a href="#" class="toggle" rel=".scheduled_trip"></a>
+            </h4>
+          </div>
+          <div class="scheduled_trip hidden">
+            <label for="new_operation_date">Date</label>
+            <label for="new_operation_time">Time</label>
+          </div>
+          <div class="scheduled_trip hidden">
+            <input type="text" name="new_operation_date" id="new_operation_date" readonly="readonly"/>
+            <input type="text" name="new_operation_time" id="new_operation_time" readonly="readonly"/>
+          </div>
+          <div>
+            <h4>
+              Comments
+              <a href="#" class="toggle" rel=".comments" title=""></a>
+            </h4>
+          </div>
+          <div class="comments hidden">
+            <textarea name="new_operation_comments" id="new_operation_comments"></textarea>
+          </div>
+          <div>
+            <h4>
+              Options
+              <a href="#" class="toggle" rel=".options" title=""></a>
+            </h4>
+          </div>
+          <div class="options hidden">
+            <input id="new_operation_options_messaging" type="checkbox" name="new_operation_options_messaging" />
+            <label for="new_operation_options_messaging" class="button"></label>
+            <input id="new_operation_options_pet" type="checkbox" name="new_operation_options_pet" />
+            <label for="new_operation_options_pet" class="button"></label>
+            <input id="new_operation_options_air_conditioning" type="checkbox" name="new_operation_options_air_conditioning" />
+            <label for="new_operation_options_air_conditioning" class="button"></label>
+            <input id="new_operation_options_smoker" type="checkbox" name="new_operation_options_smoker" />
+            <label for="new_operation_options_smoker" class="button"></label>
+            <input id="new_operation_options_special_assistant" type="checkbox" name="new_operation_options_special_assistant" />
+            <label for="new_operation_options_special_assistant" class="button"></label>
+            <input id="new_operation_options_luggage" type="checkbox" name="new_operation_options_luggage" />
+            <label for="new_operation_options_luggage" class="button"></label>
+            <input id="new_operation_options_vip" type="checkbox" name="new_operation_options_vip" />
+            <label for="new_operation_options_vip" class="button"></label>
+            <input id="new_operation_options_airport" type="checkbox" name="new_operation_options_airport" />
+            <label for="new_operation_options_airport" class="button"></label>
+            <input id="new_operation_options_invoice" type="checkbox" name="new_operation_options_invoice" />
+            <label for="new_operation_options_invoice" class="button"></label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div id="driver_panel_dialog" title="Driver">
+      <form onsubmit="return false">
+        <fieldset>
+          <label for="driver_panel_driver_id">Driver ID</label>
+          <br>
+          <input id="driver_panel_driver_id">
+        </fieldset>
+      </form>
+    </div>
+    <div id="assign_operation_dialog" title="Operation ID">
+      <form action="#" id="assign_operation_form">
+        <fieldset>
+          <label for="assign_operation_operation_id">Operation ID</label>
+          <br>
+          <input type="text" name="operation_id" id="assign_operation_operation_id" disabled="true"/>
+          <br>
+          <label for="assign_operation_driver_number">Driver ID</label>
+          <br>
+          <input name="driver_number" id="assign_operation_driver_number"/>
+          <br>
+          <label for="assign_operation_estimated_time">Estimated time</label>
+          <br>
+          <input type="text" name="estimated_time" id="assign_operation_estimated_time"/>
+        </fieldset>
+      </form>
+    </div>
+    <div id="set_amount_operation_dialog" title="Set amount">
+      <form action="#" id="set_amount_operation_form">
+        <fieldset>
+          <label for="set_amount_operation_operation_id">Operation ID</label>
+          <br>
+          <input type="text" name="operation_id" id="set_amount_operation_operation_id" disabled="true"/>
+          <br>
+          <label for="set_amount_operation_amount">Amount</label>
+          <br>
+          <input type="text" name="amout" id="set_amount_operation_amount"/>
+        </fieldset>
+      </form>
+    </div>
+
+    <div id="another_driver_assigned_operation_dialog" title="Another driver assigned">
+      <p><span class="ui-icon ui-icon-alert icon"></span>Another driver assigned to the operation ID <span id="another_driver_assigned_operation_operation_id"></span></p>
+    </div>
+    <div id="find_driver_operation_dialog" title="Find driver">
+      <p><span class="ui-icon ui-icon-info icon"></span>Are you sure you want to find driver, operation ID <span id="find_driver_operation_operation_id"></span>?</p>
+    </div>
+    <div id="ring_user_operation_dialog" title="Ring passenger">
+      <p><span class="ui-icon ui-icon-info icon"></span>Are you sure you want to ring passenger, operation ID <span id="ring_user_operation_operation_id"></span>?</p>
+    </div>
+    <div id="in_transaction_operation_dialog" title="In transaction operations">
+      <p><span class="ui-icon ui-icon-info icon"></span>Are you sure you want to set passenger onboard, operation ID <span id="in_transaction_operation_operation_id"></span>?</p>
+    </div>
+    <div id="cancel_operation_dialog" title="Cancel operation">
+      <p><span class="ui-icon ui-icon-info icon"></span>Are you sure you want to cancel operation ID <span id="cancel_operation_operation_id"></span>?</p>
+    </div>
+    <div id="cancel_scheduled_operation_dialog" title="Cancel operation">
+      <p><span class="ui-icon ui-icon-info icon"></span>Are you sure you want to cancel operation ID <span id="cancel_scheduled_operation_operation_id"></span>?</p>
+    </div>
+    <div id="assign_scheduled_operation_dialog" title="Operation ID">
+      <form action="#" id="assign_scheduled_operation_form">
+        <fieldset>
+          <label for="assign_scheduled_operation_operation_id">Operation ID</label>
+          <br>
+          <input type="text" name="operation_id" id="assign_scheduled_operation_operation_id" disabled="true"/>
+          <br>
+          <label for="assign_scheduled_operation_driver_number">Driver ID</label>
+          <br>
+          <input name="driver_number" id="assign_scheduled_operation_driver_number"/>
+        </fieldset>
+      </form>
+    </div>
+    <div id="finish_operation_dialog" title="Finish operation">
+      <p><span class="ui-icon ui-icon-info icon"></span>Are you sure you want to finish operation ID <span id="finish_operation_operation_id"></span>?</p>
+    </div>
+    <div id="invalid_driver_error_dialog" title="Error">
+      <p><span class="ui-icon ui-icon-alert icon"></span>The driver that you tried to assign is invalid. Please check it and try again</p>
+    </div>
+    <div id="offline_driver_error_dialog" title="Error">
+      <p><span class="ui-icon ui-icon-alert icon"></span>The driver that you tried to assign is disconnected or busy. Please check it and try again</p>
+    </div>
+    <div id="form_error_dialog" title="Error">
+      <p><span class="ui-icon ui-icon-alert icon"></span>Please check the form fields</p>
+    </div>
+    <div id="api_connection_error_dialog" title="Error">
+      <p><span class="ui-icon ui-icon-alert icon"></span>There was an error connecting to the server, please try again</p>
+    </div>
+    <div id="tutorial_dialog" title="Tutorial">
+
+
+          <iframe id="youtube" width="1110" height="624" src="//www.youtube.com/embed/x8w6wKfSBP0?rel=0&showinfo=0&enablejsapi=1&modestbranding=1&vq=hd720" frameborder="0" allowfullscreen></iframe>
+
+
+    </div>
+
+
+    <div id="logout_dialog" title="Logout">
+      <p>
+        <span class="ui-icon ui-icon-info icon"></span>Are you sure you want to logout?</p>
+    </div>
+    <div id="settings_dialog" title="Configuration">
+      <form action="#" id="assign_operation_form">
+        <fieldset>
+          <label for="settings_theme">Theme</label>
+          <br>
+          <select name="settings_theme" id="settings_theme">
+            <option value="black-tie">Black Tie</option>
+            <option value="blitzer">Blitzer</option>
+            <option value="cupertino">Cupertino</option>
+            <option value="dark-hive">Dark Hive</option>
+            <option value="dot-luv">Dot Luv</option>
+            <option value="eggplant">Eggplant</option>
+            <option value="excite-bike">Excite Bike</option>
+            <option value="flick">Flick</option>
+            <option value="hot-sneaks">Hot Sneaks</option>
+            <option value="humanity">Humanity</option>
+            <option value="le-frog">Le Frog</option>
+            <option value="mint-choc">Mint Choc</option>
+            <option value="pepper-grinder">Pepper Grinder</option>
+            <option value="redmond">Redmond</option>
+            <option value="smoothness">Smoothness</option>
+            <option value="south-street">South Street</option>
+            <option value="start">Start</option>
+            <option value="sunny">Sunny</option>
+            <option value="swanky-purse">Swanky Purse</option>
+            <option value="trontastic">Trontastic</option>
+            <option value="ui-darkness">UI Darkness</option>
+            <option value="ui-lightness">UI Lightness</option>
+            <option value="vader">Vader</option>
+          </select>
+          <p>
+            <input type="checkbox" name="settings_mute" id="settings_mute"></input>
+            <label for="settings_mute">Mute</label>
+          </p>
+          <label for="settings_language">Language</label>
+          <br>
+          <select name="settings_language" id="settings_language">
+
+              <option value="en">English</option>
+
+              <option value="es">Español</option>
+
+
+          </select>
+          <p>
+          <label for="settings_timezone">Time zone</label>
+          <br>
+          <select name="settings_timezone" id="settings_timezone">
+          </select>
+        </fieldset>
+      </form>
+    </div>
+    <div id="map_controls">
+      <div id="show_online_drivers_link" class="active ui-state-active"></div>
+      <div id="online_drivers_counter" class="map_controls_counter" rel="#show_online_drivers_link">0</div>
+
+      <div id="show_offline_drivers_link" class="active ui-state-active"></div>
+      <div id="offline_drivers_counter" class="map_controls_counter" rel="#show_offline_drivers_link">0</div>
+
+      <div id="show_intravel_drivers_link" class="active ui-state-active"></div>
+      <div id="intravel_drivers_counter" class="map_controls_counter" rel="#show_intravel_drivers_link">0</div>
+
+      <div id="show_disconnected_drivers_link" class="ui-state-default"></div>
+      <div id="disconnected_drivers_counter" class="map_controls_counter" rel="#show_disconnected_drivers_link">0</div>
+
+      <div id="show_operations_link" class="active ui-state-active"></div>
+      <div id="operations_counter" class="map_controls_counter" rel="#show_operations_link">0</div>
+
+      <div id="show_parkings_link" class="active ui-state-active"></div>
+      <div id="parkings_counter" class="map_controls_counter" rel="#show_parkings_link">0</div>
+    </div>
+
+<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
+<style type="text/css" media="screen, projection">
+  @import url(//assets.zendesk.com/external/zenbox/v2.6/zenbox.css);
+</style>
+
+  <script type="text/javascript">
+    if (typeof(Zenbox) !== "undefined") {
+      Zenbox.init({
+        dropboxID:   "20114299",
+        url:         "https://technorides.zendesk.com",
+        tabTooltip:  "Support",
+        tabImageURL: "https://p4.zdassets.com/external/zenbox/images/tab_support.png",
+        tabColor:    "#2BAA80",
+        tabPosition: "Left"
+      });
+    }
+  </script>
+
+
+
+
+
+  <audio type="audio/wav" id="new_trip_sound" src="/static/sounds/new_trip.wav"></audio>
+<audio type="audio/wav" id="success_sound" src="/static/sounds/success.wav"></audio>
+<audio type="audio/wav" id="error_sound" src="/static/sounds/error.wav"></audio>
+<audio type="audio/wav" id="answer_sound" src="/static/sounds/answer.wav"></audio>
+
+
+
+<script language="javascript">
+      if(!$.cookie("admin_user_token")){
+        window.location.href = "/login";
+      }
+
+      var webSocketServerHost = "technorides.co";
+      var apiBaseUrl = "http://dinerotaxi.com/";
+      //var webSocketServerHost = "10.250.106.105";
+      //var apiBaseUrl = "http://10.250.106.105:8080/";
+
+      var webSocketServerPort = "8345";
+      // JSON Server
+      var apiReloginUrl = "/en/relogin.json"; // FIXME
+
+
+
+      var apiToken = $.cookie("admin_user_token");
+
+      // JSON Server
+      var httpServerCompanies = "http://dinerotaxi.com/technoRidesUsersApi/jq_companies";
+      var httpServerCounters = "http://dinerotaxi.com/technoRidesUsersApi/jq_investor_counter";
+      var httpServerToken = $.cookie("admin_user_token");
+
+      // Default Country
+      var defaultCountry = ""
+      var defaultCcode = $.cookie("admin_user_countryCode");
+      var maxFavorites = "3";
+
+      // Company
+      var companyLatitude = $.cookie("admin_user_latitude");
+      var companyLongitude = $.cookie("admin_user_longitude");
+      var companyId = $.cookie("admin_user_id");
+      var companyRtaxi = $.cookie("admin_user_rtaxi");
+      var companyDomain = $.cookie("admin_user_host");
+      var companyName = "";
+      var companyTimezone = $.cookie("admin_user_timeZone");
+      var companyEmail = $.cookie("admin_user_email");
+
+      // Companies
+      var companies = {};
+
+      // Language
+      var language = $.cookie("admin_user_lang");
+
+
+
+
+
+
+      window.I18n = {"signup":{"loading":"Loading..."},"panels":{"operator":{"driver_id":"Driver ID","driver_car_plate":"Plate","driver_phone":"Phone","finding_driver":"Finding...","set_amount":"Set amount","estimated_time":"Estimated time","settings":"Settings","driver":"Driver","accept":"Accept","driver_name":"Name","driver_version":"Version","amount":"Amount","invalid_browser":"For compatibility issues, unfortunately your browser is blocked by the site, if you want to enter it, please download Google Chrome. Thank you very much.","connecting":"Connecting to server...","driver_not_found":"Not found","cancel":"Cancel","operation_id":"Operation ID","driver_car":"Car","statuses":{"scheduled":"Scheduled","cancelofflinertaxi":"Canceled","canceltimetrip":"Canceled","reasigntrip":"Reasigned","intransactionradiotaxi":"In Transaction","holdinguser":"Holding","canceled_emp":"Canceled","timeouttrip":"Timeout","assignedtaxi":"Assigned","canceled":"Canceled","calificated":"Calificated","setamount":"Amount Set","rejecttrip":"Rejected","intransaction":"In Transaction","pendingfavoritetrip":"Pending","assignedradiotaxi":"Assigned","completed":"Completed","pending":"Pending","blocked":"Blocked"},"driver_email":"Email"},"company":{"number":"ID","month":"Month","destroy_parking":"Remove","new_driver":"New Driver","drivers":"Drivers","add_parking":"New","brand":"Brand","api_connection_error":"There was an error connecting to the server, please try again","plate":"Plate","lastname":"Lastname","edit_driver":"Edit Driver","driver":"Driver","phone":"Phone","date":"Date","password":"Password","name":"Name","enabled":"Enabled","reports":"Reports","email":"Email","amount":"Amount","update_parking":"Edit","model":"Model","trips":"Trips"},"telephonist":{"address_from":"Address from","hour":"Hour","address_to":"Address to","basic":"Basic mode","minutes":"Minutes","advanced":"Advanced mode"}},"request":{"status":"Status","operation_history":"Operation History","enabled":"Enabled","address_to":"Address to","zones":"Zones","active":"Active","choose_a_filename":"Choose a filename","type":"Type","company_employees":"Company Employees","must_not_be_an_email_address":"Must not be and email address","id":"Operation","user_name":"Name","employee_id":"Employee Id","billing":"Billing","monthly":"Monthly","drivers":"Taxi Drivers","comments":"Comments","company_name":"Company name","user_surname":"Surname","weekly":"Weekly","operators":"Operators","email":"E-mail","phone_number":"Phone number","description":"Description","operator_telephone":"Operator/Telephonist","brand":"Brand","driver":"Driver","paid":"Paid","stars":"Stars","zone_from":"Zone From","user":"User","address":"Address from","date":"Date","biweekly":"Biweekly","password":"Password","users":"Users","sectors":"Sectors","car":"Car","created_at":"Signup Date","vehicles":"Vehicles","companies":"Companies","daily":"Daily","trips":"Trips","amount":"Amount","zone_to":"Zone To","expiration_date":"Expiration Date","export":"Export","model":"Model","car_license":"License"}};
+
+
+      // Counters Timer
+      var countersTimer = 10 * 1000;
+
+      var city_user = $.cookie("admin_user_adminCode")
+
+</script>
+
+    <script src="/static/js/panels/beta/common/libs/walltime-data.js"></script>
+    <script src="/static/js/panels/beta/common/libs/walltime.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/Company.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/Driver.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/Map.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/Marker.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/PlaceFrom.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/PlaceTo.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/Operation.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/User.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/Panel.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/classes/Parking.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/htmlHelpers.js"></script>
+
+
+        <script language="javascript" type="text/javascript" src="/static/js/panels/common/libs/jquery.ui.datepicker-pt.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/common/libs/jquery.ui.datepicker-es.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/common/libs/jquery.ui.timepicker.js"></script>
+
+
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/WebSocketConnection.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/Api.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/ApiHandler.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/operator/OperatorWebSocketHandler.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/telephonist/TelephonistApiHandler.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/telephonist/setup.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/operator/setup.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/static/js/panels/beta/common/browser_detection.js"></script>
+
+    <!-- Start of technorides Zendesk Widget script -->
+<script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(c){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","technorides.zendesk.com");/*]]>*/</script>
+<!-- End of technorides Zendesk Widget script -->
+
+
+  </body>
+</html>

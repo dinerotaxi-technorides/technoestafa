@@ -1,0 +1,87 @@
+/* Medias Query */
+@media (max-width: 480px) {
+    .nav > li > a  {
+        padding: 10px 0 10px 0;
+    }
+    #tr-footer-contact {
+      display: none;
+    }
+    #formNewsletter {
+      display: none;
+    }
+    #services .content-box-services {
+      margin-bottom: 20px;
+    }
+    .navigation-main-content img {
+      width: 230px;
+    }
+    .carousel h1 {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 20px;
+    }
+    .phoneContact {
+      margin-top: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    #features div {
+      margin-bottom: 40px;
+    }
+    .nav > li > a {
+      padding: 15px 10px;
+    }
+    .navbar-default {
+      float: none;
+      max-width: none;
+    }
+}
+
+
+@media (max-width: 993px) {
+    .carousel img {
+      text-align: center;
+      display: inline-block;
+    }
+    #tr-footer-contact {
+      display: none;
+    }
+    #services,
+    #clients {
+      text-align: center;
+    }
+    #services figure {
+      float: none;
+      margin: 20px auto;
+    }
+    #services ul {
+      float: none;
+      padding: 0;
+    }
+    #services .content-box-services {
+      margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 994px) {
+    .carousel {
+      text-align: left;
+    }
+    #carouselHome .container {
+      padding: 18px 80px;
+    }
+    .carousel h1 {
+      font-size: 40px;
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+    .carousel p {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 20px;
+    }
+}
+#carousel-citys .carousel-inner {
+  text-align: center;
+}

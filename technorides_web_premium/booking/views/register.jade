@@ -1,0 +1,38 @@
+.text-center
+  br
+  img(src="assets/account.png")
+  h2 {{ "SignUp" | translate }}
+form.text-center(name="registerForm", ng-class="{submited :registerForm.submited}", ng-submit="registerForm.$valid && register(credentials)", role="form", novalidate="")
+  br
+  .col-xs-12
+    .input-group
+      span.input-group-addon @
+      input.form-control(type="email", name="email", placeholder="{{'Email' | translate}}", ng-model="credentials.email", checkemail="", ng-required="true", ng-class="{submited :registerForm.submited}")
+  .col-xs-12
+    .input-group
+      span.input-group-addon
+        i.fa.fa-lock
+      input.form-control(type="password", name="password", placeholder="{{'Password'|translate}}", ng-model="credentials.password", ng-required="true", ng-class="{submited :registerForm.submited}")
+  .col-xs-12
+    .input-group
+      span.input-group-addon
+        i.fa.fa-user
+      input.form-control(type="text", placeholder="{{'Name'|translate}}", name="name", ng-model="credentials.name", ng-required="true", ng-class="{submited :registerForm.submited}")
+  .col-xs-12
+    .input-group
+      span.input-group-addon
+        i.fa.fa-user
+      input.form-control(type="text", placeholder="{{'Surname'|translate}}", name="surname", ng-model="credentials.surname", ng-required="true", ng-class="{submited :registerForm.submited}")
+  .col-xs-12
+    .input-group
+      span.input-group-addon
+        i.fa.fa-mobile
+      input.form-control(type="text", placeholder="{{'Phone'|translate}}", name="phone", ng-model="credentials.phone", ng-required="true", ng-class="{submited :registerForm.submited}")
+  p.text-center
+    label(for="conditions")
+      | {{"acceptTerms" | translate}}
+      br
+      a(ng-href="terms-{{company.lang}}.txt", target="_blank") {{"acceptTermsLink"| translate}}
+  .col-xs-12
+    button.btn.btn-default(ng-click="registerForm.submited = true") {{ "SignUp" | translate }}
+

@@ -1,0 +1,38 @@
+/* 
+    Document   : mensajes.css
+    Created on : 14/02/2012, 16:11:00
+    Author     : Ezequiel Bajo
+    Description:
+        Hoja de estilo para los mensajes de error y exito
+*/
+
+
+
+/********ERRORES*********/
+
+.error {
+    float: left;
+    width: 800px;
+    margin-top: .5em;
+    padding-left: 1.5em;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    color:#FE0000;
+    font-weight: 700;
+}
+
+.error p {
+    margin: 0;
+    padding: 0;
+}
+
+.error a:hover {
+    text-decoration: underline;
+}
+
+.exclama {
+    float: left;
+    width: 90px;
+    height: 76px;
+    background:url('../images/atencion.png') no-repeat;
+}

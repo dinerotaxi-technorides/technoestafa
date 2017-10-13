@@ -1,0 +1,646 @@
+.login_message {
+  background-color:#DBFEBC;
+  border-bottom-color:#00D581;
+  border-bottom-style:solid;
+  border-bottom-width:1px;
+  border-left-color:#00D581;
+  border-left-style:solid;
+  border-left-width:1px;
+  border-right-color:#00D581;
+  border-right-style:solid;
+  border-right-width:1px;
+  border-top-color:#00D581;
+  border-top-style:solid;
+  border-top-width:1px;
+  margin-bottom:10px;
+  margin-top:20px;
+  padding:10px;
+}
+
+.error_message {
+  color: #880000;
+  background-color:#FFE3E3;
+  border-color:#DD0000;
+  border-style:solid;
+  border-width:1px;
+  margin-bottom:10px;
+  margin-top:20px;
+  padding:10px;
+}
+
+.warning_message {
+  color: #A6750C;
+  background-color:#FFEBC1;
+  border-color:#FDBF3B;
+  border-style:solid;
+  border-width:1px;
+  margin-bottom:10px;
+  margin-top:20px;
+  padding:10px;
+}
+
+.notice_message {
+  color: #005F00;
+  background-color:#DFFFDF;
+  border-color:#9FCF9F;
+  border-style:solid;
+  border-width:1px;
+  margin-bottom:10px;
+  margin-top:20px;
+  padding:10px;
+}
+
+.divider {
+  border-color:#AAAAAA;
+  border-bottom-style:solid;
+  border-bottom-width:1px;
+  padding:20px;
+  margin-bottom:20px;
+}
+
+.errors input {
+    border: 1px solid #DD3C10;
+    background-color: #FFEBE8;
+}
+
+.border-color-red input {
+    border: 1px solid #DD3C10;
+}
+
+#AuthLoggedOut_info_confirm {
+  background-image:url(https://ebanking2.ubs.com/login/resources/nevislogrend/applications/classicsign/webdata/images/confirm.gif);
+  height:32px;
+  left:10px;
+  position:absolute;
+  top:10px;
+  width:32px;
+}
+
+div.topSection {  
+    padding: 0px;
+}
+
+.container_12 {
+    margin-bottom: 20px;
+}
+
+
+.quick_links ul li {
+    font-size: 12px;
+    margin: 0 10px;
+    padding: 5px 0px;
+}
+
+.edit {
+    float: right;
+    margin-left: 5px;
+    font-size: 60%;
+    vertical-align:bottom;
+    padding: 7px 0px;
+}
+
+#templates {
+    display: none;
+} 
+
+/*  MODULES
+    1. Buttons
+    2. Dialog
+    3. Grid box
+    5. Error
+    6. Close window
+    7. Required info
+    8. Main box
+    9. Calendar
+    10. Misc popups
+-------------------------------------------------------------- */
+
+/* -------------------------------------------------------------- */ 
+/* 1. Buttons                                                */
+/* -------------------------------------------------------------- */
+
+.buttons {
+    border: 0px;
+    color: #555;
+    margin-top: 10px;
+    overflow: hidden;
+    margin-left: 183px;
+}
+.buttons input {
+    border: 1px solid #999;
+    font-size: 17px;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-weight: bold;
+    background: #999;
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.buttons input:hover {
+    border: 1px solid #555;
+    background: #555;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.buttonlink {
+    margin: 12px 2px 2px 0;	
+}
+.buttonlink a {
+    background-color: #999;
+    border: 1px solid #000000;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 4px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* -------------------------------------------------------------- */ 
+/* 2. Dialog                                                */
+/* -------------------------------------------------------------- */
+
+.dialog table {
+    padding: 5px 0;
+    width: 100%;
+}
+
+.prop {
+    padding: 5px;
+}
+.prop .name {
+    width: 30%;
+    text-align: right;
+    font-size: 15px;
+    font-weight: normal;
+    padding: 15px 20px 0px 0px;
+    white-space: nowrap;
+    vertical-align:top;
+}
+.prop .select {
+    width: 30%;
+    text-align: right;
+    font-size: 15px;
+    font-weight: normal;
+    padding: 5px 20px 0px 0px;
+    white-space: nowrap;
+    vertical-align:top;
+}
+.prop .value {
+    text-align: left;
+    width: 70%;
+    font-size: 17px;
+    padding: 5px 0px 0px 0px;
+}
+
+.prop .button {
+    text-align: left;
+    width: 70%;
+    font-size: 17px;
+    padding: 15px 10px 0px 0px;
+}
+
+.value input {
+    border: 1px solid #96A6C5;
+}
+
+.dialog input {
+
+    background: #ffffff;
+    font-size: 17px;
+    padding: 5px;
+    margin: 3px 0 0 0;        
+}
+
+.dialog_btn input {
+    border: 1px solid #999;
+    font-size: 17px;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-weight: bold;
+    background: #999;
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.dialog_btn input:hover {
+    border: 1px solid #555;
+    background: #555;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.info_btn input {
+    border: none;
+    font-size: 11px;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-weight: bold;
+    text-decoration: underline;
+    background: #fff;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.info_btn input:hover {
+    border: none;
+    background: #fff;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+
+.dialog select {
+	background: #fff;
+    border: 1px solid #BDC7D8;
+    padding: 5px;	
+	height: 32px;
+    font-size: 17px;
+    margin-top: 3px;    
+}
+
+.dialog textarea {
+    border: 1px solid #BDC7D8;
+    padding: 5px;
+    font-size: 17px;
+    margin-top: 3px;
+    width: 100%;    
+}
+
+.dialog_checkbox {
+    margin-right: 2px;
+    margin-left: 0px;
+    vertical-align: middle;
+}
+
+.dialog_checkbox_label {
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+/* -------------------------------------------------------------- */ 
+/* 3. Grid box                                                */
+/* -------------------------------------------------------------- */
+div.GridBox {
+    padding: 10px;
+    background: #F6F6F6;
+}
+div.InputForm {
+    padding: 10px;
+    background: #F6F6F6;
+}
+
+div.InputFormHeader {
+    border-bottom: 1px solid #9AAFCA;
+} 
+
+/* 1. Product module
+-------------------------------------------------------------- */
+
+.tripitem {
+    padding: 10px;
+    border-bottom-style:solid;
+    border-bottom-width:0;
+    border-left-style:solid;
+    border-left-width:1px;
+    border-right-style:solid;
+    border-right-width:1px;
+    border-top-style:solid;
+    border-top-width:1px;
+}
+
+.tripitem h6 {
+  padding-bottom:9px;
+}
+
+.tripitem_image {
+  float:left;
+  margin-bottom:0.25cm;
+  margin-left:0;
+  margin-right:0.25cm;
+  margin-top:0;
+}
+
+.product_extract {
+    clear: both;
+}
+
+.product_price {
+    bottom: 2px;
+    position: absolute;
+    right: 0;
+    width: 140px;
+}
+
+.btn button {
+    border: 0 none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.star_rating {
+  font-size:11pt;
+  vertical-align: baseline;
+}
+
+div.infobox_group {
+    float: left;
+    margin-top: -10px;
+    width: 960px;
+}
+div.infobox {
+    float: left;
+    height: 163px;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px;
+    margin: 0 20px 20px 0;
+    width: 140px;
+}
+div.infobox_end {
+    float: left;
+    height: 163px;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px;
+    margin: 0 0 20px 0;
+    width: 140px;
+}
+div.infobox_inner {
+    margin: 5px 5px 5px 5px;
+}
+.infobox h6 {
+    margin: 0px 0px 0px 0px;
+    border: none;    
+}
+p.name {
+    color: #505E64;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0 0px 0px 0;
+}
+.details {
+    margin-top: 5px;
+    width: 130px;
+}
+.user_image {
+    float: left;
+    height: 30px;
+    width: 30px;
+}
+.info {
+    float: left;
+    margin: 1px 5px 1px 5px;
+    width: 125px;
+}
+
+
+.video-list-item .title {
+    color: #0033CC;
+    cursor: pointer;
+    display: block;
+    font-size: 1.0833em;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 2px;
+    max-height: 32px;
+    overflow: hidden;
+    width: 80px;
+}
+
+.ui-block-content {
+    display: table-cell;
+    vertical-align: top;
+    width: 10000px;
+}
+
+.objectListItem {
+    padding: 5px 0 5px 0;	
+}
+
+.uiListVerticalItemBorder {
+    border-width: 1px 0 0;
+    border-color: #E9E9E9;
+    border-style: solid;
+}
+
+.ui-li-vertical-border-top {
+    border-width: 0 0 1px;
+    border-color: #E9E9E9;
+    border-style: solid;
+}
+
+.ui-li-inline {
+	display: inline;
+}
+
+.ui-background-grey {
+	background: #F6F6F6;
+}
+#ui-li-horizontal li
+{
+	display: inline;	
+	padding-right: 10px;
+}
+.ui-div-border {
+    border: 1px;
+    border-color: #E9E9E9;
+    border-style: solid;
+}
+.ui-div-border-top {
+    border-width: 1px 0 0 0;
+    border-color: #E9E9E9;
+    border-style: solid;
+}
+.ui-div-border-bottom {
+    border-width: 0 0 1px 0;
+    border-color: #E9E9E9;
+    border-style: solid;
+}
+.ui-div-border-left {
+    border-width: 0 0 0 1px;
+    border-color: #E9E9E9;
+    border-style: solid;
+}
+.ui-padding-5px {
+    padding: 5px;	
+}
+.ui-padding-10px {
+    padding: 10px;	
+}
+.ui-padding-5-0-5-0 {
+    padding: 5px 0 5px 0;	
+}
+
+.ui-padding-right-10px {
+    padding-right: 10px;    
+}
+
+.ui-padding-left-10px {
+    padding-left: 10px; 
+}
+.ui-padding-left-5px {
+    padding-left: 5px; 
+}
+.ui-padding-top-10px {
+    padding-top: 10px;	
+}
+.ui-padding-top-5px {
+    padding-top: 5px;	
+}
+.ui-padding-bottom-10px {
+    padding-bottom: 10px;	
+}
+.ui-padding-bottom-5px {
+    padding-bottom: 5px;	
+}
+.ui-padding-left-2em {
+    padding-left: 2em;
+}
+
+.ui-margin-right-10px {
+    margin-right: 10px;	
+}
+.ui-margin-left-10px {
+    margin-left: 10px;	
+}
+.ui-margin-top-10px {
+    margin-top: 10px;	
+}
+.ui-margin-bottom-10px {
+    margin-bottom: 10px;	
+}
+.ui-margin-bottom-5px {
+    margin-bottom: 5px; 
+}
+.ui-margin-bottom-2px {
+    margin-bottom: 2px; 
+}
+
+.ui-text-align-right {
+    text-align: right;
+}
+.ui-text-align-center {
+    text-align: center;
+}
+
+.ui-div-float-right {
+    float: right;
+}
+
+.ui-div-float-left {
+    float: left;
+}
+
+.ui-div-clear {
+  clear:both;
+}
+
+.ui-div-clear-right {
+  clear:right;
+}
+
+.ui-div-clear-left {
+  clear:left;
+}
+
+.user-info {
+    overflow: hidden;
+    clear: both;
+}
+
+.ui-w-100 {
+    width: 100%;
+}
+.ui-w-80 {
+    width: 80%;
+}
+.ui-w-60 {
+    width: 60%;
+}
+.ui-w-40px {
+    width: 40px;
+}
+.ui-w-60px {
+    width: 60px;
+}
+.ui-w-80px {
+    width: 80px;
+}
+.ui-w-100px {
+    width: 100px;
+}
+.ui-w-120px {
+    width: 120px;
+}
+.ui-w-140px {
+    width: 140px;
+}
+.ui-text-align-right {
+	text-align: right;
+}
+
+.ui-grey-fadding-background {	
+	background: #EEEEEE; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EDEDED', endColorstr='#EEEEEE'); /* for IE */
+	background: -webkit-gradient(linear, left center, right center, from(#EDEDED), to(#EEEEEE)); /* for webkit browsers */
+	background: -moz-linear-gradient(left,  #EDEDED,  #EEEEEE); /* for firefox 3.6+ */ 	
+}
+
+a.list-item-link {
+    color: #000000;
+    display: block;
+    overflow: hidden;
+    margin: 0 5px 0 0;
+    float: left;
+}
+
+
+.fcb {
+    color: #333333;
+}
+.fwb {
+    font-weight: bold;
+}
+.fs25 {
+    font-size: 25px;
+}
+.fs23 {
+    font-size: 23px;
+}
+.fs21 {
+    font-size: 21px;
+}
+.fs17 {
+    font-size: 17px;
+}
+.fs9 {
+    font-size: 9px;
+}
+.fsl {
+    font-size: 15px;
+}
+.fsm {
+    font-size: 13px;
+}
+.fss {
+    font-size: 11px;
+}
+
+.clear-fix {
+    display: block;
+}
+
+.height-40 {
+	height: 40px;
+}

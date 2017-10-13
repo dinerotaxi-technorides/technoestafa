@@ -1,0 +1,433 @@
+.pageheader
+  h2
+    i.fa.fa-building
+    | {{corporate.companies.costCenters.costCenter.name}}
+    a.btn.btn-success.btn-sm.pull-right(href="#corporate/{{corporate.companies.company.id}}")  {{'GoBack' | translate}}
+.contentpanel
+  .row
+      .panel.panel-default
+        .panel-body
+          .col-xs-2
+             img.com-logo-edit.img-responsive(style="cursor:pointer"  src="{{corporate.companies.company.image}}" onerror="this.src='/common/assets/logo/logo-sm.png'" ng-click="modalChangeCompanyLogo()")
+          .col-xs-4
+            h5.uppercase.underline {{corporate.companies.company.name}}
+              a.pull-right(ng-show="!editcompanyview" href="" ng-click="showEditCorpCompany(true)")
+                i.fa.fa-pencil
+
+              a.pull-right(ng-show="editcompanyview" href="" ng-click="showEditCorpCompany(false)")
+                i.fa.fa-times-circle
+
+            ul.com-details(ng-show="!editcompanyview")
+              li
+                i.fa.fa-map-marker
+                |  {{corporate.companies.company.address}}
+              li
+                i.fa.fa-phone
+                |  {{corporate.companies.company.phone}}
+              li
+                strong {{'Cuit' | translate}}
+                |  {{corporate.companies.company.cuit}}
+            form(ng-show="editcompanyview" name="editingCompany" ng-submit="editCorporateCompany(corporate.companies.company)")
+              ul.com-details
+                li
+                  .input-group
+                    span.input-group-addon
+                      i.fa.fa-map-marker
+                    input.input-small.form-control(ng-model="corporate.companies.company.address")
+                  br
+                li
+                  .input-group
+                    span.input-group-addon
+                      i.fa.fa-phone
+                    input.input-small.form-control(ng-model="corporate.companies.company.phone")
+                  br
+                li
+                  .input-group
+                    span.input-group-addon
+                      |{{'Cuit' | translate}}
+                    input.input-small.form-control(ng-model="corporate.companies.company.cuit")
+                li
+                  br
+                  button.btn.btn-sm.btn-success {{'Save' | translate}}
+
+
+          .col-xs-6
+            .col-xs-4
+              .panel.panel-dark.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'CorporateMainFeat2Data2' | translate}}
+                    br
+                    h3 {{company.config.fares.currency}} {{corporate.companies.costCenters.costCenter.settings.paid | number: 2}}
+                    br
+            .col-xs-4
+              .panel.panel-primary.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'CorporateMainFeat2Data1' | translate}}
+                    br
+                    h3 {{company.config.fares.currency}} {{corporate.companies.costCenters.costCenter.settings.not_paid | number: 2}}
+                    br
+            .col-xs-4
+              .panel.panel-success.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'Employees' | translate}}
+                    br
+                    h3 {{corporate.companies.costCenters.costCenter.settings.users}}
+                    br
+  .row
+    .col-sm-3.col-lg-2
+      ul.nav.nav-pills.nav-stacked.nav-email(ng-init="corptab = 2")
+        li(ng-class="{active : corptab == 1}")
+          a(ng-click="corptab = 1; operations.getOperations(corporate.companies.costCenters.costCenter.id,'',1)"  style="cursor:pointer")
+            i.fa.fa-credit-card
+            | {{'Operations' | translate}}
+        li(ng-class="{active : corptab == 2}")
+          a(ng-click="corptab = 2" style="cursor:pointer")
+            i.fa.fa-group
+            | {{'Billing' | translate}}
+        li(ng-class="{active : corptab == 3}")
+          a(ng-click="corptab = 3; employees.getEmployees(corporate.companies.costCenters.costCenter.id, 1, '')" style="cursor:pointer")
+            i.fa.fa-history
+            | {{'Employees' | translate}}
+        li(ng-class="{active : corptab == 4}").hidden
+          a(ng-click="corptab = 4" style="cursor:pointer")
+            i.fa.fa-sliders
+            | Cost Settings
+
+    .col-sm-9.col-lg-10
+      div(ng-if="corptab == 1")
+        .panel.panel-default
+          .panel-body
+            button.btn-technorides.btn(ng-click="employees.export('', '', false)") Export
+            br
+            .table-responsive
+              table.table.table-striped(style="background:none")
+                thead
+                  th {{'date' | translate}} 
+                  th ID
+                  th {{'Name' | translate}}
+                  th {{'From' | translate}}
+                  th {{'ammount' | translate}}
+                  th
+
+                tr(ng-repeat="operation in operations.list")
+                  td {{operation.date | date : languageDateFormat }}
+                  td {{operation.id}}
+                  td {{operation.name +' '+ operation.lastName | limitTo:12}}{{(operation.name +' '+ operation.lastName).length > 12 ? '...':' '}}
+                  td {{operation.address.from.street | limitTo:20}}{{operation.address.from.street.length > 20 ? '...':' '}}
+                  td {{company.config.fares.currency}} {{operation.ammount}}
+                  td
+                    a(ng-click="operations.viewMore(operation)")
+                      i.fa.fa-bars
+              p(ng-if="operations.list.length == 0").text-center  {{'noElementsFound' | translate}}
+            .text-center
+
+              nav
+                ul.pagination
+                  li(ng-if="operations.pages.length > 1")
+                    a(ng-click="operations.getOperations(corporate.companies.costCenters.costCenter.id,'',1)")
+                      i.fa.fa-angle-double-left
+                  li(ng-repeat="page in operations.pages" ng-class="{active: page == operations.page}")
+                    a(ng-click="operations.getOperations(corporate.companies.costCenters.costCenter.id,'',page)" href="") {{page}}
+                  li(ng-if="operations.pages.length > 1")
+                    a(ng-click="operations.getOperations(corporate.companies.costCenters.costCenter.id,'',totalPages)")
+                      i.fa.fa-angle-double-right
+
+      div(ng-if="corptab == 2")
+        .panel.panel-default
+          .panel-body
+            .col-xs-6
+              label {{'FilterBy' | translate}}:
+              select.form-control(ng-model="filterBy" ng-change="corporate.companies.costCenters.invoices.getInvoices(1, orderBy, filterBy)")
+                option(value="") dont filter
+                option(value="pending") pending
+                option(value="overdue") overdue
+                option(value="paid") paid
+                option(value="partially_paid" translate="") partialy paid
+
+              label {{'OrderBy' | translate}}:
+              select.form-control(ng-model="orderBy" ng-change="corporate.companies.costCenters.invoices.getInvoices(1, orderBy,filterBy)")
+                option(value="") dont order
+                option(value="total-asc") {{'amount'| translate}} &uarr;
+                option(value="total-desc") {{'amount'| translate}} &darr;
+                option(value="createdDate-asc") {{'date' | translate}} &uarr;
+                option(value="createdDate-desc") {{'date' | translate}} &darr;
+                option(value="dueDate-asc") {{'dueDate' | translate}} &uarr;
+                option(value="dueDate-desc") {{'dueDate' | translate}} &darr;
+              br  
+            .col-xs-6
+              a.btn.btn-sm.btn-danger.pull-right(href="#corporate/{{corporate.companies.company.id}}/{{corporate.companies.costCenters.costCenter.id}}/new") {{'NewTransaction' | translate}}
+  
+            .col-xs-12
+              .table-responsive
+                table.table(style="background:none")
+                  thead
+                    tr
+                      th {{'date' | translate}}
+                      th.text-center {{'Invoice' | translate}}#
+                      th.text-center {{'ammount' | translate}}
+                      th.text-center {{'BalanceDue' | translate}}
+                      th.text-right {{'status' | translate}}
+                      th.text-right {{'DueDate' | translate}}
+                      th
+                  tbody
+                    tr(ng-repeat="invoice in corporate.companies.costCenters.invoices.list | filter:{status: filterStatus}")
+                      td {{invoice.date | date : 'MMM d, y'}}
+                      td.text-center
+                        a(href="#corporate/{{corporate.companies.company.id}}/{{corporate.companies.costCenters.costCenter.id}}/invoice/{{invoice.id}}") {{invoice.number}}
+                      td.text-center {{company.config.fares.currency}} {{invoice.amount | number: 2}}
+                      td.text-center {{company.config.fares.currency}} {{invoice.balance | number:2}}
+                      td.text-right(style="text-transform: capitalize")  {{invoice.status | lowercase}}
+                      td.text-right {{invoice.dueDate | date : languageDateFormat  }}
+                      td
+                        a(ng-click="corporate.companies.costCenters.invoices.delete(invoice, false)" ng-if="invoice.status == 'PENDING'" href="")
+                          i.fa.fa-trash.text-danger
+                        a(ng-if="invoice.status != 'PENDING'" href="")
+                          i.fa.fa-trash.text-muted
+                p(ng-if="corporate.companies.costCenters.invoices.list.length == 0").text-center  {{'noElementsFound' | translate}}
+              .text-center
+                nav
+                  ul.pagination
+                    li
+                      a(ng-click="corporate.companies.costCenters.invoices.getInvoices(1, orderBy,filterBy)")
+                        i.fa.fa-angle-double-left
+                    li(ng-repeat="page in corporate.companies.costCenters.invoices.pages" ng-class="{active: page == corporate.companies.costCenters.invoices.page}")
+                      a(ng-click="corporate.companies.costCenters.invoices.getInvoices(page, orderBy,filterBy)" href="") {{page}}
+                    li()
+                      a(ng-click="corporate.companies.costCenters.invoices.getInvoices(corporate.companies.costCenters.invoices.totalPages, orderBy, filterBy)")
+                        i.fa.fa-angle-double-right
+
+      div(ng-if="corptab == 3")
+        .row
+          .col-lg-2.col-md-4.col-xs-12.list-drivers
+            .panel.panel-default
+                .panel-body
+                  a(href="" ng-click="employees.addEmployee(corporate.companies.costCenters.costCenter.id, '', false)")
+                    h1.text-center(style="margin:60px 0")
+                      i.fa.fa-plus
+          .col-lg-2.col-md-4.col-xs-12.list-drivers(ng-repeat="(id, employee) in employees.list" ng-class="{disabled: !employee.enabled}")
+            .panel.panel-default
+                .panel-body(style="max-height: 198px;overflow: hidden;")
+                  .row
+                    .col-xs-12
+                      a(href="#corporate/{{corporate.companies.company.id}}/{{corporate.companies.costCenters.costCenter.id}}/employee/{{employee.id}}")
+                        h4.text-success {{employee.name +' '+ employee.lastName | limitTo:8}}{{(employee.name +' '+ employee.lastName).length > 8 ? '...' : ''}}
+                    .col-xs-12
+                      strong.text-success.uppercase(ng-if="!employee.enabled") Active
+                      strong.text-danger.uppercase(ng-if="employee.enabled") Bloqued
+                      label {{'Phone' | translate}}
+                      span {{employee.phone}}
+                      br
+                      label {{'Email' | translate}}
+                      span {{employee.user | limitTo: 10}}{{employee.user.length > 10 ? '...' : ''}}
+
+
+
+
+
+        .row
+          .text-center
+            ul.pagination
+              li(ng-repeat="page in employees.pages" ng-class="{active: page == employees.page}")
+                a(ng-click="employees.getEmployees(corporate.companies.costCenters.costCenter.id ,page, search)" href="") {{page}}
+
+      div(ng-if="corptab == 4")
+.modal.fade.view-more-op(tabindex="-1", role="dialog", aria-labelledby="editDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'viewMore' | translate}}
+        .panel-body
+          .col-sm-12
+            span.categ {{operations.operation.date | date: "d MMM. hh:mm a"}}
+            h3.media-title {{operations.operation.id}}
+            .details
+              div(ng-if="operations.operation.comments || operations.operation.options.invoice || operations.operation.options.airport || operations.operation.options.vip || operations.operation.options.luggage || operations.operation.options.specialAssistant || operations.operation.options.smoker || operations.operation.options.pet || operations.operation.options.courier")
+                h4 {{'OperationDetails' | translate}}
+                p(ng-if="operations.operation.comments")
+                  i.fa.fa-comments.fa-fw
+                  em {{operations.operation.comments}}
+                table.table(ng-if="operations.operation.options.invoice || operations.operation.options.airport || operations.operation.options.vip || operations.operation.options.luggage || operations.operation.options.specialAssistant || operations.operation.options.smoker || operations.operation.options.pet || operations.operation.options.courier")
+                  tbody
+                    tr(ng-if="operations.operation.options.invoice")
+                      td
+                        i.fa.fa-barcode
+                        strong.pull-right  {{'Invoice' | translate}}
+                    tr(ng-if="operations.operation.options.airport")
+                      td
+                        i.fa.fa-plane
+                        strong.pull-right {{'Airport' | translate}}
+                    tr(ng-if="operations.operation.options.vip")
+                      td
+                        i.fa.fa-user
+                        strong.pull-right VIP
+                    tr(ng-if="operations.operation.options.luggage")
+                      td
+                        i.fa.fa-briefcase
+                        strong.pull-right {{'Luggage' | translate}}
+                    tr(ng-if="operations.operation.options.specialAssistant")
+                      td
+                        i.fa.fa-wheelchair
+                        strong.pull-right {{'SpecialAssistance' | translate}}
+                    tr(ng-if="operations.operation.options.airConditioner")
+                      td
+                        i.fa.fa-sun-o
+                        strong.pull-right {{'AirConditioner' | translate}}
+                    tr(ng-if="operations.operation.options.smoker")
+                      td
+                        i.fa.fa-fire
+                        strong.pull-right {{'Smoker' | translate}}
+                    tr(ng-if="operations.operation.options.pet")
+                      td
+                        i.fa.fa-paw
+                        strong.pull-right {{'Pet' | translate}}
+                    tr
+                      td(ng-if="operations.operation.options.courier")
+                        i.fa.fa-truck
+                        strong.pull-right {{'Messaging' | translate}}
+              h4 {{'UserInformation' | translate}}
+              p
+                i.fa.fa-user.fa-fw
+                | {{operations.operation.name}} {{operations.operation.lastName}}
+                br
+                i.fa.fa-phone.fa-fw
+                | {{operations.operation.phone}}
+              strong(ng-if="operations.operation.passenger.frequent")
+                i.fa.fa-star.fa-fw
+                small  {{'FrequentUser' | translate}}
+              strong(ng-if="operations.operation.passenger.corporate")
+                i.fa.fa-copyright.fa-fw
+                small  {{'CorporateUser' | translate}}
+              h4 {{'Operation' | translate}}
+              p
+                i.fa.fa-map-marker
+                |  {{operations.operation.address.from.street}}
+              p(ng-if="operations.operation.address.to.street!=''")
+                i.fa.fa-flag
+                |  {{operations.operation.address.to.street}}
+              h4 {{'Driver' | translate}}
+              p
+                i.fa.fa-cab
+                |  {{operations.operation.driver.email}}
+
+.modal.fade.del-invoice(tabindex="-1", role="dialog", aria-labelledby="editDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'delInvoice' | translate}}
+        .panel-body
+          p {{'delInvoiceText' | translate}}
+          .col-xs-12
+            button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+            input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Ok' | translate}}" ng-click="corporate.companies.costCenters.invoices.delete('',true)")
+.modal.fade.add-employee(tabindex="-1", role="dialog", aria-labelledby="editDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'addEmployee' | translate}}
+        .panel-body
+
+          form(name="add",ng-submit="add.$valid && employees.addEmployee(corporate.companies.costCenters.costCenter.id, employees.employee, true);")
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="name") {{'Name' | translate}}*
+                  input.form-control(ng-model="employees.employee.name", required tabindex="1")
+                .form-group
+                  label(for="password") {{'Password' | translate}}
+                  input.form-control(ng-model="employees.employee.password",required tabindex="3" type="password")
+                .form-group
+                  label {{'Email' | translate}}
+                  input.form-control.pull-left(ng-model="employees.employee.user" name="emailcheck" type="email" ng-unique required tabindex="5" ng-change="employees.validateMail(employees.employee.user)" style="width:90%")
+                  h4.pull-left(ng-show="employees.checkingEmail" style="width:10%; padding: 0 7px;")
+                    i.fa.fa-spinner.fa-pulse
+                  h4.pull-left(ng-show="!employees.checkingEmail && !add.emailcheck.$error.unique" ng-if="add.emailcheck.$valid" style="width:10%;padding: 0 7px;")
+                    i.fa.fa-check-circle.text-success
+                  h4.pull-left(ng-show="!employees.checkingEmail && add.emailcheck.$error.unique" ng-if="!add.emailcheck.$valid" style="width:10%;padding: 0 7px;")
+                    i.fa.fa-times-circle.text-danger
+                .form-group
+                  label {{'CompanyAdmin' | translate}}
+                  br
+                  toggle-switch(ng-model="employees.employee.superAdmin")
+
+              .col-xs-12.col-sm-6
+
+                .form-group
+                  label(for="lastname") {{'LastName' | translate}}*
+                  input.form-control(type="text", ng-model="employees.employee.lastname", required  tabindex="2")
+                .form-group
+                  label(for="phone") {{'Phone' | translate}}*
+                  input.form-control( ng-model="employees.employee.phone", required tabindex="4")
+                .form-group
+                  label {{'Admin' | translate}}
+                  br
+                  toggle-switch(name="admin" ng-required="employees.employee.superAdmin" ng-model="employees.employee.admin")
+                  span(ng-show="add.$submitted && add.admin.$invalid") User must be admin tu be company admin
+              .col-xs-12
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button", ng-click="employees.getEmployees(corporate.companies.costCenters.costCenter.id, 1, '')") {{'Cancel' | translate}}
+                input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Ok' | translate}}")
+.modal.fade.export-employees(tabindex="-1", role="dialog", aria-labelledby="editDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog.modal-lg
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title Employees History
+        .panel-body
+          form(name="opHistoryExport" ng-submit="employees.export(export, corporate.companies.costCenters.costCenter.id , true)")
+            .row
+              .col-xs-12
+                p For export operation history, please select a period between two dates, a document will be sent to the selected destination
+            .row
+              .col-xs-6
+                .form-group
+                  label From
+                  .dropdown
+                    a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control
+                          span(ng-if="export.fromDate") {{export.fromDate | date:  languageDateFormat }}
+                          span(ng-if="!export.fromDate") --/--/----
+                        span.input-group-addon
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="export.fromDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day'}" tabindex="11")
+
+              .col-xs-6
+                .form-group
+                  label To
+                  .dropdown
+                    a.dropdown-toggle#dropdown3(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control
+                          span(ng-if="export.toDate") {{export.toDate | date: languageDateFormat  }}
+                          span(ng-if="!export.toDate") --/--/----
+                        span.input-group-addon
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="export.toDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown3', startView:'day', minView:'day'}" tabindex="11")
+              .col-xs-12
+                br
+                label Email
+                input.form-control(type="email" ng-model="export.email" required)
+            .row
+              .col-xs-12
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                input.btn.btn-technorides.btn-md.pull-right(type="submit" value="Save" style="margin-right:10px")

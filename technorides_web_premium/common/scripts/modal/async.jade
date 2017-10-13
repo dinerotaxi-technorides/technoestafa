@@ -1,0 +1,11 @@
+.modal.fade#async(tabindex="-1", role="dialog", aria-labelledby="modal", aria-hidden="true", style="display: none;",data-backdrop="{{modal.backdrop}}")
+  .modal-dialog(ng-class="{'modal-lg': modal.size!='small'}")
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns(ng-if="modal.close")
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{modal.title}}
+        .panel-body
+          div(ng-include="modal.temp")

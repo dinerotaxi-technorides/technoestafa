@@ -1,0 +1,85 @@
+html, body {
+  width  : 100%;
+  height : 100%;
+  margin : 0;
+}
+/*font-weigth avaiable 400,100,500*/
+body{
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+	padding: 0;
+	font-weight: 400
+}
+#map {
+  width  : 100%;
+  height : 100%;
+  padding-bottom: 50px
+}
+.navbar{
+	margin-bottom: 0
+}
+label{
+	font-weight: 400;
+	margin-right: 10px;
+}
+#count{
+	position: fixed;
+	bottom: 25px;
+	color: white;
+	width: 100%;
+    pointer-events: none
+}
+.uppercase{
+	text-transform: uppercase;
+}
+h1,h3,h5{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+*{
+	font-family: 'Roboto', sans-serif!important;
+}
+h1{
+	font-size: 65pt;
+	font-weight:400;
+}
+h5{
+	font-weight: 400;
+	font-size: 20pt
+}
+h3{
+	font-size: 20pt;
+	font-weight: 100;
+}
+#url{
+	text-decoration: none;
+	color: white;
+	pointer-events: auto
+}
+#suscribe{
+	color: white;
+	font-weight: 400;
+	pointer-events: auto
+}
+.markee{
+	font-size: 15px;
+	padding-top: 5px;
+	width: 400px;
+	color: #333;
+}
+#conditions{
+	font-weight: 400
+}
+strong{
+	font-weight: 400
+}
+#top{
+	position: fixed;
+	top : 20px;
+	right: 20px
+}
+#powered{
+	font-weight: 100;
+	top: 8px;
+  position: relative;
+}

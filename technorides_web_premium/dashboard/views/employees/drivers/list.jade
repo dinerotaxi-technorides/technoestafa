@@ -1,0 +1,220 @@
+.pageheader
+  h2
+    i.fa.fa-male
+    | {{'Employees' | translate}} 
+.contentpanel
+  .col-md-1  
+    button.btn.btn-succes(ng-click="addDriver()")
+      i.fa.fa-plus
+    br
+  .col-md-2.pull-right
+    select.form-control(ng-model="searchField" ng-init="searchField = 'username'")
+      option(value="username") {{'UserName' | translate}}
+      option(value="firstName") {{'Name' | translate}}
+      option(value="lastName") {{'LastName' | translate}}
+      option(value="phone") {{'Phone' | translate}}
+  .col-md-2.pull-right  
+    input.form-control(type="text", name="keyword", placeholder="{{'Search' | translate}}", ng-model="searchd", ng-change="drivers.getDrivers(page, searchd, searchField)")
+    br  
+  .row    
+  .row
+    .col-lg-4.col-md-6.col-xs-12.list-drivers(ng-repeat="driver in drivers.list | orderBy:'number'" ng-class="{disabled: !driver.enabled}")
+      .panel.panel-default.drivers-panel
+          .panel-body
+            .row
+              .col-xs-12
+                a.pull-right(href="" ng-click="delDriver(driver.id)" style="text-decoration:none")
+                  h4(style="margin:0;font-weight:bold;color:#333") &times;  
+                a(style="text-decoration:none" href="#employees/driver/{{driver.id}}") 
+                  h4.text-success # {{driver.number}} - {{driver.firstName}} {{driver.lastName}}
+              .col-xs-5 
+                img(ng-src="{{driver.image}}" error-img="/common/assets/user/profile.png" img-preload style="height: 150px;width: 100%;cursor: pointer")
+                .loading
+                  span
+                    i.fa.fa-spinner.fa-pulse
+              .col-xs-7
+                label {{'status' | translate}}
+                strong.text-success.uppercase(ng-if="driver.enabled") {{'Active' | translate}}
+                strong.text-danger.uppercase(ng-if="!driver.enabled") {{'Bloqued' | translate}}
+                br
+                label {{'Phone' | translate}}
+                span {{driver.telephone}}
+                br
+                label {{'user' | translate}}
+                span {{driver.email}}
+                br
+                
+  .row(ng-if="drivers.list.length == 0")
+    ul.list-group
+      li.list-group-item.text-center {{'noElementsFound' | translate}}
+  .row(ng-if="drivers.list.length != 0")
+    .text-center  
+      ul.pagination
+        li(ng-repeat="page in drivers.pages" ng-class="{active: page == driver.page}")
+          a(ng-click="drivers.getDrivers(page, searchd, searchField)" href="") {{page}}
+
+
+.modal.fade.report-driver(tabindex="-1", role="dialog", aria-labelledby="reportDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog.modal-lg
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DriverReports' | translate}} {{driver.id}}
+        .panel-body
+          ul.nav.nav-tabs.nav-justified(ng-init="tab = 1")
+            li.active
+              a(data-toggle="tab" ng-click="tab = 1")
+                strong {{'Daily' | translate}}
+            li
+              a(data-toggle="tab" ng-click="tab = 2")
+                strong {{'Weekly' | translate}}
+            li
+              a(data-toggle="tab" ng-click="tab = 3")
+                strong {{'Biweekly' | translate}}
+            li
+              a(data-toggle="tab" ng-click="tab = 4")
+                strong {{'Monthly' | translate}}
+          .row
+            br
+            div.text-center(ng-show="tab==1")
+              table#driver_daily_report(align="center")
+                #driver_daily_report_pager
+            div.text-center(ng-show="tab==2")
+              table#driver_weekly_report(align="center")
+                #driver_weekly_report_pager
+            div.text-center(ng-show="tab==3")    
+              table#driver_biweekly_report(align="center")
+                #driver_biweekly_report_pager
+            div.text-center(ng-show="tab==4")    
+              table#driver_monthly_report(align="center")
+                #driver_monthly_report_pager
+
+.modal.fade.add-driver(tabindex="-1", role="dialog", aria-labelledby="addDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'NewDriver' | translate}}
+        .panel-body
+          form(name="add",ng-submit="addNewDriver(driver)")
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="driverid") {{'id' | translate}} *
+                  input.form-control(type="number", id="driverid"  placeholder="", ng-model="driver.id", required tabindex="1")
+                .form-group
+                  label(for="name") {{'Name' | translate}} *
+                  input.form-control(type="text", id="name"  placeholder="", ng-model="driver.name", required tabindex="3")
+                .form-group
+                  label(for="phone") {{'Phone' | translate}} *
+                  input.form-control(type="text", id="phone"  placeholder="", ng-model="driver.phone", required tabindex="5" )
+                .form-group
+                  label(for="brand") {{'Brand' | translate}} *
+                  input.form-control(type="text",  placeholder="", ng-model="driver.brand", required tabindex="7" minlength="3")
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="password") {{'Password' | translate}} *
+                  input.form-control(type="password" ng-model="driver.password", required  tabindex="2")
+                .form-group
+                  label(for="lastname") {{'LastName' | translate}} *
+                  input.form-control(type="text"  placeholder="", ng-model="driver.lastname", required tabindex="4" )
+                .form-group
+                  label(for="cuit") {{'Cuit' | translate}}
+                  input.form-control(type="text", id="cuit"  placeholder="", ng-model="driver.cuit", tabindex="6")
+                .form-group
+                  label(for="model") {{'Model' | translate}} *
+                  input.form-control(type="text", id="model"  placeholder="", ng-model="driver.model", required tabindex="8" )
+            .row
+              .col-xs-12
+                .form-group
+                  label(for="plate") {{'Plate' | translate}} *
+                  input.form-control(type="text", id="plate"  placeholder="", ng-model="driver.plate", required tabindex="9" minlength="5")
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="licence") {{'LicenceNumber' | translate}}
+                  input.form-control(type="text", id="licence"  placeholder="", ng-model="driver.licence", tabindex="10" )
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="licenceexp") {{'LicenceExpirationDate' | translate}} 
+                  .dropdown
+                    a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        input.form-control(type="date" ng-model="driver.expiration" readonly name="licenceexp" value="")
+                        span.input-group-addon 
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="driver.expiration" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day'}"  tabindex="11")
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="driverType") {{'type' | translate}}
+                  .form-group
+                    .col-xs-3.text-center(ng-init="driver = {isRegular: true, isCorporate: true, isVip: true}")
+                      label {{'Regular' | translate}}
+                      input.form-control( type="checkbox" ng-model="driver.isRegular" tabindex="8")  
+                    .col-xs-3.text-center  
+                      label {{'Corporate' | translate}}
+                      input.form-control( type="checkbox" ng-model="driver.isCorporate" tabindex="8")  
+                    .col-xs-3.text-center  
+                      label {{'Vip' | translate}}
+                      input.form-control( type="checkbox" ng-model="driver.isVip"  tabindex="8")  
+            .row
+              .col-xs-12
+                br  
+                .form-group
+                  button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                  input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Create' | translate}}")
+
+.modal.fade.delete-driver(tabindex="-1", role="dialog", aria-labelledby="deleteDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeleteDriverNumber' | translate}} {{toDelete}}
+        .panel-body
+          form(name="cancel",ng-submit="cancelOperation(toCancel)")
+            p {{'sureDeleteDriver' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" ng-click="deleteDriver(toDelete)")
+
+.modal.fade.chargesdriver(role="dialog", aria-labelledby="charges", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog.modal-lg
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Report' | translate}}
+        .panel-body
+          ul.nav.nav-tabs.nav-justified(ng-init="tab2 = 1")
+            li.active
+              a(data-toggle="tab" ng-click="tab2 = 1")
+                strong {{'ChargesConfig' | translate}}
+            li
+              a(data-toggle="tab" ng-click="tab2 = 2")
+                strong {{'Unpaid' | translate}}
+            li
+              a(data-toggle="tab" ng-click="tab2 = 3")
+                strong {{'Paid' | translate}}
+          br
+          div(ng-show="tab2==1")      
+            table#driver-charges(align="center")
+              #pager-charges()
+          div(ng-show="tab2==2")
+            table#unpaid(align="center")
+              #pager-unpaid
+          div(ng-show="tab2==3")
+            table#driver-billing(align="center")
+              #pager-billing

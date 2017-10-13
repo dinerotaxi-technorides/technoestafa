@@ -1,0 +1,116 @@
+.pageheader
+  h2
+    i.fa.fa-envelope
+    | {{'Inbox' | translate}}
+.contentpanel.panel-email
+  .row
+      .col-sm-3.col-lg-2
+        a.btn.btn-danger.btn-block.btn-compose-email(href='').hidden {{'ComposeEmail' | translate}}
+        ul.nav.nav-pills.nav-stacked.nav-email()
+          li(ng-class="{active: inbox.showing == 'inbox'}")
+            a(href="" ng-click="inbox.getMessages()")
+              span.badge.pull-right(ng-if="inbox.showing == 'inbox'") {{inbox.totalMessages}}
+              i.glyphicon.glyphicon-inbox
+              |  {{'Inbox' | translate}}
+
+          li(ng-class="{active: inbox.showing == 'star'}")
+            a(href='' ng-click="inbox.getStarEmail()")
+              span.badge.pull-right(ng-if="inbox.showing == 'star'") {{inbox.totalMessages}}
+              i.glyphicon.glyphicon-star
+              |  {{'Starred' | translate}}
+          li.hidden()
+            a(href='')
+
+              i.glyphicon.glyphicon-send
+              |  {{'SentMail' | translate}}
+          li.hidden()
+            a(href='')
+              
+              i.glyphicon.glyphicon-pencil
+              |  {{'Draft' | translate}}
+          li(ng-class="{active: inbox.showing == 'deleted'}")
+            a(href='' ng-click="inbox.getDeletedEmail()")
+              span.badge.pull-right(ng-if="inbox.showing == 'deleted'") {{inbox.totalMessages}}
+              i.glyphicon.glyphicon-trash
+              |  {{'Trash' | translate}}
+        
+        
+        
+        .mb30
+      .col-sm-9.col-lg-10
+        ul.nav.nav-tabs
+          li(ng-class="{active: inbox.tab=='ENTERPRISE'}" role="presentation")
+            a(href="" ng-click="inbox.tab='ENTERPRISE'; inbox.getMessages()") Enterprise
+          li(ng-class="{active: inbox.tab=='DRIVER'}" role="presentation")
+            a(href="" ng-click="inbox.tab='DRIVER';inbox.getMessages()") Driver
+          li(ng-class="{active: inbox.tab=='PASSENGER'}" role="presentation")
+            a(href="" ng-click="inbox.tab='PASSENGER';inbox.getMessages()") Passenger
+
+        .panel.panel-default
+          .panel-body
+            .pull-right
+              .btn-group.mr10
+                button.btn.btn-sm.btn-white.tooltips(type='button', data-toggle='tooltip', title='', data-original-title="{{'Delete' | translate}}" ng-click="inbox.deleteEmail(inbox.selected)")
+                  i.glyphicon.glyphicon-backward(ng-if="inbox.showing == 'deleted'")
+                  i.glyphicon.glyphicon-trash(ng-if="inbox.showing != 'deleted'")                        
+              .btn-group.hidden
+                button.btn.btn-sm.btn-white(type='button')
+                  i.glyphicon.glyphicon-chevron-left
+
+                button.btn.btn-sm.btn-white(type='button')
+                  i.glyphicon.glyphicon-chevron-right
+            
+            h5.subtitle.mb5 {{'Inbox' | translate}}
+            p.text-muted 
+            .table-responsive
+              table.table.table-email
+                tbody
+                  tr(ng-if="inbox.totalMessages < 1")
+                    td(colspan="3").text-center {{'noElementsFound' | translate}}
+
+                  tr(ng-repeat="mail in inbox.messages" ng-class="{unread: mail.readed}")
+                    td
+                      input(type='checkbox' ng-change="inbox.selectMail(mail.id)" ng-model="e")
+                    td
+                      a.star(ng-class="{'star-checked': mail.star}" href='' ng-click="inbox.setStar(mail.id)")
+                        i.glyphicon.glyphicon-star 
+                    td(ng-click="inbox.show(mail)")
+                      .media
+                        a.pull-left(href='')
+                          i.fa.fa-envelope 
+                        .media-body
+                          span.media-meta.pull-right {{mail.date | date: languageDateFormat }} 
+                          h4.text-primary {{mail.from}}
+                          small.text-muted
+                          p.email-summary
+                            strong {{mail.subject}}
+                            
+
+.modal.fade.feature-not-ready(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'FeatureNotReady' | translate}}
+      .panel-body
+        p {{'FeatureNotReadyText' | translate}}
+        .form-group
+          button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+          input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Ok' | translate}}")
+.modal.fade.show-email(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'Email' | translate}}
+        .panel-body
+          strong {{inbox.mail.from}} 
+          small.pull-right {{inbox.mail.date | date: languageDateFormat }}
+          p(ng-bind-html="inbox.mail.body") 
+
+div(ng-include="'views/paginator.html'")
+                  

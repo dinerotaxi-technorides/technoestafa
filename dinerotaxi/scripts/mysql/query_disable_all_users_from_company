@@ -1,0 +1,6 @@
+update user set enabled = false where 
+rtaxi_id in ( select ff.id from (
+SELECT  l.id as id
+FROM    user l
+WHERE   l.class = 'ar.com.goliath.Company'and l.enabled = false
+group by l.wlconfig_id) ff)

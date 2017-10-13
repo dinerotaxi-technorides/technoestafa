@@ -1,0 +1,84 @@
+/****************************** LO QUE TENIA CUANDO ESTABA FUERA DE FACEBOOK ***************************/
+ 
+ #countdown_sidebar_bar{
+	display:block !important;
+	height: 50px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	margin-left:40px;
+	/*
+	font-family:"Trebuchet MS",Helvetica,Arial,Sans-serif;
+	font-size:14px;
+	height:30px;
+	position:absolute;
+	right:80px;
+	top:32px;
+	width:377px;
+	float: right;
+	clear:right;
+	*/
+}
+#countdown_sidebar_bar .text{
+	position:relative;
+	font-size:13px;
+/*	margin-right:20px;
+	padding-top:3px;
+	right:176px;
+	top:0;
+	text-align:right;
+	width:271px;
+	*/
+}
+#countdown_sidebar_bar .markets-closed{
+	color:red;
+}
+#countdown_sidebar_bar .markets-open{
+	color:green;
+}
+#countdown_sidebar_bar #timer{
+	width:180px;
+	position: relative;
+/*	position: absolute;
+	right: 6px;
+	top:6px;*/
+}
+#countdown_sidebar_bar .holiday {
+	color:red;
+	font-size:12px;
+	position: relative;	
+/*	text-align:right;
+	right:0;
+	top:0px;*/
+}
+#countdown_sidebar_bar .clockDigit {
+	margin:0px;
+	padding:0px;
+	background: no-repeat;
+	background-image:url(../img/numbers.png);
+	width:20px;
+	height:38px;
+	border:none;
+	display:block;
+	float:left;
+}
+#countdown_sidebar_bar .clockDigitColons {
+	margin:0px;
+	padding:0px;
+	background: no-repeat;
+	/*background-image:url(http://tradefields.com/facebook/images/colons.png);*/
+	width:5px;
+	height:38px;
+	border:none;
+	display:block;
+	float:left;
+}
+
+/****************************** FIN DE LO QUE TENIA CUANDO ESTABA FUERA DE FACEBOOK ***************************/
+
+
+ 
+ 
+ 
+ 
+ 
+

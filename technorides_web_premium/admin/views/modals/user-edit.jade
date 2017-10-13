@@ -1,0 +1,77 @@
+form(name="Edit" ng-submit="Edit.$valid && users.edit('edit')")
+  .col-xs-6
+    .form-group
+      label Created Date 
+      input.form-control(ng-model="users.user.createdDate" required)
+    .form-group
+      label Radio Taxi
+      input.form-control(ng-model="users.user.rtaxi" required)
+  .col-xs-6
+    .form-group
+      label User Name
+      input.form-control(ng-model="users.user.username" required)
+    .form-group
+      label Password
+      input.form-control(type="password" ng-model="users.user.password" required)
+  .col-xs-6  
+    .form-group
+      label First Name
+      input.form-control(ng-model="users.user.firstName" required)
+  .col-xs-6  
+    .form-group
+      label Last Name
+      input.form-control(ng-model="users.user.lastName" required)
+  .col-xs-6  
+    .form-group
+      label Phone
+      input.form-control(ng-model="users.user.phone" required)
+  .col-xs-6  
+    .form-group
+      label CountTripsCompleted
+      input.form-control(ng-model="users.user.countTripsCompleted" required)
+  .col-xs-6  
+    .form-group
+      label Is Frequent
+      input.checkbox(type="checkbox" ng-model="users.user.isFrequent")
+  .col-xs-6  
+    .form-group
+      label Status
+      input.form-control(ng-model="users.user.status" required)
+  .col-xs-6  
+    .form-group
+      label Agree
+      input.checkbox(type="checkbox" ng-model="users.user.agree")
+  .col-xs-6  
+    .form-group
+      label Enabled
+      input.checkbox(type="checkbox" ng-model="users.user.enabled")
+  .col-xs-6  
+    .form-group
+      label Account Locked
+      input.checkbox(type="checkbox" ng-model="users.user.accountLocked")
+  .col-xs-6  
+    .form-group
+      label Is Test User
+      input.checkbox(type="checkbox" ng-model="users.user.isTestUser")
+  .col-xs-6  
+    .form-group
+      label Ip
+      input.form-control(ng-model="users.user.ip" required)
+  .col-xs-6  
+    .form-group
+      label Company Name
+      input.form-control(ng-model="users.user.companyName" required)
+  .col-xs-6  
+    .form-group
+      label Lang
+      input.form-control(ng-model="users.user.lang" required)
+  .col-xs-6  
+    .form-group
+      label City
+      select.form-control(ng-model="users.user.city" required)
+        option(ng-repeat="option in cities.list" value="{{option.id}}") {{option.name}}  
+  .col-xs-12 
+    br
+    .form-group
+      button.btn.btn-danger.pull-right(data-dismiss="modal") Cancel
+      button.btn.btn-success.pull-right(style="margin-right:5px") Save

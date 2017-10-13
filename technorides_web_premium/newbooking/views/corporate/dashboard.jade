@@ -1,0 +1,50 @@
+.alert.alert-warning.alertChrome
+  button(type="button" class="close" data-dismiss="alert" area-hidden="false") x
+  strong {{ 'alertChrome' | translate }}
+
+h2.title
+  span.fa-stack
+    i.fa.fa-circle-thin.fa-stack-2x
+    i.fa.fa-tachometer.fa-stack-1x
+  span(typed-translate="") corporate.sections.dashboard
+.container-fluid
+  .col-xs-12.col-md-6
+    .box.box-technorides(style="padding:20px")
+      .media
+        .media-left
+          img(src="/newbooking/assets/is-money.png" )
+        .media-body.text-left
+          span.uppercase(typed-translate="") corporate.dashboard.toPay
+          h2 {{company.info.currency}} {{company.statics.payments.toPay | currency:""}}
+      .row
+        .col-xs-12
+          .col-xs-12.col-sm-6.text-left
+            span.uppercase(typed-translate="") corporate.dashboard.totalCost
+            p {{company.info.currency}} {{company.statics.payments.total | currency:""}}
+          .col-xs-12.col-sm-6.text-left
+            span.uppercase(typed-translate="") corporate.dashboard.paid
+            p {{company.info.currency}} {{company.statics.payments.paid | currency:""}}
+  .col-xs-12.col-md-6
+    .box.box-blue(style="padding:20px")
+      .media
+        .media-left
+          img(src="/newbooking/assets/is-trips.png")
+        .media-body.text-left
+          span.uppercase(typed-translate="") corporate.dashboard.operations
+          h2 {{company.statics.operations.total}}
+      .row
+        .col-xs-12
+          .col-xs-12.col-sm-6.text-left
+            span.uppercase(typed-translate="") corporate.dashboard.lastWeek
+            p {{company.statics.operations.lastWeek}}
+          .col-xs-12.col-sm-6.text-left
+            span.uppercase(typed-translate="") corporate.dashboard.lastMonth
+            p  {{company.statics.operations.lastMonth}}
+  .clearfix
+  img.col-xs-12(src="/newbooking/assets/dashboard_comingsoon_{{company.info.lang}}.jpg")
+  .col-xs-12.col-md-6(ng-if="false")
+    h3(typed-translate="") corporate.dashboard.opsByShift
+    div(donut-chart donut-data='company.statics.operationsByShift' donut-colors='["#22456d","#788DBA","#BDCEEC","#c85e08"]')
+  .col-xs-12.col-md-12(ng-if="false")
+    h3(typed-translate="") corporate.dashboard.monthExpenses
+    div(bar-chart bar-data='company.statics.expensesByMonth' bar-x='y' bar-y='["b"]' bar-labels='["Expensas"]' bar-colors='["#c7254e"]')

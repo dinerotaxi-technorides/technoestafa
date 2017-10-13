@@ -1,0 +1,64 @@
+h2.title
+  span.fa-stack
+    i.fa.fa-circle-thin.fa-stack-2x
+    i.fa.fa-building.fa-stack-1x
+  span {{corporate.costCenter.name}}
+.container-fluid
+  .col-xs-12
+    .row
+      ol.breadcrumb
+        li
+          a(href="" ng-click="changeTab('costcenters')" typed-translate="") corporate.sections.costCenters
+        li.active {{corporate.costCenter.name}}
+  .clearfix
+  .panel.panel-default
+    .panel-body
+      .col-xs-12.col-md-8
+        .row
+          .col-xs-12.col-md-4.col-lg-3
+            img.img-responsive(src="https://dummyimage.com/200x200/0ccccc/fff&text={{corporate.costCenter.name | limitTo:1 | uppercase}}" width="200" heigth="200" style="margin:0 auto")
+          .col-xs-12.col-md-8.col-lg-9
+            h4.underline 
+              span {{corporate.costCenter.name | uppercase}}
+              a.pull-right(modal="views/modal/corporate/edit-cost-center.html" modal-title="{{'corporate.company.editCostCenter' | translate}}")
+                i.fa.fa-pencil
+            
+            ul.com-details
+              li
+                i.fa.fa-map-marker
+                |  {{corporate.costCenter.address}} 
+              li
+                i.fa.fa-phone
+                |  {{corporate.costCenter.phone}}
+              
+      
+      .col-xs-12.col-md-4
+        .row
+          .col-xs-12.col-md-6
+            .box.box-technorides
+              h4(typed-translate="") corporate.company.users
+              h2 {{corporate.costCenter.metrics.users}}
+              br
+          .col-xs-12.col-md-6
+            .box.box-blue
+              h4(typed-translate="") corporate.company.debt
+              h2 {{company.info.currency}} {{corporate.costCenter.metrics.not_paid}}
+              br
+  .panel.panel-default
+    .panel-body
+      .col-lg-2
+        ul.nav.nav-pills.nav-stacked
+          li(ng-class="{active: costTab == 'history'}")
+            a(ng-click="changeCorpTab('history');corporate.operations.get()" href="" typed-translate="") corporate.sections.history 
+          li(ng-class="{active: costTab == 'billing'}")
+            a(ng-click="changeCorpTab('billing');corporate.invoices.get()" href="" typed-translate="") corporate.sections.billing 
+          li(ng-class="{active: costTab == 'employees'}")
+            a(ng-click="changeCorpTab('employees');employees.get()" href="" typed-translate="") corporate.sections.employees
+      .col-xs-12.col-md-6.col-lg-10
+        div(ng-switch="costTab")
+          div(ng-switch-when="history")
+            div(ng-include="'views/corporate/history.html'")
+          div(ng-switch-when="billing")
+            div(ng-include="'views/corporate/billing.html'")
+          div(ng-switch-when="employees")
+            div(ng-include="'views/corporate/employees.html'")

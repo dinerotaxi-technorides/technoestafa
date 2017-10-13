@@ -1,0 +1,337 @@
+$about-us : #eaeaea
+$yelow : #FACE00
+$dark-yelow : #D6B50F
+$shadow : rgba(0,0,0,0.2)
+$dark-grey: #2a2a2a
+$rojo: #F33B3B
+$rojo-oscuro: #B70000
+$text-dark: #252525
+
+html, body
+	height: 100%
+/*for elements with shadow on top*/
+=error
+	color: white
+	background-color: #e74c3c
+	border-color: #ebccd1
+	&::-webkit-input-placeholder
+		color: white
+	&:-moz-placeholder
+		color: white
+	&::-moz-placeholder
+		color: white
+	&:-ms-input-placeholder
+		color: white 
+=shadow-top
+	-webkit-box-shadow: 0px -3px 15px 0px $shadow
+	-moz-box-shadow:    0px -3px 15px 0px $shadow
+	box-shadow:         0px -3px 15px 0px $shadow
+*	
+	font-family: 'Open Sans', sans-serif
+	color: #252525
+body
+	line-height: 1.78571
+	#overflow-x: hidden
+	background-color: $dark-grey
+.main-button
+	background-color: $yelow
+	outline: 0
+	color: white
+	font-size: 18px 
+	border-bottom: 5px solid $dark-yelow
+
+.spinner
+	color: #000
+
+.white
+	color: #fff
+a
+	color: #fff
+	&:hover
+		color: #fff
+
+/*Core bootstrap modifications*/
+.nav
+	li
+		padding:
+			top: 5px
+			bottom: 5px
+	a
+		color: #252525!important
+		font-weight: bold
+	.active
+		a
+			background-color : $yelow!important
+				
+.navbar
+	min-height: 60px
+	border-radius: 0
+	margin: 0
+	box-shadow: 0 4px 2px -2px $shadow
+	z-index: 2
+
+.navbar-brand
+	padding: 0
+	img
+		padding-left: 20px
+		max-height: 60px
+/*end bootstrap mods*/	
+
+.spinner
+	position: fixed
+	top: 30%
+	left: 54%
+	color: white
+	padding: 10px 20px
+	background: rgba(0,0,0,0.6)
+	text-align: center
+	font-size: 40px
+	border-radius: 8px
+	z-index: 100000
+	i
+		color: white	
+.aps-both
+	top: 480px
+.aps-one
+	top: 554px
+.download-apps
+	background-color: rgba(0,0,0,0.7)
+	border-radius: 7px
+	padding: 20px
+	width: 200px
+	float: right
+	z-index: 20
+	position: absolute
+	right: 20px
+
+	p
+		color: white
+		padding-left: 12px
+		font-size: 13px
+		max-width: 123px
+		font-weight: bold
+	.android,.iphone
+		width: 100%
+		margin:
+			top: 10px
+			bottom: 10px	
+/*About*/
+section
+	padding:
+		left: 20px
+		right: 20px
+	+shadow-top
+	background-color: $about-us
+	position: relative
+	z-index: 2
+	padding-bottom: 15px
+
+	h1
+		border-bottom: 2px solid #9c9c9c
+		margin-bottom: 20px
+
+footer
+	+shadow-top
+	background-color: white
+	position: relative
+	z-index : 3
+	top: 0
+
+	address
+		margin: 0
+		padding-top: 5px
+		font-size: 15px
+		a
+			color: $text-dark!important
+.social-networks
+	padding:
+		top: 10px
+		bottom: 10px
+	img
+		max-width: 30px
+		margin:
+			right: 5px
+.main
+	padding: 0
+.menu
+	color: white!important
+	background-color: $dark-grey
+	height: 100%
+	min-height: 1070px
+	float: left
+	padding:
+		left: 5px
+		right: 5px
+	div[class^="col-"]
+		padding:
+			left: 5px
+			right: 5px
+	h2, p, h4, h3 
+		color: white
+	form
+		background-color: $dark-grey!important			
+	label, input, textarea, select, button
+		width: 100%
+	input ,textarea
+		padding-left: 5px
+	input, textarea, select
+		border-radius: 3px
+		border: 0
+		height: 29px
+	textarea
+		height: auto
+	input[type='checkbox']
+		display: inline
+		height: auto
+		width: auto
+		position: relative
+		top: 2px
+		margin-right: 5px			
+	.indication
+		margin-bottom: 10px
+		display: block
+		background-color: #393939
+		color: white
+		border-radius: 2px
+		i
+			color: white
+			padding: 0px 5px
+	label
+		font-size: 10px
+		margin: 0
+		color: white
+	label[for='conditions']
+		width: auto	
+	.input-group
+		margin-bottom: 10px		
+	button
+		text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2)
+		font-size: 16px
+		font-weight: bold
+		color: white!important
+		margin-top: 10px
+		background-color: $yelow!important
+		outline: 0
+		border: 0
+		border-bottom: 5px solid $dark-yelow!important
+		&:hover
+			border-bottom: 5px solid $dark-yelow
+			background-color: $yelow	
+	textarea
+		resize: none
+	.ng-invalid.ng-dirty
+		+error
+	.cancel
+		background-color: $rojo!important
+		border-bottom: 5px solid $rojo-oscuro!important
+	img
+		width: 100%
+		max-width: 145px
+
+.invalid-company-config-error
+	background-color: white
+	text-align: center
+	h2
+		a
+			color: #252525
+			text-decoration: underline
+			font-weight: bold
+/*Error handler*/
+.errorOpt
+	margin:
+		left: 5px
+		right: 5px
+.submited
+	.ng-invalid
+		+error
+.backgroud-error
+	position: fixed
+	background-color: rgba(0,0,0,0.3)
+	background-size: cover
+	padding: 0
+	margin: 0
+	width: 100%
+	height: 100%
+	z-index: 30
+.error-screen
+	z-index: 40
+	width: 100%
+	padding:
+		top: 30px
+		bottom: 30px
+	background-color: white
+	top: 30%
+	position: fixed
+	button
+		border-radius: 3px
+	blockquote
+		p
+			color: #555
+			font-size: 13px
+		footer
+			box-shadow: none
+			cite
+				font-size: 12px
+				color: #333
+.asigning-trip
+	i
+		color: white
+		font-size: 40px
+		margin: 
+			bottom: 10px
+			top: 10px
+.driver-img
+	background-color: white
+	border-radius : 9px
+.driver-data
+	padding: 0
+	text-align: left
+	list-style-type: none
+	p
+		margin-bottom: 0
+	label
+		color: #ccc
+#map_canvas
+	width: 100%
+	height: 700px
+	position: relative
+	.angular-google-map-container
+		position: absolute
+		top: 0
+		bottom: 0
+		right: 0
+		left: 0
+//map cover when not loged		
+.please-log-in
+	width: 100%
+	position: relative
+	height: 700px
+	background-color: rgba(0,0,0,0.4)
+	z-index: 2
+	h1, i
+		color: white
+		text-align: center
+	h1
+		margin-top: 150px
+.datetimepicker
+	background-color: white
+	margin-top: 10px!important
+	table
+		margin: 0 auto!important
+.geolocate-button
+	background-color: $yelow
+	padding: 5px 10px
+	z-index: 1
+	position: absolute
+	top: 5px
+	right: 45px
+	border: 0
+	border-radius: 3px
+	background-color: $yelow!important
+	outline: 0
+	border: 0
+	border-bottom: 2px solid $dark-yelow!important
+	i
+		color: white
+		text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2)
+		

@@ -1,0 +1,37 @@
+.pageheader
+  h2
+    i.fa.fa-users
+    | Clients Employees
+
+.contentpanel
+  .row
+    .form-group.col-sm-8
+      button.btn.btn-success.btn-sm(ng-click="employees.unset()" modal="views/modals/employee-add.html" modal-title="Add Employee") + Add Employee
+    
+    .form-group.col-sm-4
+      .input-group
+        input.input-sm(placeholder="Search here" ng-model="searchString" ng-change="employees.get(1, searchField, searchString)")    
+        select.input-sm(style={margin:"0 .5em"} ng-model="searchField" ng-options="option as option for option in employees.searchFields" ng-init="searchField=employees.searchFields[0]")    
+    
+    .table-responsive
+      table.table.table-striped.table-hover.field-table
+        thead
+          tr
+            th(ng-repeat="field in employees.fields" ng-click="employees.get(1, searchField, searchString, field)")
+              a(href="")
+                {{"employees." + field | translate}}
+                i.fa.fa-chevron-up(ng-if="field==employees.currentOrderField && employees.currentOrder == 'desc'")
+                i.fa.fa-chevron-down(ng-if="field==employees.currentOrderField && employees.currentOrder == 'asc'")
+            th.text-center(colspan="2" translate="general.actions") 
+        tbody
+          tr(ng-repeat="worker in employees.list")
+            td(ng-repeat="field in employees.fields") {{worker[field]}}
+            td.text-center
+              a.label.label-danger(ng-click="employees.set(worker)" modal="views/modals/employee-delete.html" modal-title="Delete Employee" href="")
+                i.fa.fa-times-circle-o
+              span &nbsp;
+              a.label.label-success(ng-click="employees.set(worker)" modal="views/modals/employee-edit.html" modal-title="Edit Employee" href="")
+                i.fa.fa-pencil    
+
+  div(ng-include="'views/paginator.html'")
+  div(ng-include="'/common/scripts/modal/async.html'")

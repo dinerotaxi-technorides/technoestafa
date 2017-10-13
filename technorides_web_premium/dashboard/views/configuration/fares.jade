@@ -1,0 +1,335 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | {{'Configuration' | translate}}
+    |/ {{'Fares' | translate}}
+.contentpanel
+  
+  .alert.alert-warning.alertChrome
+    button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+    strong {{ 'alertChanges' | translate }} 
+  .row
+    .panel.panel-default
+      .panel-body
+        
+
+        div(ng-show="!windowed")
+          form(name="zoneForm" ng-submit="configFares(company.config.zones, company.config.fares, company.config.destination.required)")
+            .col-md-6.col-xs-12
+              h3.underline {{'FaresTitle' | translate}}
+              .col-xs-3.text-center
+                img.img-responsive(src="assets/config/zones/fares.png")
+              .col-xs-8
+                label {{'FaresSelect' | translate}}
+                select.form-control(ng-model="company.config.fares.type" ng-change="changeFareType()")
+                  option(value="1") Zones
+                  option(value="0") Distance
+                  // option(value="2") Taximeter
+                br
+
+                .row(ng-show="company.config.fares.type==1")
+                  .col-xs-12
+                    button.btn.btn-darkblue(ng-click="windowed = true;initMap();loadAllGrids(confTab)" type="button") {{'EditZones' | translate}}
+                .row(ng-if="company.config.fares.type==0")
+                  .col-xs-4
+                    strong {{'FaresBasePrice' | translate}} 
+                    input.form-control(ng-model="company.config.fares.base" step="0.01" type="number")
+                  .col-xs-4
+                    strong {{'distanceType' | translate}}
+                    select.form-control(ng-model="company.config.fares.distanceType" ng-init="company.config.fares.distanceType = 'KM'")
+                      option(value="KM") Km 
+                      option(value="MI") Mi
+                  .col-xs-4
+                    strong(ng-show="company.config.fares.distanceType == 'KM'") {{'PricePerKm' | translate}}
+                    strong(ng-show="company.config.fares.distanceType == 'MI'") {{'PricePerMi' | translate}}
+                    input.form-control(ng-if="company.config.fares.distanceType == 'KM'" step="0.01" type="number" ng-model="company.config.fares.km")  
+                    input.form-control(ng-if="company.config.fares.distanceType == 'MI'" step="0.01" type="number" ng-model="company.config.fares.km") 
+                     
+
+            .col-md-6.col-xs-12
+              h3.underline {{'DestinationRequiredTitle' | translate}}
+              em {{'DestinationRequiredText' | translate}}
+              br
+              toggle-switch(ng-model="company.config.destination.required")
+              h3 
+              strong {{'FareCurrencyText' | translate}}
+              select.form-control(type="text" maxlength="5" ng-model="company.config.fares.currency" ng-init="company.config.fares.currency = '$'")              
+                option(value="$")  $
+                option(value="USD") {{'USD' | translate}} 
+                option(value="AED") {{'AED' | translate}} 
+                option(value="ARS") {{'ARS' | translate}} 
+                option(value="AUD") {{'AUD' | translate}} 
+                option(value="AWG") {{'AWG' | translate}} 
+                option(value="BAM") {{'BAM' | translate}} 
+                option(value="BBD") {{'BBD' | translate}} 
+                option(value="BDT") {{'BDT' | translate}} 
+                option(value="BGN") {{'BGN' | translate}}             
+                option(value="BHD") {{'BHD' | translate}} 
+                option(value="BMD") {{'BMD' | translate}} 
+                option(value="BOB") {{'BOB' | translate}} 
+                option(value="BRL") {{'BRL' | translate}} 
+                option(value="BSD") {{'BSD' | translate}} 
+                option(value="CAD") {{'CAD' | translate}} 
+                option(value="CHF") {{'CHF' | translate}} 
+                option(value="CLP") {{'CLP' | translate}} 
+                option(value="CNY") {{'CNY' | translate}} 
+                option(value="COP") {{'COP' | translate}} 
+                option(value="CZK") {{'CZK' | translate}} 
+                option(value="DKK") {{'DKK' | translate}} 
+                option(value="DOP") {{'DOP' | translate}} 
+                option(value="EGP") {{'EGP' | translate}} 
+                option(value="EUR") {{'EUR' | translate}}
+                option(value="FJD") {{'FJD' | translate}}
+                option(value="GBP") {{'GBP' | translate}}
+                option(value="GHS") {{'GHS' | translate}}
+                option(value="GMD") {{'GMD' | translate}}
+                option(value="GTQ") {{'GTQ' | translate}}
+                option(value="HKD") {{'HKD' | translate}}
+                option(value="HRK") {{'HRK' | translate}} 
+                option(value="HUF") {{'HUF' | translate}} 
+                option(value="IDR") {{'IDR' | translate}} 
+                option(value="ILS") {{'ILS' | translate}} 
+                option(value="INR") {{'INR' | translate}}
+                option(value="IRR") {{'IRR' | translate}} 
+                option(value="ISK") {{'ISK' | translate}}
+                option(value="JMD") {{'JMD' | translate}} 
+                option(value="JOD") {{'JOD' | translate}}
+                option(value="JPY") {{'JPY' | translate}}
+                option(value="KES") {{'KES' | translate}}
+                option(value="KHR") {{'KHR' | translate}}
+                option(value="KRW") {{'KRW' | translate}}
+                option(value="KWD") {{'KWD' | translate}}
+                option(value="LAK") {{'LAK' | translate}}
+                option(value="LBP") {{'LBP' | translate}}
+                option(value="LKR") {{'LKR' | translate}} 
+                option(value="MAD") {{'MAD' | translate}} 
+                option(value="MDL") {{'MDL' | translate}} 
+                option(value="MGA") {{'MGA' | translate}} 
+                option(value="MKD") {{'MKD' | translate}} 
+                option(value="MUR") {{'MUR' | translate}} 
+                option(value="MVR") {{'MVR' | translate}} 
+                option(value="MXN") {{'MXN' | translate}} 
+                option(value="MYR") {{'MYR' | translate}} 
+                option(value="NAD") {{'NAD' | translate}} 
+                option(value="NGN") {{'NGN' | translate}} 
+                option(value="NOK") {{'NOK' | translate}} 
+                option(value="NPR") {{'NPR' | translate}} 
+                option(value="NZD") {{'NZD' | translate}} 
+                option(value="OMR") {{'OMR' | translate}} 
+                option(value="PAB") {{'PAB' | translate}} 
+                option(value="PEN") {{'PEN' | translate}} 
+                option(value="PHP") {{'PHP' | translate}} 
+                option(value="PKR") {{'PKR' | translate}} 
+                option(value="PLN") {{'PLN' | translate}} 
+                option(value="PYG") {{'PYG' | translate}} 
+                option(value="QAR") {{'QAR' | translate}} 
+                option(value="RON") {{'RON' | translate}} 
+                option(value="RSD") {{'RSD' | translate}} 
+                option(value="RUB") {{'RUB' | translate}} 
+                option(value="SAR") {{'SAR' | translate}} 
+                option(value="SCR") {{'SCR' | translate}} 
+                option(value="SEK") {{'SEK' | translate}} 
+                option(value="SGD") {{'SGD' | translate}} 
+                option(value="SYP") {{'SYP' | translate}} 
+                option(value="THB") {{'THB' | translate}} 
+                option(value="TND") {{'TND' | translate}} 
+                option(value="TRY") {{'TRY' | translate}} 
+                option(value="TWD") {{'TWD' | translate}} 
+                option(value="UAH") {{'UAH' | translate}} 
+                option(value="UGX") {{'UGX' | translate}} 
+                option(value="UYU") {{'UYU' | translate}} 
+                option(value="VEF") {{'VEF' | translate}} 
+                option(value="VND") {{'VND' | translate}} 
+                option(value="XAF") {{'XAF' | translate}} 
+                option(value="XCD") {{'XCD' | translate}} 
+                option(value="XOF") {{'XOF' | translate}} 
+                option(value="XPF") {{'XPF' | translate}} 
+                option(value="ZAR") {{'ZAR' | translate}} 
+                  
+            .clearfix
+            .col-xs-3(ng-show="company.config.fares.type==1")
+              br
+              label {{'Search' | translate}}
+              .input-group
+                input.form-control(ng-model="searchString")
+                span.input-group-btn
+
+                  button.btn.btn-technorides(type="button" ng-click="zonePrices.get(0, searchString , searchFilter, zonePrices.currentOrder, sidx)")
+                    i.fa.fa-search
+              br
+            .col-xs-3(ng-show="company.config.fares.type==1")
+              br
+              label &nbsp;
+              .input-group(ng-init="searchFilter = 'zoneFrom'")
+                select.form-control(ng-model="searchFilter")
+                  option(value="zoneFrom") {{'From' | translate}}
+                  option(value="zoneTo") {{'To' | translate}}
+              br
+            
+
+            .col-xs-12(ng-show="company.config.fares.type==1")
+              //Migrated table
+              .table-responsive
+
+
+                table.table.table-technorides 
+                  thead
+                    tr
+                      th.text-left.clickeable(ng-click="sidx = 'amount';zonePrices.get(1,searchString, searchFilter, zonePrices.currentOrder, 'amount')" ng-init="zonePrices.currentOrder = 'desc'" ) {{'ammount' | translate}} 
+                        a(href="" style="color:white; margin-left:5px")
+                          i.fa.fa-chevron-down.sordArrow(ng-if="zonePrices.currentOrder == 'desc' && sidx == 'amount'")
+                          i.fa.fa-chevron-up(ng-if="zonePrices.currentOrder == 'asc' && sidx == 'amount'")
+                      
+                      th.text-left.clickeable(ng-click="sidx = 'zoneFrom';zonePrices.get(1,searchString, searchFilter, zonePrices.currentOrder, 'zoneFrom')") {{'From' | translate}}
+                        a(href="" style="color:white; margin-left:5px")
+                          i.fa.fa-chevron-down.sordArrow(ng-if="zonePrices.currentOrder == 'desc' && sidx == 'zoneFrom'")
+                          i.fa.fa-chevron-up(ng-if="zonePrices.currentOrder == 'asc' && sidx == 'zoneFrom'")
+                        
+                      th.text-left.clickeable(ng-click="sidx = 'zoneTo';zonePrices.get(1,searchString, searchFilter, zonePrices.currentOrder, 'zoneTo')") {{'To' | translate}}
+                        a(href="" style="color:white; margin-left:5px")
+                          i.fa.fa-chevron-down.sordArrow(ng-if="zonePrices.currentOrder == 'desc' && sidx == 'zoneTo'")
+                          i.fa.fa-chevron-up.sordArrow(ng-if="zonePrices.currentOrder == 'asc' && sidx == 'zoneTo'")
+
+
+                      th
+                      
+                  tbody
+                    tr(ng-repeat="zone in zonePrices.list")
+                      td.text-left {{zone.amount}}
+                      td.text-center {{zone.zoneFrom}}
+                      td.text-center {{zone.zoneTo}}
+                      td.text-right
+                        a(href="" ng-click="zonePrices.edit(false, zone)")
+                          i.fa.fa-pencil
+
+              .text-center
+                ul.pagination
+
+                  li
+                    a(ng-click="zonePrices.get(0,searchString , searchFilter)")
+                      i.fa.fa-angle-double-left
+                  li(ng-repeat="page in zonePrices.pages" ng-class="{active: page == zonePrices.page}")
+                    a(ng-click="zonePrices.get(page, searchString , searchFilter)" href="") {{page}}
+                  li
+                    a(ng-click="zonePrices.get(zonePrices.lastPage, searchString, searchFilter)")
+                      i.fa.fa-angle-double-right  
+
+              //table#zone
+                #pager
+
+            .col-xs-12.text-center
+              br
+              button.btn.btn-success(type="submit") {{'Save' | translate}} 
+              
+              button.btn.btn-warning(ng-click="modalReloadZones()" type="button"  ng-if="company.config.fares.type==1") {{'ReloadZones' | translate}}
+
+        div(ng-show="windowed")
+          .row
+            .col-lg-3
+              button.btn.btn-warning.btn-block(ng-click="windowed = false;") {{'ZoneSettings' | translate}}
+              br
+              .list-group.zones-list
+                .list-group-item(ng-repeat="zone in zones.list" title="{{zone.name}}" name="zone-{{zone.id}}" ng-class="{active: zone.polygon == zmap.zones[0].index}")
+
+                  h5.list-group-item-heading(ng-click="focusZone(zone)" style="cursor:pointer") {{zone.name | limitTo: 30}}
+                  button.btn.btn-xs.btn-danger.pull-right(ng-click="modalDeleteZone(zone.id)" style="position: relative; top: -25px; right: 2px;")
+                    i.fa.fa-times
+                  button.btn.btn-xs.btn-success.pull-right(ng-click="modalEditZone(zone)" style="position: relative; top: -25px; margin-right: 5px;")
+                    i.fa.fa-pencil
+                  .pull-right
+                    | &nbsp;
+                  .pull-right.label.label-success(ng-show="zmap.saveId == zone.polygon") {{'Saving' | translate}}
+                  
+            .col-lg-9
+              img(src="assets/collision.png")
+              | &nbsp;
+              | {{'zonesWarning' | translate}}
+              #pmap_canvas
+
+
+.modal.fade.edit-zonePricings(tabindex="-1", role="dialog", aria-labelledby="edit-zonePricings", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'EditZone' | translate}}
+        .panel-body
+          form(name="edit", ng-submit="zonePrices.edit(true, '', searchString , searchFilter)")
+            label {{'Ammount' | translate}}
+            input.form-control(ng-model="zonePrices.zone.amount" name="amount" ng-required="true")
+            br
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Edit' | translate}}")
+
+.modal.fade.reload-zone(tabindex="-1", role="dialog", aria-labelledby="reload-zone", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'ReloadZones' | translate}}
+        .panel-body
+          form(name="delete",ng-submit="reloadZones()")
+            p {{'ReloadZonesText' | translate}}
+
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Accept' | translate}}")
+
+.modal.fade.delete-zone(tabindex="-1", role="dialog", aria-labelledby="delete-zone", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeleteZone' | translate}}
+        .panel-body
+          form(name="delete",ng-submit="deleteZone(toDelete)")
+            p {{'DeleteZoneText' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'DontDelete' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Delete' | translate}}")
+
+.modal.fade.new-zone(tabindex="-1", role="dialog", aria-labelledby="new-zone", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'CreateZone' | translate}}
+        .panel-body
+          form(name="create",ng-submit="newZone(toCreate)")
+            label {{'Name' | translate}}
+            input.form-control(ng-model="toCreate.name" name="name" ng-required="true")
+            br
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Create' | translate}}")
+
+.modal.fade.edit-zone(tabindex="-1", role="dialog", aria-labelledby="edit-zone", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'EditZone' | translate}}
+        .panel-body
+          form(name="edit",ng-submit="editZone(toEdit)")
+            label {{'newName' | translate}}
+            input.form-control(ng-model="toEdit.name" name="name" ng-required="true")
+            br
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Edit' | translate}}")              

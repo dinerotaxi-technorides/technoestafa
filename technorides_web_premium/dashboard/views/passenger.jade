@@ -1,0 +1,122 @@
+.pageheader
+  h2
+    i.fa.fa-users
+    | {{'Passengers' | translate}}
+.contentpanel
+  .col-xs-6
+    .row
+      button.btn.btn-technorides(ng-click="passengers.add(false)") + {{'Add' | translate}}
+  
+  .form-group.col-sm-4.pull-right
+    .input-group
+        input.input-sm(ng-model="search" ng-change="passengers.get(1, search, filter)")
+        select.input-sm(style={margin:"0 .5em"} ng-model="filter"  ng-init="filter = passengers.searchFields[0]")
+          option(value="username") {{ 'email' | translate}}
+          option(value="lastName") {{'lastName' | translate}}
+          option(value="phone")   {{ 'phone' | translate}}
+          
+                    
+      br
+  .table-responsive
+    table.table.table-technorides
+      thead
+        tr
+          th.text-left {{'createdAt' | translate}}
+          th.text-center {{'Email' | translate}}
+          th.text-center {{'Name' | translate}}
+          th.text-center {{'Phone' | translate}}
+          th.text-center {{'Active' | translate}}
+          th
+      tbody
+        tr(ng-repeat="passenger in passengers.list")
+          td.text-left {{passenger.created | date: languageDateFormat}}
+          td.text-center {{passenger.email}}
+          td.text-center {{passenger.name +' '+passenger.lastName}}
+          td.text-center {{passenger.phone}}
+          td.text-center
+            span(ng-if="passenger.active")
+              i.fa.fa-check-circle.text-success
+            span(ng-if="!passenger.active")
+              i.fa.fa-times-circle.text-danger
+          td.text-right
+            a(href="" ng-click="passengers.edit(false, passenger)")
+              i.fa.fa-pencil
+
+  .text-center
+    ul.pagination
+      li(ng-repeat="page in passengers.pages" ng-class="{active: page == passengers.page}")
+        a(ng-click="passengers.get(page, search, 'username')" href="") {{page}}
+
+
+.modal.fade.add-passenger(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'Add' | translate}}
+      .panel-body
+        form(name="add" ng-submit="add.$valid && passengers.add(true)")
+          .col-xs-6
+            .form-group
+              label {{'Name' | translate}}
+              input.form-control(ng-model="passengers.passenger.name")
+            .form-group
+              label {{ 'LastName' | translate}}
+              input.form-control(ng-model="passengers.passenger.lastName")
+            .form-group
+              label {{ 'Password' | translate}}
+              input.form-control(ng-model="passengers.passenger.password" type="password")
+          .col-xs-6
+            .form-group
+              label {{'Email' | translate}}
+              input.form-control(ng-model="passengers.passenger.email")
+            .form-group
+              label {{'Phone' | translate}}
+              input.form-control(ng-model="passengers.passenger.phone")
+            .form-group
+              label {{'Active'| translate}}
+              br
+              toggle-switch(ng-model="passengers.passenger.active")
+          .col-xs-12
+            .form-group
+              br
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Add' | translate}}")
+.modal.fade.edit-passenger(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'Edit' | translate}}
+      .panel-body
+        form(name="edit" ng-submit="edit.$valid && passengers.edit(true)")
+          .col-xs-6
+            .form-group
+              label {{'Name' | translate}}
+              input.form-control(ng-model="passengers.passenger.name")
+            .form-group
+              label {{ 'LastName' | translate}}
+              input.form-control(ng-model="passengers.passenger.lastName")
+            .form-group
+              label {{ 'Password' | translate}}
+              input.form-control(ng-model="passengers.passenger.password" type="password")
+          .col-xs-6
+            .form-group
+              label {{'Email' | translate}}
+              input.form-control(ng-model="passengers.passenger.email")
+            .form-group
+              label {{'Phone' | translate}}
+              input.form-control(ng-model="passengers.passenger.phone")
+            .form-group
+              label {{'Active'| translate}}
+              br
+              toggle-switch(ng-model="passengers.passenger.active")
+            .col-xs-12
+              .form-group
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+                input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Edit' | translate}}")

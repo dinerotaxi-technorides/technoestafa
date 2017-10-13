@@ -1,0 +1,92 @@
+h2.title
+  span.fa-stack
+    i.fa.fa-circle-thin.fa-stack-2x
+    i.fa.fa-sitemap.fa-stack-1x
+  span {{corporate.company.name}}
+.container-fluid
+  .panel.panel-default
+    .panel-body
+      .col-xs-12.col-md-8
+        .row
+          .col-xs-12.col-md-4.col-lg-3
+            img.img-responsive(src="https://dummyimage.com/200x200/ea1e63/fff&text={{corporate.company.name | limitTo:1 | uppercase}}" width="200" heigth="200" style="margin:0 auto")
+          .col-xs-12.col-md-8.col-lg-9
+            h4.underline 
+              span {{corporate.company.name | uppercase}}
+
+            .pull-left
+              ul.profile-info
+                li 
+                  i.fa.fa-map-marker
+                  span {{corporate.company.legalAddress}}
+                li 
+                  i.fa.fa-phone
+                  span {{corporate.company.phone}}
+
+                li
+                  span(typed-translate="") corporate.company.taxIdentification 
+                  span {{corporate.company.cuit}}
+
+      .col-xs-12.col-md-4
+        .row
+          .col-xs-12.col-md-6
+            .box.box-technorides
+              h4(typed-translate="") corporate.company.users
+              h2 {{corporate.company.settings.users}}
+              br
+          .col-xs-12.col-md-6
+            .box.box-blue
+              h4(typed-translate="") corporate.company.debt
+              h2 {{company.info.currency}} {{corporate.company.settings.not_paid}}
+              br
+
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-xs-12
+          .form-group
+          
+            button.btn.btn-technorides.square(modal="views/modal/corporate/new-cost-center.html" modal-title="{{'corporate.company.addCostCenter' | translate}}")          
+              span + 
+              span(typed-translate="") corporate.company.addCostCenter
+        
+        .col-sm-6.col-md-4(ng-repeat-start="costCenter in corporate.costCenters.list")
+          .thumbnail
+            .row
+              .col-xs-12
+                a(href="" ng-click="corporate.getCostCenter(costCenter.id);changeCost(costCenter.id);changeTab('costprofile');")
+                  strong {{costCenter.name | uppercase}}
+              .col-xs-12.col-md-4
+                img.img-responsive.img-thumbnail(src="https://dummyimage.com/150x150/0ccccc/fff&text={{costCenter.name | limitTo:1 | uppercase}}" width="150" heigth="150" ng-click="corporate.getCostCenter(costCenter.id);changeCost(costCenter.id);changeTab('costprofile');" style="cursor: pointer;margin:0 auto;")  
+            
+              .col-xs-12.col-md-8
+                .caption
+                  span(typed-translate="") corporate.employee.totalExpenses
+                  h3(style="margin-top:5px") {{company.info.currency}}{{costCenter.metrics.not_paid}}
+                  br
+                  p 
+                    i.fa.fa-users  {{costCenter.metrics.users}}
+        
+        .clearfix.hidden-sm.hidden-xs(ng-if="($index+1) % 3 == 0")
+        div(ng-repeat-end="")
+
+  
+  
+    nav.text-center
+      ul.pagination(ng-if="corporate.costCenters.pages.length > 1")
+        li
+          
+          a(ng-click="corporate.costCenters.get(1,'')")
+            i.fa.fa-angle-double-left
+        
+        li(ng-repeat="page in corporate.costCenters.pages" ng-class="{active: corporate.costCenters.page == page +1}" ng-if="(corporate.costCenters.page - 1 == page) || ((corporate.costCenters.page + 4 > page) && (corporate.costCenters.page - 5 <= page))")
+          
+          a(ng-click="corporate.costCenters.get(page +1,'')" href="") {{page +1}}
+        li
+          
+          a(ng-click="corporate.costCenters.get(corporate.costCenters.pages.length,'')")
+            i.fa.fa-angle-double-right
+        
+                  
+        
+        

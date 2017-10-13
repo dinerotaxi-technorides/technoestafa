@@ -1,0 +1,281 @@
+/* 
+    Document   : gracias.css
+    Created on : 14/02/2012, 00:56:34
+    Author     : Ezequiel Bajo
+    Description:
+        Hoja de estilo para las pantallas de agradecimiento
+*/
+
+
+#cont_gracias {  
+border:1px solid #c28b05;
+padding:12px;
+margin-left:10px;
+font-size:14px;
+width:725px; 
+min-height:100px;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+-webkit-box-shadow: #666 1px 2px 2px;
+-moz-box-shadow: #666 1px 2px 2px;
+box-shadow: #666 1px 2px 2px;
+background: #FFFfff;
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFfff), to(#d8d8d8));
+background: -webkit-linear-gradient(#FFFfff, #d8d8d8);
+background: -moz-linear-gradient(#FFFfff, #d8d8d8);
+background: -ms-linear-gradient(#FFFfff, #d8d8d8);
+background: -o-linear-gradient(#FFFfff, #d8d8d8);
+background: linear-gradient(#FFFfff, #d8d8d8);
+-pie-background: linear-gradient(#FFFfff, #d8d8d8);
+behavior: url(css/PIE.htc);
+float:left; 
+position:relative;}
+
+.tit_agradecimiento {
+    width: 630px;
+    float: left;
+    margin-left: 10px;
+    
+}
+
+
+.tit_agradecimiento h2 {
+    margin:10px 0;
+    font-size: 2em;
+    text-align: left;
+/*    text-shadow: 1px 1px 1px #333;*/
+}
+
+#cont_gracias p {
+    font-size: 1.25em;
+    text-align: left;
+}
+
+#cont_gracias a {
+    font-size: 1.15em;
+    background: transparent;
+    color: red;
+    font-weight: 700;
+}
+
+#cont_gracias a:hover {
+    text-decoration: underline;
+}
+
+.contenido_gracias {
+    float: left;
+}
+
+.ima_exito {
+    float: left;
+    background:url('../images/ok.png') no-repeat;
+    background-position:top;
+    width: 84px;
+    height: 84px;
+}
+
+.cont_txt_agradecimiento {
+    margin-top: 20px;
+    margin-left: 95px;
+    float: left;
+    width: 630px;
+}
+
+.txt_texto {
+    margin-top: 12px;
+    margin-left: 20px;
+    float: left;
+    width: 551px;
+    min-height: 100px;
+    
+}
+
+.txt_texto p {
+    margin: 0;
+    padding-right: 10px;
+}
+
+.ima_mail {
+    margin-top: 10px;
+    float: left;
+    background:url('../images/mail.png') no-repeat;
+    background-position: center;
+    width: 59px;
+    height: 49px;
+}
+
+/********EXTRAS****************/
+.negro {
+    color:#000;
+    font-weight: 700;
+    }
+.resalta_mas {
+	font-size: 1.2em;
+	text-shadow: .05em .05em .05em #333;
+}
+.ima_cel {
+    margin-top: 10px;
+    float: left;
+    background:url('../images/cel.png') no-repeat;
+    background-position: center;
+    width: 59px;
+    height: 70px;
+}
+/****AVISO*****/
+.aviso {  
+border:1px solid #c28b05;
+padding:12px;
+margin-left:10px;
+font-size:14px;
+width:725px; 
+min-height:100px;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+-webkit-box-shadow: #666 1px 2px 2px;
+-moz-box-shadow: #666 1px 2px 2px;
+box-shadow: #666 1px 2px 2px;
+background: #FFFfff;
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFfff), to(#d8d8d8));
+background: -webkit-linear-gradient(#FFFfff, #d8d8d8);
+background: -moz-linear-gradient(#FFFfff, #d8d8d8);
+background: -ms-linear-gradient(#FFFfff, #d8d8d8);
+background: -o-linear-gradient(#FFFfff, #d8d8d8);
+background: linear-gradient(#FFFfff, #d8d8d8);
+-pie-background: linear-gradient(#FFFfff, #d8d8d8);
+behavior: url(css/PIE.htc);
+float:left; 
+position:relative;}
+
+.inagura {
+    float:left;
+    width: 84px;
+    height: 100px;
+    background:url('../images/tijera.png') no-repeat;
+    background-position: center;
+}
+
+.txt_inagura {
+    float:left;
+    margin-top: 15px;
+    margin-left: 1px;
+    width: 610px; 
+    background: transparent;
+}
+
+.txt_inagura p {
+    margin: 0;
+    margin-left: 10px;
+    padding: 0;
+    font-size: 1.25em;
+    font-weight: 700;
+    text-align: left;
+    color: red;
+}
+/****FIN AVISO******/
+
+#cont_sabias {  
+border:1px solid #c28b05;
+padding:12px 12px 18px 12px;
+font-size:12px;
+width:201px; min-height:100px;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+-webkit-box-shadow: #666 1px 2px 2px;
+-moz-box-shadow: #666 1px 2px 2px;
+box-shadow: #666 1px 2px 2px;
+background: #FFFfff;
+background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFFfff), to(#d8d8d8));
+background: -webkit-linear-gradient(#FFFfff, #d8d8d8);
+background: -moz-linear-gradient(#FFFfff, #d8d8d8);
+background: -ms-linear-gradient(#FFFfff, #d8d8d8);
+background: -o-linear-gradient(#FFFfff, #d8d8d8);
+background: linear-gradient(#FFFfff, #d8d8d8);
+-pie-background: linear-gradient(#FFFfff, #d8d8d8);
+behavior: url(css/PIE.htc);
+float:left; 
+position:relative;}
+
+#cont_sabias h2 {
+    margin:0;
+    font-size: 1.8em;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#cont_sabias p {
+    font-size: 1.25em;
+    text-align: left;
+}
+
+/* Basic jQuery Slider essential styles */
+
+ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
+li.bjqs-slide{display:none;position:absolute;}
+
+ul.bjqs-controls{list-style:none;z-index:9000;}
+
+ol.bjqs-markers{list-style:none;z-index:9000;}
+ol.bjqs-markers li{float:left;}
+
+p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
+
+ ul.bjqs-controls li a{
+  display:block;
+  padding:0.313em 0.625em;
+  position:absolute;
+  background:transparent;
+  color:#fd0100;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+
+a.bjqs-prev{
+  left:0;
+}
+
+a.bjqs-next{
+  right:0;
+}
+
+ p.bjqs-caption{
+  /*background:rgba(0,0,0,0.7);*/
+ background:transparent;
+  color:#fff;
+  text-align:center;
+}
+
+ ol.bjqs-markers{
+  position:absolute;
+  bottom:-0.625em;
+  left: 0;
+  padding: 0;
+  padding-left: 1em;
+}
+
+ ol.bjqs-markers li{
+  float:left;
+  margin:0 0.188em;
+}
+
+ ol.bjqs-markers li a{
+  display:block;
+  height:0.625em;
+  width:0.625em;
+  border:0.25em solid #fff;
+  overflow:hidden;
+  text-indent:-625em;
+  background:#000;
+  color:#FFF;
+  border-radius:0.625em;	/*esto tira error de validacion de css*/
+  box-shadow:0 0 3.125em rgba(0,0,0,0.5);	/*esto tira error de validacion de css*/
+}
+
+ol.bjqs-markers li.active-marker a{
+  background:#FFD350;
+  border:0.25em solid #000; 
+  
+}
+/* demo styles */

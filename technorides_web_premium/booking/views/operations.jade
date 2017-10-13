@@ -1,0 +1,19 @@
+.text-center
+  br
+  img(ng-if="company.imgUrl && company.rtaxi", onerror="this.src='assets/taxi.png'", ng-src="{{company.imgUrl + company.rtaxi}}/vehicle-order.png")
+  h2 {{'ScheduledOperations' | translate}}
+.col-xs-12
+  h3.text-center(ng-if="order.scheduledOperations.size == 0 ")
+    | {{'noScheduledOperations' | translate}}
+  .table-responsive(style="background:white")
+    table.table
+      tr(ng-repeat="op in order.scheduledOperations.operations")
+        th 
+          i.fa.fa-calendar
+          | {{op.date | date: 'dd/mm/yyyy'}}
+        th 
+          i.fa.fa-marker
+          | {{op.street | limitTo:15}}
+        th
+          a(ng-click="order.deleteScheduledOp(op.id)" href="")
+            i.fa.fa-times.text-danger

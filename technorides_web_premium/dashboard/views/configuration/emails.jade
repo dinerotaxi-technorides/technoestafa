@@ -1,0 +1,38 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | {{'Configuration' | translate}} 
+    |/ {{'Email' | translate}}
+.contentpanel
+  .alert.alert-warning.alertChrome
+    button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+    strong {{ 'alertChanges' | translate }} 
+  .row
+    .panel.panel-default
+      .panel-body
+        form(name="confgEmails" ng-submit="configEmail(company.config.email)")
+          .row
+            h2 {{'Email' | translate}}
+            br
+            .col-xs-12.col-md-6
+              label {{'LogoUrlConfig' | translate}}
+              input.form-control(ng-model="company.config.email.logoUrl")
+
+            .col-xs-12.col-md-6
+              label {{'webUrlConfig' | translate}}
+              input.form-control(ng-model="company.config.email.webUrl")
+            
+            p
+            .col-xs-12.col-md-6
+              label Android url
+              input.form-control(ng-model="company.config.email.android")
+
+            .col-xs-12.col-md-6
+              label iPhone url
+              input.form-control(ng-model="company.config.email.ios")            
+            .col-xs-12
+              br
+              table#zone
+                #pager
+          br
+          button.btn.btn-success {{'Save' | translate}}

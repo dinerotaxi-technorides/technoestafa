@@ -1,0 +1,49 @@
+.table-responsive
+  table.table.table-striped
+    tr 
+      th(typed-translate="") corporate.labels.id
+      td {{corporate.operation.id}}
+    tr 
+      th(typed-translate="") corporate.labels.date
+      td {{corporate.operation.date | date:'medium'}}
+    tr 
+      th(typed-translate="") corporate.labels.user
+      td {{corporate.operation.name}} {{corporate.operation.lastName}}
+    tr 
+      th(typed-translate="") corporate.labels.phone
+      td {{corporate.operation.phone}}
+    tr 
+      th(typed-translate="") corporate.labels.from 
+      td {{corporate.operation.address.from.street}}
+    tr(ng-if="corporate.operation.address.to.street")
+      th(typed-translate="") corporate.labels.to
+      td {{corporate.operation.address.to.street}}
+    tr 
+      th(typed-translate="") corporate.labels.comments
+      td {{corporate.operation.comments}}
+    tr 
+      th(typed-translate="") corporate.labels.status
+      td {{corporate.operation.status}}
+    tr 
+      th(typed-translate="") corporate.labels.amount
+      td {{company.info.currency}}
+        span(ng-if="corporate.operation.ammount") {{corporate.operation.ammount}}
+        span(ng-if="!corporate.operation.ammount") 0
+    tr
+      th.text-center(colspan="2" typed-translate="") corporate.labels.options
+    tr(ng-if="corporate.operation.options.courier") 
+      td(colspan="2")
+    tr(ng-if="corporate.operation.options.pet") 
+      td(colspan="2")
+    tr(ng-if="corporate.operation.options.airConditioning") 
+      td(colspan="2")
+    tr(ng-if="corporate.operation.options.smoker") 
+      td(colspan="2") 
+    tr(ng-if="corporate.operation.options.specialAssistance") 
+      td(colspan="2") 
+    tr(ng-if="corporate.operation.options.luggage") 
+      td(colspan="2")
+    tr(ng-if="corporate.operation.options.vip") 
+      td(colspan="2") 
+    tr(ng-if="corporate.operation.options.invoice")
+      td(colspan="2")       

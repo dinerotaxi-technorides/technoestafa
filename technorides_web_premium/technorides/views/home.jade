@@ -1,0 +1,322 @@
+section.banner#top
+  .container
+    .row
+      .col-xs-12.col-md-6
+
+      .col-xs-12.col-md-6.caption-banner
+        h1.shadow.uppercase
+          strong {{'HomeBannerTitle' | translate}}
+        p {{'HomeBannerText' | translate}}
+        br 
+        button.btn.btn-technorides.btn-md.uppercase(type="button" ng-click="openFreeTrial('none')" analytics-category="web" analytics-label="click on the banner free trial" analytics-on="click" analytics-event="free trial") {{'HomeBannerButton' | translate}}
+
+section  
+  .container
+    .row
+      .col-xs-12.col-md-4.text-center
+        img(src="/technorides/assets/whitelabel.png" alt="white level icon")
+        h3.uppercase {{'mainFeatureTitle1' | translate}}
+        p {{'mainFeatureText1' | translate}}
+      .col-xs-12.col-md-4.text-center
+        img(src="/technorides/assets/gps.png" alt="gps icon")
+        h3.uppercase {{'mainFeatureTitle2' | translate}}
+        p {{'mainFeatureText2' | translate}}
+      .col-xs-12.col-md-4.text-center
+        img(src="/technorides/assets/metrics.png" alt="metrics icon")
+        h3.uppercase {{'mainFeatureTitle3' | translate}}
+        p {{'mainFeatureText3' | translate}}
+#features
+  section.shadow-top
+    .container
+      .row
+        .col-xs-12.text-center
+          h1.uppercase {{'FeaturesTitle' | translate}}
+          p(translate="{{'FeaturesText'}}")
+          
+  section
+    .passenger.shadow-top
+      .container
+        .row
+          .col-xs-12.col-sm-6.hidden-xs.no-padding
+            img.img-responsive.img-app(src="/technorides/assets/userapp.png")
+          .col-xs-12.col-sm-6
+            .app-caption
+              .pull-right
+                h1.uppercase {{'Feature1Title' | translate}}
+                em {{'Feature1Subtitle' | translate}}
+                br
+                br
+                h4 
+                  i.fa.fa-check
+                  |  {{'Feature1check1' | translate}}
+                br
+                h4
+                  i.fa.fa-check
+                  |  {{'Feature1check2' | translate}}
+                br
+                h4
+                  i.fa.fa-check
+                  |  {{'Feature1check3' | translate}}
+              img.pull-right.visible-lg.img-responsive(src="/technorides/assets/userappicon.png")
+              img.android-and-ios()
+  section
+    .driver.shadow-top
+      .container
+        .row
+          .col-xs-12.col-sm-6
+            .app-caption
+              .pull-right
+                h1.uppercase {{'Feature2Title' | translate}}
+                em {{'Feature2Subtitle' | translate}}
+                br
+                br
+                h4 
+                  i.fa.fa-check
+                  |  {{'Feature2check1' | translate}}
+                br
+                h4
+                  i.fa.fa-check
+                  |  {{'Feature2check2' | translate}}
+                br
+                h4
+                  i.fa.fa-check
+                  |  {{'Feature2check3' | translate}}
+              img.pull-right.visible-lg.img-responsive(src="/technorides/assets/driverappicon.png")
+              img.android-and-ios()
+          .col-xs-12.col-sm-6.hidden-xs.no-padding
+            img.img-responsive.img-app(src="/technorides/assets/driverapp.png")
+  section
+    .web-app.shadow-top
+      .container
+        .row
+          .col-xs-12.col-sm-6.hidden-xs.no-padding
+            img.img-responsive.img-app(src="/technorides/assets/dashboards.png")
+          .col-xs-12.col-sm-6
+            .app-caption
+              
+              .pull-right
+                h1.uppercase {{'Feature3Title' | translate}}
+                em {{'Feature3Subtitle' | translate}}
+                br
+                br
+                h4 
+                  i.fa.fa-check
+                  |   {{'Feature3check1' | translate}}
+                br
+                h4
+                  i.fa.fa-check
+                  |   {{'Feature3check2' | translate}}
+                br
+                h4
+                  i.fa.fa-check
+                  |   {{'Feature3check3' | translate}}
+              img.pull-right.visible-lg.img-responsive(src="/technorides/assets/dashboardsicon.png")
+              img.android-and-ios()
+  br
+  br
+  br
+  section.shadow-top
+    .container
+      .row
+        .col-xs-12.text-center
+          h1.uppercase {{'NewProductsTitle' | translate}}
+          p(translate="{{'NewProductsText'}}")
+
+  section
+    .passenger.shadow-top
+      .container
+        .row
+          .col-xs-12.col-sm-6.hidden-xs.no-padding
+            img.img-responsive.img-app(src="/technorides/assets/bookingweb.png")
+          .col-xs-12.col-sm-6
+            .app-caption
+              .pull-right
+                h1.uppercase {{'NewProduct1Title' | translate}}
+                em {{'NewProduct1Subtitle' | translate}}
+                br
+                br
+                h4 
+                  i.fa.fa-check
+                  |  {{'NewProduct1check1' | translate}}
+                br
+                h4
+                  i.fa.fa-check
+                  |  {{'NewProduct1check2' | translate}}
+                br
+                h4
+                  i.fa.fa-check
+                  |  {{'NewProduct1check3' | translate}}
+              img.pull-right.visible-lg.img-responsive(src="/technorides/assets/userappicon.png")
+              img.android-and-ios()
+  br
+  br
+  section
+    .container-fluid
+      .row
+        .col-xs-12.col-md-6.cubicle-blue.shadow-top
+          .text-center
+            img.img-responsive(src="/technorides/assets/mobilepayments.png" style="margin:0 auto")
+            h3.uppercase {{'NewProduct2Title' | translate}}
+            em {{'NewProduct2Subtitle' | translate}}
+            br
+            br
+            button.btn.btn-technorides.btn-md(ng-click="showProwduct('1')") {{'learnMore' | translate}}
+        .col-xs-12.col-md-6.cubicle-darkblue.shadow-top
+          .text-center
+            img.img-responsive(src="/technorides/assets/walkietalkie.png" style="margin:0 auto")
+            h3.uppercase {{'NewProduct3Title' | translate}}
+            em {{'NewProduct3Subtitle' | translate}}
+            br
+            br
+            button.btn.btn-technorides.btn-md(ng-click="showProwduct('2')") {{'learnMore' | translate}}
+        .col-xs-12.col-md-6.cubicle-darkblue
+          .text-center
+            img.img-responsive(src="/technorides/assets/corporateaccounts.png" style="margin:0 auto")
+            h3.uppercase {{'NewProduct4Title' | translate}}
+            em {{'NewProduct4Subtitle' | translate}}
+            br
+            br
+            button.btn.btn-technorides.btn-md(ng-click="showProwduct('3')") {{'learnMore' | translate}}
+        .col-xs-12.col-md-6.cubicle-blue
+          .text-center
+            img.img-responsive(src="/technorides/assets/marketing.png" style="margin:0 auto")
+            h3.uppercase {{'NewProduct5Title' | translate}}
+            em {{'NewProduct5Subtitle' | translate}}
+            br
+            br
+            button.btn.btn-technorides.btn-md(ng-click="showProwduct('4')") {{'learnMore' | translate}}
+section#costumers
+  .container
+    .row
+      .col-xs-12.text-center
+        h1.uppercase {{'CostumersTitle' | translate}}
+        p {{'CostumersText' | translate}}
+        br
+        img.img-responsive(src="/technorides/assets/technoridesintheworld.png")
+section
+  .testimony
+    .container
+      .row
+        .col-xs-12
+          .col-xs-12.col-md-3.hidden-xs
+            img.pull-left.img-responsive(src="/technorides/assets/phototestimonial.png")
+          .col-xs-12.col-md-9.caption-testimony
+            p.pull-left {{'TestimonialText' | translate}} 
+            small Alex Hall, Vincennes Livery, Chicago, US
+section#pricing
+  .container
+    h1.uppercase.text-center {{'PricingTitle' | translate}}
+    br
+    .row
+      img.img-responsive(src="/technorides/assets/{{ lang == 'fr' ? 'en' : lang}}_pricing.png"  style="margin-bottom: 30px")
+    .row 
+      .col-xs-12.col-sm-6
+        ul.pricing-list
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat1' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat2' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat3' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat4' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat5' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat6' | translate }}
+      .col-xs-12.col-sm-6
+        ul.pricing-list
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat7' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat8' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat9' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat10' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat11' | translate }}
+          li
+            span
+              i.fa.fa-check
+            span.text {{'pricingFeat12' | translate }}
+    .row 
+      h2.uppercase.text-center {{'pricingSubtitle' | translate}}
+      p.text-center {{'pricingText' | translate}}
+      .text-center
+        a.btn.btn-technorides.btn-md(href="tel:+17543003167" style="margin-right:10px") 
+          span.uppercase{{'call' | translate}}
+          span +1-754-300-3167
+        a.btn.btn-technorides.btn-md(href="/signup") {{'SignUp' | translate}}
+    p.text-center
+      small.taxes {{'taxesText' | translate}}
+section#contact
+  .container
+    .row
+      .col-xs-12.text-center
+        h1.uppercase {{'ContactTitle' | translate}}
+        p {{'ContactText' | translate}}
+    form.row(ng-submit="contactForm.$valid && sendEmail(emailAttributes)" name="contactForm" ng-class="{submited: cont}" role="form")
+      .col-xs-12.col-md-2
+        #map_canvas
+          address
+            h4.uppercase {{'addressTitle' | translate}}
+            p
+              i.fa.fa-map-marker 
+              | 2295 26th Ave, San Francisco
+            p 
+              i.fa.fa-phone
+              |  +1 754 300 3167  
+            p 
+              i.fa.fa-envelope
+              |  info@technorides.com
+            #mapp
+            //ui-gmap-marker(coords="map.markerHeadqts.coords", options="map.markerHeadqts.options", icon="map.markerHeadqts.icon", idKey="map.markerHeadqts.id")
+      .col-xs-12.col-md-5
+        .form-group
+          label {{'ContactName' | translate}}
+          input.form-control(ng-model="emailAttributes.name" required pattern="[a-zA-Z,\. ]+.{5,}")
+        .form-group
+          label {{'ContactEmail' | translate}}
+          input.form-control(ng-model="emailAttributes.email" type="email" required pattern=".+@.+\\..+")
+        .form-group
+          .row
+            .col-md-6
+              label {{'ContactPhone' | translate}}
+              input.form-control(ng-model="emailAttributes.phone" required pattern="[\\d- \\+]{10,}")
+            .col-md-6
+              label {{'Mobile' | translate}}
+              input.form-control(ng-model="emailAttributes.mobile" required pattern="[\\d- \\+]{10,}")
+        .form-group
+          label {{'ContactCountry' | translate}}
+          select.form-control(ng-model="emailAttributes.country" ng-options="country for country in countries" ng-init="emailAttributes.country = countries[0]" required)
+            option(value="{{location}}" ng-if="!emailAttributes.country")
+      .col-xs-12.col-md-5
+        .form-group
+          label {{'ContactMessage' | translate}}
+          textarea.form-control(rows="12" ng-model="emailAttributes.message" required)
+          input(type="hidden" ng-model="emailAttributes.reason")
+      .col-xs-12
+        button.btn.btn-technorides.btn-md.uppercase.pull-right(ng-click="cont = true" analytics-if="contactForm.$valid" analytics-label="contact form sended" analytics-category="web" analytics-on="click" analytics-event="Contact") {{'ContactSend' | translate}}

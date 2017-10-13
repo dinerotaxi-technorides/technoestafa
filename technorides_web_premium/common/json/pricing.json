@@ -1,0 +1,296 @@
+{
+  "plans":{
+    "basic" : 499,
+    "advanced": 699,
+    "premium": 999,
+    "enterprise": 2499
+  },
+  "minimumDrivers":{
+    "europe" : 10,
+    "latam" : 28,
+    "usa": 10
+  },
+  "maximumDrivers": 2000,
+  "pricePerDriver": {
+    "europe":{
+      "11":{
+        "basic": 18,
+        "advanced": 25, 
+        "premium": 26,
+        "enterprise": 28 
+      },
+      "31":{
+        "basic": 17,
+        "advanced": 24, 
+        "premium": 24,
+        "enterprise": 26
+      },
+      "41":{
+        "basic": 16,
+        "advanced": 22.5, 
+        "premium": 23,
+        "enterprise": 25
+      },
+      "51":{
+        "basic": 15,
+        "advanced": 21, 
+        "premium": 22,
+        "enterprise": 24
+      },
+      "61":{
+        "basic": 14,
+        "advanced": 19.5, 
+        "premium": 20,
+        "enterprise": 22
+      },
+      "71":{
+        "basic": 13,
+        "advanced": 18, 
+        "premium": 19,
+        "enterprise": 21
+       },
+      "81":{
+        "basic": 12,
+        "advanced": 16.5, 
+        "premium": 18,
+        "enterprise": 20
+      },
+      "91":{
+        "basic": 11,
+        "advanced": 15, 
+        "premium": 17,
+        "enterprise": 19
+      },
+      "101":{
+        "basic": 10,
+        "advanced": 14, 
+        "premium": 16,
+        "enterprise": 18
+      },
+      "121":{
+        "basic": 9,
+        "advanced": 12.5, 
+        "premium": 14,
+        "enterprise": 16
+      },
+      "141":{
+        "basic": 8,
+        "advanced": 11, 
+        "premium": 13,
+        "enterprise": 15
+      },
+      "161":{
+        "basic": 7.5,
+        "advanced": 10.5, 
+        "premium": 12,
+        "enterprise": 14
+      },
+      "181":{
+        "basic": 7,
+        "advanced": 10, 
+        "premium": 11,
+        "enterprise": 13
+      },
+      "201":{
+        "basic": 6,
+        "advanced": 8.5, 
+        "premium": 10.5,
+        "enterprise": 12.5
+      },
+      "301":{
+        "basic": 5.75,
+        "advanced": 8, 
+        "premium": 10,
+        "enterprise": 12
+      },
+      "401":{
+        "basic": 5.5,
+        "advanced": 7.5, 
+        "premium": 9.5,
+        "enterprise": 11.5
+      },
+      "501":{
+        "basic": 5.25,
+        "advanced": 7.25, 
+        "premium": 9,
+        "enterprise": 11
+      },
+      "601":{
+        "basic": 5,
+        "advanced": 7, 
+        "premium": 8.5,
+        "enterprise": 10.5
+      },
+      "701":{
+        "basic": 4.75,
+        "advanced": 6.5, 
+        "premium": 8,
+        "enterprise": 10
+      },
+      "801":{
+        "basic": 4.5,
+        "advanced": 6.25, 
+        "premium": 7.5,
+        "enterprise": 9.5
+      },
+      "901":{
+        "basic": 4.25,
+        "advanced": 6, 
+        "premium": 7,
+        "enterprise": 9
+      },
+      "1000":{
+        "basic": 4,
+        "advanced": 5.5, 
+        "premium": 6.5,
+        "enterprise": 8
+      },
+      "2001":{
+        "basic": 0,
+        "advanced": 0, 
+        "premium": 0,
+        "enterprise": 0
+      }
+    },
+    "latam":{
+      "29":{
+        "basic": 18,
+        "advanced": 25, 
+        "premium": 26,
+        "enterprise": 88 
+      },
+      "31":{
+        "basic": 17,
+        "advanced": 24, 
+        "premium": 24,
+        "enterprise": 87
+      },
+      "41":{
+        "basic": 16,
+        "advanced": 22.5, 
+        "premium": 23,
+        "enterprise": 86
+      },
+      "51":{
+        "basic": 15,
+        "advanced": 21, 
+        "premium": 22,
+        "enterprise": 84
+      },
+      "61":{
+        "basic": 14,
+        "advanced": 18, 
+        "premium": 20,
+        "enterprise": 82
+      },
+      "71":{
+        "basic": 13,
+        "advanced": 16, 
+        "premium": 17,
+        "enterprise": 80
+       },
+      "81":{
+        "basic": 12,
+        "advanced": 14, 
+        "premium": 15,
+        "enterprise": 78
+      },
+      "91":{
+        "basic": 8,
+        "advanced": 9, 
+        "premium": 10,
+        "enterprise": 76
+      },
+      "101":{
+        "basic": 8,
+        "advanced": 8.5, 
+        "premium": 9.5,
+        "enterprise": 74
+      },
+      "121":{
+        "basic": 7.5,
+        "advanced": 8, 
+        "premium": 9,
+        "enterprise": 72
+      },
+      "141":{
+        "basic": 6.5,
+        "advanced": 7.5, 
+        "premium": 8.5,
+        "enterprise": 70
+      },
+      "161":{
+        "basic": 6,
+        "advanced": 7, 
+        "premium": 8,
+        "enterprise": 65
+      },
+      "181":{
+        "basic": 6,
+        "advanced": 6.5, 
+        "premium": 7.5,
+        "enterprise": 60
+      },
+      "201":{
+        "basic": 5.5,
+        "advanced": 6, 
+        "premium": 7,
+        "enterprise": 55
+      },
+      "301":{
+        "basic": 5,
+        "advanced": 5.8, 
+        "premium": 6.5,
+        "enterprise": 50
+      },
+      "401":{
+        "basic": 4.5,
+        "advanced": 5.5, 
+        "premium": 6,
+        "enterprise": 45
+      },
+      "501":{
+        "basic": 4.25,
+        "advanced": 5, 
+        "premium": 5.5,
+        "enterprise": 40
+      },
+      "601":{
+        "basic": 4,
+        "advanced": 4.5, 
+        "premium": 5,
+        "enterprise": 35
+      },
+      "701":{
+        "basic": 3.75,
+        "advanced": 4, 
+        "premium": 4.5,
+        "enterprise": 30
+      },
+      "801":{
+        "basic": 3.25,
+        "advanced": 3.5, 
+        "premium": 4,
+        "enterprise": 25
+      },
+      "901":{
+        "basic": 2.8,
+        "advanced": 3, 
+        "premium": 3.5,
+        "enterprise": 20
+      },
+      "1000":{
+        "basic": 2.5,
+        "advanced": 2.8, 
+        "premium": 3,
+        "enterprise": 15
+      },
+      "2001":{
+        "basic": 0,
+        "advanced": 0, 
+        "premium": 0,
+        "enterprise": 0
+      }
+    }
+  }
+}

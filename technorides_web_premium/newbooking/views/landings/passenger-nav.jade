@@ -1,0 +1,35 @@
+ul.pull-right
+  li.uppercase(du-scrollspy="home")
+    a(href="#home" du-smooth-scroll duration="2000" typed-translate="") index.sections.home 
+  li.uppercase(du-scrollspy="advantages")
+    a(href="#advantages" du-smooth-scroll duration="2000" typed-translate="") index.sections.advantages
+  li.uppercase.hidden-xs(du-scrollspy="apps")
+    a(href="#apps" du-smooth-scroll duration="2000" typed-translate="") index.sections.apps
+  li.uppercase(du-scrollspy="howWorks")
+    a(typed-translate="" href="#howWorks" du-smooth-scroll duration="2000") index.sections.howItWorks
+  li.uppercase(du-scrollspy="contact")
+    a(typed-translate="" href="#contact" du-smooth-scroll duration="2000") index.sections.contact
+  li(ng-init="login = false")
+    a(href="" ng-click="login=!login")  
+      span.special.uppercase(typed-translate="") index.sections.login
+    ul.login-special(ng-if="login")
+      form(ng-show="!forgotPassword" role='log' name="userLogin" ng-submit="userLogin.$valid && user.login(user, company.rtaxi)") 
+        .form-group
+          label(typed-translate="") index.labels.user
+          input.form-control(ng-model="user.email")
+        .form-group
+          label(typed-translate="") index.labels.password
+          input.form-control(ng-model="user.password" type="password")
+        .form-group.text-center
+          button.orange-btn.btn-block.uppercase(type="submit" typed-translate="") index.sections.login
+          a(ng-click="forgotToggle()" href="" typed-translate="") index.login.forgotPass
+          
+      form(ng-show="forgotPassword" name="retrivePass" ng-submit="retrivePass.$valid && user.forgotPassword(company.info.adminMail)" ) 
+        .form-group
+          label(typed-translate="") index.labels.user
+          input.form-control(ng-model="user.email")
+        .form-group.text-center
+          button.orange-btn.btn-block.uppercase(type="submit" typed-translate="") index.login.retrive
+          button.btn.btn-block.btn-default(ng-click="forgotToggle()" type="button" style="border-radius:0" typed-translate="") index.labels.cancel
+  li.uppercase
+    a.special(href="#signup" typed-translate="" ng-click="user.userType = 'passenger'") index.sections.signup

@@ -1,0 +1,62 @@
+/* Body */
+body
+{
+  overflow: hidden;
+}
+
+/* Map */
+#map
+{
+  height: 100%;
+}
+
+/* Counter */
+.counter
+{
+  background: black;
+  border-radius: 10px;
+  color: white;
+  font-size: 60px;
+  position: absolute;
+  padding: 10px;
+  z-index: 9999;
+}
+
+#investor-wrapper
+{
+  bottom:10px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.containerSlider
+{  
+  bottom: 0px;  
+  position: relative;
+  margin: 0 auto;
+  z-index: 999;
+  background-image: url(/static/images/panels/investor/bg.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+#operations_counter
+{
+  bottom: 0px;
+  right: 10px;
+  z-index: 1000;
+}
+
+#users_counter
+{
+  bottom: 0px;
+  left: 10px;
+  z-index: 1000;
+}
+
+#operations_counter_number, #users_counter_number
+{
+  font-size: 45px !important;
+  line-height: 45px !important;
+}

@@ -1,0 +1,26 @@
+form(name="edit" ng-submit="edit.$valid && marketing.edit('add')")
+  .col-xs-6
+    .form-group
+      label Name *
+      input.form-control(ng-model="marketing.email.name" required)
+    .form-group
+      label Subject *
+      input.form-control(ng-model="marketing.email.subject" required)
+  .col-xs-6
+    .form-group
+      label Language *
+      input.form-control(ng-model="marketing.email.lang" required)
+    .form-group
+      label Enabled 
+      input.checkbox(type="checkbox" ng-model="marketing.email.enabled")
+  .col-xs-12  
+    .form-group
+      label Body
+      textarea.form-control(ng-model="marketing.email.body" required)
+  .col-xs-12 
+    br
+    .form-group
+      button.btn.btn-danger.pull-right(data-dismiss="modal") Cancel
+      button.btn.btn-success.pull-right(style="margin-right:5px") Save
+      
+      

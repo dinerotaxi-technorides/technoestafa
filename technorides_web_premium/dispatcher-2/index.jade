@@ -1,0 +1,463 @@
+doctype html
+html(ng-app="technoridesApp", lang="{{lang}}" ng-controller="mainCtrl")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="icon" href="/common/assets/logo/favicon.ico" type="image/x-icon")
+    title(translate) siteTitle
+
+    // Bootstrap 3.3.5
+    link(rel="stylesheet", href="/common/libs/statics/bootstrap.min.css")
+
+    // Angular 1.4.1
+    script(src="/common/libs/statics/angular.js")
+    script(src="/common/libs/statics/angular-route.js")
+    script(src="/common/libs/statics/angular-cookies.js")
+    script(src="/common/libs/statics/angular-translate.min.js")
+    script(src="/common/libs/statics/angular-sanitize.js")
+
+    // Cookies
+    script(src="/common/libs/angular-cookie.js")
+
+    // Jquery 1.11.3
+    script(src="/common/libs/statics/jquery.min.js")
+    script(src="/common/libs/statics/bootstrap.min.js")
+    script(src="/common/libs/statics/jquery-ui-resize.min.js")
+
+    // Config
+    script(src="scripts/dispatcher.js")
+
+    // Api
+    script(src="/common/scripts/api/newApi.js")
+
+    
+    //In case google want to love us back
+    script(src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js')
+    link(href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet')
+    script(src="https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js")
+    link(href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet')
+    
+    script(src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js')
+    link(href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet')
+    link(href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet')
+
+    script(src="/common/scripts/mapbox.js")
+    script(src="/common/scripts/google.js")
+    script(src="/common/scripts/map.js")
+
+    
+    // API ADAPTERS
+    script(src="scripts/api/operations.js")
+    script(src="scripts/api/autocomplete.js")
+    script(src="scripts/api/company.js")
+    script(src="scripts/api/main.js")
+    script(src="scripts/api/chat.js")
+    script(src="scripts/api/statistics.js")
+    
+    // controllers
+    script(src="scripts/controllers/mainCtrl.js")
+    script(src="scripts/controllers/operationsCtrl.js")
+    
+    // Websocket
+    script(src="/common/scripts/websocket/webSocket.js")
+    script(src="/common/libs/reconnecting-websocket-extended.js")
+    script(src="scripts/websocket/adapter.js")
+    script(src="scripts/websocket/handler.js")
+
+    // settings
+    script(src="/common/scripts/settings.js")
+    script(src="scripts/config/locale.js")
+    script(src="/common/scripts/versionDetector.js")
+    script(src="scripts/config/route.js")
+
+    //MODELS
+    script(src="/login/scripts/services/models/user.js")
+    script(src="scripts/models/radio.js")
+    script(src="scripts/models/operations.js")
+    script(src="scripts/models/drivers.js")
+    script(src="scripts/models/autocomplete.js")
+    script(src="scripts/models/weather.js")
+    script(src="scripts/models/company.js")
+    script(src="scripts/models/chat.js")
+    script(src="scripts/models/main.js")
+    script(src="scripts/models/statistics.js")
+    script(src="scripts/models/paginator.js")
+    
+    // Errors
+    script(src="/common/scripts/messages.js")
+
+    //MODALS
+    script(src="/common/scripts/modal/modal-directive.js")
+    script(src="/common/scripts/modal/modal-service.js")
+
+    //filters
+    script(src="scripts/filters/timer.js")
+    script(src="scripts/filters/startfrom.js")
+
+    link(href="/common/libs/template/css/style.default.css", rel="stylesheet")
+
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9  shiv= 3.7.2, respond= 1.4.2R
+      script(src="/common/libs/statics/html5shiv.min.js")
+      script(src="/common/libs/statics/respond.min.js")
+
+    //FONTS
+    link(href='/common/libs/statics/montserrat.css' rel='stylesheet' type='text/css')
+    link(href='/common/libs/statics/exo.css' rel='stylesheet' type='text/css')
+    link(href="/common/libs/statics/font-awesome.min.css" rel="stylesheet")
+
+    // Mp3
+    script(src="/common/libs/mp3/recordmp3.js")
+    script(src="/common/libs/mp3/recordFunctions.js")
+
+    //datetimepicker
+    script(src="/common/libs/ui-bootstrap-tpls.min.js")
+    link(rel="stylesheet", type="text/css", href="/common/libs/datetimepicker.css")
+    script(src="/common/libs/statics/moment.js")
+    script(src="/common/libs/datetimepicker.js")
+    
+    // TUTORIAL
+    script(src="/common/libs/enjoyhint/enjoyhint.js")
+    link(rel="stylesheet", type="text/css", href="/common/libs/enjoyhint/enjoyhint.css")
+    script(src="scripts/models/tutorial.js")
+    
+    //underscore
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js")
+
+    // Main styles
+    link(rel="stylesheet" type="text/css" href="styles/dispatcher.css")
+    // Analytics
+    
+    // GRAPHICS
+    script(src="/common/libs/template/js/morris.min.js")
+    script(src="/common/libs/template/js/raphael-2.1.0.min.js")
+    script(src="/common/libs/template/js/jquery.sparkline.min.js")
+    script(src="/common/libs/template/js/flot/jquery.flot.min.js")
+    script(src="/common/libs/template/js/flot/jquery.flot.resize.min.js")
+    script(src="/common/libs/template/js/flot/jquery.flot.spline.min.js")
+    script(src="/common/libs/template/js/flot/jquery.flot.categories.min.js")
+    
+    script(aync src="/common/libs/statics/analytics.js")
+    script(src="/common/libs/angulartics.min.js")
+    script(src="/common/libs/angulartics-ga.min.js")
+    script.
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-45881678-1', 'auto');
+  script.
+
+      /*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(c){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","technorides.zendesk.com");/*]]>*/
+
+  body
+  div(ng-include="'/common/views/partials/version.html'")
+      // Preloader
+    #preloader(style="display:none")
+      #status
+        i.fa.fa-spinner.fa-spin.fa-3x
+    section
+      .leftpanel
+        .logopanel
+          h1 Techno
+            span Rides
+        // logopanel
+        .leftpanelinner
+          ul.nav.nav-pills.nav-stacked.nav-bracket(ng-if="user.role=='monitor'")
+            .infosummary
+              h5.sidebartitle {{'GeneralStats' | translate}}
+              ul
+                li
+                  .datainfo
+                    span.text-muted {{'operations' | translate}}
+                    h4 {{statistics.counters.operations}}
+                  #sidebar-operations-chart.chart
+                li
+                  .datainfo
+                    span.text-muted {{'Drivers' | translate}}
+                    span 
+                    h4 {{statistics.data.drivers}}
+                  #sidebar-drivers-chart.chart
+                li
+                  .datainfo
+                    span.text-muted {{'passengers' | translate}}
+                    h4 {{statistics.data.passengers.total}}
+                  #sidebar-passengers-chart.chart
+          
+          ul.nav.nav-pills.nav-stacked.nav-bracket(ng-if="user.role != 'monitor'")
+            .infosummary
+              ul 
+                li.text-center(ng-if="user.chatEnabled") 
+                  a(style="margin-right:25px;cursor:pointer" ng-click="chat.conversationWindowIrc()")
+                    img(src="/dispatcher/assets/radio/chat_btn.png")
+                  a(ng-mousedown="radio.record()" ng-mouseup="radio.stopRecording()" ng-mouseleave="radio.stopRecording()" ng-class="{'hidden': radio.microphoneDisabled}" style="cursor:pointer;height:60px;width:60px" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                    img(src="/dispatcher/assets/radio/radio_btn.png" ng-show="!radio.recording && !radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                    img#radioRecording(src="/dispatcher/assets/radio/radio_btn_recording.gif" ng-show="radio.recording && !radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                    img(src="/dispatcher/assets/radio/radio_btn_disabled.png" ng-show="radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+
+                // DIGITAL RADIO
+                
+                li.text-center(ng-if="user.digitalRadio && user.role != 'monitor' && !user.chatEnabled")
+                  .radio(ng-show="!radio.microphoneDisabled")
+                    .col-xs-4
+                      a(ng-mousedown="radio.record()" ng-mouseup="radio.stopRecording()" ng-mouseleave="radio.stopRecording()" ng-class="{'hidden': radio.microphoneDisabled}" style="cursor:pointer" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                        img(src="/dispatcher/assets/radio/radio_btn.png" ng-show="!radio.recording && !radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                        img#radioRecording(src="/dispatcher/assets/radio/radio_btn_recording.gif" ng-show="radio.recording && !radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                        img(src="/dispatcher/assets/radio/radio_btn_disabled.png" ng-show="radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                    .col-xs-8
+                      img.img-responsive.audio-wave(src="/dispatcher/assets/radio/audiowave.gif" ng-show="radio.recording || radio.active")
+                      img.img-responsive.audio-wave(src="/dispatcher/assets/radio/nosound.png" ng-show="!radio.recording && !radio.active")
+                      .radio-status
+                        span(ng-hide="radio.recording || radio.sender!=''") Stand By
+                        span.recording(ng-show="radio.recording") recording...
+                        marquee.reciving(ng-show="!radio.recording && radio.sender!=''" behavior="scroll" direction="left" scrolldelay="10") {{radio.sender}}
+                  .text-center(ng-show="radio.microphoneDisabled")
+                    .radio-disabled
+                      img(src="/dispatcher/assets/radio/disabled_mic.png" style="max-width:50px")
+                      span.text-right {{'microphoneDisabled' | translate}}
+                li.text-center(ng-if="!user.digitalRadio && user.role != 'monitor'")
+                  .text-center
+                    .radio-unavailable
+                      .radio-unavailable-title {{'upgradeToPremium' | translate}}
+                      .radio-unavailable-body {{'andGetTheDigitalRadio' | translate}}
+                
+                              
+            div(ng-if="user.chatEnabled || user.digitalRadio")            
+              h5(ng-if="user.digitalRadio && user.role != 'monitor' || user.chatEnabled && user.role != 'monitor'" ng-init="query = {}") {{'Drivers' | translate}}
+              input.form-control(ng-model="drivers.query" ng-if="user.digitalRadio && user.role != 'monitor'" placeholder="{{'Search' | translate}}")
+              .mb30
+              .tab-pane.active(ng-if="user.chatEnabled || user.digitalRadio")  
+                a(ng-click="hideConnected = !hideConnected" )
+                  i.fa.fa-chevron-down.sordArrow.pull-left(ng-if="!hideConnected" data-parent="#accordion" href="#collapseOne" style="cursor:pointer;margin-right:10px")
+                  i.fa.fa-chevron-up.sordArrow.pull-left(ng-if="hideConnected" data-parent="#accordion" href="#collapseOne" style="cursor:pointer;margin-right:10px")
+                h5.sidebartitle {{'connected' | translate}}         
+                ul.chatuserlist#collapseOne.collapse(ng-class="{in: hideConnected, out: !hideConnected}")
+                  li.offline(ng-repeat="driver in drivers.list | filter:drivers.search | limitTo: 7" ng-mouseover="driver.focus = true" ng-mouseleave="driver.focus = false"  ng-hide="driver.status == 'disconnected'")
+                    .media
+                      a.pull-left.media-thumb
+                        img.media-object(ng-src="{{driver.driverImg}}" onerror="this.src='/common/assets/user/profile.png'" style="width:30px;height:30px" ng-if="driver.driverImg")
+                        img.media-object(src="/common/assets/user/profile.png" style="width:30px;height:30px" ng-if="!driver.driverImg")                                         
+                      .media-body
+                        .pull-left
+                          strong {{"#" + " "+ driver.number | limitTo:11}} {{("#" + ' ' + driver.number).length > 11 ? '...' : ''}}     
+                          small {{driver.status | translate}}
+                          //- span {{driver}}
+                        .driverComunication.pull-right(ng-if="driver.focus")
+                          a.pull-right(ng-mousedown="radio.driverRecord(driver.id)" ng-mouseup="radio.radiotodriver.stopRecording()" ng-mouseleave="radio.radiotodriver.stopRecording()" style="cursor:pointer" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;" ng-if="user.chatEnabled || user.digitalRadio")
+                            img(src="/dispatcher/assets/radio/radio_btn.png" style="width:30px;height:30px" ng-show="!radio.radiotodriver.recording && !radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img#radioDriverRecording(src="/dispatcher/assets/radio/radio_btn_recording.gif" style="width:30px;height:30px;cursor:pointer" ng-show="radio.radiotodriver.recording && !radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img(src="/dispatcher/assets/radio/radio_btn_disabled.png" style="width:30px;height:30px" ng-show="radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                          a.pull-right(style="margin-right:5px;cursor:pointer" ng-click="chat.conversationWindow(driver)" ng-if="user.chatEnabled")
+                            img(src="/dispatcher/assets/radio/chat_btn.png" style="width:30px;height:30px")
+
+                .mb30          
+                a(ng-click="hideDiconnected = !hideDiconnected" )
+                  i.fa.fa-chevron-down.sordArrow.pull-left(ng-if="!hideDiconnected" data-parent="#accordion" href="#collapseTwo" style="cursor:pointer;margin-right:10px")
+                  i.fa.fa-chevron-up.sordArrow.pull-left(ng-if="hideDiconnected" data-parent="#accordion" href="#collapseTwo" style="cursor:pointer;margin-right:10px")
+                h5.sidebartitle {{'disconnected' | translate}}         
+                ul.chatuserlist#collapseTwo.collapse(ng-class="{in: hideDiconnected, out: !hideDiconnected}")
+                  li.offline(ng-repeat="driver in drivers.list | filter:drivers.search | limitTo: 7" ng-mouseover="driver.focus = true" ng-mouseleave="driver.focus = false" ng-hide="driver.status != 'disconnected'")
+                    .media
+                      a.pull-left.media-thumb
+                        img.media-object(ng-src="{{driver.driverImg}}" onerror="this.src='/common/assets/user/profile.png'" style="width:30px;height:30px" ng-if="driver.driverImg")
+                        img.media-object(src="/common/assets/user/profile.png" style="width:30px;height:30px" ng-if="!driver.driverImg")                                                    
+                      .media-body
+                        .pull-left
+                          strong {{"#" + " "+ driver.number | limitTo:11}} {{("#" + ' ' + driver.number).length > 11 ? '...' : ''}}     
+                          small {{driver.status | translate}}
+                        .driverComunication.pull-right(ng-if="driver.focus")
+                          a.pull-right(ng-mousedown="radio.driverRecord(driver.id)" ng-mouseup="radio.radiotodriver.stopRecording()" ng-mouseleave="radio.radiotodriver.stopRecording()" style="cursor:pointer" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;" ng-if="user.chatEnabled || user.digitalRadio")
+                            img(src="/dispatcher/assets/radio/radio_btn.png" style="width:30px;height:30px" ng-show="!radio.radiotodriver.recording && !radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img#radioDriverRecording(src="/dispatcher/assets/radio/radio_btn_recording.gif" style="width:30px;height:30px;cursor:pointer" ng-show="radio.radiotodriver.recording && !radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img(src="/dispatcher/assets/radio/radio_btn_disabled.png" style="width:30px;height:30px" ng-show="radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                          a.pull-right(style="margin-right:5px;cursor:pointer" ng-click="chat.conversationWindow(driver)" ng-if="user.chatEnabled")
+                            img(src="/dispatcher/assets/radio/chat_btn.png" style="width:30px;height:30px")
+
+      .mainpanel
+        .headerbar
+          form.searchform(novalidate)
+            input.form-control(type="text", name="keyword", placeholder="{{'Search' | translate}}", ng-model="driver", ng-change="map.centerInMarkerInMultipleCategories(['drivers_online', 'drivers_offline', 'drivers_intravel', 'drivers_disconnected', 'operations'], driver)")
+            span.visible-lg(style="float: left; margin: 10px")
+              {{clock | date: "hh:mm:ss a"}}
+              span(style="padding: 0px 15px")
+                ||
+              {{clock | date: "d MMM. yyyy"}}
+              .hidden
+                span(style="padding: 0px 15px")
+                  ||
+                img(ng-src="{{weather.icon}}" style="width: 30px; height: 30px")
+                span(style="padding: 0px 5px").text-capitalize {{weather.temperature}}
+              .hidden
+                span(style="padding: 0px 15px")
+                  ||
+                {{ user.adminCode + ", " + user.country}}
+          .header-right  
+            ul.headermenu
+              li(ng-show="false")
+                a.btn.btn-default.dropdown-toggle(href="/{{user.lang}}/panel/")
+                  span(style="font-size:23px") {{'switchTo' | translate}} LR
+
+              li
+                .btn-group
+                  button.btn.btn-default.dropdown-toggle(type="button" data-toggle="dropdown" aria-expanded="false" style="padding:14px")
+                    img(ng-src="/technorides/assets/lang/{{lang}}.png")
+                    span(ng-if="lang == 'es'") Español
+                    span(ng-if="lang == 'en'") English
+                    span.caret
+                  ul.dropdown-menu#langdrop(role="menu")
+                    li.new-lang
+                      a(ng-click="changeLang('en')")
+                        img(ng-src="/technorides/assets/lang/en.png")
+                        | English
+                    li.new-lang
+                      a(ng-click="changeLang('es')")
+                        img(ng-src="/technorides/assets/lang/es.png")
+                        | Español
+              li.appear
+                button.btn.btn-default.dropdown-toggle(ng-click="map.showAllMarkers()")
+                  i.fa.fa-compass(style="font-size:23px")
+              li
+                .btn-group
+                  button.btn.btn-default.dropdown-toggle.appear(type="button" data-toggle="dropdown" aria-expanded="false")
+                    i.fa.fa-eye.fa-lg
+                    span.caret
+                  ul.dropdown-menu#viewdrop(role="menu")
+                    li(ng-class="{active: map.visibility['company'] != false}")
+                      a.tp-icon(href="" ng-click="map.toggleMarkers('company')")
+                        img(src="/common/assets/markers/home.png")
+
+                    li(ng-class="{active: map.makeClusters != false}")
+                      a.tp-icon(href="" ng-click="map.toggleClusters()")
+                        img(src="/common/assets/markers/operation_pending_cluster.png")
+
+                    li(ng-class="{active: map.visibility['parkings'] != false}" ng-if="company.configuration.parking.enabled")
+                      a.tp-icon(href="" ng-click="map.toggleMarkers('parkings')")
+                        img(src="/common/assets/markers/parking.png")
+                        span.badge(ng-if="map.counters['parkings'] > 0") {{map.counters['parkings']}}
+
+                    li(ng-class="{active: map.visibility['operations'] != false}")
+                      a.tp-icon(href="" ng-click="map.toggleMarkers('operations')")
+                        img(src="/common/assets/markers/operation_pending.png")
+                        span.badge(ng-if="map.counters['operations'] > 0") {{map.counters['operations']}}
+
+                    li(ng-class="{active: map.visibility['drivers_online'] != false}")
+                      a.tp-icon(href="" ng-click="map.toggleMarkers('drivers_online')")
+                        img(src="/common/assets/markers/driver_online.png")
+                        span.badge(ng-if="map.counters['drivers_online'] > 0") {{map.counters['drivers_online']}}
+
+                    li(ng-class="{active: map.visibility['drivers_offline'] != false}")
+                      a.tp-icon(href="" ng-click="map.toggleMarkers('drivers_offline')")
+                        img(src="/common/assets/markers/driver_offline.png")
+                        span.badge(ng-if="map.counters['drivers_offline'] > 0") {{map.counters['drivers_offline']}}
+
+                    li(ng-class="{active: map.visibility['drivers_intravel'] != false}")
+                      a.tp-icon(href="" ng-click="map.toggleMarkers('drivers_intravel')")
+                        img(src="/common/assets/markers/driver_intravel.png")
+                        span.badge(ng-if="map.counters['drivers_intravel'] > 0") {{map.counters['drivers_intravel']}}
+
+                    li(ng-class="{active: map.visibility['drivers_disconnected'] != false}")
+                      a.tp-icon(href="" ng-click="map.toggleMarkers('drivers_disconnected')")
+                        img(src="/common/assets/markers/driver_disconnected.png")
+                        span.badge(ng-if="map.counters['drivers_disconnected'] > 0") {{map.counters['drivers_disconnected']}}
+
+              li.appear(ng-show="false")
+                button.btn.btn-default.dropdown-toggle(ng-click="tutorial.run()")
+                  i.fa.fa-question-circle(style="font-size:23px")
+              li
+                .btn-group
+                  button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown")
+                    img(src="/common/assets/user/profile.png", alt="")
+                    span {{user.firstName}} {{user.lastName}}
+                    span.caret
+                  ul.dropdown-menu.dropdown-menu-usermenu.pull-right
+                    li
+                      a(href="#",ng-click="user.logout()")
+                        i.fa.fa-power-off
+                        span {{'LogOut' | translate}}
+                    
+        #map_canvas
+        .text-center.resizable
+          .hide-panel
+            i.fa.fa-arrows-v
+        #panel(ng-view ng-if="user.role != 'monitor'")
+        #monitor(ng-include="'views/monitor.html'" ng-if="user.role == 'monitor'")
+      audio#arrived(type="audio/wav", src="/common/assets/audio/new_trip.wav")
+      audio#recive(type="audio/mp3" src="/common/assets/audio/pip_pip.mp3")
+      audio#send(type="audio/mp3" src="/common/assets/audio/prip.mp3")
+      div(ng-include="'/common/views/partials/modals/messages.html'")
+  
+.modal.fade.singleChat-window(tabindex="-1", role="dialog", aria-labelledby="cancel-operation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content 
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title Single chat 
+        .panel-body.modalChat#scrollChat
+          .form-group 
+            .row.chatLines(ng-repeat="m in chat.currentChat.messages | orderBy: 'date'") 
+              .media
+                .media-left(style="vertical-align: middle")
+                  img.media-object.profileImg(ng-src="{{m.driverImg}}" onerror="this.src='/common/assets/user/profile.png'" ng-if="m.senderId != user.id" )   
+                .media-body
+                  h4.media-heading
+                    small(ng-if="m.senderId != user.id" style="font-weight: 100") {{m.senderName}}
+                  div(ng-hide="m.messageType != 1" ng-class="{byte: m.messageType == 1 && m.senderId != user.id, byteMine: m.messageType == 1 && m.senderId == user.id}")
+                    strong {{m.message}}
+                  span {{m.blob}}
+                  div(ng-if="m.messageType != 1" ng-class="{byte: m.messageType == 0 && m.senderId != user.id, byteMine: m.messageType == 0 && m.senderId == user.id}")  
+                    img.chatMediaButton(ng-if="!m.downloaded && m.messageType == 0 && !m.downloading" ng-click="chat.getMediaIrc(m.messageId); m.downloading = true" src="/common/assets/chat/download.png")
+                    audio(controls="controls" ng-src="{{m.message}}" ng-if="m.downloaded")
+                  span(ng-class="{'pull-right': m.senderId == user.id}" style="position:relative; top:15px;margin:0 5px") {{m.date | date:'HH:mm'}} 
+                
+        .form-group.textarea
+          form(ng-submit="chat.sendChat(text); text = ''") 
+            .col-sm-1
+            input.col-sm-9.input-lg(type="text" ng-model="text")
+            button.hidden(type="submit") 
+            a(ng-mousedown="radio.driverRecord(chat.currentChat.senderId)" ng-mouseup="radio.radiotodriver.stopRecording()" ng-mouseleave="radio.radiotodriver.stopRecording()" style="cursor:pointer" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+              img(src="/dispatcher/assets/radio/radio_btn.png" style="height:45px;width:45px;margin-left:10px" ng-show="!radio.radiotodriver.recording && !radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+              img#radioDriverRecording(src="/dispatcher/assets/radio/radio_btn_recording.gif" style="height:45px;width:45px;cursor:pointer;margin-left:10px" ng-show="radio.radiotodriver.recording && !radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+              img(src="/dispatcher/assets/radio/radio_btn_disabled.png" style="height:45px;width:45px;margin-left:10px" ng-show="radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")   
+              
+.modal.fade.multiChat-window(tabindex="-1", role="dialog", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content 
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title IRC
+        .panel-body.modalChat#scrollMultiChat
+          .form-group
+            .row.chatLines(ng-repeat="m in chat.currentChat.messages | orderBy: 'date'")
+              .media
+                .media-left(style="vertical-align: middle")
+                  img.media-object.profileImg(ng-src="{{m.driverImg}}" onerror="this.src='/common/assets/user/profile.png'" ng-if="m.senderId != user.id" )   
+                .media-body
+                  h4.media-heading
+                    small(ng-if="m.senderId != user.id" style="font-weight: 100") {{m.senderName}}
+                  div(ng-hide="m.messageType != 1" ng-class="{byte: m.messageType == 1 && m.senderId != user.id, byteMine: m.messageType == 1 && m.senderId == user.id}")
+                    strong {{m.message}} 
+                  span {{m.blob}}
+                  div(ng-if="m.messageType != 1" ng-class="{byte: m.messageType == 0 && m.senderId != user.id, byteMine: m.messageType == 0 && m.senderId == user.id}")  
+                    img.chatMediaButton(ng-if="!m.downloaded && m.messageType == 0 && !m.downloading" ng-click="chat.getMediaIrc(m.messageId); m.downloading = true" src="/common/assets/chat/download.png")
+                    audio(controls="controls" ng-src="{{m.message}}" ng-if="m.downloaded")
+                  span(ng-class="{'pull-right': m.senderId == user.id}" style="position:relative; top:15px;margin:0 5px") {{m.date | date:'HH:mm'}} 
+                  
+            
+        .form-group.textarea
+          form(ng-submit="chat.sendChatIrc(text); text = ''")  
+            .col-sm-1  
+            input.col-sm-9.input-lg(type="text" ng-model="text")
+            input.hidden(type="submit") 
+            a(ng-mousedown="radio.record()" ng-mouseup="radio.stopRecording()" ng-mouseleave="radio.stopRecording()" ng-class="{'hidden': radio.microphoneDisabled}" style="cursor:pointer" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+              img(style="width:45px;height:45px;margin-left:10px" src="/dispatcher/assets/radio/radio_btn.png" ng-show="!radio.recording && !radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+              img#radioRecording(style="width:45px;height:45px;margin-left:10px" src="/dispatcher/assets/radio/radio_btn_recording.gif" ng-show="radio.recording && !radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+              img(style="width:45px;height:45px;margin-left:10px" src="/dispatcher/assets/radio/radio_btn_disabled.png" ng-show="radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")

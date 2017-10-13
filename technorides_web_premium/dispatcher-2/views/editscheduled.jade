@@ -1,0 +1,232 @@
+form.form(novalidate name="editScheduled" ng-class="{submited: operations.operation.submited}" ng-submit=" menu.tab = 'pending';editScheduled.$valid && operations.editScheduled(operations.operation, true) && resetNewOperationForm()")
+  .col-xs-9
+    a(ng-click="resetNewOperationForm();menu.tab = 'pending'" href="") {{'goBack' | translate}}
+    .form-group
+      .row
+        .col-xs-3
+          .input-group
+            .input-group-addon
+              i.fa.fa-phone.fa-fw
+            input.form-control(type="text" required name="userPhone" ng-change="autocomplete.autocompletePassengers(operations.operation.user.phone, 'phone')" ng-model="operations.operation.user.phone" placeholder="{{'Phone' | translate}}")
+        .col-xs-3
+          .input-group
+            .input-group-addon
+              i.fa.fa-envelope.fa-fw
+            input.form-control(type="text" name="userMail" ng-change="autocomplete.autocompletePassengers(operations.operation.user.email, undefined)" ng-model="operations.operation.user.email" placeholder="{{'Email' | translate}}")
+        .col-xs-2
+          .input-group
+            .input-group-addon
+              i.fa.fa-user.fa-fw
+            input.form-control(type="text" name="userName" ng-model="operations.operation.user.name" placeholder="{{'Name' | translate}}")
+        .col-xs-2
+          .input-group
+            .input-group-addon
+              i.fa.fa-user.fa-fw
+            input.form-control(type="text" name="userSurname" ng-model="operations.operation.user.surname" placeholder="{{'Surname' | translate}}")
+          input(type="hidden" ng-model="operations.operation.user.id")
+        .col-xs-2
+          .input-group
+            .input-group-addon
+              i.fa.fa-taxi.fa-fw
+            input.form-control(type="text" ng-model="operations.operation.driver" placeholder="{{'Driver' | translate}}")
+    .form-group(ng-if="autocomplete.passengers.length")
+      .row
+        .col-xs-12
+          .list-group
+            a.list-group-item(href="", ng-repeat="sugestion in autocomplete.passengers | limitTo:5", ng-click="fillFormUserForm(sugestion); autocomplete.autocompleteFavorites(sugestion.user_id)") 
+              i.fa.fa-user.fa-fw
+              strong
+                | {{sugestion.first_name}} {{sugestion.last_name}}
+              span.pull-right(ng-if="sugestion.is_cc")
+                i.fa.fa-suitcase.fa-fw
+                | {{'CorporateUser' | translate}}
+              br
+              i.fa.fa-phone.fa-fw
+              | {{sugestion.phone}}
+              br
+              i.fa.fa-envelope.fa-fw
+              | {{sugestion.email}}
+              br
+             
+    .form-group
+      .row
+        .col-xs-8
+          .input-group
+            .input-group-addon.search-address
+              i.fa.fa-map-marker.fa-fw
+            input.form-control(type="text" required ng-change="autocomplete.autocompleteAddressFrom(operations.operation.addressFrom)" ng-model="operations.operation.addressFrom.address", placeholder="{{'Address' | translate}}")
+          div.places
+            span(ng-repeat="place in autocomplete.froms | limitTo: 10" ng-click="autocomplete.getPlace('from', place.place_id); fillFormOriginForm(place)")
+              i.fa.fa-university(ng-if="place.type == 'premise' || place.type == 'point_of_interest'")
+              i.fa.fa-plane(ng-if="place.type == 'airport'")
+              i.fa.fa-sun(ng-if="place.type == 'park'")
+              i.fa.fa-road(ng-if="place.type != 'park' && place.type != 'airport' && place.type != 'premise' && place.type != 'point_of_interest'")
+              |  {{place.placeName}}
+          div.warning-place(ng-if="autocomplete.froms" ng-click="autocomplete.geolocateAddress('from', operations.operation.addressFrom.address)")
+            span.fa-stack.fa-sm
+              i.fa.fa-map-marker.fa-stack-1x
+              i.fa.fa-ban.fa-stack-2x
+            | {{operations.operation.addressFrom.address}}
+        .col-xs-2
+          .input-group
+            .input-group-addon
+              i.fa.fa-building.fa-fw
+            input.form-control(type="text" ng-model="operations.operation.addressFrom.floor" placeholder="{{'Floor' | translate}}")  
+        .col-xs-2
+          .input-group
+            .input-group-addon
+              i.fa.fa-building.fa-fw
+            input.form-control(type="text" ng-model="operations.operation.addressFrom.apartment" placeholder="{{'Apt' | translate}}")
+    .form-group(ng-if="autocomplete.favorites.length")
+      .row
+        .col-xs-12
+          .list-group
+            a.list-group-item(href="" ng-repeat="favorite in autocomplete.favorites", ng-click="fillFormOriginFormWithFavorite(favorite)")
+              p.list-group-item-text
+                i.fa.fa-map-marker.fa-fw
+                | {{favorite.street}}
+    .form-group
+      .row
+        .col-xs-6
+          .input-group
+            .input-group-addon.search-address
+              i.fa.fa-flag-checkered.fa-fw
+            input.form-control(type="text" ng-model="operations.operation.addressTo.address"  ng-change="autocomplete.autocompleteAddressTo(operations.operation.addressTo)" placeholder="{{'Destination' | translate}}")
+            a.input-group-addon(ng-show="operations.operation.price.isZone" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<p><strong>From :</strong> {{operations.operation.price.zoneFrom.name}}</p><p> <strong>ID:</strong> {{operations.operation.price.zoneFrom.id}}</p><p><strong>To :</strong> {{operations.operation.price.zoneTo.name}}</p><p><strong> ID: </strong>{{operations.operation.price.zoneTo.id}}</p>" tabindex="0" role="button" data-trigger="focus")
+              i.fa.fa-dollar.fa-fw
+              | {{operations.operation.price.amount}}
+      
+          div.places
+            span(ng-repeat="place in autocomplete.tos | limitTo: 10" ng-click="autocomplete.getPlace('to', place.place_id); fillFormDestinationForm(place)")
+              i.fa.fa-university(ng-if="place.type == 'premise' || place.type == 'point_of_interest'")
+              i.fa.fa-plane(ng-if="place.type == 'airport'")
+              i.fa.fa-sun(ng-if="place.type == 'park'")
+              i.fa.fa-road(ng-if="place.type != 'park' && place.type != 'airport' && place.type != 'premise' && place.type != 'point_of_interest'")
+              |  {{place.placeName}}
+          div.warning-place(ng-if="autocomplete.tos" ng-click="autocomplete.geolocateAddress('to', operations.operation.addressTo.address)")
+            span.fa-stack.fa-sm
+              i.fa.fa-map-marker.fa-stack-1x
+              i.fa.fa-ban.fa-stack-2x
+            | {{operations.operation.addressTo.address}}
+        
+        .col-xs-2
+          .input-group
+            .input-group-addon
+              a(ng-if="!operations.operation.price.isZone && company.configuration.operations.distanceType == 'KM'" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<p><strong>Distance :</strong> {{operations.operation.price.km | number:1 }} {{company.configuration.operations.distanceType}} </p>" tabindex="0" role="button" data-trigger="focus")
+                i.fa.fa-dollar.fa-fw
+              a(ng-if="!operations.operation.price.isZone && company.configuration.operations.distanceType == 'MI'" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="<p><strong>Distance :</strong> {{operations.operation.price.km / 1.609  | number: 1}} {{company.configuration.operations.distanceType}} </p>" tabindex="0" role="button" data-trigger="focus")
+                i.fa.fa-dollar.fa-fw
+            input.form-control(ng-model="operations.operation.price.amount")
+        
+        .col-xs-2
+          .input-group
+            .input-group-addon
+              i.fa.fa-building.fa-fw
+            input.form-control(type="text" ng-model="operations.operation.addressTo.floor" placeholder="{{'Floor' | translate}}")
+        .col-xs-2
+          .input-group
+            .input-group-addon
+              i.fa.fa-building.fa-fw
+            input.form-control(type="text" ng-model="operations.operation.addressTo.apartment" placeholder="{{'Apt' | translate}}")
+    .form-group
+      .row
+        .col-xs-6.hidden
+          .list-group.hidden
+            a.list-group-item(href="" ng-click="openDatepicker()")
+              span(ng-if="operations.operation.date")
+                | {{operations.operation.date | date: "d MMM. hh:mm a"}}
+              span(ng-if="!operations.operation.date")
+                | {{"Date" | translate}}
+          .dropdown
+            a#dropdown2.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#')
+              .input-group
+                .input-group-addon
+                  i.glyphicon.glyphicon-calendar
+                input.form-control(readonly type='text', data-ng-model='operations.operation.date' placeholder="{{'Date' | translate}}")
+            ul.dropdown-menu(role='menu', aria-labelledby='dLabel' style="width:100%")
+              datetimepicker(data-ng-model='operations.operation.date', data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }")
+    .from-group
+      .row
+        .col-xs-12
+          .form-group
+            .btn-group
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.messaging}")
+                i.fa.fa-envelope
+                |  {{'Messaging' | translate}} 
+                input.hidden(type="checkbox" ng-model="operations.operation.options.messaging")
+
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.pet}")
+                i.fa.fa-paw
+                |  {{'Pet' | translate}} 
+                input.hidden(type="checkbox" autocomplete="off" ng-model="operations.operation.options.pet")
+
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.airConditioner}")
+                i.fa.fa-sun-o
+                |  {{'AirConditioner' | translate}}
+                input.hidden(type="checkbox" autocomplete="off" ng-model="operations.operation.options.airConditioner")
+
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.smoker}")
+                i.fa.fa-fire
+                |  {{'Smoker' | translate}} 
+                input.hidden(type="checkbox" autocomplete="off" ng-model="operations.operation.options.smoker")
+
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.specialAssistance}")
+                i.fa.fa-wheelchair
+                |  {{'SpecialAssistance' | translate}} 
+                input.hidden(type="checkbox" autocomplete="off" ng-model="operations.operation.options.specialAssistance")
+
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.luggage}")
+                i.fa.fa-briefcase(ng-class="{active: operations.operation.options.messaging}")
+                |  {{'Luggage' | translate}}
+                input.hidden(type="checkbox" autocomplete="off" ng-model="operations.operation.options.luggage")
+
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.vip}")
+                i.fa.fa-user
+                |  {{'VIP'  | translate}} 
+                input.hidden(type="checkbox" autocomplete="off" ng-model="operations.operation.options.vip")
+
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.airport}")
+                i.fa.fa-plane
+                |  {{'Airport' | translate}}
+                input.hidden(type="checkbox" autocomplete="off" ng-model="operations.operation.options.airport")
+
+              label.btn.btn-white.btn-sm(ng-class="{active: operations.operation.options.invoice}")
+                i.fa.fa-file-text-o
+                |  {{'Invoice' | translate}} 
+                input.hidden(type="checkbox" autocomplete="off" ng-model="operations.operation.options.invoice")
+    .from-group
+      .row
+        .col-xs-12
+          .input-group
+            .input-group-addon
+              i.fa.fa-comments.fa-fw
+            textarea.form-control(style="resize:none" rows="2" ng-model="operations.operation.comments" maxlength="5000" placeholder="{{'Comments' | translate}}")
+
+  .col-xs-3
+    .from-group
+      .row
+        .col-xs-12
+          datepicker.datepicker.pull-right(ng-model="operations.operation.date" min-date="datepickerMinDate" show-weeks="false" datepicker-mode="'day'")
+      .row
+        .col-xs-12
+          timepicker.timepicker.pull-right(ng-model="operations.operation.date" mousewheel="false" readonly-input="false" hour-step="1" minute-step="5")
+      .row
+        .col-xs-12
+          div.pull-right(style="width:182px")
+            label {{'executionTime' | translate}}
+            .input-group
+              .input-group-addon
+                | min
+              select.form-control(ng-options="option.time as option.name for option in company.scheduled" ng-model="operations.operation.executiontime")
+            
+            input.form-control(ng-model="operations.operation.executiontimeCustom" required ng-if="!operations.operation.executiontime" placeholder="Custom time")
+              
+            
+  .col-xs-12
+      .row
+        .col-xs-12
+          br
+          button.btn.btn-danger.pull-right(type="button" ng-click="resetNewOperationForm()") {{'Reset' | translate}}
+          button.btn.btn-success.pull-right(type="submit" style="margin-right: 5px" ng-click="operations.operation.submited = true;") {{'Edit' | translate}}
+      | 
+        

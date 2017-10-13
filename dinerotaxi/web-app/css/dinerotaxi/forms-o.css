@@ -1,0 +1,351 @@
+/*
+	Description: 3BO Forms Stylesheet
+	Media: Screen
+	Version: 1
+	Author: Rodrigo Galindez
+	Author URI: http://www.rodrigogalindez.com
+*/
+
+form {
+	margin: 0 auto;
+	text-align: left;
+}
+
+/* Fields */
+
+form .field {
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px dotted #ddd;
+}
+
+form .field:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+form .field:last-child {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+}
+
+/* Labels */
+
+form .field .field-label {
+	width: 150px;
+	margin-top: 6px;
+	margin-right: 10px;
+	float: left;
+}
+
+form .field .field-label label,
+form .field .field-label span.fake-label {
+	display: block;
+	margin-top: 7px;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+}
+
+/* Controls */
+
+form .field-input {
+	width: 318px;
+	float: left;
+}
+
+form .field-input input,
+form .field-input textarea {
+	display: block;
+	position: relative;
+	width: 300px;
+	border: 1px solid #ccc;
+	padding: 8px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+	font-size: 12px;
+	color: #999;
+	clear: both;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	z-index: 100;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+}
+
+.signup-wrapper form .field-input input, 
+.signup-wrapper form .field-input textarea {
+	font-size: 18px;
+} 
+
+form .field-input textarea {
+	height: 80px;
+}
+
+form .field-input select {
+	padding: 6px 8px;
+	padding-right: 10px;
+	font-size: 13px;
+	border: 1px solid #ccc;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+form .field-input option {
+	padding-right: 8px;
+	border: 1px solid #eee;
+}
+
+form .field-group {
+	position: relative;
+	clear: both;
+}
+
+form .field-group:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+form .field-group.deleteable {
+	margin-bottom: 15px;
+}
+
+form .field-group.deleteable:last-child {
+	margin: 0;
+}
+
+form .field-group.deleteable input {
+	width: 270px;
+	float: left;
+}
+
+form .field-group.deleteable .delete {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	margin-top: 11px;
+	margin-left: 15px;
+	background: transparent url(../images/icon-field-delete.png) no-repeat top left;
+	text-indent: -1000em;
+	float: right;
+}
+
+form .field-group.deleteable .delete:hover {
+	background-position: -13px 0;
+}
+
+form .field-input input:focus,
+form .field-input textarea:focus {
+	color: #333;
+}
+
+form .field-input input.readonly {
+	color: #999;
+}
+
+form .field-input p.tooltip,
+form .field-input p.error {
+	margin: 0;
+	padding: 5px;
+	padding-bottom: 0;
+	font-size: 11px;
+	color: #999;
+}
+
+form .field-input p.tooltip.password {
+	color: #799504;
+}
+
+form .field-input p.tooltip.password strong {
+	display: block;
+}
+
+form .field-input p.tooltip.conditions {
+	padding: 10px 0;
+	clear: both;
+}
+
+form .field-input p.tooltip.checkbox {
+	padding: 0;
+	line-height: normal;
+	float: right;
+	clear: both;
+}
+
+/* Error handling */
+
+form .field-group input.error,
+form .field-group textarea.error,
+form .field-group select.error {
+	border: 1px solid #FFCCCC;
+	-webkit-box-shadow: 0 1px 3px rgba(255, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 3px rgba(255, 0, 0, 0.1) inset;
+	box-shadow: 0 1px 3px rgba(255, 0, 0, 0.1) inset;
+}
+
+form .field-group p.error {
+	color: #CB2727;
+}
+
+form input.checkbox,
+form input.radio {
+	width: auto;
+	display: inline-block;
+	margin-right: 5px;
+	clear: both;
+}
+
+form label.checkbox,
+form label.radio {
+	font-size: 11px;
+	color: #333;
+}
+
+form .field-input .button-area {
+	clear: both;
+	float: left;
+}
+
+form .button-area .skip-link {
+	display: inline-block;
+	margin-top: 13px;
+	font-size: 11px;
+}
+
+form .field-input input.button-submit {
+	display: block;
+	width: auto;
+	margin-right: 10px;
+	padding: 6px 10px;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	background: #333;
+	color: #333;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: rgb(254,254,254); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(222,222,222,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,254,254,1)), color-stop(100%,rgba(222,222,222,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(222,222,222,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(222,222,222,1) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(222,222,222,1) 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(254,254,254,1) 0%,rgba(222,222,222,1) 100%); /* W3C */
+	border: 1px solid #ccc;
+	cursor: pointer;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	clear: none;
+	float: left;
+}
+
+.signup-wrapper form .field-input input.button-submit {
+	font-size: 18px;
+}
+
+form .field-input input.button-submit:hover {
+	background: rgb(241,241,241); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(241,241,241,1) 0%, rgba(212,210,210,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(241,241,241,1)), color-stop(100%,rgba(212,210,210,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(241,241,241,1) 0%,rgba(212,210,210,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(241,241,241,1) 0%,rgba(212,210,210,1) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(241,241,241,1) 0%,rgba(212,210,210,1) 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#d4d2d2',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(241,241,241,1) 0%,rgba(212,210,210,1) 100%); /* W3C */
+}
+
+form .field-input input.button-submit:active {
+	background: #ddd;
+}
+
+/* Autocomplete */
+
+form .field-group .ui-autocomplete {
+	position: absolute;
+	top: 37px;
+	width: 316px;
+	margin-top: 1px;
+	background: #f2f2f2;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	z-index: 110;
+	overflow: hidden;
+}
+
+form .field-group.deleteable .ui-autocomplete {
+	width: 286px;
+}
+
+form .field-input .ui-autocomplete li a {
+	display: block;
+	padding: 8px 10px;
+	font-size: 13px;
+	line-height: 1.6;
+	text-decoration: none;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+}
+
+form .field-input .ui-autocomplete li a:hover {
+	background: #e5e5e5;
+}
+
+form .field-input .google-map {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	background: #f2f2f2;
+	height: 150px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+form .field-input.radio {
+	margin-top: 7px;
+}
+
+form .field-input.radio.profile-type label {
+	font-size: 11px;
+	color: #999;
+}
+
+form .field-input.radio.profile-type strong {
+	font-size: 15px;
+	color: #333;
+}
+
+form .field-input.radio .field-group {
+	margin-bottom: 15px;
+}
+
+form h3 {
+	font-size: 15px;
+}
+
+form h3.nav {
+	
+}
+
+form h3.nav a {
+	
+}

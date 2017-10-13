@@ -1,0 +1,56 @@
+.pageheader
+  h2
+    i.fa.fa-user
+    | {{'Profile' | translate}}
+.contentpanel
+  .col-lg-6.col-xs-12
+    .panel.panel-dark
+      .panel-heading
+        h3.panel-title {{'Company' | translate}}
+      .panel-body
+
+        form(ng-submit="editCompany(company)")
+          .form-group
+            label {{'BusinessName' | translate}}
+            input.form-control(type="text" name="name" ng-model="company.name")
+          .form-group
+            label {{'IdentificationNumber' | translate}}
+            input.form-control(ng-model="company.cuit")
+          .form-group
+            label {{'PhoneNumber' | translate}}
+            input.form-control(ng-model="company.phone")
+          .form-group
+            label {{'UserName' | translate}}
+            input.form-control(ng-model="company.contactName")
+          .form-group
+            label {{'UserCelphone' | translate}}
+            input.form-control(ng-model="company.celphone")
+          .form-group
+            button.btn.btn-darkblue.pull-right {{'Save' | translate}}
+    .panel.panel-dark
+      .panel-heading
+        h3.panel-title {{'Security' | translate}}
+      .panel-body
+         form(ng-submit="editPassword(password)")
+          .form-group
+            label {{'NewPassword' | translate}}
+            input.form-control(ng-model="password.news" type="password")
+          .form-group
+            label {{'RepeatPassword' | translate}}
+            input.form-control(ng-model="password.repeat" type="password")
+          .form-group
+            button.btn.btn-darkblue.pull-right {{'Save' | translate}}
+
+  .col-lg-6.col-xs-12
+    .panel.panel-dark
+      .panel-heading
+        h3.panel-title {{'Location' | translate}}
+      .panel-body
+        .form-group
+          label {{'Address' | translate}}
+          input.form-control(ng-model="address" placeholder="Drag the marker to get desired address")
+        #map_canvas
+          
+        br
+        .form-group
+          button.btn.btn-darkblue.pull-right(ng-click="updateCompanyLocation()") {{'Save' | translate}}

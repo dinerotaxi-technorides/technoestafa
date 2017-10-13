@@ -1,0 +1,99 @@
+#corporate
+  div(ng-include="'/common/views/partials/version.html'")
+  nav.navbar.navbar-default.shadow-bottom
+    .container-fluid
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          img.navbar-brand(src="https://technorides.com/common/assets/newbooking/{{user.rtaxi}}/logo-top.png" height="50")
+
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(ng-click="user.logout(user.rtaxi)" href="")
+                .hidden-xs
+                  i.fa.fa-power-off
+                .visible-xs
+                  i.fa.fa-power-off(style="margin-right: 10px")
+                  span(typed-translate="") corporate.sections.logout
+            li(ng-class="{active: tab == 'dashboard'}").visible-xs
+              a(ng-click="tab = 'dashboard';corporate.getInfo();company.getStatics(user.token)" href="")
+                i.fa.fa-tachometer(style="margin-right: 10px")
+                span(typed-translate="") corporate.sections.dashboard
+            li(ng-class="{active: tab == 'costCenters'}" ng-show="user.superUser").visible-xs
+              a(ng-click="tab = 'costcenters';corporate.costCenters.get()" href="")
+                i.fa.fa-sitemap(style="margin-right: 10px")
+                span(typed-translate="") corporate.sections.costCenters
+            li(ng-class="{active: tab == 'employees' || tab == 'employee'}"  ng-hide="user.superUser").visible-xs
+              a(ng-click="tab = 'employees';employees.get()" href="")
+                i.fa.fa-users(style="margin-right: 10px")
+                span(typed-translate="") corporate.sections.employees
+            li(ng-class="{active: tab == 'billing'}"  ng-hide="user.superUser").visible-xs
+              a(ng-click="tab = 'billing';corporate.invoices.get()" href="")
+                i.fa.fa-money(style="margin-right: 10px")
+                span(typed-translate="") corporate.sections.billing
+            li(ng-class="{active: tab == 'history'}"  ng-hide="user.superUser").visible-xs
+              a(ng-click="tab = 'history';corporate.operations.get()" href="")
+                i.fa.fa-history(style="margin-right: 10px")
+                span(typed-translate="") corporate.sections.history
+            li(ng-class="{active: tab == 'profile'}" ng-show="user.superUser").visible-xs
+              a(ng-click="tab = 'profile';corporate.setLocation()" href="")
+                i.fa.fa-user(style="margin-right: 10px")
+                span(typed-translate="") corporate.sections.profile
+
+  section.tab.pull-left.hidden-xs
+    ul.nav.nav-pills.nav-stacked
+      li(ng-class="{active: tab == 'dashboard'}")
+        a(ng-click="tab = 'dashboard';company.getStatics(user.token)" href="")
+          i.fa.fa-tachometer
+          span(typed-translate="") corporate.sections.dashboard
+      li(ng-class="{active: tab == 'costcenters'}" ng-show="user.superUser")
+        a(ng-click="tab = 'costcenters';corporate.costCenters.get()" href="")
+          i.fa.fa-sitemap
+          span(typed-translate="") corporate.sections.costCenters
+      li(ng-class="{active: tab == 'employees'}" ng-hide="user.superUser")
+        a(ng-click="tab = 'employees';employees.get()" href="")
+          i.fa.fa-users
+          span(typed-translate="") corporate.sections.employees
+      li(ng-class="{active: tab == 'billing'}" ng-hide="user.superUser")
+        a(ng-click="tab = 'billing';corporate.invoices.get()" href="")
+          i.fa.fa-money
+          span(typed-translate="") corporate.sections.billing
+      li(ng-class="{active: tab == 'history'}" ng-hide="user.superUser")
+        a(ng-click="tab = 'history';corporate.operations.get()" href="")
+          i.fa.fa-history
+          span(typed-translate="") corporate.sections.history
+      li(ng-class="{active: tab == 'profile'}" ng-show="user.superUser")
+        a(ng-click="tab = 'profile';corporate.setLocation()" href="")
+          i.fa.fa-user
+          span(typed-translate="") corporate.sections.profile
+    br
+    .text-center
+      a.btn.btn-technorides.square.btn-block(href="#booking" typed-translate="") corporate.sections.orderTaxi
+  section.content
+    div(ng-switch="tab")
+      div(ng-switch-when="dashboard")
+        div(ng-include="'views/corporate/dashboard.html'")
+      div(ng-switch-when="costcenters")
+        div(ng-include="'views/corporate/company.html'")
+      div(ng-switch-when="employees")
+        div(ng-include="'views/corporate/employees.html'")
+      div(ng-switch-when="billing")
+        div(ng-include="'views/corporate/billing.html'")
+      div(ng-switch-when="history")
+        div(ng-include="'views/corporate/history.html'")
+      div(ng-switch-when="employee")
+        div(ng-include="'views/corporate/employee.html'")
+      div(ng-switch-when="invoice")
+        div(ng-include="'views/corporate/invoice.html'")
+      div(ng-switch-when="costprofile")
+        div(ng-include="'views/corporate/cost-center.html'")
+      div(ng-switch-when="profile")
+        div(ng-include="'views/corporate/profile.html'")
+// This modal takes data from service $modal
+div(ng-include="'views/modal/async.html'")

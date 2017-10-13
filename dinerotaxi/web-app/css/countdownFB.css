@@ -1,0 +1,75 @@
+#countdown{
+	display:block;
+	font-family:"Trebuchet MS",Helvetica,Arial,Sans-serif;
+	font-size:14px;
+	height:30px;
+	position:absolute;
+	right:12px;
+	top:32px;
+	width:377px;
+}
+
+#countdown .text{
+	margin-right:10px;
+	padding-top:3px;
+	position:absolute;
+	right:176px;
+	top:0;
+	text-align:right;
+	width:271px;
+}
+
+#countdown .markets-closed{
+	color:red;
+}
+
+#countdown .markets-open{
+	color:green;
+}
+
+#countdown #timer{
+	width:180px;
+	position: absolute;
+	right: 0;
+	top:0;
+}
+
+
+#countdown .holiday {
+	color:red;
+	font-size:12px;
+	position:absolute;
+	right:0;
+	text-align:right;
+	top:24px;
+}
+
+
+
+#countdown .clockDigit {
+	margin:0px;
+	padding:0px;
+	background: no-repeat;
+	background-image:url(../img/numbers.png);
+	width:20px;
+	height:38px;
+	border:none;
+	display:block;
+	float:left;
+}
+
+#countdown .clockDigitColons {
+	margin:0px;
+	padding:0px;
+	background: no-repeat;
+	/*background-image:url(http://tradefields.com/facebook/images/colons.png);*/
+	width:5px;
+	height:38px;
+	border:none;
+	display:block;
+	float:left;
+}
+
+
+
+

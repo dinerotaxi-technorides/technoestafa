@@ -1,0 +1,87 @@
+.jcarousel-skin-tango .jcarousel-container {
+    /*-moz-border-radius: 10px;
+    background: #F0F6F9;
+    border: 1px solid #346F97;*/
+}
+
+.jcarousel-skin-tango .jcarousel-direction-rtl {
+	direction: rtl;
+}
+
+.jcarousel-skin-tango .jcarousel-container-vertical {
+    width: 710px;
+    height: 500px;
+    padding: 10px;
+}
+
+.jcarousel-skin-tango .jcarousel-clip-vertical {
+    width: 710px;
+    height: 442px;
+}
+
+.jcarousel-skin-tango .jcarousel-item {
+    width: 175px;
+    min-height: 40px;
+}
+
+.jcarousel-skin-tango .jcarousel-item-vertical {
+    margin-bottom: 10px;
+}
+
+.jcarousel-skin-tango .jcarousel-item-placeholder {
+    background: #fff;
+    color: #000;
+}
+
+/**
+ *  Vertical Buttons
+ */
+.jcarousel-skin-tango .jcarousel-next-vertical {
+    position: absolute;
+    bottom: 6px;
+    right: 15px;
+    width: 45px;
+    height: 48px;
+    cursor: pointer;
+    background:url(../images/btn_next.png) no-repeat 0 0;
+}
+
+.jcarousel-skin-tango .jcarousel-next-vertical:hover {
+    background-position: 0 -48px;
+}
+
+.jcarousel-skin-tango .jcarousel-next-vertical:active {
+    background-position: 0 -48px;
+}
+
+.jcarousel-skin-tango .jcarousel-next-disabled-vertical,
+.jcarousel-skin-tango .jcarousel-next-disabled-vertical:hover,
+.jcarousel-skin-tango .jcarousel-next-disabled-vertical:active {
+    cursor: default;
+   background-position: 0 -48px;
+}
+
+.jcarousel-skin-tango .jcarousel-prev-vertical {
+    position: absolute;
+    bottom: 6px;
+    left: 15px;
+    width: 45px;
+    height: 48px;
+    cursor: pointer;
+    background:url(../images/btn_prev.png) no-repeat 0 0;
+}
+
+.jcarousel-skin-tango .jcarousel-prev-vertical:hover {
+    background-position: 0 -48px;
+}
+
+.jcarousel-skin-tango .jcarousel-prev-vertical:active {
+    background-position: 0 -48px;
+}
+
+.jcarousel-skin-tango .jcarousel-prev-disabled-vertical,
+.jcarousel-skin-tango .jcarousel-prev-disabled-vertical:hover,
+.jcarousel-skin-tango .jcarousel-prev-disabled-vertical:active {
+    cursor: default;
+    background-position: 0 -48px;
+}

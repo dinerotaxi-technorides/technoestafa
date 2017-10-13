@@ -1,0 +1,21 @@
+form(name="newCostCenter",ng-submit="newCostCenter.$valid && corporate.addCostCenter(costCenter)")
+  .row
+    .col-xs-12
+      .form-group
+        label
+          span(typed-translate="") corporate.labels.phone
+          small  *
+        input.form-control(ng-model="costCenter.phone" required  tabindex="1")
+      .form-group
+        label
+          span(typed-translate="") index.labels.address
+          small  *
+        input.form-control(ng-model="costCenter.address" required tabindex="2")
+      .form-group
+        label
+          span(typed-translate="") corporate.labels.name
+          small  *
+        input.form-control(ng-model="costCenter.name" required tabindex="3")
+    .col-xs-12    
+      button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal" aria-hidden="true" type="button" typed-translate="") corporate.labels.cancel
+      button.btn.btn-success.btn-md.pull-right(type="submit" style="margin-right:5px" typed-translate="") corporate.labels.ok

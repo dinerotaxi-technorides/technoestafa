@@ -1,0 +1,493 @@
+$greenTechnorides : #009a80
+$blue : #04878f
+$violet : #09666c
+$darkGreen : #107a68
+// NAVBAR BOOTSTRAP OVERRIDE
+*
+  font-family: 'Montserrat', sans-serif
+
+p
+  font-family: 'Exo', sans-serif
+
+.navbar-brand
+  padding-top: 10px
+  p
+    font-size: 20px
+    color: #404041
+    margin-top: 2px
+    letter-spacing: 0.03em
+    span
+      font-family: 'Exo', sans-serif
+      color: $greenTechnorides
+  img
+    width: 25px
+    margin-right: 5px
+@mixin innershadow
+  -webkit-box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+  -moz-box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+  box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+.navbar
+  margin:
+    bottom: 0px
+  min-height: 70px
+  padding:
+    top: 10px
+  border-radius: 0
+
+.navbar-fixed-top
+  background-color: rgba(255,255,255,0.97)
+  border: 0
+  font-family: 'Montserrat', sans-serif!important
+  color: #333
+.navbar-nav>li>a
+  padding-top: 10px
+  padding-bottom: 10px
+  border-radius: 3px
+  color: #333
+  &:hover
+    background: none
+  &:focus
+    background: none
+.navbar-nav>li.active
+  background-color: $greenTechnorides
+  border-radius: 3px
+  a
+    color: white
+// END BOOTSTRAP OVERRIDE
+
+// General styles
+.nav-small
+  border:
+    bottom: 1px solid #ccc
+  margin-bottom: 10px
+  .caret
+    margin-left: 5px
+  .btn-group
+    bottom: 5px
+  img
+    width: 20px
+    margin-right: 10px
+  ul
+    li
+      cursor: pointer
+  .user-actions
+    position: relative
+    top: 2px
+    list-style-type: none
+    li
+      float: left
+      color: $greenTechnorides
+      margin:
+        right: 5px
+        left: 5px
+      a
+        color: $greenTechnorides
+
+.btn-technorides
+  background-color: $greenTechnorides
+  color: white!important
+  outline: 0!important
+
+.shadow
+  text-shadow: 2px 4px #333
+
+.uppercase
+  text-transform: uppercase
+
+.no-padding
+  padding: 0!important
+
+section
+  padding:
+    top: 60px
+    bottom: 60px
+
+.shadow-top
+  -webkit-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+  -moz-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+  box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+
+.shadow-bottom
+  -webkit-box-shadow: 0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow:    0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+  box-shadow:         0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+// WEB SPECIFICS
+footer
+  img
+    padding: 2px
+    max-width: 80px!important
+
+.banner
+  background-image: url("../assets/bg.jpg")
+  color: white
+  margin-top: -70px
+  padding-top: 70px
+  height: 650px
+
+.caption-banner
+  margin-top: 200px
+.passenger
+  background-color: $greenTechnorides
+  height: 500px
+  color: white
+  h1
+    small
+      font-size: 15px
+      color: white
+      text-transform: none
+.app-caption
+  padding:
+    top: 100px
+  img
+    margin:
+      right: 10px
+      top : 20px
+  h1
+    margin-bottom: 0
+.img-app
+  position: relative
+  top: 35px
+.driver
+  background-color: $blue
+  height: 500px
+  color: white
+  h1
+    small
+      font-size: 15px
+      color: white
+      text-transform: none
+.web-app
+  background-color: $violet
+  height: 500px
+  color: white
+  h1
+    small
+      font-size: 15px
+      color: white
+      text-transform: none
+
+.cubicle-blue
+  color: white
+  background-color: $blue
+  padding:
+    top: 20px
+    bottom: 20px
+
+.cubicle-darkblue
+  background-color: $violet
+  color: white
+  padding:
+    top: 20px
+    bottom: 20px
+.pricing-list
+  list-style-type: none
+  margin: 0
+  padding: 0
+  li
+    padding: 10px 0
+  span
+
+    i
+      position: relative
+      top: 5px
+      float: left
+      margin-right: 10px
+      color: $greenTechnorides
+  .text
+    display: block
+    margin-left: 30px
+
+
+.testimony
+  background-image: url("../assets/bgtestimonials.png")
+  height: 270px
+  padding:
+    top: 40px
+  color: white
+  img
+    max-width: 200px
+  .caption-testimony
+    margin-top: 60px
+
+textarea
+  resize: none
+footer
+  background-color : $greenTechnorides
+  color: white
+  padding : 20px 0px
+  h3
+    font-weight: lighter
+  ul
+    list-style-type: none
+    margin: 0
+    padding: 0
+    li
+      font-size: 15px
+      font-weight: bold
+      line-height: 24px
+  .about-us
+    background-image: url("../assets/footermap.png")
+    background-repeat: no-repeat
+    background-position: right bottom
+  .copy
+    text-transform: small-caps
+.cars-footer
+  background-image: url("../assets/footerimg.png")
+  height: 100px
+  background-repeat: no-repeat
+  background-position: center
+  padding-top: 40px
+
+input[type="range"]
+  -webkit-appearance: none
+  margin:
+    top : 20px
+    bottom: 20px
+
+  &::-webkit-slider-runnable-track
+    height: 5px
+    background: $darkGreen
+    border: none
+    border-radius: 3px
+    cursor: pointer
+
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    border: none
+    height: 20px
+    width: 20px
+    border-radius: 50%
+    background: $violet
+    margin-top: -7px
+
+  &:focus
+    outline: none
+a
+  color: white
+  text-decoration: none
+  &:hover
+    color: white
+    text-decoration: none
+
+input[type=range]:focus::-webkit-slider-runnable-track
+  background: $darkGreen
+
+.free-trial
+  border-radius: 5px
+  .body
+    background-image: url("../assets/freetrial/freetrial_bg.jpg")
+    background-size: 100% 100%
+    height: 880px
+    padding: 5px
+    h2
+      margin-bottom: 0px
+      color: white
+    small
+      color: white
+      display: block
+      margin-top: 10px
+  .close
+    margin-top: 15px
+    color: white
+  .box
+    margin-top: 20px
+    border-radius: 5px
+    background-color: $greenTechnorides
+    padding: 5px
+    .feature
+      margin-bottom: 25px
+      i
+        color: white
+      strong
+        color: white
+        font-weight: bold
+  form
+    background-color: white
+    padding: 15px
+  .terms
+    margin-top: 5px
+    font-size: 11px
+    color: #333
+    a
+      color: $greenTechnorides
+      text-decoration: underline
+.submited
+  .ng-invalid
+    color: white
+    background-color: #e74c3c
+    border-color: #ebccd1
+    &::-webkit-input-placeholder
+      color: white
+    &:-moz-placeholder
+      color: white
+    &::-moz-placeholder
+      color: white
+    &:-ms-input-placeholder
+      color: white
+#map_canvas
+  width: 100%
+  height: 280px
+  position: relative
+  .angular-google-map-container
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 0
+    left: 0
+  address
+    z-index: 1
+    position: relative
+    padding: 5px
+    background-color: rgba(255,255,255,0.7)
+    h4
+      border-bottom: 2px solid #ccc
+    p
+      font-size: 12px
+      i
+        font-size: 15px
+        margin-right: 5px
+.tooltip.top
+  left : auto!important
+  .tooltip-inner
+    background-color: #464646
+  .tooltip-arrow
+    border-top-color: #464646
+
+.basic
+  background-color: #389fa5
+.advanced
+  background-color: #04878f
+.premium
+  background-color: #009a80
+.enterprise
+  background-color: #008065
+
+.you-selected
+  color: white
+.plan
+  width: 320px
+  margin: 0 auto
+  .title
+    padding: 13px 0
+    color: white
+    position: relative
+    font-size: 20px
+    z-index: 1
+    top: 12px
+    border-radius: 25px
+    text-align: center
+  .icon
+    position: relative
+    z-index: 2
+    width: 80px
+    height: 80px
+    border-radius: 50%
+    border: 3px solid white
+    padding: 10px
+    float: left
+.usa
+  background-image: url("/technorides/assets/usa.png")
+  width: 30px
+  height: 20px
+  background-repeat: no-repeat
+  background-size: 100% 100%
+  float: left
+  margin-right: 20px
+  border-radius: 2px
+
+.europe
+  background-image: url("/technorides/assets/europe.png")
+  width: 30px
+  height: 20px
+  background-repeat: no-repeat
+  background-size: 100% 100%
+  float: left
+  margin-right: 20px
+  border-radius: 2px
+.latam
+  background-image: url("/technorides/assets/latam.png")
+  width: 30px
+  height: 20px
+  background-repeat: no-repeat
+  background-size: 100% 100%
+  float: left
+  margin-right: 20px
+  border-radius: 2px
+.select
+  width: 100%!important
+#flag
+  .caret
+    float: right
+    position: relative
+    top: 8px
+.showmore
+  .modal-header
+    padding: 25px 15px
+    border: 0
+    .close
+      margin-top: -13px
+      color: white
+      font-weight: lighter
+      opacity: 1
+  .modal-footer
+    border: 0
+    background-color: white
+    max-height: 55px
+    border-radius: 20px
+  .title
+    h1
+      color: white
+  .modal-body
+    color: white
+    max-height: 250px
+    ul
+      margin: 0
+      padding: 0
+      list-style-type: none
+      li
+        margin-bottom: 10px
+        i
+          margin-right: 5px
+    p
+      margin-bottom: 20px
+    img
+      position: relative
+      top: -100px
+  .title
+    background-color: #12666c
+  .modal-header,.modal-body
+    background-color: #0f868d
+// FIX MODALS ERRORS
+.panel-btns
+  a
+    cursor: pointer
+    margin-left: 8px
+    float: right
+    color: #000
+    display: inline-block
+    font-weight: bold
+    opacity: 0.4
+    font-size: 16px
+    -moz-transition: all 0.2s ease-out 0s
+    -webkit-transition: all 0.2s ease-out 0s
+    transition: all 0.2s ease-out 0s
+.panel
+  border: none
+.panel-success
+  .panel-heading
+    background-color: #1CAF9A
+    color: white
+.panel-danger
+  .panel-heading
+    background-color: #D9534F
+    color: white
+.panel-warning
+  .panel-heading
+    background-color: #F0AD4E
+    color: white
+.panel-body
+  color: #333
+.taxes
+  font-size: 10px
+  color: #777
+  font-weight: lighter

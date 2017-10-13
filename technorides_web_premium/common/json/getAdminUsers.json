@@ -1,0 +1,8 @@
+{
+  "status": 100,
+  "users" :[ 
+    {"mail" : "mijail@techo-techo.com"},
+    {"mail" : "jaun@techo-techo.com"},
+    {"mail" : "mela@techo-techo.com"}
+	]
+}

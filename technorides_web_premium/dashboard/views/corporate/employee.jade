@@ -1,0 +1,143 @@
+.pageheader
+  h2
+    i.fa.fa-male
+    | {{'Employees' | translate}}
+    a.btn.btn-success.btn-sm.pull-right(href="#corporate/{{corporate.companies.company.id}}/{{corporate.companies.costCenters.costCenter.id}}")  {{'GoBack' | translate}}
+.contentpanel
+  .contentpanel
+    .row
+      .panel.panel-default
+        .panel-body
+          .col-xs-2
+            img.img-responsive(src="https://dummyimage.com/200x200/0ccccc/fff&text={{employees.employee.name | limitTo:1| uppercase}}{{employees.employee.lastname | limitTo:1 | uppercase}}")
+          .col-xs-5
+            h5.uppercase.underline {{employees.employee.name}} {{employees.employee.lastname}}
+              a.pull-right(href="" ng-click="employees.editEmployee('','',employees.employee)")
+                i.fa.fa-pencil
+
+            ul.com-details()
+              li
+                i.fa.fa-phone
+                |  {{employees.employee.phone}}
+              li
+                i.fa.fa-envelope
+                |  {{employees.employee.user}}
+              li
+                i.fa.fa-check-circle.text-success(ng-if="!employees.employee.enabled")
+                i.fa.fa-times-circle.text-danger(ng-if="employees.employee.enabled")
+                |  Enabled
+              li(ng-if="employees.employee.admin")
+                i.fa.fa-user
+                |  {{'Admin' | translate}}
+              li(ng-if="employees.employee.superAdmin")
+                i.fa.fa-users
+                |  {{'CompanyAdmin' | translate}}
+          .col-xs-5
+
+    .row
+      .col-sm-3.col-lg-2
+        ul.nav.nav-pills.nav-stacked.nav-email(ng-init="employProf = 1")
+          li(ng-class="{active : employProf == 1}")
+            a(ng-click="employProf = 1;employees.getEmployeeHistory(employees.employee.id,1)"  href="")
+              i.fa.fa-map-marker
+              | {{'Operations' | translate}}
+
+          li(ng-class="{active : employProf == 2}")
+            a(ng-click="employProf = 2" href="")
+              i.fa.fa-times
+              | {{'BlockEmployee' | translate}}
+      .col-sm-9.col-lg-10
+        .panel.panel-default
+          .panel-body(ng-if="employProf == 1")
+            h2.underline {{'Operations' | translate}}
+            .col-lg-8.col-xs-12
+            .col-xs-4.col-xs-12
+              .input-group.hidden
+                input.form-control.input-sm(placeholder="{{'Search' | translate}}..." ng-model="search" ng-change="employees.getEmployeeHistory(employees.employee.id,0)" )
+                .input-group-btn.hidden
+                  button.btn.btn-technorides.btn-sm(style="margin-top:2px" ng-click="employees.getEmployeeHistory(employees.employee.id,1)")
+                    i.fa.fa-search
+            .col-xs-12
+              br
+              .table-responsive
+                table.table.table-technorides
+                  thead
+                    tr
+                      th.text-left ID
+                      th.text-center {{'Date' | translate}}
+                      th.text-center {{'Amount' | translate}}
+                      th.text-right {{'status' | translate}}
+                  tbody
+                    tr(ng-repeat="operation in employees.history")
+                      td {{operation.id}}
+                      td.text-center {{operation.date | date:'dd/MM/yyyy hh:mm'}}
+                      td.text-center {{company.config.fares.currency}} {{operation.amount}}
+                      td.text-center(ng-class="{'text-danger strong': operation.status == 'CANCELED'}") {{operation.status | lowercase | translate }}
+                        
+                    tr(ng-if="employees.history.length < 1")
+                      td(colspan="4") {{'noElementsFound' | translate}}
+                      
+              //PAGINATION
+              .text-center
+                nav
+                  ul.pagination
+                    li(ng-class="{active: employees.page == 1}")
+                      a(ng-click="employees.getEmployeeHistory(employees.employee.id,0)" href="")
+                        i.fa.fa-angle-double-left
+                    li(ng-repeat="page in employees.pages" ng-class="{active: page == employees.page}")
+                      a(ng-click="employees.getEmployeeHistory(employees.employee.id, page)" href="")  {{page}}
+                    li(ng-class="{active: employees.page == employees.totalPages}")
+                      a(ng-click="employees.getEmployeeHistory(employees.employee.id, employees.totalPages)" href="")
+                        i.fa.fa-angle-double-right
+
+          .panel-body(ng-if="employProf == 2")
+              h2.underline {{'BlockEmployee' | translate}}
+              br
+              toggle-switch(ng-model="employees.employee.enabled" ng-change="employees.activateEmployee(employees.employee.id)")
+.modal.fade.edit-employee(tabindex="-1", role="dialog", aria-labelledby="editDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'editEmployee' | translate}}
+        .panel-body
+
+          form(name="add",ng-submit="employees.editEmployee(corporate.companies.costCenters.costCenter.id, true)")
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label {{'id' | translate}}*
+                  input.form-control(ng-model="employees.employee.id", required  readonly tabindex="1")
+                .form-group
+                  label {{'Name' | translate}}*
+                  input.form-control(ng-model="employees.employee.name", required tabindex="3")
+                .form-group
+                  label {{'Password' | translate}}
+                  input.form-control(ng-model="employees.employee.password", placeholder="Not required" tabindex="5" type="password")
+                .form-group
+                  label(for="checkboxDefault") {{'Admin' | translate}}
+                  br
+                  toggle-switch(name="admin" ng-required="employees.employee.superAdmin" ng-model="employees.employee.admin")
+                  br
+                  span(ng-show="add.$submitted && add.admin.$invalid") User must be admin tu be company admin
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="lastname") {{'LastName' | translate}}*
+                  input.form-control(type="text",   placeholder="", ng-model="employees.employee.lastname", required  tabindex="2")
+                .form-group
+                  label(for="phone") {{'Phone' | translate}}*
+                  input.form-control( ng-model="employees.employee.phone", required tabindex="4")
+                .form-group
+                  label() {{'Email' | translate}}
+                  input.form-control(ng-model="employees.employee.user" type="email" required tabindex="6")
+                .form-group
+                  label(for="checkboxDefault") {{'CompanyAdmin' | translate}}
+                  br
+                  toggle-switch(ng-model="employees.employee.superAdmin")
+
+              .col-xs-12
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button", ng-click="employees.getEmployeeHistory(employees.employee.id, 1)") {{'Cancel' | translate}}
+                input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Ok' | translate}}")

@@ -1,0 +1,21 @@
+.text-center
+  br
+  img(src="assets/account.png")
+  h2 {{ "Login" | translate }}
+br
+form.text-center(ng-submit="loginForm.$valid && login(credentials)", ng-class="{submited: loginForm.submited}", name="loginForm", role="form", novalidate="")
+  .col-xs-12
+    .input-group
+      span.input-group-addon @
+      input.form-control(type="email", ng-required="true", placeholder="{{ 'E-mail' | translate }}", ng-model="credentials.user", ng-class="{submited: loginForm.submited}")
+  .col-xs-12
+    .input-group
+      span.input-group-addon
+        i.fa.fa-lock
+      input.form-control(type="password", ng-required="true", placeholder="{{ 'Password' | translate }}", ng-model="credentials.password", ng-class="{submited: loginForm.submited}")
+    br
+  .col-xs-12
+    button.btn.btn-default(ng-click="loginForm.submited = true") {{ "Login" | translate }}
+  br
+  p
+    a(href="#forgot-password") {{ "ForgotPassword" | translate }}

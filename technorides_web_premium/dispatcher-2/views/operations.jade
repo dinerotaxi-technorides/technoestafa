@@ -1,0 +1,698 @@
+.contentpanel.panel-email.operations-grid
+  .row
+
+    .col-sm-3.col-lg-2(ng-init="menu.tab ='pending'")
+      a.btn.btn-danger.btn-block.btn-compose-email(href="" ng-click="menu.tab = 'new'; resetNewOperationForm();loadNewView()")
+        strong {{'newOperation' | translate}}
+      ul.nav.nav-pills.nav-stacked.nav-email
+        li(ng-class="{active: menu.tab == 'pending'}")
+          a(href="",ng-click="menu.tab = 'pending';paginateNormal(1, 'pending', '');gotoPending()")#goto-pending
+            span.badge.badge-danger.pull-right(ng-if="(operations.list | filter:{status:'pending'}).length != 0") {{(operations.list | filter:{status:'pending'}).length }}
+            span.fa.fa-inbox.fa-fw
+            | {{'Pending' | translate}}
+        li(ng-class="{active: menu.tab == 'intransaction'}")
+          a(href="", ng-click="menu.tab = 'intransaction'; paginateNormal(1, 'intransaction', '')")
+            span.badge.badge-danger.pull-right(ng-if="(operations.list | filter:{status:'intransaction'}).length != 0") {{(operations.list | filter:{status:'intransaction'}).length }}
+            span.fa.fa-play.fa-fw
+            | {{'Intransaction' | translate}}
+        li(ng-class="{active: menu.tab == 'history'}")
+          a(href="", ng-click="menu.tab = 'history'; paginateNormal(1, 'history', '')")
+            span.badge.badge-danger.pull-right(ng-if="(operations.list | filter:{status:'history'}).length != 0") {{(operations.list | filter:{status:'history'}).length }}
+            span.fa.fa-history.fa-fw
+            | {{'History' | translate}}
+        li(ng-class="{active: menu.tab == 'scheduled'}")
+          a(href="",ng-click="menu.tab = 'scheduled';menu.stab = '' ; operations.getScheduled()")
+            span.badge.badge-danger.pull-right(ng-if="(operations.scheduled | filter:{substatus:'PENDING'}).length != 0") {{operations.scheduledTotal}}
+            span.fa.fa-calendar.fa-fw
+            | {{'Scheduled' | translate}}
+        li(ng-class="{active: menu.tab == 'canceled'}")
+          a(href="", ng-click="menu.tab='canceled';paginateCanceled(1, 'CANCELED');menu.stab='CANCELED';sortByStatus='CANCELED'")
+            span.badge.badge-danger.pull-right(ng-if="(operations.list | filter:{status:'canceled'}).length != 0") {{(operations.list | filter:{status:'canceled'}).length }}
+            span.fa.fa-trash.fa-fw
+            | {{'Canceled' | translate}}
+        li(ng-class="{active: menu.tab=='messages'}")
+          a(href="", ng-click="menu.tab='messages'")
+            span.badge.badge-danger.pull-right(ng-if="(radio.messages | filter:{listened:false} ).length != 0") {{(radio.messages | filter:{listened:false}).length }}
+            span.fa.fa-microphone.fa-fw
+            | {{'Messages' | translate}}
+
+    .col-sm-9.col-lg-10(ng-if="menu.tab == 'editScheduled'")
+      .panel.panel-default
+        .panel-body
+          div(ng-include="'views/editscheduled.html'" ng-if="menu.tab == 'editScheduled'")
+
+    .col-sm-9.col-lg-10(ng-show="menu.tab == 'new'")
+      .panel.panel-default
+        .panel-body
+          div(ng-include="'views/new.html'")
+
+    .col-sm-9.col-lg-10(ng-if="menu.tab == 'scheduled'")
+      .panel.panel-default
+        .panel-body
+          ul.nav.nav-tabs.nav-dark(role="tablist")
+            li(role="presentation" ng-class="{active: menu.stab == ''}")
+              a(ng-click="menu.stab = '';operations.getScheduled()" href="") {{'Pending' | translate}}
+            li(role="presentation" ng-class="{active: menu.stab == 'COMPLETED'}")
+              a(ng-click="menu.stab = 'COMPLETED';operations.getScheduled('COMPLETED')" href="") {{'Completed' | translate}}
+            li(role="presentation" ng-class="{active: menu.stab == 'PENDING'}")
+              a(ng-click="menu.stab = 'PENDING';operations.getScheduled('PENDING')" href="") {{'last24hs' | translate}}
+            li(role="presentation" ng-class="{active: menu.stab == 'CANCELED'}")
+              a(ng-click="menu.stab = 'CANCELED';operations.getScheduled('CANCELED')" href="") {{'Canceled' | translate}}
+          br
+          p.text-center(ng-show="operations.scheduled.length <= 0" colspan="3") {{'NoResultsFound' | translate}}
+          .table-responsive.op-list
+            table.table.table-email
+              tbody
+                tr.unread(ng-repeat="operation in operations.scheduled | orderBy: 'date'")
+                  td.hidden
+                  td
+                    span.fa-stack.fa-lg(ng-click="map.centerInMarker('operations', operation.id)")
+                      i.fa.fa-square.fa-stack-2x(style="color: #01839b")
+                      i.fa.fa-location-arrow.fa-inverse.fa-stack-1x
+                  td
+                    .media
+                      .media-body
+                        .actions(ng-if="user.role != 'calltaker'")
+
+                          button.btn.btn-danger.btn-xs.pull-right(title="{{'Cancel' | translate}}" ng-click="operations.cancel(operation, false)" ng-if="menu.stab != 'CANCELED' && menu.stab != 'COMPLETED'")
+                            i.fa.fa-times-circle
+
+
+                          button.btn.btn-default.btn-xs.pull-right(style="margin-right:5px",  ng-click="operations.assign_delay_trip(operation, false)" title="{{'Assign' | translate}}" ng-if="menu.stab != 'CANCELED' && menu.stab != 'COMPLETED'")
+                            i.fa.fa-thumb-tack
+
+
+                          button.btn.btn-default.btn-xs.pull-right(style="margin-right:5px" ng-click="menu.tab = 'editScheduled';operations.editScheduled(operation, false);" title="{{'Edit' | translate}}" ng-if="menu.stab != 'CANCELED' && menu.stab != 'COMPLETED'")
+                            i.fa.fa-pencil
+
+                        h4.text-primary(ng-click="operations.show(operation)"  modal="views/modals/show-op-details.html" modal-size="large" modal-close="true" modal-title="" )
+                          | # {{operation.id}}
+                          | &nbsp;
+                          span.media-meta {{ operation.createdAt | date: "d MMM. hh:mm a" }}
+
+                        p.email-summary
+                          i.fa.fa-user.fa-fw
+                          | {{operation.passenger.name}} {{operation.passenger.lastName}}
+
+                        p.email-summary
+                          i.fa.fa-map-marker.fa-fw
+                          | {{operation.address.from.street}}
+                          | {{operation.address.from.number}}
+
+
+
+                        p.email-summary(ng-if="operation.address.to.street")
+                          i.fa.fa-flag.fa-fw
+                          | {{operation.address.to.street}}
+                          | {{operation.address.to.number}}
+
+                        p.email-summary(ng-if="operation.comments")
+                          i.fa.fa-comments.fa-fw
+                          | {{operation.comments | limitTo: 20}}
+
+
+                        p.email-summary(ng-if="operation.driver.id")
+                          i.fa.fa-taxi.fa-fw
+                          | {{operation.driver.id}}
+                          span(ng-if="menu.tab == 'intransaction'")
+                            i.fa.fa-clock-o.fa-fw.fa-spin(ng-if="operation.estimatedTime > 0")
+                            i.fa.fa-exclamation-circle.fa-fw(ng-if="operation.estimatedTime <= 0")
+                            | {{operation.atDoorAt}}
+
+                        p.email-summary(ng-if="menu.tab == 'scheduled'")
+                          i.fa.fa-calendar
+                          |  {{operation.date | date: "d MMM. hh:mm a"}}
+
+                        p.email-summary(ng-if="menu.tab == 'history' && operation.amount")
+                          i.fa.fa-dollar
+                          | {{operation.amount}}
+          .text-center(ng-show="operations.scheduledPages.length > 1" )
+            nav
+              ul.pagination              
+                li(ng-repeat="page in operations.scheduledPages" ng-class="{active: operations.scheduledPage == page}")
+                  a(ng-click="operations.getScheduled(menu.stab, page)") {{ page +1 }}
+
+    .col-sm-9.col-lg-10(ng-if="menu.tab == 'canceled'")
+      .panel.panel-default
+        .panel-body
+          ul.nav.nav-tabs.nav-dark(role="tablist")
+            li(role="presentation" ng-class="{active: menu.stab == 'CANCELED_DRIVER'}")
+              a(ng-click="menu.stab = 'CANCELED_DRIVER'; sortByStatus = 'CANCELED_DRIVER'; paginateCanceled(1, 'CANCELED_DRIVER')")    {{ 'byDriver' | translate}}
+            li(role="presentation" ng-class="{active: menu.stab == 'CANCELED_EMP'}")
+              a(ng-click="menu.stab = 'CANCELED_EMP'; sortByStatus = 'CANCELED_EMP';paginateCanceled(1, 'CANCELED_EMP')")  {{ 'byEmp' | translate}}
+            li(role="presentation" ng-class="{active: menu.stab == 'CANCELED'}")
+              a(ng-click="menu.stab='CANCELED';sortByStatus='CANCELED';paginateCanceled(1, 'CANCELED');" )  {{ 'byClient' | translate}}
+
+          p.text-center(ng-show="(operations.list | filter:{originalStatus: sortByStatus}:true).length <= 0" colspan="3") {{'NoResultsFound' | translate}}
+          .table-responsive.op-list
+            table.table.table-email
+              tbody
+
+              tr.unread(ng-repeat="operation in operations.list|filter:{originalStatus: sortByStatus}:true| orderBy: 'created':true | startFrom:(paginator.page-1)*paginator.rows | limitTo:paginator.rows " ng-class="{danger: operation.estimatedTime <= 0 && operation.status != 'pending'}")
+                td
+                  .media
+                    .media-body
+                      .actions(ng-if="user.role != 'calltaker'")
+                        button.btn.btn-orange.btn-xs.pull-right(type="submit" title="{{'RelaunchAction' | translate}}" style="margin-right:5px" ng-click="operations.relaunch(operation)" )
+                          i.fa.fa-refresh
+
+                      h4.text-primary(ng-click="operations.show(operation)"  modal="views/modals/show-op-details.html" modal-size="large" modal-close="true" modal-title="" )
+                        | {{operation.id}}
+                        | &nbsp;
+                        span.media-meta {{ operation.created | date: "d MMM. hh:mm a" }}
+
+                      p.email-summary
+                        i.fa.fa-user.fa-fw
+                        | {{operation.passenger.name}} {{operation.passenger.lastName}}
+
+                      p.email-summary
+                        i.fa.fa-map-marker.fa-fw
+                        | {{operation.address.from.street}}
+                        | {{operation.address.from.number}}
+
+                      p.email-summary(ng-if="operation.address.to.street")
+                        i.fa.fa-flag.fa-fw
+                        | {{operation.address.to.street}}
+                        | {{operation.address.to.number}}
+
+                      p.email-summary(ng-if="operation.comments")
+                        i.fa.fa-comments.fa-fw
+                        | {{operation.comments | limitTo: 20}}
+
+
+                      p.email-summary(ng-if="(operation.estimatedTimeOriginal > 0)")
+                        i.fa.fa-clock-o.fa-fw
+                        | {{ operation.estimatedTimeOriginal | timer }}
+
+
+                      p.email-summary(ng-if="operation.driver.id" ng-show="menu.tab != 'pending'")
+                        i.fa.fa-taxi.fa-fw
+                        a(ng-click="map.centerInMarkerInMultipleCategories(['drivers_online', 'drivers_offline', 'drivers_intravel', 'drivers_disconnected'], operation.driver.id)") {{operation.driver.id}}
+
+
+                      p.email-summary(ng-if="operation.amount")
+                        i.fa.fa-dollar
+                        | {{operation.amount}}
+
+          
+        .text-center(ng-show="(operations.list | filter:{originalStatus: sortByStatus}).length > 1 ")
+          nav
+            ul.pagination
+              li(ng-if="paginator.page != 1")
+                a(ng-click="paginateCanceled(1,sortByStatus)") <<
+              li(ng-repeat="page in paginator.pages")
+                a(ng-click="paginateCanceled(page, sortByStatus)" href="") {{page}}
+              li(ng-if="paginator.total != paginator.page")
+                a(ng-click="paginateCanceled(paginator.total,sortByStatus)") >>
+                
+    .col-sm-9.col-lg-10(ng-if="menu.tab != 'scheduled' && menu.tab != 'new' && menu.tab != 'messages' && menu.tab != 'editScheduled' && menu.tab != 'canceled' ")
+      .panel.panel-default
+        .panel-body#pending-operations-screen
+
+          p.text-center(ng-show="(operations.list | filter:{status:menu.tab}).length <= 0" colspan="3") {{'NoResultsFound' | translate}}
+          .table-responsive.op-list
+            p {{menu.filter}}
+            table.table.table-email
+              tbody
+
+                tr.unread(ng-repeat="operation in operations.list  | filter:{status:menu.tab}  | filter: (operation.passenger.email === undefined && searchString === '') || searchString | orderBy: 'created':true | startFrom:(paginator.page-1)*paginator.rows | limitTo:paginator.rows" ng-class="{danger: operation.estimatedTime <= 0 && operation.status != 'pending'}")
+                  td.hidden
+                  td
+                    span.fa-stack.fa-lg(ng-click="map.centerInMarker('operations', operation.id)")
+                      i.fa.fa-square.fa-stack-2x(style="color: #01839b")
+                      i.fa.fa-location-arrow.fa-inverse.fa-stack-1x
+
+
+
+                  .form-group.col-sm-2.pull-right(ng-show="menu.tab == 'history'" )
+
+                    .input-group
+                      .input-group-addon(title="{{'searchIcon' | translate}}")
+                        i.fa.fa-search.fa-fw
+                      input.input-sm.searchIcon(placeholder="{{'Search' | translate}}" ng-model="searchString" title="{{'searchIcon' | translate}}")
+
+                  td
+                    .media
+                      .media-body
+                        .actions
+
+                          button.btn.btn-danger.btn-xs.pull-right(title="{{'Cancel' | translate}}" ng-click="operations.cancel(operation, false)", ng-if="operation.status != 'canceled' && operation.status != 'history'")
+                            i.fa.fa-times-circle
+
+                        .actions(ng-if="user.role != 'calltaker'")
+
+                          button.btn.btn-orange.btn-xs.pull-right(type="submit" title="{{'RelaunchAction' | translate}}" style="margin-right:5px" ng-click="operations.relaunch(operation)" ng-if="operation.status=='history' || operation.status == 'canceled' ")
+                            i.fa.fa-refresh
+
+
+                          button.btn.btn-black.btn-xs.pull-right(style="margin-right:5px" title="{{'Finish' | translate}}" ng-click="operations.finish(operation, false)", ng-if="operation.status=='intransaction'")
+                            i.fa.fa-flag-checkered
+
+                          button.btn.btn-default.btn-xs.pull-right(style="margin-right:5px",  ng-click="operations.assign(operation, false)",ng-if="operation.status == 'pending'" title="{{'Assign' | translate}}")
+                            i.fa.fa-thumb-tack
+
+                          button.pull-right.btn.btn-warning.btn-xs(style="margin-right:5px" ng-click="operations.find(operation, false)" ng-if="operation.status == 'pending'" )
+                            i.fa.fa-search
+
+                          button.btn.btn-primary.btn-xs.pull-right(style="margin-right:5px" title="{{'SetAmount' | translate}}"  ng-click="operations.setAmount(operation, false)", ng-if="operation.status=='intransaction'")
+                              i.fa.fa-dollar
+
+                          button.btn.btn-success.btn-xs.pull-right(style="margin-right:5px" title="{{'SetOnboard' | translate}}" ng-click="operations.onBoard(operation, false)", ng-if="operation.status=='intransaction'")
+                            i.fa.fa-car
+
+                          button.btn.btn-warning.btn-xs.pull-right(style="margin-right:5px" ng-click="operations.ringPassenger(operation, false)", ng-if="operation.status=='intransaction'" title="{{'RingAction' | translate}}")
+                            i.fa.fa-bell
+
+                          button.btn.btn-brown.btn-xs.pull-right(style="margin-right:5px" title="{{'AtTheDoor' | translate}}" ng-click="operations.atTheDoor(operation, false)", ng-if="operation.status=='intransaction'")
+                            i.fa.fa-building
+
+                          button.btn.btn-success.btn-xs.pull-right(style="margin-right:5px;font-weight: bold;" title="Fare Calculator" ng-click="operations.getFareCalculator(operation); mama()", ng-if="operation.status=='intransaction' && user.isFareCalculatorActive" modal="views/modals/fare-calculator.html" modal-size="large" modal-close="true" modal-title="")
+                            | F
+
+                        h4.text-primary(ng-click="operations.show(operation)"  modal="views/modals/show-op-details.html" modal-size="large" modal-close="true" modal-title="" )
+                          | {{operation.id}}
+                          | &nbsp;
+                          span.media-meta {{ operation.created | date: "d MMM. hh:mm a" }}
+
+                        p.email-summary
+                          i.fa.fa-user.fa-fw
+                          | {{operation.passenger.name}} {{operation.passenger.lastName}}
+
+                        p.email-summary
+                          i.fa.fa-map-marker.fa-fw
+                          | {{operation.address.from.street}}
+                          | {{operation.address.from.number}}
+
+                        p.email-summary(ng-if="operation.address.to.street")
+                          i.fa.fa-flag.fa-fw
+                          | {{operation.address.to.street}}
+                          | {{operation.address.to.number}}
+
+                        p.email-summary(ng-if="operation.comments")
+                          i.fa.fa-comments.fa-fw
+                          | {{operation.comments | limitTo: 20}}
+
+                        p.email-summary(ng-if="operation.passenger.corporate")
+                          i.fa.fa-suitcase.fa-fw
+                          | {{'CorporateUser' | translate}}
+
+                        p.email-summary(ng-if="(menu.tab == 'intransaction' || menu.tab == 'history' || menu.tab == 'canceled') && operation.estimatedTimeOriginal > 0")
+                          i.fa.fa-clock-o.fa-fw
+                          | {{operation.estimatedTimeOriginal | timer}}
+
+                        p.email-summary(ng-if="operation.driverStatus == 'Not Found'" ng-hide="menu.tab == 'history' || menu.tab == 'canceled' || menu.tab == 'intransaction' ")
+                          span.fa-stack
+                            i.fa.fa-taxi.fa-stack-1x
+                            i.fa.fa-ban.fa-stack-2x.text-danger
+                          span {{'driverNotFound' | translate}} ({{operation.try}}/{{operation.trylimit}})
+
+                        p.email-summary(ng-if="operation.driverStatus == 'serching'" ng-hide="menu.tab == 'intransaction' || menu.tab == 'history' || menu.tab == 'canceled'")
+                          i.fa.fa-spinner.fa-spin
+                          span {{'searching' | translate }}
+
+                        p.email-summary(ng-if="operation.driver.id" ng-show="menu.tab != 'pending'")
+                          i.fa.fa-taxi.fa-fw
+                          a(ng-click="map.centerInMarkerInMultipleCategories(['drivers_online', 'drivers_offline', 'drivers_intravel', 'drivers_disconnected'], operation.driver.id)") {{operation.driver.id}}
+
+
+                          span(ng-if="menu.tab == 'intransaction'")
+                            i.fa.fa-clock-o.fa-fw.fa-spin(ng-if="operation.estimatedTime > 0")
+                            i.fa.fa-exclamation-circle.fa-fw(ng-if="operation.estimatedTime <= 0")
+                            | {{operation.estimatedTime | timer}}
+
+                        p.email-summary(ng-if="menu.tab == 'scheduled'")
+                          i.fa.fa-calendar
+                          |  {{operation.date | date: "d MMM. hh:mm a"}}
+
+                        p.email-summary(ng-if="operation.amount")
+                          i.fa.fa-dollar
+                          | {{operation.amount}}
+
+
+          .text-center(ng-show="(operations.list | filter:{status:menu.tab}).length > 3")
+            nav
+              ul.pagination
+                li(ng-if="paginator.page != 1") 
+                  a(ng-click="paginateNormal(1, menu.tab, searchString)") <<
+                li(ng-repeat="page in paginator.pages" ng-class="{active: paginator.page == page}")
+                  a(ng-click="paginateNormal(page, menu.tab, searchString)") {{page}}
+                li(ng-if="paginator.total != paginator.page") 
+                  a(ng-click="paginateNormal(paginator.total, menu.tab, searchString)") >>
+    .col-sm-9.col-lg-10(ng-if="menu.tab == 'messages' && user.chatEnabled")
+      .panel.panel-default
+        .panel-body
+          span.pull-left(style="font-weight: bolder ") {{'recentMessages' | translate}}
+          hr
+          p.text-center(ng-show="chat.recentMessages == {}" colspan="3") {{'NoResultsFound' | translate}}
+          .table-responsive.op-list
+            table.table.table-email
+              tbody
+                tr(ng-repeat="driver in chat.recentMessages | limitTo: 3" ng-init="driver.focus = false" ng-mouseover="driver.focus = true" ng-mouseleave="driver.focus = false")
+                  td.hidden
+                  td
+                    .media
+                      //Driver normal
+                      .media-body(ng-if="driver.senderId!='IRC'")
+                        .pull-left
+                          img.recentChatImg(ng-src="{{driver.driverImg}}" onerror="this.src='/common/assets/user/profile.png'" style="margin-top: 2px")
+                        .pull-left
+                          small {{driver.lastMessage.date | date:'hh:mm'}}
+                          .chatName(ng-click="chat.driverDetails(driver.senderId)" ) {{'Driver' | translate}} # {{driver.senderId}}
+                          strong(style="margin-bottom:15px" ng-if="driver.lastMessage.messageType == 1") {{driver.lastMessage.message | limitTo: 80}}
+                          span(ng-if="driver.lastMessage.messageType == 0")
+                            button.chatMediaButton(ng-if="driver.lastMessage.audio.listened == false" ng-click="driver.lastMessage.audio.play()")
+                              i.fa.fa-play
+                            button.chatMediaButton(ng-if="driver.lastMessage.audio.listened == true" ng-click="driver.lastMessage.audio.stop()")
+                              i.fa.fa-stop
+                            progress(value="driver.lastMessage.audio.duration")
+                        .pull-right(style="margin:7px" ng-show="driver.focus")
+                          a.pull-right(ng-mousedown="radio.driverRecord(driver.senderId)" ng-mouseup="radio.radiotodriver.stopRecording()" ng-mouseleave="radio.radiotodriver.stopRecording()" style="cursor:pointer" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img(src="/dispatcher/assets/radio/radio_btn.png" style="width:50px;height:50px" ng-show="!radio.radiotodriver.recording && !radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img#radioDriverRecording(src="/dispatcher/assets/radio/radio_btn_recording.gif" style="width:50px;height:50px;cursor:pointer" ng-show="radio.radiotodriver.recording && !radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img(src="/dispatcher/assets/radio/radio_btn_disabled.png" style="width:50px;height:50px" ng-show="radio.radiotodriver.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                          a.pull-right(style="margin-right:5px" ng-click="conversationWindow(driver.senderId)" ng-if="user.chatEnabled")
+                            img(src="/dispatcher/assets/radio/chat_btn.png" style="width:50px;height:50px")
+
+                      //IRC
+                      .media-body(ng-if="driver.senderId=='IRC'")
+                        .pull-left
+                          img.recentChatImg(ng-src="{{driver.driverImg}}" onerror="this.src='/common/assets/user/profile.png'" style="margin-top: 2px")
+                        .pull-left
+                          small {{driver.lastMessage.date | date:'dd/MM/yyyy hh:mm'}}
+                          .chatName( ng-click="chat.driverDetails(driver.senderId)" ) {{driver.senderId}}
+                          strong(ng-if="driver.lastMessage.messageType == 1")  {{driver.name}}: {{driver.lastMessage.message | limitTo: 80}}
+                          span(ng-if="driver.lastMessage.messageType == 0")
+                            button.chatMediaButton(ng-if="driver.lastMessage.audio.listened == false" ng-click="driver.lastMessage.audio.play()")
+                              i.fa.fa-play
+                            button.chatMediaButton(ng-if="driver.lastMessage.audio.listened == true" ng-click="driver.lastMessage.audio.stop()")
+                              i.fa.fa-stop
+
+                        .pull-right(style="margin:7px" ng-show="driver.focus")
+                          a.pull-right(ng-mousedown="radio.record()" ng-mouseup="radio.stopRecording()" ng-mouseleave="radio.stopRecording()" ng-class="{'hidden': radio.microphoneDisabled}" style="cursor:pointer" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img.img-responsive(style="width:30px;height:30px" src="/dispatcher/assets/radio/radio_btn.png" ng-show="!radio.recording && !radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img#radioRecording.img-responsive(style="width:50px;height:50px" src="/dispatcher/assets/radio/radio_btn_recording.gif" ng-show="radio.recording && !radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                            img.img-responsive(style="width:30px;height:30px" src="/dispatcher/assets/radio/radio_btn_disabled.png" ng-show="radio.encoding" ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false;")
+                          a.pull-right(style="margin-right:5px" ng-click="conversationWindow()" ng-if="user.chatEnabled")
+                            img(src="/dispatcher/assets/radio/chat_btn.png" style="width:50px;height:50px")
+
+
+      //When chat disabled
+    .col-sm-9.col-lg-10(ng-if="menu.tab == 'messages' && !user.chatEnabled")
+      .panel.panel-default
+              .panel-body
+                p.text-center(ng-show="radio.messages.length <= 0" colspan="3") {{'NoResultsFound' | translate}}
+                .table-responsive.op-list
+                  table.table.table-email
+                    tbody
+                      tr(ng-repeat="message in radio.messages" ng-class="{unread: !listened}")
+                        td.hidden
+                        td
+                          span.fa-stack.fa-lg(ng-click="message.play()")
+                            i.fa.fa-square.fa-stack-2x(style="color: #01839b")
+                            i.fa.fa-play.fa-inverse.fa-stack-1x
+                        td
+                          .media
+                            .media-body
+                              p
+                              h4.text-primary {{message.name}}
+
+
+.modal.fade.cancel-operation(tabindex="-1", role="dialog", aria-labelledby="cancel-operation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Cancel' | translate}} {{'operation' | translate}} nº {{operations.operation.id}}
+        .panel-body
+          form(name="cancel", ng-submit="operations.cancel('', true)")
+            p {{'SureCancelOp' | translate}}
+            .row(ng-if="user.operatorCancelationReason")
+              .col-xs-8
+                .form-group
+                  label {{ 'motiv' | translate}}
+                  .row
+                    | {{ reason }}
+                    textarea.col-xs-10(ng-model="operations.operation.reason" style="margin-left:10px" required )
+            .row
+              .form-group
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+                input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" ng-click="paginator.setPage(0)" analytics-category="dispatcher" analytics-on="click"  analytics-label="canceled operation from dispatcher panel" analytics-event="cancel operation")
+
+.modal.fade.finish-operation(tabindex="-1", role="dialog", aria-labelledby="finish-op", aria-hidden="true", style="display: none;",data-backdrop="static")
+   .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Finish' | translate}} {{'operation' | translate}} nº {{operations.operation.id}}
+        .panel-body
+          form(name="ring",ng-submit="operations.finish('', true)")
+            p {{'SureFinishOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Finish' | translate}}" ng-click="paginator.setPage(0)" analytics-category="dispatcher" analytics-on="click"  analytics-label="finish operation from dispatcher panel" analytics-event="finish operation")
+
+.modal.fade.assing-operation(tabindex="-1", role="dialog", aria-labelledby="assingOperation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Assign' | translate}} op nº {{operations.operation.id}}
+        .panel-body
+          form(ng-submit="operations.assign('',true)")
+            .form-group
+              label.col-sm-3.control-label(for="driverid") ID
+              .col-sm-6
+                input.form-control(type="text" placeholder="", ng-model="operations.operation.driver.id" required)
+            .form-group(ng-if="operations.operation.status != 'scheduled'")
+              label.col-sm-3.control-label(for="estimatedTime") {{'EstimatedTime' | translate}}
+              .col-sm-6
+                input.form-control(type="number",id="estimatedTime", placeholder="", ng-model="operations.operation.estimatedTime", min="1" required)
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Assign' | translate}}" ng-click="paginator.setPage(0)" analytics-category="dispatcher" analytics-on="click"  analytics-label="assigned operation from dispatcher panel" analytics-event="assing operation")
+
+.modal.fade.assign_delay_trip(tabindex="-1", role="dialog", aria-labelledby="assingOperation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Assign' | translate}} op nº {{operations.operation.id}}
+        .panel-body
+          form(ng-submit="operations.assign_delay_trip('',true)")
+            .form-group
+              label.col-sm-3.control-label(for="driverid") ID
+              .col-sm-6
+                input.form-control(type="text" placeholder="", ng-model="operations.operation.driver.id" required)
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Assign' | translate}}"  analytics-category="dispatcher" analytics-on="click"  analytics-label="assigned operation from dispatcher panel" analytics-event="assing operation")
+
+.modal.fade.find-driver(tabindex="-1", role="dialog", aria-labelledby="editOperation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'operation' | translate}} nº {{operations.operation.id}}
+
+        .panel-body
+          p {{'ResearchDriver' | translate}}
+          form(name="reserch",ng-submit="operations.find('', true)" novalidate  ng-class="{submited: reserch.submited}")
+            .form-group
+              .col-xs-12
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Ok' | translate}}" ng-click="reserch.submited = true" analytics-category="dispatcher" analytics-on="click"  analytics-label="assigned operation from dispatcher panel" analytics-event="assing operation")
+
+.modal.fade.set-amount(tabindex="-1", role="dialog", aria-labelledby="company-set-amount", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'setAmount' | translate}} op nº {{operations.operation.id}}
+        .panel-body
+          form(name="assign",ng-submit="operations.setAmount(operations.operation,true) && paginator.setPage(0)")
+            .form-group
+              label.col-sm-3.control-label(for="amount") {{'Amount' | translate}}
+              .col-sm-6
+                input.form-control(type="text",  placeholder="", ng-model="operations.operation.amount", required)
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'setAmountButton' | translate}}" analytics-category="dispatcher" analytics-on="click" ng-click="paginator.setPage(0)"  analytics-label="set ammount of operation from dispatcher panel" analytics-event="set amount operation")
+
+.modal.fade.set-passenger-on-board(tabindex="-1", role="dialog", aria-labelledby="set-passenger-on-board", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'SetOnboard' | translate}} op nº {{operations.operation.id}}
+        .panel-body
+          form(name="ring",ng-submit="operations.onBoard('', true)")
+            p
+            | {{'SureSetonboardOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'setBoardButton' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="set on board operation from dispatcher panel" analytics-event="set on board operation")
+
+.modal.fade.ring-passenger(tabindex="-1", role="dialog", aria-labelledby="ring-passenger", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Ring' | translate}} op nº {{operations.operation.id}}
+        .panel-body
+          form(name="ring",ng-submit="operations.ringPassenger('', true)")
+            p
+            |  {{'SureRingOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="Ring!!" analytics-category="dispatcher" analytics-on="click"  analytics-label="ringed passenger from dispatcher panel" analytics-event="ring passenger")
+              // At the door
+
+.modal.fade.at-the-door(tabindex="-1", role="dialog", aria-labelledby="at-the-door", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'AtTheDoor' | translate}} op nº {{operations.operation.id}}
+        .panel-body
+          form(name="at-the-door",ng-submit="operations.atTheDoor('', true)")
+            p  {{'SureAtTheDoorOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="at the door from dispatcher panel" analytics-event="at the door")
+
+.modal.fade.edit-operation(tabindex="-1", role="dialog", aria-labelledby="editOperation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Edit' | translate}} op nº {{operations.operation.id}}
+        .panel-body
+          form(name="editOp",ng-submit="operations.editScheduled('', true)" novalidate  ng-class="{submited: editOp.submited}")
+            .form-group
+              label.col-sm-3.control-label {{'Date' | translate}}
+              .col-xs-6
+                .dropdown
+                  a#dropdown2.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#')
+                    .input-group
+                      .input-group-addon
+                        i.glyphicon.glyphicon-calendar
+                      span.form-control(placeholder="{{'Date' | translate}}") {{operations.operation.date | date: 'd MMM. hh:mm a'}}
+                  ul.dropdown-menu(role='menu', aria-labelledby='dLabel' style="width:100%")
+                    datetimepicker(data-ng-model='operations.operation.date',data-before-render="validateOldDates($dates)", data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }")
+
+            .form-group
+              label.col-sm-3.control-label(for="driverid") {{'Driver' | translate}} ID
+              .col-sm-6
+                input.form-control(type="text", id="driverid" , placeholder="", ng-model="operations.operation.driver.id")
+            .form-group
+              .col-xs-12
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Edit' | translate}}" ng-click="editOp.submited = true" analytics-category="dispatcher" analytics-on="click"  analytics-label="assigned operation from dispatcher panel" analytics-event="assing operation")
+
+
+.modal.fade.relaunch-operation(tabindex="-1", role="dialog", aria-labelledby="relaunch-operation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Relaunch' | translate}} op nº {{operations.operation.id}}
+        .panel-body
+          form(name="cancel",ng-submit="operations.relaunch('', true)")
+            p {{'SureRelaunchOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'BackToDispatch' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="canceled operation from dispatcher panel" analytics-event="cancel operation")
+
+.modal.fade.show-driver(tabindex="-1", role="dialog", aria-labelledby="relaunch-operation", aria-hidden="true", style="display: none;")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Driver' | translate}} nº {{drivers.driver.number}}
+        .panel-body
+          .col-xs-4
+            img.img-responsive(src="{{settings[settings.environment].api+'taxiApi/displayDriverLogoByEmail?email='+drivers.driver.email}}" onerror="this.src='/common/assets/user/profile.png'")
+          .col-xs-8
+            p
+              strong {{'Name' | translate}}:
+              |  {{drivers.driver.firstName}} {{drivers.driver.lastName}}
+            p
+              strong {{'Email' | translate}} :
+              |  {{drivers.driver.email}}
+            p
+              strong {{'Brand' | translate}} :
+              |  {{drivers.driver.brandCompany}}
+            p
+              strong {{'Model' | translate}} :
+              |  {{drivers.driver.model}}
+            p
+              strong {{'Plate' | translate}} :
+              |  {{drivers.driver.plate}}
+            p
+              strong {{'Version' | translate}} :
+              |  {{drivers.driver.version}}
+            p
+              strong {{'Phone' | translate}} :
+              |  {{drivers.driver.phone}}
+            p
+              strong {{'Status' | translate}} :
+              | {{drivers.driver.status | translate}} {{'since' | translate}}
+              | {{drivers.driver.updated | date: 'dd/MM/yyyy hh:mm'}} {{serverDate}}
+
+.modal.fade.show-parking(tabindex="-1", role="dialog", aria-labelledby="relaunch-operation", aria-hidden="true", style="display: none;")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Parking' | translate}} {{operations.parkings.parking.name}}
+        .panel-body
+          .col-xs-6
+            img.photo.img-responsive(src="https://maps.googleapis.com/maps/api/staticmap?center={{operations.parkings.parking.lat}},{{operations.parkings.parking.lng}}&zoom=14&size=1000x700&maptype=roadmap&markers=icon:https://technorides.com/common/assets/markers/parking.png%7C{{operations.parkings.parking.lat}},{{operations.parkings.parking.lng}}", alt="")
+          .col-xs-6
+            p(ng-if="operations.parkings.parking.drivers.length == 0") {{'NoResultsFound' | translate}}
+            ul
+              li(type="circle" ng-repeat="driver in operations.parkings.parking.drivers | orderBy:'position'")  {{driver.position }}: {{driver.name | lowercase }} {{driver.lastName | lowercase}}  {{driver.updated | date:'hh:mm ss'}}
+
+
+div(ng-include="'/common/scripts/modal/async.html'")

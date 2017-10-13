@@ -1,0 +1,220 @@
+$greenTechnorides : #009a80
+$blue : #04878f
+$violet : #09666c 
+$darkGreen : #107a68
+// NAVBAR BOOTSTRAP OVERRIDE
+*
+  font-family: 'Montserrat', sans-serif
+
+p
+  font-family: 'Exo', sans-serif
+  color: #404041
+  
+.navbar-brand
+  p 
+    font-size: 20px
+    color: #404041
+    margin-top: 2px
+    letter-spacing: 0.03em
+    span 
+      font-family: 'Exo', sans-serif
+      color: $greenTechnorides
+  img
+    width: 25px
+    margin-right: 5px
+@mixin innershadow
+  -webkit-box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+  -moz-box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+  box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+.navbar
+  margin:
+    bottom: 0px
+  min-height: 70px
+  padding: 
+    top: 10px
+  border-radius: 0
+  background-color: white
+ul 
+  list-style-type: none
+body 
+  background-color: #ccc
+// END BOOTSTRAP OVERRIDE
+
+// General styles
+input[type="range"]
+  -webkit-appearance: none
+  margin:
+    top : 20px
+    bottom: 20px
+  width: 100%
+  &::-webkit-slider-runnable-track
+    height: 5px
+    background: $darkGreen
+    border: none
+    border-radius: 3px
+    cursor: pointer
+
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    border: none
+    height: 20px
+    width: 20px
+    border-radius: 50%
+    background: $violet
+    margin-top: -7px
+  &:focus 
+    outline: none
+a
+  color: white
+  text-decoration: none
+  &:hover
+    color: white
+    text-decoration: none
+
+input[type=range]:focus::-webkit-slider-runnable-track
+  background: $darkGreen
+
+.btn-technorides
+  background-color: $greenTechnorides
+  color: white!important
+  outline: 0!important
+
+.shadow
+  text-shadow: 2px 4px #333
+
+.uppercase
+  text-transform: uppercase
+
+.no-padding
+  padding: 0!important
+
+
+.shadow-top
+  -webkit-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+  -moz-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+  box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+
+.shadow-bottom
+  -webkit-box-shadow: 0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow:    0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+  box-shadow:         0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+// Landing 1 specific styles
+.banner
+  background-image : url('../assets/bg.jpg')
+  padding:
+    top: 20px
+    bottom: 10px
+
+.panel
+  border: 0
+  .panel-heading
+    background-color : $greenTechnorides
+    color: white
+    &:after
+      width: 0
+      height: 0
+      border-style: solid
+      border-width: 100px 100px 0 100px
+      border-color: $greenTechnorides transparent transparent transparent
+.text-inbanner
+  color: white
+  p
+    color: white
+    font-size: 18px
+    font-family: 'Exo', sans-serif
+  h1 
+    font-size: 60px
+    margin-top: 0
+  ul 
+    margin: 10px 0
+    li
+      padding: 10px 0
+      font-family: 'Exo', sans-serif
+      strong 
+        font-family: 'Exo', sans-serif
+      i 
+        font-size: 22px
+        margin-right: 10px
+        position: relative
+        top: 2px
+.testimony
+  padding: 30px 0
+  p
+    font-size: 16px
+    font-weight: lighter
+    em
+      font-family: 'Exo', sans-serif
+.wrapper
+  background-color: white
+  box-shadow: 0 0 71px -2px rgba(0,0,0,.4), 4px 0 5px -5px rgba(0,0,0,.4)
+.cinta
+  background-color: $greenTechnorides
+  margin-right: -35px
+  margin-left: -35px
+  padding-bottom: 20px
+  p 
+    font-size: 15px
+    color: white
+  h2
+    padding: 10px 25px
+    background-color: $darkGreen
+    color: white
+    margin: 0
+    margin-bottom: 20px
+.deco1
+  float: left
+  position: relative
+  left: -35px
+  width: 0
+  height: 0
+  border-style: solid
+  border-width: 0 20px 18px 0
+  border-color: transparent $darkGreen transparent transparent
+.deco2
+  float: right
+  position: relative
+  right: -35px
+  width: 0
+  height: 0
+  border-style: solid
+  border-width: 18px 20px 0 0
+  border-color: $darkGreen transparent transparent transparent
+.system
+  padding-top: 40px
+footer
+  padding:
+    top: 30px
+    bottom: 30px
+  color: white
+  background-color: #252525
+  .links
+    a
+      margin-right: 10px
+      color: $greenTechnorides
+  small
+    font-size: 10px
+  .social
+    margin-left: 10px
+
+#thankyou
+  background: white
+  padding: 20px
+  position: fixed
+  top: 200px
+  width: 100%
+  z-index: 10001
+  img
+    width: 150px
+  p
+    font:
+      size: 25px
+#thankyou-background
+  background: black
+  height: 100%
+  opacity: .5
+  position: fixed
+  width: 100%
+  z-index: 10000
+.submited
+  .ng-invalid
+    background-color: #e74c3c

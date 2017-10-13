@@ -1,0 +1,142 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | {{'Configuration' | translate}}
+    |/ {{'Parkings' | translate}}
+.contentpanel  
+    .alert.alert-warning.alertChrome
+      button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+      strong {{ 'alertChanges' | translate }} 
+    .panel.panel-default
+      .panel-body
+        div(ng-show="!company.parking.show")
+          form(name="parkingForm" ng-submit="editParkingSettings(company.config.parking)")
+            .row
+              .col-xs-6
+                h3.underline {{'ParkingEnableTitle' | translate}}
+                .col-xs-2
+                  img.img-responsive(src="assets/config/parkings/parkings_system.png")
+                .col-xs-10
+                  p {{'ParkingEnableText' | translate}}
+
+                  toggle-switch(ng-model="company.config.parking.enabled")
+                  br
+
+                  button.btn.btn-darkblue(ng-click="initMap(); company.parking.show = true;" type="button" ng-if="company.config.parking.enabled") {{'EditParkings' | translate}}
+              .col-xs-6
+
+                h3.underline {{'ParkingsShape' | translate}}
+                .col-xs-2
+                  img.img-responsive(src="assets/config/parkings/settings_parkingshape.png")
+                .col-xs-10
+                  p {{'ParkingsShapeText' | translate}}
+                  br
+                  toggle-switch(ng-model="company.config.parking.square")
+
+
+            .row(ng-show="company.config.parking.enabled")
+              .col-xs-6
+                h3.underline {{'ParkingDriverDistanceTitle' | translate}}
+                .col-xs-3
+                  img.img-responsive(src="assets/config/parkings/parkings_driver_distance.png")
+                .col-xs-8
+                  p {{'ParkingDriverDistanceText' | translate}}
+                  h4 {{'MtsFromParking' | translate}} : {{company.config.parking.distance.driver}} Mts
+                  input(type="range" ng-model="company.config.parking.distance.driver" min="1" max="3000")
+
+
+              .col-xs-6
+                h3.underline {{'ParkingUserDistanceTitle' | translate}}
+                .col-xs-3
+                  img.img-responsive(src="assets/config/parkings/parkings_user_distance.png")
+                .col-xs-8
+                  p {{'ParkingUserDistanceText' | translate}}
+                  h4 {{'MtsFromParking' | translate}} : {{company.config.parking.distance.passenger}} Mts
+                  input(type="range" ng-model="company.config.parking.distance.passenger" min="1" max="6000")
+
+            .row
+              .col-xs-12.text-center
+                br
+                br
+                br
+                button.btn.btn-success {{'Save' | translate}}
+                button.btn.btn-danger(type="button" ng-click="refreshConfig()") {{'Cancel' | translate}}
+        div(ng-show="company.parking.show")
+          .row
+            .col-lg-3
+              button.btn.btn-danger.btn-block(ng-click="modalNewParking()" ng-hide="company.config.parking.square") {{'NewParking' | translate}}
+              button.btn.btn-warning.btn-block(ng-click="company.parking.show = false;parkings.eraseLayers()") {{'ParkingSettings' | translate}}
+
+              br
+              .list-group(style="max-height: 700px;overflow-y: auto;")
+                a.list-group-item(ng-repeat="parking in parkings.list" ng-click="parkings.focus(parking)" style="cursor:pointer" id="p_{{parking.id}}")
+                  h5.list-group-item-heading {{parking.name | limitTo: 30}}
+                    button.btn.btn-xs.btn-danger.pull-right(ng-click="modalDeleteParking(parking.id)")
+                      i.fa.fa-times
+                    .pull-right
+                      | &nbsp;
+                    button.btn.btn-xs.btn-success.pull-right(ng-click="modalEditParking(parking)")
+                      i.fa.fa-pencil
+                    .pull-right.label.label-success(ng-show="pmap.saveId == parking.id ") {{'Saving' | translate}}
+
+            .col-lg-9
+              img(src="assets/parking-collision.png")
+              | &nbsp;
+              | {{'parkingsWarning' | translate}}
+              #pmap_canvas
+                
+
+
+.modal.fade.delete-parking(tabindex="-1", role="dialog", aria-labelledby="delete-parking", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeleteParking' | translate}}
+        .panel-body
+          form(name="delete",ng-submit="deleteParking(toDelete)")
+            p {{'deleteParkingText' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'DontDelete' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Delete' | translate}}")
+
+.modal.fade.edit-parking(tabindex="-1", role="dialog", aria-labelledby="new-parking", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'CreateParking' | translate}}
+        .panel-body
+          form(name="edit" ng-submit="editParking(toEdit)")
+            label {{'Name' | translate}}
+            input.form-control(ng-model="toEdit.name" name="name" ng-required="true")
+            br
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Edit' | translate}}")
+
+
+
+.modal.fade.new-parking(tabindex="-1", role="dialog", aria-labelledby="new-parking", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'CreateParking' | translate}}
+        .panel-body
+          form(name="delete",ng-submit="addParking(toAdd)")
+            label {{'Name' | translate}}
+            input.form-control(ng-model="toAdd.name" name="name" ng-required="true")
+            br
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Create' | translate}}")

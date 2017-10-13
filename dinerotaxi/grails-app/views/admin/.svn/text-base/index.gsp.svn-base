@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta name="layout" content="main" />
+    </head>
+    <body>
+ 	<!-- Main Content -->	
+	<g:render template="/templates/wall/communitywall" model="${[userToPost:1]}"></g:render>
+
+ 	<!-- Main Content -->
+ 	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#body_section').addClass("span-18");
+			<g:isFacebookLoggedIn>
+				${remoteFunction(controller:'sidebar', action:'indexSidebar',update:'sidebarContainer', type:'get',onSuccess:'loadFacebookSideBarProgress();')}
+			</g:isFacebookLoggedIn>
+	 		<g:isFacebookNotLoggedIn>
+				${remoteFunction(controller:'sidebar', action:'guestSidebar',update:'sidebarContainer', type:'get')}
+	 		</g:isFacebookNotLoggedIn>
+		});
+	</script>
+    </body>
+</html>

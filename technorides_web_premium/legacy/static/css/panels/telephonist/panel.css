@@ -1,0 +1,130 @@
+/* New Operation */
+.ui-autocomplete {
+  width: auto;
+}
+
+#new_operation_dialog label, #new_operation_dialog input {
+  display: inline-block;
+  width: 100px;
+}
+
+#new_operation_dialog label.big, #new_operation_dialog input.big {
+  width: 200px;
+}
+
+#new_operation_dialog label.small, #new_operation_dialog input.small {
+  width: 65px;
+}
+
+#new_operation_dialog label {
+  margin-top: 10px;
+}
+
+#new_operation_dialog textarea {
+  width: 100%;
+  resize: none;
+}
+
+#new_operation_dialog h4 {
+  margin: 15px 0 0 0;
+}
+
+/* Options */
+#new_operation_dialog input[type=checkbox] {
+  display: none;
+}
+
+#new_operation_dialog .options label {
+  height: 27px;
+  width: 27px;
+  cursor: pointer;
+}
+
+#new_operation_dialog label[for=new_operation_options_messaging] {
+  background: url("/static/images/panels/telephonist/options/messaging.png");
+}
+
+#new_operation_options_messaging:checked + label {
+  background: url("/static/images/panels/telephonist/options/messaging_checked.png");
+}
+
+#new_operation_dialog label[for=new_operation_options_pet] {
+  background: url("/static/images/panels/telephonist/options/pet.png");
+}
+
+#new_operation_options_pet:checked + label {
+  background: url("/static/images/panels/telephonist/options/pet_checked.png");
+}
+
+#new_operation_dialog label[for=new_operation_options_air_conditioning] {
+  background: url("/static/images/panels/telephonist/options/air_conditioning.png");
+}
+
+#new_operation_options_air_conditioning:checked + label {
+  background: url("/static/images/panels/telephonist/options/air_conditioning_checked.png");
+}
+
+#new_operation_dialog label[for=new_operation_options_smoker] {
+  background: url("/static/images/panels/telephonist/options/smoker.png");
+}
+
+#new_operation_options_smoker:checked + label {
+  background: url("/static/images/panels/telephonist/options/smoker_checked.png");
+}
+
+#new_operation_dialog label[for=new_operation_options_special_assistant] {
+  background: url("/static/images/panels/telephonist/options/special_assistant.png");
+}
+
+#new_operation_options_special_assistant:checked + label {
+  background: url("/static/images/panels/telephonist/options/special_assistant_checked.png");
+}
+
+#new_operation_dialog label[for=new_operation_options_luggage] {
+  background: url("/static/images/panels/telephonist/options/luggage.png");
+}
+
+#new_operation_options_luggage:checked + label {
+  background: url("/static/images/panels/telephonist/options/luggage_checked.png");
+}
+
+#new_operation_dialog label[for=new_operation_options_vip] {
+  background: url("/static/images/panels/telephonist/options/vip.png");
+}
+
+#new_operation_options_vip:checked + label {
+  background: url("/static/images/panels/telephonist/options/vip_checked.png");
+}
+
+#new_operation_dialog label[for=new_operation_options_airport] {
+  background: url("/static/images/panels/telephonist/options/airport.png");
+}
+
+#new_operation_options_airport:checked + label {
+  background: url("/static/images/panels/telephonist/options/airport_checked.png");
+}
+
+#new_operation_dialog label[for=new_operation_options_invoice] {
+  background: url("/static/images/panels/telephonist/options/invoice.png");
+}
+
+#new_operation_options_invoice:checked + label {
+  background: url("/static/images/panels/telephonist/options/invoice_checked.png");
+}
+
+#new_operation_dialog input[readonly=readonly], #new_operation_dialog .favorites_link {
+  cursor: pointer;
+}
+
+.toggle {
+  background: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: inline-block;
+  color: black !important;
+  font-size: 12px;
+  font-family: verdana !important;
+  opacity: .6;
+  text-align: center;
+  width: 20px;
+}

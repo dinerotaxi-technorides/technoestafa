@@ -1,0 +1,97 @@
+/*
+ * Note: Include the nivo-slider.css file that comes
+ * with the main download before including this file.
+ */
+
+#slideshow {
+	background: transparent;
+	position: relative;
+	z-index: 1;
+	margin: 0 30px 30px 30px;
+}
+.nivoSlider {
+	width:935px;
+	height:384px;
+	margin:0 auto;
+}
+.ribbon { /* New App */
+	background: url(ribbon.png) no-repeat;
+	width: 111px;
+	height: 111px;
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	z-index: 300;
+}
+.ribbon2 { /* Available on the App Store */
+	background: url(ribbon2.png) no-repeat;
+	width: 163px;
+	height: 163px;
+	position: absolute;
+	top: -1px;
+	right: 1px;
+	z-index: 300;
+}
+#slider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+#slider a {
+	border:0;
+}
+
+.nivo-controlNav {
+	position:absolute;
+	right:25px;
+	bottom:25px;
+}
+
+.single-projects .nivo-controlNav {
+	position:absolute;
+	right:5px;
+	bottom:-25px;
+}
+
+.nivo-controlNav a {
+	display:block;
+	width:10px;
+	height:10px;
+	background:url(bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin-right:6px;
+	float:left;
+}
+
+.single-projects  .nivo-controlNav a {
+	display:block;
+	width:10px;
+	height:10px;
+	background:url(bullets_dark.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin-right:6px;
+	float:left;
+}
+
+.nivo-controlNav a.active {
+	background-position:-10px 0;
+}
+
+.nivo-directionNav a {
+	display:block;
+	width:32px;
+	height:34px;
+	background:url(arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+}
+a.nivo-nextNav {
+	background-position:-32px 0;
+	right:10px;
+}
+a.nivo-prevNav {
+	left:10px;
+}

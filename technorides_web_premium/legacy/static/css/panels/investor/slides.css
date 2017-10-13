@@ -1,0 +1,200 @@
+  <!-- SlidesJS Optional: If you'd like to use this design -->
+    #slides , 
+    #slidesHigh {
+      display: none;
+	  background-image: url(/static/images/panels/investor/bg.png);
+	  background-repeat: no-repeat;
+	  background-size: 100%;
+    }
+
+    #slides .slidesjs-navigation ,
+    #slidesHigh {
+      margin-top:5px;
+    }
+
+    a.slidesjs-next,
+    a.slidesjs-previous,
+    a.slidesjs-play,
+    a.slidesjs-stop {
+      background-image: url(/assets/panels/corporate/btns-next-prev.png);
+      background-repeat: no-repeat;
+      display:block;
+      width:12px;
+      height:18px;
+      overflow: hidden;
+      text-indent: -9999px;
+      float: left;
+      margin-right:5px;
+    }
+
+    a.slidesjs-next {
+      margin-right:10px;
+      background-position: -12px 0;
+    }
+
+    a:hover.slidesjs-next {
+      background-position: -12px -18px;
+    }
+
+    a.slidesjs-previous {
+      background-position: 0 0;
+    }
+
+    a:hover.slidesjs-previous {
+      background-position: 0 -18px;
+    }
+
+    a.slidesjs-play {
+      width:15px;
+      background-position: -25px 0;
+    }
+
+    a:hover.slidesjs-play {
+      background-position: -25px -18px;
+    }
+
+    a.slidesjs-stop {
+      width:18px;
+      background-position: -41px 0;
+    }
+
+    a:hover.slidesjs-stop {
+      background-position: -41px -18px;
+    }
+
+    .slidesjs-pagination {
+      margin: 7px 0 0;
+      float: right;
+      list-style: none;
+    }
+
+    .slidesjs-pagination li {
+      float: left;
+      margin: 0 1px;
+    }
+
+    .slidesjs-pagination li a {
+      display: block;
+      width: 13px;
+      height: 0;
+      padding-top: 13px;
+      background-image: url(/assets/panels/corporate/pagination.png);
+	  background-repeat: no-repeat;
+      background-position: 0 0;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .slidesjs-pagination li a.active,
+    .slidesjs-pagination li a:hover.active {
+      background-position: 0 -13px
+    }
+
+    .slidesjs-pagination li a:hover {
+      background-position: 0 -26px
+    }
+
+    #slides a:link,
+    #slides a:visited {
+      color: #333
+    }
+
+    #slides a:hover,
+    #slides a:active {
+      color: #9e2020
+    }
+
+    .navbar {
+      overflow: hidden
+    }
+
+    .containerSlider,
+    .containerSliderHigh,
+    .navbar-static-top .containerSlider,
+    .navbar-fixed-top .containerSlider,
+    .navbar-fixed-bottom .containerSlider {
+      width: 940px;
+    }
+
+    .containerSlider,
+    .containerSliderHigh {
+      margin-right: auto;
+      margin-left: auto;
+      }
+
+    .containerSlider:before,
+    .containerSlider:after,
+    .containerSliderHigh:before,
+    .containerSliderHigh:after {
+      display: table;
+      content: "";
+      line-height: 0;
+    }
+
+    .containerSlider:after ,
+    .containerSliderHigh:after {
+      clear: both;
+    }
+
+    .navbar-static-top .containerSlider,
+    .navbar-fixed-top .containerSlider,
+    .navbar-fixed-bottom .containerSlider {
+      width: 940px;
+    }
+
+  <!-- End SlidesJS Optional-->
+
+  <!-- SlidesJS Required: These styles are required if you'd like a responsive slideshow -->
+    #slides ,
+    #slidesHigh {
+      display: none
+    }
+
+    .containerSlider ,
+    .containerSliderHigh {
+      margin: 0 auto;
+    }
+
+
+    /* For tablets & smart phones */
+    @media (max-width: 767px) {
+      body {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .containerSlider ,
+      .containerSliderHigh {
+        width: auto;
+      }
+    }
+
+    /* For smartphones */
+    @media (max-width: 480px) {
+      .containerSlider,
+      .containerSliderHigh {
+        width: 665px;
+      }
+    }
+
+    /* For smaller displays like laptops */
+    @media (min-width: 768px) and (max-width: 979px) {
+      .containerSlider ,
+      .containerSliderHigh {
+        width: 665px;
+      }
+    }
+
+    /* For larger displays */
+    @media (min-width: 1200px) {
+      .containerSlider ,
+      .containerSliderHigh {
+        width: 665px;
+      }
+    }
+
+    .containerSliderHigh {
+      width: 100%;
+      min-height: 250px;
+
+    }
+  

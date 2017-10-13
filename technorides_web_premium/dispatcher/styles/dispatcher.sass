@@ -1,0 +1,324 @@
+#map_canvas
+  width: 100%
+  height: 400px
+  position: relative
+  .angular-google-map-container
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 0
+    left: 0
+body
+  overflow: hidden
+  padding: 0px !important
+
+.markerDriverLabels, .markerLabels, .opLabels
+  border:
+    radius: 3px
+  font:
+    size: 11px
+  padding: 0px 2px 0px 2px
+  text-align: center
+  white:
+    space: nowrap
+
+.driver-img
+  max-width: 100px
+
+.opLabels
+  width: 50px
+
+.markerDriverLabels
+  width: 30px
+
+.markerLabels
+  margin:
+    left: -50px !important
+  overflow: hidden
+  text:
+    overflow: ellipsis
+  width: 100px
+
+.markerLabels, .markerDriverLabels, .opLabels
+  background: white
+  color: #1d2939
+  opacity: .8
+
+.gmnoprint title
+  display: none
+
+.tooltip.top
+  img
+    border:
+      radius: 3px
+    margin:
+      bottom: 5px
+      top: 5px
+      right: 5px
+    width: 70px
+  table tr td
+    padding: 2px
+    text:
+      align: left
+  .tooltip-inner
+    color: white
+    text-align: left
+    min-width: none !important
+    max-width: none !important
+    width: auto !important
+    white:
+      space: nowrap
+
+  .tooltip-inner
+    background:
+      color: #1d2939
+
+  .tooltip-arrow
+    border:
+      top:
+        color: #1d2939
+.submited
+  .ng-invalid
+    color: white
+    background-color: #e74c3c
+    border-color: #ebccd1
+.datetimepicker
+  width: 100%
+  table
+    width: 100%
+.logopanel
+  p
+    font-family: 'Exo', sans-serif
+    color: #404041
+    margin: 0
+    letter-spacing: 0.03em
+    span
+      font-family: 'Exo', sans-serif
+      color: #009a80
+.contentpanel .row .stat
+  max-width: none !important
+.headermenu .dropdown-toggle:hover, .headermenu .dropdown-toggle:focus, .headermenu .dropdown-toggle:active, .headermenu .dropdown-toggle.active, .headermenu .open .dropdown-toggle.dropdown-toggle
+  background: #1d2939
+  color: #94989d
+.headermenu > li
+  border: 0
+.appear
+  i
+    font-size: 32px
+.blink
+  animation: blink 4s steps(5, start) infinite
+  -webkit-animation: blink 2s steps(5, start) infinite
+@keyframes blink
+  to
+    visibility: hidden
+
+@-webkit-keyframes blink
+  to
+    visibility: hidden
+
+.text-center.resizable
+  position: relative
+  top: -8px
+
+.hide-panel
+  background-color: #e4e7ea
+  border-radius: 5px
+  margin: 0 auto
+  width: 50px
+
+.btn-record, .btn-record-disabled
+  background-color: #d43f3a
+  width: 60px
+  height: 60px
+  border-radius: 50%
+  color: white!important
+  text-align: center
+  margin: 0 auto
+  outline: 0!important
+  i
+    font-size: 30px!important
+  .fa-microphone
+    margin-right: 2px!important
+  .fa-stop
+    margin-right: 7px!important
+.btn-record-disabled
+  background-color: gray
+.new-lang
+  padding: 5px!important
+  cursor: pointer
+  img
+    width: 25px
+    margin-right: 5px
+#langdrop
+  &:after
+    display: none
+  &:before
+    display: none
+.radio
+  .radio-status
+    margin-left: 15px
+    margin-top: 5px
+    border-radius: 2px
+    padding-left: 7px
+    text-align: left
+    background-color: black
+    span
+      font-size: 11px
+      color: #d43f3a
+      opacity: 1
+    .reciving
+      color: #d43f3a
+  .audio-wave
+    height: 29px
+    padding-left: 15px
+
+.radio-disabled
+  img
+    width: 30px
+
+.radio-unavailable
+  background: url(/dispatcher/assets/radio/radio_btn_unavailable.png) no-repeat center
+  height: 76px
+  font:
+    weight: bold
+  padding:
+    top: 18px
+  .radio-unavailable-title
+    color: #1caf9a
+    text:
+      decoration: underline
+  .radio-unavailable-body
+    color: white
+#viewdrop
+  min-width: 70px
+  li
+    padding: 0
+    margin: 5px 0px
+    text-align: center
+  .active
+    a
+      color: white
+      background-color: #1caf9a
+  i
+    font-size: 25px
+  img
+    height: 25px
+  .badge
+    position: relative
+    top: -4px
+    right: 8px
+
+// Minimizing dispatcher operations grid
+.operations-grid
+  .contentpanel
+    padding: 0px 20px 20px 20px
+  table.table-email
+    td
+      padding: 5px 5px
+      vertical-align: top !important
+
+// Remove form-controls padding
+.form-control
+  padding: 5px
+
+.list-group a
+  padding: 5px
+
+// Dispatcher operations grid scroll
+body
+  overflow: hidden !important
+  .mainpanel
+    .operations-grid
+      padding: 0 20px
+      .panel-body
+        height: 100%
+        overflow-x: hidden
+        overflow-y: auto
+        padding: 10px !important
+
+// Timepicker
+.timepicker
+  .btn
+    padding: 4px
+  .btn-link
+    display: none
+
+// Datepicker
+.datepicker
+  *
+    outline: none !important
+  .btn-default
+    background: white
+    padding: 0px 5px
+    .text-muted
+      color: #aaa
+  .btn-info.active
+    background: gray
+    color: white
+    .text-info
+      color: white
+  .btn-default[disabled]
+    background: #eee
+.search-address
+  background-color: #4d90fe
+  background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed)
+  border: 0
+  border-radius: 0 2px 2px 0
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3)
+  color: white
+.places
+  background-color: white
+  border-radius: 3px
+  border-right: 1px solid #ccc
+  border-left: 1px solid #ccc
+  span
+    cursor: pointer
+    width: 100%
+    display: block
+    padding: 5px
+.warning-place
+  background-color: #eee
+  border-radius: 3px
+  cursor: pointer
+  padding: 5px
+  border
+    right: 1px solid #ccc
+    left: 1px solid #ccc
+    bottom: 1px solid #ccc
+  span
+    font-size: 10px
+
+.panel-email
+  .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus
+    background: #798496
+  .btn-compose-email
+    border-color: #169683
+    background: #169683
+
+.timepicker td[ng-show=showMeridian] .btn
+  background-color: #4d90fe
+  background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed)
+  border: 0
+  border-radius: 0 2px 2px 0
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3)
+  color: white
+
+.parking-positions
+  .driver
+    .number
+      color: #169683
+      font:
+        size: 20px
+      padding:
+        top: 15px
+    img
+      border:
+        left: 4px solid #169683
+      width  : 50px
+      height : 50px
+      margin:
+        bottom: 20px
+.media-thumb
+  border: 2px solid #d43f3a!important
+.online
+  border : 2px solid #999999!important

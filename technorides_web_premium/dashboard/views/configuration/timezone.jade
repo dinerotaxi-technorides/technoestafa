@@ -1,0 +1,42 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | {{'Configuration' | translate}} 
+    |/ {{'timeZone' | translate}}
+.contentpanel
+  
+  .alert.alert-warning.alertChrome
+    button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+    strong {{ 'alertChanges' | translate }}   
+  
+  .row
+    .panel.panel-default
+      .panel-body
+        form(name="confgtimezone" ng-submit="configTimezone(company.config.timeZone)")
+          .row
+            .alert.alert-warning.text-center
+              strong WARNING: 
+              |  {{'warningTimezoneText' | translate}}
+            h2 {{'timeZone' | translate}}
+            br
+            .row
+              .col-xs-12.col-md-2
+                label {{'timeZone' | translate}}
+                select.form-control(ng-model="company.config.timeZone" ng-options="time.name for time in timezones track by time.value") 
+            .row
+                .col-xs-12
+                  br
+                  label {{'currentTz' | translate}} :
+                    span(ng-if="company.config.timeZoneStatic.substring(0,7)!='Etc/GMT'").text-danger Timezone could be invalid, change it if you are experiencing time errors ({{company.config.timeZoneStatic}})
+                    span(ng-if="company.config.timeZoneStatic.substring(0,7)=='Etc/GMT'"){{company.config.timeZoneStatic}} ({{selectedTime}})
+            .row
+                .col-xs-12.col-md-2
+                  br
+                  label {{'server' | translate}}: {{serverDate | date: 'hh:mm:ss'}}
+            .row
+                .col-xs-12.col-md-2
+                  br
+                  label Actual : {{selectedTimezone | date: 'hh:mm:ss'}}
+              .clearfix
+          br
+          button.btn.btn-success {{'Save' | translate}}

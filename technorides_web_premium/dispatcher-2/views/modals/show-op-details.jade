@@ -1,0 +1,75 @@
+.row
+  .col-sm-8.modal-photo-left
+    img.photo.img-responsive(ng-if="map.providerName == 'google'" src="https://maps.googleapis.com/maps/api/staticmap?center={{operations.operation.address.from.coords.latitude}},{{operations.operation.address.from.coords.longitude}}&markers=icon:https://technorides.com/common/assets/markers/origin.png|{{operations.operation.address.from.coords.latitude}},{{operations.operation.address.from.coords.longitude}}&zoom=15&size=700x650")
+    img.photo.img-responsive(ng-if="map.providerName == 'mapbox'" src="https://api.mapbox.com/v4/mapbox.outdoors/url-https%3A%2F%2Ftechnorides.com%2Fcommon%2Fassets%2Fmarkers%2Forigin.png({{operations.operation.address.from.coords.longitude}},{{operations.operation.address.from.coords.latitude}})/{{operations.operation.address.from.coords.longitude}},{{operations.operation.address.from.coords.latitude}},18/700x650.png?access_token={{map.token}}")
+  .col-sm-4.modal-photo-right
+    .media-details
+      span.categ {{operations.operation.created | date: "d MMM. hh:mm a"}}
+      h3.media-title {{operations.operation.id}}
+      .details
+        div(ng-if="operations.operation.comments || operations.operation.options.invoice || operations.operation.options.airport || operations.operation.options.vip || operations.operation.options.luggage || operations.operation.options.specialAssistant || operations.operation.options.smoker || operations.operation.options.pet || operations.operation.options.courier")
+          h4 {{'OperationDetails' | translate}}
+          p(ng-if="operations.operation.comments" style="max-height: 188px; overflow: hidden")
+            i.fa.fa-comments.fa-fw
+            em {{operations.operation.comments}}
+          p(ng-if="operations.operation.cancelReason" style="max-height: 188px; overflow: hidden")
+            i.fa.fa-comments.fa-fw
+            em {{operations.operation.cancelReason}
+
+          table.table(ng-if="operations.operation.options.invoice || operations.operation.options.airport || operations.operation.options.vip || operations.operation.options.luggage || operations.operation.options.specialAssistant || operations.operation.options.smoker || operations.operation.options.pet || operations.operation.options.courier")
+            tbody
+              tr(ng-if="operations.operation.options.invoice")
+                td
+                  i.fa.fa-barcode
+                  strong.pull-right  {{'Invoice' | translate}}
+              tr(ng-if="operations.operation.options.airport")
+                td
+                  i.fa.fa-plane
+                  strong.pull-right {{'Airport' | translate}}
+              tr(ng-if="operations.operation.options.vip")
+                td
+                  i.fa.fa-user
+                  strong.pull-right VIP
+              tr(ng-if="operations.operation.options.luggage")
+                td
+                  i.fa.fa-briefcase
+                  strong.pull-right {{'Luggage' | translate}}
+              tr(ng-if="operations.operation.options.specialAssistant")
+                td
+                  i.fa.fa-wheelchair
+                  strong.pull-right {{'SpecialAssistance' | translate}}
+              tr(ng-if="operations.operation.options.airConditioner")
+                td
+                  i.fa.fa-sun-o
+                  strong.pull-right {{'AirConditioner' | translate}}
+              tr(ng-if="operations.operation.options.smoker")
+                td
+                  i.fa.fa-fire
+                  strong.pull-right {{'Smoker' | translate}}
+              tr(ng-if="operations.operation.options.pet")
+                td
+                  i.fa.fa-paw
+                  strong.pull-right {{'Pet' | translate}}
+              tr
+                td(ng-if="operations.operation.options.courier")
+                  i.fa.fa-truck
+                  strong.pull-right {{'Messaging' | translate}}
+              p.email-summary(ng-if="operation.reason")
+                i.fa.fa-clock-o.fa-fw
+                | {{operation.reason}}
+        h4 {{'UserInformation' | translate}}
+        p
+          i.fa.fa-user.fa-fw
+          | {{operations.operation.passenger.name}} {{operations.operation.passenger.lastName}}
+          br
+          i.fa.fa-envelope.fa-fw
+          | {{operations.operation.passenger.email}}
+          br
+          i.fa.fa-phone.fa-fw
+          | {{operations.operation.passenger.phone}}
+        strong(ng-if="operations.operation.passenger.frequent")
+          i.fa.fa-star.fa-fw
+          small  {{'FrequentUser' | translate}}
+        strong(ng-if="operations.operation.passenger.corporate")
+          i.fa.fa-copyright.fa-fw
+          small  {{'CorporateUser' | translate}}

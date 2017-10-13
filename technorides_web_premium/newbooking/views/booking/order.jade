@@ -1,0 +1,212 @@
+div(ng-if="!operation.created")
+  .row
+    .col-xs-12
+      h4.underline
+        strong(typed-translate="") booking.order.title
+  .row
+    form(ng-submit="operation.create()")
+      //FROM ADDRESS
+      .col-xs-12
+        h5
+          strong(typed-translate="") booking.order.pickUp
+        label(typed-translate="") booking.order.address
+        .input-group.input-group-sm
+          span.input-group-addon
+            i.fa.fa-map-marker
+          input.form-control#origin-address(ng-model="operation.origin.address" ng-change="operation.getSugestions('origin')")
+        ul.list-group()
+          li.list-group-item(ng-repeat="sugestion in operation.sugestions.origin | limitTo:5" ng-click="sugestion.locate()" style="cursor:pointer")
+            i.fa.fa-map-marker
+            span  {{sugestion.address}}
+      .col-xs-12.col-md-6
+        label(typed-translate="") booking.order.floor
+        .input-group.input-group-sm
+          span.input-group-addon
+            i.fa.fa-building
+          input.form-control(ng-model="operation.origin.floor")
+      .col-xs-12.col-md-6
+        label(typed-translate="") booking.order.apartment
+        .input-group.input-group-sm
+          span.input-group-addon
+            i.fa.fa-bell
+          input.form-control(ng-model="operation.origin.apartment")
+      //DESTINATION ADDRESS
+      .col-xs-12
+        h5
+          a(ng-click="operation.show.destination = !operation.show.destination" href="")
+            span.fold-form(ng-show="!operation.show.destination")
+              i.fa.fa-caret-right
+            span.fold-form(ng-show="operation.show.destination")
+              i.fa.fa-caret-down
+            strong(typed-translate="") booking.order.dropOff
+        .row(ng-class="{hidden: !operation.show.destination}")
+          .col-xs-12
+            label(typed-translate="") booking.order.address
+            .input-group.input-group-sm
+              span.input-group-addon
+                i.fa.fa-map-marker
+              input.form-control(ng-model="operation.destination.address" ng-change="operation.getSugestions('destination')")
+            ul.list-group
+              li.list-group-item(ng-repeat="sugestion in operation.sugestions.destination | limitTo:5" ng-click="sugestion.locate()" style="cursor:pointer")
+                i.fa.fa-map-marker
+                span  {{sugestion.address}}
+          .col-xs-12.col-md-6
+            label(typed-translate="") booking.order.floor
+            .input-group.input-group-sm
+              span.input-group-addon
+                i.fa.fa-building
+              input.form-control(ng-model="operation.destination.floor")
+          .col-xs-12.col-md-6
+            label(typed-translate="") booking.order.apartment
+            .input-group.input-group-sm
+              span.input-group-addon
+                i.fa.fa-bell
+              input.form-control(ng-model="operation.destination.apartment")
+      //SCHEDULED
+      .col-xs-12(ng-if="operation.estimatedPrice")
+          h5
+            strong(typed-translate="") booking.order.estimatedPrice
+          span {{company.info.currency}} {{operation.estimatedPrice}}
+      .col-xs-12
+        h5
+          a(ng-click="operation.show.scheduled = !operation.show.scheduled" href="")
+            span.fold-form(ng-show="!operation.show.scheduled")
+              i.fa.fa-caret-right
+            span.fold-form(ng-show="operation.show.scheduled")
+              i.fa.fa-caret-down
+            strong(typed-translate="") booking.order.scheduledRide
+        .row(ng-class="{hidden: !operation.show.scheduled}")
+          .col-xs-12
+            // label
+            // .dropdown
+            //   a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+            //     .input-group.input-group-sm
+            //       span.input-group-addon
+            //         i.fa.fa-calendar
+            //       span.form-control {{operation.date | date: 'dd/MM/yyyy hh:mm'}}
+            //   ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+            //     datetimepicker(data-ng-model="operation.date" data-before-render="validateOldDates($dates)" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day'}" tabindex="11")
+            datepicker.datepicker(ng-model="operation.day" min-date="operation.currentDate" show-weeks="false" datepicker-mode="'day'")
+          .col-xs-12
+            timepicker.timepicker(ng-model="operation.hour" mousewheel="false" readonly-input="false" hour-step="1" minute-step="5")
+      //Extras
+      .col-xs-12
+        h5
+          a(ng-click="operation.show.extras = !operation.show.extras; activateTooltips()" href="")
+            span.fold-form(ng-show="operation.show.extras")
+              i.fa.fa-caret-down
+            span.fold-form(ng-show="!operation.show.extras")
+              i.fa.fa-caret-right
+            strong(typed-translate="") booking.order.extras
+        .row(ng-class="{hidden: !operation.show.extras}")
+          .col-xs-12
+            label(typed-translate="") booking.order.options
+            br
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.courier' | translate}}" ng-click="operation.options.courier = !operation.options.courier" ng-class="{active: operation.options.courier}")
+              i.fa.fa-envelope
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.pets' | translate}}" ng-click="operation.options.pet = !operation.options.pet" ng-class="{active: operation.options.pet}")
+              i.fa.fa-paw
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.airConditioning' | translate}}" ng-click="operation.options.airConditioning = !operation.options.airConditioning" ng-class="{active: operation.options.airConditioning}")
+              i.fa.fa-sun-o
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.smoker' | translate}}" ng-click="operation.options.smoker = !operation.options.smoker" ng-class="{active: operation.options.smoker}")
+              i.fa.fa-fire
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.specialAsistance' | translate}}" ng-click="operation.options.specialAsistance = !operation.options.specialAsistance" ng-class="{active: operation.options.specialAsistance}")
+              i.fa.fa-wheelchair
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.airport' | translate}}" ng-click="operation.options.airport = !operation.options.airport" ng-class="{active: operation.options.airoport}")
+              i.fa.fa-plane
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.luggage' | translate}}" ng-click="operation.options.lugage = !operation.options.lugage" ng-class="{active: operation.options.lugage}")
+              i.fa.fa-briefcase
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.vip' | translate}}" ng-click="operation.options.vip = !operation.options.vip" ng-class="{active: operation.options.vip}")
+              i.fa.fa-user
+            button.btn.btn-default.tool(type="button" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="{{'booking.options.invoice' | translate}}" ng-click="operation.options.invoice = !operation.options.invoice" ng-class="{active: operation.options.invoice}")
+              i.fa.fa-file-text-o
+
+          .col-xs-12
+            label(typed-translate="") booking.order.comments
+            textarea.form-control(ng-model="operation.comments")
+            br
+      .col-xs-12
+        button.btn.btn-technorides.btn-block(type="submit" typed-translate="") booking.order.order
+div(ng-if="operation.created")
+  div(ng-if="operation.searching")
+    .row
+      .col-xs-12
+        h4.underline
+          strong(typed-translate="") booking.order.searchingTaxi
+        h1.text-center.searching
+          i.fa.fa-spinner.fa-pulse
+        p.text-center.searching-text
+          span(typed-translate="") booking.order.pleaseWait
+          br
+          small
+            span(typed-translate="") booking.order.opnum
+            &nbsp;
+            span {{operation.id}}
+    br
+    button.btn.btn-danger.btn-block(ng-click="operation.cancel()" typed-translate="") booking.order.cancel 
+  div(ng-if="!operation.searching && !operation.onboard")
+    .row
+      .col-xs-12
+        h4.underline
+          strong(typed-translate="") booking.order.driverInfo
+        .text-center
+          p
+          div(ng-if="operation.driver.image")
+            img.driver-img(ng-src="{{operation.driver.image}}" onerror="this.src='/common/assets/user/profile.png'" width="200px" height="200px" style="width:100%;max-width:200px;height:auto;max-height:200px")
+          h5
+            strong {{operation.driver.name}} {{operation.driver.lastName}}
+          p.text-center.searching-text(typed-translate="") booking.order.carPlate
+          p.text-center {{operation.driver.car.plate}}
+          p.text-center.searching-text(typed-translate="") booking.order.carModel
+          p.text-center {{operation.driver.car.brand}} {{operation.driver.car.model}}
+
+    br
+    button.btn.btn-warning.btn-block(ng-click="operation.sendSms('',false)" typed-translate="") booking.order.sendSms
+    br
+    button.btn.btn-danger.btn-block(ng-click="operation.cancel()" typed-translate="") booking.order.cancel
+  div(ng-if="!operation.searching && operation.onboard")
+    .row
+      .col-xs-12
+        h2.text-center(typed-translate="")
+          i.fa.fa-check-circle.text-success
+          | booking.order.rideInProgress
+        h3.text-center
+          span(typed-translate="") booking.order.tankyou
+          span {{company.info.name}}
+        br
+        br
+        small(typed-translate="") booking.order.problems
+
+        p
+          a + {{company.info.phone}}
+        h4.underline
+          strong(typed-translate="") booking.order.rideInfo
+        br
+        h5
+          strong(typed-translate="") booking.order.pickUp
+        p
+          i.fa.fa-map-marker
+          span {{operation.origin.address}}
+          span(ng-if="operation.origin.floor") , {{operation.origin.floor}} {{operation.origin.apartment}}
+          br
+        h5(ng-if="operation.destination.address")
+          strong(typed-translate="") booking.order.dropOff
+        p(ng-if="operation.destination.address")
+          i.fa.fa-flag-checkered
+          |  {{operation.destination.address}}
+          span(ng-if="operation.destination.floor") , {{operation.destination.floor}}  {{operation.destination.apartment}}
+          br
+        h5
+          strong(typed-translate="") booking.order.extras
+        p
+          i.fa.fa-envelope(ng-if="operation.options.courier")
+          i.fa.fa-paw(ng-if="operation.options.pet")
+          i.fa.fa-sun-o(ng-if="operation.options.airConditioning")
+          i.fa.fa-fire(ng-if="operation.options.smoker")
+          i.fa.fa-wheelchair(ng-if="operation.options.specialAsistance")
+          i.fa.fa-plane(ng-if="operation.options.airoport")
+          i.fa.fa-briefcase(ng-if="operation.options.lugage")
+          i.fa.fa-user(ng-if="operation.options.vip")
+          i.fa.fa-file-text-o(ng-if="operation.options.invoice")
+        p(ng-if="operation.comments!=''")
+          em "{{operation.comments}}"

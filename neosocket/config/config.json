@@ -1,0 +1,77 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "dtax",
+    "options":{
+      "logging": false,
+      "host": "127.0.0.1",
+      "dialect": "mysql",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "idle": 10000
+      }
+    }
+  },
+  "ci": {
+    "username": "root",
+    "password": "root_beta",
+    "database": "dtax_ci",
+    "options":{
+      "logging": false,
+      "host": "54.91.10.244",
+      "dialect": "mysql",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "idle": 10000
+      }
+    }
+  },
+  "beta": {
+    "username": "root",
+    "password": "root_beta",
+    "database": "dtax",
+    "options":{
+      "logging": false,
+      "host": "10.0.0.131",
+      "dialect": "mysql",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "idle": 10000
+      }
+    }
+  },
+  "stage": {
+    "username": "dtax",
+    "password": "PerSe12cel",
+    "database": "dtax",
+    "options":{
+      "logging": false,
+      "host": "alpha.cbuprwqrl306.sa-east-1.rds.amazonaws.com",
+      "dialect": "mysql",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "idle": 10000
+      }
+    }
+  },
+  "production": {
+    "username": "dtax",
+    "password": "PerSe12cel",
+    "database": "dtax",
+    "options":{
+      "logging": false,
+      "host": "technorides.crqronbs11hp.us-east-1.rds.amazonaws.com",
+      "dialect": "mysql",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "idle": 10000
+      }
+    }
+  }
+}

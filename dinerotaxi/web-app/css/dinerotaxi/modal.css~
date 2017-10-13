@@ -1,0 +1,435 @@
+/*
+	Description: Beta ID Master Stylesheet
+	Media: Screen
+	Version: 1
+	Author: Rodrigo Galindez
+	Author URI: http://www.rodrigogalindez.com
+*/
+
+/* Overlay */
+#simplemodal-overlay {
+	background-color:#000; 
+	cursor:wait;
+}
+
+hr {
+	display: none;
+}
+
+img {
+	vertical-align: middle;
+	border: 0 none;
+}
+
+a {
+	color: #0C99CE;
+}
+
+p {
+	margin-bottom: 15px;
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+#basic-modal-content {display:none;}
+.basic-modal-content {display:none;}
+
+#simplemodal-container {
+	width: 517px;
+	margin: 0 auto;
+	border: 10px solid rgba(0,0,0,.2);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #fff;
+}
+
+#simplemodal-editable {
+	width: 540px;
+	border: 0 none;
+	-webkit-box-shadow: 0 1px 5px #ccc;
+	-moz-box-shadow: 0 1px 5px #ccc;
+	box-shadow: 0 1px 5px #ccc;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	background: #fff;
+}
+
+.simplemodal-container:after {
+	content: ".";
+	display: block;
+	/*height: 0;*/
+	clear: both;
+	visibility: hidden;
+}
+
+#modal {
+	position: relative;
+	background: #fff;
+}
+
+#modal:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+#modal header {
+	margin-bottom: 15px;
+	padding: 10px 15px;
+	text-align: center;
+	color: #fff;
+	background: rgb(127,142,147); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(127,142,147,1) 0%, rgba(93,111,118,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(127,142,147,1)), color-stop(100%,rgba(93,111,118,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(127,142,147,1) 0%,rgba(93,111,118,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(127,142,147,1) 0%,rgba(93,111,118,1) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(127,142,147,1) 0%,rgba(93,111,118,1) 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f8e93', endColorstr='#5d6f76',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(127,142,147,1) 0%,rgba(93,111,118,1) 100%); /* W3C */
+}
+
+#modal header p {
+	margin: 0;
+	font-size: 13px;
+}
+
+#simplemodal-container a.modalCloseImg {
+	position: absolute;
+	width: 25px;
+	height: 26px;
+	top: 0;
+	right: 0;
+	margin-top: -20px;
+	margin-right: -25px;
+	background: transparent url(../images/x.png) no-repeat top left;
+	text-indent: -1000em;
+}
+
+#modal-body {
+	margin-bottom: 15px;
+	padding: 0 15px;
+}
+
+#simplemodal-editable #modal-body {
+	margin: 0;
+	padding: 20px 20px 0 20px;
+}
+
+#modal-body.centered {
+	text-align: center;
+}
+
+#modal-body h1 {
+	margin-bottom: 15px;
+	font-size: 18px;
+	color: #333;
+}
+
+#modal-body form {
+	margin: 0 auto;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+#simplemodal-editable #modal-body form {
+	margin-bottom: 10px;
+}
+
+#modal-body form .field {
+	margin-bottom: 15px;
+}
+
+#modal-body form .field:last-child {
+	margin: 0;
+}
+
+#modal-body form.common-form .field {
+	margin: 0;
+}
+
+#modal-body form .field:after {
+	content: ".";
+	display: block;
+	height: 0;	
+	clear: both;
+	visibility: hidden;
+}
+
+#modal-body form .field .field-label {
+	width: 150px;
+	margin-top: 6px;
+	margin-right: 10px;
+	float: left;
+}
+
+#modal-body form .field .field-label label {
+	display: block;
+	font-size: 18px;
+}
+
+#modal-body form.common-form .field .field-label label {
+	margin-top: 3px;
+	margin-right: 10px;
+	font-size: 15px;
+	text-align: right;
+}
+
+#modal-body form .field .field-label p {
+	margin-top: 10px;
+	margin-bottom: 0;
+	font-size: 11px;
+	float: left;
+}
+
+#modal-body form .field-input {
+	float: left;
+}
+
+#modal-body form .field-input input,
+#modal-body form .field-input textarea {
+	display: block;
+	position: relative;
+	width: 300px;
+	border: 1px solid #ccc;
+	padding: 8px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+	font-size: 13px;
+	color: #999;
+	clear: both;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	z-index: 100;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+}
+
+/*#modal-body form .field-input input:focus {
+	box-shadow: 0 0 5px rgba(12, 153, 206, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	border: 1px solid rgba(12, 153, 206, 0.3);
+}*/
+
+#modal-body form .field textarea {
+	height: 80px;
+}
+
+#modal-body form .field select {
+	padding: 6px 8px;
+	padding-right: 10px;
+	font-size: 13px;
+	border: 1px solid #ccc;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#modal-body form .field option {
+	padding-right: 8px;
+	border: 1px solid #eee;
+}
+
+#modal-body form .field-group {
+	position: relative;
+	margin-bottom: 15px;
+	clear: both;
+}
+
+#modal-body form .field-group:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+#modal-body form .field-group.deleteable input {
+	width: 270px;
+	float: left;
+}
+
+#modal-body form .field-group.deleteable .delete {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	margin-top: 11px;
+	margin-left: 15px;
+	background: transparent url(../images/icon-field-delete.png) no-repeat top left;
+	text-indent: -1000em;
+	float: right;
+}
+
+#modal-body form .field-group.deleteable .delete:hover {
+	background-position: -13px 0;
+}
+
+#modal-body form .field input:focus,
+#modal-body form .field textarea:focus {
+	color: #333;
+}
+
+#modal-body form .field input.readonly {
+	color: #999;
+}
+
+#modal-body form .field p.tooltip,
+#modal-body form .field p.error {
+	margin: 0;
+	padding: 5px;
+	padding-bottom: 0;
+	font-size: 11px;
+	color: #999;
+}
+
+#modal-body form .field p.tooltip.checkbox {
+	padding: 0;
+	line-height: normal;
+	float: right;
+	clear: both;
+}
+
+/* Error handling */
+
+#modal-body form .field-group input.error,
+#modal-body form .field-group textarea.error,
+#modal-body form .field-group select.error {
+	border: 1px solid #FFCCCC;
+	-webkit-box-shadow: 0 1px 3px rgba(255, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 3px rgba(255, 0, 0, 0.1) inset;
+	box-shadow: 0 1px 3px rgba(255, 0, 0, 0.1) inset;
+}
+
+#modal-body form .field-group p.error {
+	color: #CB2727;
+}
+
+#modal-body form input.checkbox,
+#modal-body form input.radio {
+	width: auto;
+	display: inline-block;
+	margin-right: 5px;
+	clear: both;
+}
+
+#modal-body form label.checkbox,
+#modal-body form label.radio {
+	font-size: 11px;
+	color: #333;
+}
+
+#modal-body form .field-input .button-area {
+	clear: both;
+	float: left;
+}
+
+#modal-body form .field-input input.button-submit {
+	display: block;
+	width: auto;
+	margin-right: 10px;
+	padding: 6px 10px;
+	font-size: 13px;
+	text-decoration: none;
+	background: #333;
+	color: #333;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: rgb(254,254,254); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(222,222,222,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,254,254,1)), color-stop(100%,rgba(222,222,222,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(222,222,222,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(222,222,222,1) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(222,222,222,1) 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(254,254,254,1) 0%,rgba(222,222,222,1) 100%); /* W3C */
+	border: 1px solid #ccc;
+	cursor: pointer;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	clear: none;
+	float: left;
+}
+
+#modal-body form .field-input input.button-submit:hover {
+	background: rgb(241,241,241); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(241,241,241,1) 0%, rgba(212,210,210,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(241,241,241,1)), color-stop(100%,rgba(212,210,210,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(241,241,241,1) 0%,rgba(212,210,210,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(241,241,241,1) 0%,rgba(212,210,210,1) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(241,241,241,1) 0%,rgba(212,210,210,1) 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#d4d2d2',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(241,241,241,1) 0%,rgba(212,210,210,1) 100%); /* W3C */
+}
+
+#modal-body form .field-input input.button-submit:active {
+	background: #ddd;
+}
+
+/* Autocomplete */
+
+#modal form .field-group .ui-autocomplete {
+	position: absolute;
+	top: 37px;
+	width: 316px;
+	margin-top: 1px;
+	background: #f2f2f2;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	z-index: 110;
+	overflow: hidden;
+}
+
+#modal form .field-group.deleteable .ui-autocomplete {
+	width: 286px;
+}
+
+#modal form .field-input .ui-autocomplete li a {
+	display: block;
+	padding: 8px 10px;
+	font-size: 13px;
+	line-height: 1.6;
+	text-decoration: none;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+}
+
+#modal form .field-input .ui-autocomplete li a:hover {
+	background: #e5e5e5;
+}
+
+#modal form .field-input .google-map {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	background: #f2f2f2;
+	height: 150px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+/* Flash Message Container */
+
+#modal .modal-flash {
+	padding: 10px 15px;
+	background: #FFF4B9;
+	border-bottom: 1px dashed rgba(0,0,0,.1);
+}
+
+#modal .modal-flash p {
+	margin: 0;
+	font-size: 12px;
+	font-weight: bold;
+	color: #827c5b;
+}

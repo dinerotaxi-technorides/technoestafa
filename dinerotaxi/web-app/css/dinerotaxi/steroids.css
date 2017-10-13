@@ -1,0 +1,62 @@
+body {
+	margin-top: 45px !important;
+	/*margin-top: 30px !important;*/
+	/*background: #fff !important;*/
+}
+
+#wrapper {
+	border-radius: 0 !important;
+}
+
+section.alt header {
+	margin-bottom: 5px !important;
+}
+
+section.alt h2 {
+	text-transform: none !important;
+}
+
+.filter-checkbox {
+	border-bottom: 1px dotted #ddd;
+}
+
+.sidebar-alt {
+	width: 192px !important;
+	padding: 15px;
+	background: #f2f2f2;
+}
+
+.full-tabs {
+	/*display: none;*/
+}
+
+#header-wrapper {
+	padding: 10px 0 !important;
+}
+
+#header-wrapper header h1 a {
+	width: 122px !important;
+	height: 18px !important;
+	margin-right: 60px;
+	margin-top: 7px !important;
+	background: url(../images/logo-o.png) no-repeat top left !important;
+}
+
+#wrapper {
+	background: transparent !important;
+	/*display: none;*/
+}
+
+#header-wrapper {
+	background: rgba(0, 0, 0, 0.7) !important;
+	box-shadow: none !important;
+}
+
+nav#main {
+	display: none;
+}
+
+#header-wrapper form {
+	margin-left: 40px;
+	display: none;
+}

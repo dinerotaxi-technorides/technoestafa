@@ -1,0 +1,71 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | {{'Configuration' | translate}} 
+    |/ {{'WebPage' | translate}}
+.contentpanel
+  
+  .alert.alert-warning.alertChrome
+    button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+    strong {{ 'alertChanges' | translate }}   
+  .row
+    .panel.panel-default
+      .panel-body          
+        form(name="webConfig" ng-submit="companyWebConfig(company.config.web)")
+          .row
+            h3.underline {{'BookingWeb' | translate}} 
+            .col-xs-6.col-md-3
+              .col-xs-12
+                label {{'WebTitle' | translate}}
+                input.form-control(ng-model="company.config.web.title")
+                br
+              .col-xs-12
+                label {{'WebCompanyTitle' | translate}}
+                textarea.form-control(ng-model="company.config.web.about.title" ui-tinymce="tinymceOptions")
+            .col-xs-6.col-md-3
+              .col-xs-12
+                label {{'WebUrl' | translate}}
+                input.form-control(ng-model="company.config.web.url")
+                br
+              .col-xs-12
+                label {{'WebCompanyDescrìption' | translate}}
+                textarea.form-control(ng-model="company.config.web.about.text" ui-tinymce="tinymceOptions")
+        
+            .col-xs-6.col-md-3
+              .col-xs-12
+                label {{'WebPhoneBooking' | translate}}
+                input.form-control(ng-model="company.config.web.phone_booking")
+              .col-xs-12
+                label {{'WebPhoneAdministration' | translate}}
+                input.form-control(ng-model="company.config.web.phone_admin")
+              .col-xs-12
+                label {{'WebAddress' | translate}}
+                input.form-control(ng-model="company.config.web.address")
+              .col-xs-12
+                label {{'city' | translate}}
+                input.form-control(ng-model="company.config.web.state")
+
+              
+            .col-xs-12.col-md-3
+              .col-xs-12
+                label {{'WebZipcode' | translate}}
+                input.form-control(ng-model="company.config.web.zip")
+              .col-xs-12
+                label {{'WebFacebook' | translate}}
+                input.form-control(ng-model="company.config.web.facebook")
+              .col-xs-12
+                label {{'WebTwitter' | translate}}
+                input.form-control(ng-model="company.config.web.twitter")  
+
+              .col-xs-12
+                label {{'WebLinkedin' | translate}}
+                input.form-control(ng-model="company.config.web.linkedin")
+          .row.hidden
+            .col-xs-12.text-center
+              br
+              button.btn.btn-darkblue(type="button") Preview
+          .row
+            .col-xs-12.text-center
+              br
+              button.btn.btn-success(type="submit") {{'Save' | translate}}
+              button.btn.btn-danger(type="button") {{'Cancel' | translate}}

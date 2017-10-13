@@ -1,0 +1,34 @@
+form(name="add",ng-submit="add.$valid && employees.add()")
+  .row
+    .col-xs-12.col-sm-6
+      .form-group
+        label(for="name" typed-translate="") corporate.labels.name
+        input.form-control(ng-model="employees.employee.name", required tabindex="1")
+      .form-group
+        label(for="password" typed-translate="") corporate.labels.password
+        input.form-control(ng-model="employees.employee.password",required tabindex="3" type="password")
+      .form-group
+        label(typed-translate="") corporate.labels.email
+        input.form-control.pull-left(ng-model="employees.employee.email" name="emailcheck" type="email" ng-unique required tabindex="5" ng-change="employees.validateMail(employees.employee.user)" style="width:90%")
+        h4.pull-left(ng-show="employees.checkingEmail" style="width:10%; padding: 0 7px;")
+          i.fa.fa-spinner.fa-pulse
+        h4.pull-left(ng-show="!employees.checkingEmail && !add.emailcheck.$error.unique" ng-if="add.emailcheck.$valid" style="width:10%;padding: 0 7px;")
+          i.fa.fa-check-circle.text-success
+        h4.pull-left(ng-show="!employees.checkingEmail && add.emailcheck.$error.unique" ng-if="!add.emailcheck.$valid" style="width:10%;padding: 0 7px;")
+          i.fa.fa-times-circle.text-danger
+    .col-xs-12.col-sm-6
+      
+      .form-group
+        label(for="lastname" typed-translate="") corporate.labels.lastName
+        input.form-control(type="text", ng-model="employees.employee.lastname", required  tabindex="2")
+      .form-group
+        label(for="phone" typed-translate="") corporate.labels.phone
+        input.form-control( ng-model="employees.employee.phone", required tabindex="4")
+      .form-group
+        label(for="checkboxDefault" typed-translate="") corporate.labels.admin
+        br
+        toggle-switch(ng-model="employees.employee.admin")
+    
+    .col-xs-12    
+      button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button" typed-translate="") corporate.labels.cancel 
+      button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit" typed-translate="") corporate.labels.ok

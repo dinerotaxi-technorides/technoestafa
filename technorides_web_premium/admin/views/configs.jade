@@ -1,0 +1,36 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | Configuration
+  
+
+.contentpanel
+  .row    
+    .form-group.col-sm-4.pull-right
+      .input-group
+        input.input-sm(placeholder="Search here" ng-model="searchString" ng-change="configs.get(1, searchField, searchString)")    
+        select.input-sm(style={margin:"0 .5em"} ng-model="searchField" ng-options="option as option for option in configs.searchFields" ng-init="searchField=configs.searchFields[0]")
+                  
+    .table-responsive
+      table.table.table-striped.table-hover.field-table
+        thead
+          tr
+            th.text-center(ng-repeat="(field, fieldSettings) in configs.fields" ng-click="configs.get(1, searchField, searchString, field)" ng-if="fieldSettings.visible==true")
+              a(href="")
+                {{"configs." + field | translate}}
+                i.fa.fa-chevron-up(ng-if="field==configs.currentOrderField && configs.currentOrder == 'desc'")
+                i.fa.fa-chevron-down(ng-if="field==configs.currentOrderField && configs.currentOrder == 'asc'")
+            th.text-center(colspan="2" translate="general.actions")  
+            
+        tbody
+          tr(ng-repeat="config in configs.list")
+            td.text-center(ng-repeat="(field, fieldSettings) in configs.fields" ng-if="fieldSettings.visible==true") {{config[field]}}
+              td.text-center
+                a.label.label-danger(ng-click="configs.set(config)" modal="views/modals/configs-delete.html" modal-title="Delete Configuration" href="")
+                  i.fa.fa-times-circle-o
+                span &nbsp;
+                a.label.label-success(ng-click="configs.set(config)" modal="views/modals/configs-edit.html" modal-title="Edit Configuration" href="" modal-size="large")
+                  i.fa.fa-pencil    
+                
+  div(ng-include="'views/paginator.html'")
+  div(ng-include="'/common/scripts/modal/async.html'")

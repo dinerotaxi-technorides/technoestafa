@@ -1,0 +1,12 @@
+.text-center
+  nav
+    ul.pagination
+      li
+        a(ng-click="paginator.get(1, companyNameSearch)" href="")
+          i.fa.fa-angle-double-left
+      li(ng-repeat="page in grid.totalPages" ng-class="{active: page == grid.page}" )
+        a(ng-click="paginator.get(page, companyNameSearch)" href="")
+          {{page}}
+      li
+        a(ng-click="paginator.get(grid.pages, companyNameSearch)" href="")
+          i.fa.fa-angle-double-right      

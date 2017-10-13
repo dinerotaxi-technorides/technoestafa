@@ -1,0 +1,47 @@
+.row
+  .col-xs-12
+    h4.underline 
+      strong(typed-translate="") booking.history.title
+  .col-xs-12
+    div(ng-repeat="op in operation.history")
+      h5
+        strong(ng-if="op.date") {{op.date | date}}
+        
+      span(ng-if="op.date") {{op.date | date:'hh:mm a'}}
+      div(style="background-color: #ddd;border-top:1px solid #333;padding:15px")
+        
+        p
+          i.fa.fa-map-marker 
+          |  {{op.address.from.street}}
+          br(ng-if="op.address.from.floor")
+          span(ng-if="op.address.from.floor" style="margin-right:10px")
+            i.fa.fa-building 
+            |  {{op.address.from.floor}}
+          span(ng-if="op.address.from.apartment")
+            i.fa.fa-bell
+            |  {{op.address.from.apartment}} 
+          br
+          span(ng-if="op.comments != ''")
+            i.fa.fa-commenting-o
+            |  {{op.comments}} 
+          span.hidden
+            i.fa.fa-envelope(ng-if="op.options.messaging" style="margin-right:5px")
+            i.fa.fa-paw(ng-if="op.options.pet" style="margin-right:5px")
+            i.fa.fa-sun-o(ng-if="op.options.airConditioning" style="margin-right:5px")
+            i.fa.fa-fire(ng-if="op.options.smoker" style="margin-right:5px")
+            i.fa.fa-wheelchair(ng-if="op.options.specialAssistant" style="margin-right:5px")
+            i.fa.fa-plane(ng-if="op.options.airport" style="margin-right:5px") 
+            i.fa.fa-briefcase(ng-if="op.options.luggage" style="margin-right:5px")
+            i.fa.fa-user(ng-if="op.options.vip" style="margin-right:5px")
+            i.fa.fa-file-text-o(ng-if="op.options.invoice" style="margin-right:5px")
+
+          br(ng-if="op.address.to.street!=''")
+          span(ng-if="op.address.to.street!=''") 
+            i.fa.fa-flag
+            |  {{op.address.to.street}}
+          span {{op.status}}
+          br
+          
+
+    br
+    div.text-center(ng-if="operation.history.length == 0" typed-translate="") booking.history.norides 

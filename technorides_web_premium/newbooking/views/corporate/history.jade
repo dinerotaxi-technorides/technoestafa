@@ -1,0 +1,66 @@
+h2.title(ng-hide="user.superUser")
+  span.fa-stack
+    i.fa.fa-circle-thin.fa-stack-2x
+    i.fa.fa-money.fa-stack-1x
+  span(typed-translate="") corporate.sections.history
+.container-fluid
+  .col-xs-12(style="margin-bottom:10px")
+    .row
+      .col-xs-12.col-md-6
+        button.btn.btn-technorides.square(modal="views/modal/corporate/export-operations.html" modal-title="Export operations")
+          i.fa.fa-eject
+      .col-xs-12.col-md-6
+        .col-xs-6
+          label(typed-translate="") corporate.orderBy
+          select.form-control(ng-model="orderBy" ng-change="corporate.operations.get(1, search, orderBy, filterBy)")
+            option(value="" typed-translate="") corporate.orders.noOrder
+            option(value="createdDate-asc") {{'corporate.orders.date' | translate}} &uarr; 
+            option(value="createdDate-desc") {{'corporate.orders.date' | translate}} &darr;
+        .col-xs-6
+          label(typed-translate="") corporate.filterBy
+          select.form-control(ng-model="filterBy" ng-change="corporate.operations.get(1, search, orderBy, filterBy)")
+            option(value="" typed-translate="") corporate.filters.noFilter
+            option(value="completed" typed-translate="") corporate.filters.completed
+            option(value="canceled" typed-translate="") corporate.filters.canceled
+        .col-xs-12
+          br
+          .input-group
+            input.form-control(ng-model="search" ng-change="corporate.operations.get(1, search, orderBy, filterBy)")
+            span.input-group-addon 
+              i.fa.fa-search
+  .col-xs-12
+    .table-responsive 
+      table.table.table-striped
+        thead.box-technorides
+          tr
+            th.text-left(typed-translate="")   corporate.labels.date
+            th.text-center(typed-translate="") corporate.labels.id
+            th.text-center(typed-translate="") corporate.labels.name
+            th.text-center(typed-translate="") corporate.labels.from
+            th.text-center(typed-translate="") corporate.labels.amount
+            th.text-right 
+        tbody
+          tr(ng-show="corporate.operations.list.length == 0")
+            td.text-center(colspan="6" typed-translate="") corporate.NoRecordsAvailable
+          tr(ng-repeat="operation in corporate.operations.list")
+            td.text-left {{operation.date | date}}
+            td.text-center {{operation.id}}
+            td.text-center {{operation.name}} {{operation.lastName}}
+            td.text-center {{operation.address.from.street}}
+            td.text-center {{company.info.currency}}
+              span(ng-if="operation.ammount") {{operation.ammount}}
+              span(ng-if="!operation.ammount") 0
+            td.text-right 
+              a(href="" ng-click="corporate.operation = operation" modal="views/modal/corporate/view-op-details.html" modal-title="{{'corporate.history.operationDetail' | translate}}")
+                i.fa.fa-bars
+    .text-center
+      nav(ng-show="corporate.operations.pages.length > 1") 
+        ul.pagination
+          li(ng-show="corporate.operations.page != 1")
+            a(href="" aria-label="Previous" ng-click="corporate.operations.get(1, search, orderBy, filterBy)")
+              i.fa.fa-angle-left
+          li(ng-repeat="page in corporate.operations.pages")
+            a(href="" ng-click="corporate.operations.get(page+1, search, orderBy, filterBy)") {{page+1}} 
+          li
+            a(href="" aria-label="Next" ng-click="corporate.operations.get(corporate.invoices.pages.length, search, orderBy, filterBy)")
+              i.fa.fa-angle-right

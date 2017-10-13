@@ -1,0 +1,41 @@
+modal.fade.showOphistory(tabindex="-1", role="dialog", aria-labelledby="showOphistory", aria-hidden="true", style="display: none;")
+  .modal-dialog.modal-lg
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title # {{corporate.history.id}}
+        .panel-body(ng-if="grid.row.log_operation.length > 0")
+          .col-xs-12
+            h4.label.label-default 
+              strong.text-danger
+                i.fa.fa-times   
+              |  {{company.operationFlow.operation.status | translate}}
+          .col-xs-12
+            .pull-left.hidden
+              label {{'startDate' | translate}}
+              br
+              span
+                i.fa.fa-calendar 
+                |  {{company.operationFlow.startDate | date: "d MMM. hh:mm a"}}
+            .pull-right.hidden
+              label {{'endDate' | translate}}
+              br
+              span
+                i.fa.fa-calendar 
+                |  {{company.operationFlow.endDate | date: "d MMM. hh:mm a"}}
+            .time-line.modal-lg#append-popover
+              .line-wrapper
+                .line
+              table
+                tr
+                  td(ng-repeat="step in company.operationFlow.flow")
+                    .step-data(ng-class="{first: $index == 0}")
+                      img(src="assets/history/icons/{{step.img}}" onerror="this.src='assets/history/default.png'")
+                      p {{step.text | translate | limitTo: 25}}
+                    a.step(ng-class="{start: $index == 0}" href="" data-toggle="popover" role="button" data-trigger="focus" data-placement="bottom" data-container="#append-popover" data-html="true" data-content="<div class='row'><div class='col-xs-6'><img class='img-responsive' src='assets/history/images/{{step.tooltip_img}}' onerror='this.src=\"assets/history/default.png\"'></div><div class='col-xs-6'><h5 class='pop-date'>{{step.created_at | date: 'd MMM. hh:mm a'}}</h5><p class='popover-text'>{{step.tooltip  | translate}}</p></div></div>")
+        .panel-body(ng-if="company.operationFlow.flow.length == 0")
+          b {{'operationFlowNoInformation' | translate}}
+          p {{'operationFlowNoInformationDesc' | translate}}

@@ -1,0 +1,130 @@
+h2.title.no-print
+  span.fa-stack
+    i.fa.fa-circle-thin.fa-stack-2x
+    i.fa.fa-money.fa-stack-1x
+  span {{corporate.invoice.number}}
+.container-fluid
+  .col-xs-12
+    .row.no-print
+      ol.breadcrumb
+        li(ng-hide="user.superUser")
+          a(href="" ng-click="changeTab('billing');corporate.invoices.get()" typed-translate="") corporate.sections.billing 
+        li(ng-show="user.superUser")
+          a(href="" ng-click="changeTab('costprofile')") {{corporate.costCenter.name}}
+        li.active {{corporate.invoice.number}}
+  .col-xs-12
+    .row.no-print
+       button.btn.btn-technorides.square(ng-click="corporate.invoices.print()")
+        i.fa.fa-print
+    .row
+      .panel.panel-default
+        .panel-body
+          .col-xs-12.no-print
+            .row
+              h4(typed-translate="") corporate.invoice.payments
+              ul.payments
+                li(ng-repeat="payment in corporate.invoice.payments")
+                  span - {{payment.date | date}} - {{company.info.currency}}{{payment.amount}} | {{payment.mode}} | ref: {{payment.reference}}
+                  span | 
+                  span(typed-translate="") corporate.labels.comments
+                  span : {{payment.notes}}
+              
+        
+          #bill
+            .corner-ribbon {{'corporate.invoice.'+corporate.invoice.status | translate | uppercase}}
+            .row
+              br
+              br
+              .col-xs-6
+                h3 {{corporate.company.name}}
+                span {{corporate.company.legalAddress | lowercase}}
+                br
+                span Tel: {{corporate.company.phone}}
+                br
+                span(typed-translate="") corporate.company.taxIdentification 
+                span : {{corporate.company.cuit}}
+              .col-xs-6
+                .col-xs-12.col-md-6
+                .col-xs-12.col-md-6
+                  h2.text-right {{corporate.invoice.number}}
+                  .table-responsive
+                    table.table
+                      tr
+                        th(typed-translate="") corporate.labels.date
+                        td.text-right {{corporate.invoice.billingDate | date}}
+                      tr(ng-if="corporate.lateFees.list[corporate.invoice.lateFee]")
+                        th(typed-translate="") corporate.invoice.lateFee
+                        td.text-right {{corporate.lateFees.list[corporate.invoice.lateFee].name}}
+                      tr(ng-if="corporate.terms.list[corporate.invoice.term]")
+                        th(typed-translate="") corporate.invoice.term 
+                        td.text-right {{corporate.terms.list[corporate.invoice.term].name}}
+                      tr 
+                        th(typed-translate="") corporate.labels.dueDate
+                        td.text-right {{corporate.invoice.dueDate | date}}
+              .col-xs-12
+                .table-responsive
+                  table.table.table-striped
+                    thead
+                      tr
+                        th(typed-translate="") corporate.labels.itemydesc
+                        th.text-center(typed-translate="") corporate.labels.quantity
+                        th.text-center(typed-translate="") corporate.labels.price
+                        th.text-center(typed-translate="") corporate.labels.discount
+                        th.text-center(typed-translate="") corporate.labels.tax
+                        th.text-right(typed-translate="") corporate.labels.amount
+                    
+                    tbody
+                      tr(ng-repeat="operation in corporate.invoice.operations")
+                        td {{operation.firstName}} {{operation.lastName}} 
+                        td.text-center {{operation.quantity}}
+                        td.text-center {{company.info.currency}}
+                          span(ng-if="operation.amount") {{operation.amount}}
+                          span(ng-if="!operation.amount") 0
+                        td.text-center 
+                          span(ng-if="operation.discountType == 2 && operation.discount") {{company.info.currency}}
+                          span {{operation.discount}}
+                          span(ng-if="operation.discountType==1 && operation.discount") %
+                        td.text-center
+                          span(ng-if="operation.taxId") {{corporate.taxes.list[operation.taxId].name}} [{{corporate.taxes.list[operation.taxId].charge + '%'}}] 
+                        td.text-right 
+                          span(ng-if="operation.taxId")
+                            span(ng-if="operation.discountType == 2") {{company.info.currency}} {{(operation.amount - operation.discount) + ((corporate.taxes.list[operation.taxId].charge * operation.amount)/100)}}
+                            span(ng-if="operation.discountType == 1") {{company.info.currency}} {{(operation.amount - ((operation.amount*operation.discount)/100)) + ((corporate.taxes.list[operation.taxId].charge * operation.amount)/100) }}
+                          span(ng-if="!operation.taxId") 
+                            span(ng-if="operation.discountType == 2") {{company.info.currency}} {{operation.amount - operation.discount}}
+                            span(ng-if="operation.discountType == 1") {{company.info.currency}} {{ operation.amount - ((operation.amount*operation.discount)/100)}}
+                            
+                      tr()
+                        td(colspan="6") &nbsp;
+                      tr()
+                        td(colspan="4")
+                        td.text-center(typed-translate="") corporate.invoice.subtotal
+                        td.text-right {{company.info.currency}}{{corporate.invoice.subTotal}}
+                      tr()
+                        td(colspan="4")
+                        td.text-center(typed-translate="") corporate.invoice.adjustments
+                        td.text-right {{company.info.currency}}
+                          span(ng-if="corporate.invoice.adjustment") {{corporate.invoice.adjustment}}
+                          span(ng-if="!corporate.invoice.adjustment") 0
+                        
+                      tr()
+                        td(colspan="4")
+                        td.text-center(typed-translate="") corporate.invoice.total
+                        td.text-right {{company.info.currency}}{{corporate.invoice.total}}
+                      tr()
+                        td(colspan="6") &nbsp;
+                      tr()
+                        td(colspan="6") &nbsp;
+                      tr()
+                        td(colspan="4")
+                        td.text-center(typed-translate="") corporate.invoice.paid 
+                        td.text-right {{company.info.currency}}{{corporate.invoice.totalPaid}}
+                      tr()
+                        td(colspan="4")
+                        td.text-center(typed-translate="") corporate.invoice.remaining
+                        td.text-right {{company.info.currency}}{{corporate.invoice.total - corporate.invoice.totalPaid}}
+                p(ng-if="corporate.invoice.comments != ''")
+                  span(typed-translate="") corporate.invoice.comments
+                  br 
+                  span {{corporate.invoice.comments}}
+                        

@@ -1,0 +1,232 @@
+/* CrossBrowsing */
+
+/* general */
+.ie7 .footer {
+    height: 165px;
+    background-color: #000000;
+}
+
+
+/* index.html */
+.ie7 .bOX725 {
+ padding:12px 0 12px 22px;
+}
+
+
+/* customerService.html*/
+.exclama {
+    margin: 12px 0 0 5px;
+ }
+
+.mens_error, .mens_confirma_mail {
+    padding-left: 0.5em;
+}
+
+
+/* ganadoropenapp.html */
+.ie7 a.atencion {
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-left: -60px;
+}
+
+/* registration.html */
+.mt20 {
+    margin-top: 10px;
+}
+.label_check {
+    margin-left: 6px;
+    margin-top: 25px;
+}
+.ie7 .label_check {
+    margin-left: 36px;
+    margin-top: 25px;
+}
+.ie7 input[type=checkbox] {
+	background-color: rgb(255, 255, 255);
+	margin-top: -18px;
+}
+.ie8 input[type=checkbox] {
+	background-color: rgb(255, 255, 255);
+	margin-top: -7px;
+}
+.ie9 input[type=checkbox] {
+	background-color: rgb(255, 255, 255);
+	margin-top: -8px;
+}
+input[type=checkbox] {
+	background-color: rgb(255, 255, 255);
+	margin: -1px 0 0 0;
+}
+
+/* completeCompany */
+.ie7 ol.bjqs-markers {
+	margin: -30px 0 15px 0; 
+}
+
+
+/* pedir.html */
+textarea {
+    width: 236px;
+}
+input.pedirTaxi_ {
+    margin-left: 0;
+}
+input.pedirTaxi_:hover {
+    background: url("../images/pedirTaxi_.png") no-repeat scroll left -50px transparent;
+    float: left;
+    height: 50px;
+    margin-left: 0;
+    margin-top: 15px;
+    width: 195px;
+}
+.bigMap {
+    height: 478px;
+}
+
+.ie7 .mt5 {
+	margin: 0 0 0 -10px;
+}
+
+.ie7 .boxForm1 {
+    float: left;
+    margin-left: 0px;
+    padding: 0 0 0 30px; 
+    min-height: 498px;
+    width: 215px;
+}
+
+
+/* pedirw.html */
+input.pedirTaxi_pedirw {
+    margin-left: 20px;
+}
+input.pedirTaxi_pedirw:hover {
+    background: url("../images/pedirTaxi_.png") no-repeat scroll left -50px transparent;
+    float: left;
+    height: 50px;
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 195px;
+}
+.pedi_taxi {
+    overflow: hidden;
+}
+.pedi_taxi p {
+    margin: 20px 7px 0;
+}
+
+.ie7 .pedi_taxi p {
+    margin: 20px 5px 0 5px;
+}
+
+.ie8 .pedi_taxi p {
+    margin: 20px 5px 0 5px;
+}
+
+/* dowload.html */
+.ie7 .bOX725 ul {
+    margin: 0 0 0 44px;
+}
+.ie7 .bOX725 ul li {
+    padding: 0 0 0 5px;
+}
+
+/* quees.html */
+.ie7 .bOX550 ul {
+ margin: 0 0 0 20px;
+}
+
+.ie7 .bOX550 ul li {
+ padding: 0 0 0 5px;
+}
+
+
+/*registro.html*/
+.ie7 .cont_input_radio input[type="radio"] {
+    background: none; 
+}
+
+.ie8 .cont_input_radio input[type="radio"] {
+    background: none; 
+}
+.ie9 .cont_input_radio input[type="radio"] {
+    background: none; 
+}
+
+/*quees-html taxista*/
+.bOX550 ul {
+    width: 480px;
+}
+
+/* mipaneltaxista-index.html */
+.marginLeft {
+    margin: 0 5px 0 10px;
+}
+
+
+
+
+/*Nuevos estilos agregados a partir del 25/07/2012 */
+
+
+/* mipanel.index.html */
+/*.checkboxMiPanel {
+    background: url("../images/check.png") no-repeat scroll 0 0 transparent;    
+}
+
+.checkboxMiPanel input[type="checkbox"] {
+    margin: 5px 0 0 40px;
+}*/
+
+.label_check {
+    float: right;
+    width: 18px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+.ie9 .label_check {
+    float: right;
+    width: 46px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+.ie8 .label_check {
+    float: right;
+    width: 46px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+.ie9 .fixIe input {
+   height: 20px;
+   margin: 2px 10px 0 0; 
+}
+.ie8 .fixIe input {
+   height: 20px;
+   margin: 2px 10px 0 0; 
+}
+.ie7 .fixIe input {
+   height: 28px;
+   width: 28px;
+   margin: -4px 14px 0 0; 
+}
+.ie7 .label_check {
+    float: right;
+    width: 46px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+.label_checkHome {
+    margin: 0 0 0 5px;
+}
+.ie8 #map {
+    border: 1px solid #363837;
+    height: 150px;
+    margin: 1em;
+    width: 300px;
+}
+

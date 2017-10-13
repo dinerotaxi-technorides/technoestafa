@@ -1,0 +1,27 @@
+.modal.fade.feedback-modal(tabindex="-1", role="dialog", aria-labelledby="feedback-modal", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{"Feedback" | translate}}
+        .panel-body
+          form(novalidate ng-submit="feedback.send(user)")
+            .form-group
+              label.col-sm-3.control-label(for="feedback_reason") {{"Reason" | translate}}
+              .col-sm-6
+                select#feedback_reason.form-control(ng-model="feedback.attributes.reason")
+                  option(value="Bug")
+                    | {{"Bug" | translate}}
+                  option(value="New Feature")
+                    | {{"NewFeature" | translate}}
+                  option(value="Question")
+                    | {{"Question" | translate}}
+            .form-group
+              label.col-sm-3.control-label(for="feedback_message") {{"Message" | translate}}
+              .col-sm-6
+                textarea#feedback_message.form-control(rows="15" required ng-model="feedback.attributes.message")
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal" aria-hidden="true" type="button") {{"Cancel" | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px" type="submit" value="{{'Send' | translate}}")

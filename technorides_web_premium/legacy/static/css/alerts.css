@@ -1,0 +1,16 @@
+.alerts
+{
+  cursor: pointer;
+  margin: 0 auto;
+  width: 500px;
+}
+
+.alerts .alert
+{
+  margin: 10px;
+  opacity: .95;
+  position: absolute;
+  width: 500px;
+  text-align: center;
+  z-index: 1000000000;
+}

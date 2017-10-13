@@ -1,0 +1,10 @@
+nav.text-center          
+  ul.pagination(ng-if="paginator.pages.length > 1")
+      li
+        a(href="" aria-label="Previous" ng-click="paginator.get(paginator.page - 1, searchField, searchString)")
+          span(aria-hidden="true") &laquo;
+      li(ng-repeat="page in paginator.pages" ng-class="{active: paginator.page == page + 1}" ng-if="(paginator.page - 1 == page) || ((paginator.page + 4 > page) && (paginator.page - 5 <= page))" )
+        a(href="" ng-click="paginator.get(page + 1, searchField, searchString)") {{page + 1}}
+      li
+        a(href="" aria-label="Next" ng-click="paginator.get(paginator.page + 1, searchField, searchString)")
+          span(aria-hidden="true") &raquo;

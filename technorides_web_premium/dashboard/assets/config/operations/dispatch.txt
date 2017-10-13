@@ -1,0 +1,79 @@
+ES
+
+DESPACHO
+
+
+Cantidad de conductores
+
+Seleccione la cantidad máxima de conductores que recibirán automáticamente las operaciones dentro del radio configurado.
+
+Conductores
+
+
+Viajes programados
+
+Tiempo de anticipación en el que se despachan los pedidos programados a los conductores.
+
+Anticipación
+
+
+Radio de alcance de primer grado (primer intento)
+
+Los viajes serán despachados automáticamente a la cantidad máxima seleccionada de conductores que se encuentren dentro de este radio.
+
+Km (radio)
+
+
+Radio de alcance de segundo grado (segundo y tercer intento)
+
+Incremente el radio de alcance en caso de que la operación no encuentre conductores disponibles en el radio de primer grado.
+
+Incremento (% del radio de primer grado)
+
+
+Luego de estos tres intentos, el viaje será cancelado por el sistema. Si ud desea que el viaje se despache indefinidamente hasta encontrar conductor, puede habilitar el sistema de Operador Virtual (despacho continuo)
+
+
+GUARDAR / REVERTIR CAMBIOS
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EN
+
+DISPATCH
+
+
+Amount of Drivers
+
+Select the maximum amount of drivers who will automatically receive rides inside the range which you can set up below
+
+Drivers
+
+
+
+Scheduled Rides
+
+Amount of time of anticipation that scheduled rides will be dispatched to the drivers. 
+
+Time
+
+
+
+Within Range Drivers - 1st grade (first attempt)
+
+Rides will be automatically dispatched to the maximum amount of drivers inside the selected range.
+
+Km (ratio)
+
+
+Within Range Drivers - 2nd grade (second and third attempt)
+
+Increase the 1st grade Within Range if the operation does not find available drivers.
+
+Increment (% of 1st grade within ratio)
+
+
+After these three attempts, the system will cancel the ride. If you wish, you can allow the system to indefinitely dispatch the ride until a driver accepts the operation. For that click here to allow the Virtual Operator System (continuous dispatch).
+
+
+SAVE / REVERT CHANGES

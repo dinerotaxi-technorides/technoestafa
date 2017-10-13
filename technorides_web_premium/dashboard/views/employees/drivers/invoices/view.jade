@@ -1,0 +1,207 @@
+.pageheader
+  h2
+    i.fa.fa-cab
+    | {{drivers.driver.firstName}} {{drivers.driver.lastName}}
+    a.btn.btn-success.btn-sm.pull-right(href="#employees/driver/{{drivers.driver.id}}")  {{'GoBack' | translate}}
+.contentpanel
+  .row
+    .panel.panel-default
+      .panel-body
+        .btn-toolbar
+          .btn-group 
+            a.btn.btn-default.btn-sm(href="#employees/driver/{{drivers.driver.id}}/invoice/{{drivers.invoices.invoice.id}}/edit")
+              i.fa.fa-pencil
+            button.btn.btn-default.btn-sm.hidden
+              i.fa.fa-file-pdf-o
+            button.btn.btn-default.btn-sm
+              i.fa.fa-print(ng-click="printInvoice()")
+            button.btn.btn-default.btn-sm.hidden
+              i.fa.fa-envelope
+          button.btn.btn-danger.btn-sm.pull-right(ng-click="drivers.invoices.pay(false)") {{'recordPayment' | translate}}
+        p.bg-warning(ng-if="(drivers.invoices.invoice.total + drivers.invoices.invoice.adjustments) < 0" style="padding:15px;border-radius: 6px;") {{'moneyInFavor' | translate}} {{drivers.invoices.invoice.total + drivers.invoices.invoice.adjustments | currency}}
+        hr
+        .invoice-history
+          p(ng-repeat="payment in drivers.invoices.invoice.payments" style="border-bottom:1px solid #ccc")
+            em
+              i.fa.fa-dollar.text-success
+              |  {{payment.date | date: languageDateFormat }}
+            em - {{'PaymentOf' | translate}} {{payment.amount | currency}} {{'received' | translate}}
+            em - {{payment.mode}}
+            strong
+              | 
+              a.pull-right.text-muted(ng-click="drivers.invoices.erasePayment(payment, false)")
+                i.fa.fa-times-circle
+            br
+        hr
+        #print-point
+          #bill
+            .corner-ribbon {{drivers.invoices.invoice.status}}
+            .row
+              .col-xs-6
+                img(ng-src="{{drivers.invoices.invoice.company.image}}" err-src="/common/assets/logo/logo-sm.png").logo
+                h5.uppercase {{drivers.invoices.invoice.company.name}}
+                small {{user.address}}
+                small {{user.adminCode}}, {{user.country}}
+                br
+                span {{'chargeTo' | translate}} {{corporate.companies.company.name}}
+                br
+                small {{drivers.invoices.company.name}}
+              .col-xs-6.text-right
+                h1 {{'Invoice' | translate}}
+                span {{'InvoiceNumber' | translate}} {{drivers.invoices.invoice.number}}
+                br
+                br
+
+                .col-xs-6
+                  | 
+                  span {{'InvoiceDate' | translate}} :
+                  br
+
+                  span(ng-if="drivers.invoices.invoice.lateFee.name") {{'LateFee' | translate}}:
+                  br(ng-if="drivers.invoices.invoice.lateFee.name")
+                  span(ng-if="drivers.invoices.invoice.term.name") {{'Terms' | translate}}:
+                  br(ng-if="drivers.invoices.invoice.term.name")
+                  span(ng-if="drivers.invoices.invoice.value") {{'DueDate' | translate}}: 
+                .col-xs-6
+                  em {{drivers.invoices.invoice.date | date: languageDateFormat  : "UTC"}}
+                  br
+                  em(ng-if="drivers.invoices.invoice.lateFee.name") {{drivers.invoices.invoice.lateFee.name}}
+                  br(ng-if="drivers.invoices.invoice.lateFee.name")
+                  em(ng-if="drivers.invoices.invoice.term.name") {{drivers.invoices.invoice.term.name}} 
+                  br(ng-if="drivers.invoices.invoice.term.name")
+                  em(ng-if="drivers.invoices.invoice.term.value") {{drivers.invoices.invoice.dueDate | date: languageDateFormat }}
+            .row(style="margin-top:20px")
+              .col-xs-12
+                .table-responsive
+                  table.table(style="background:none")
+                    thead
+                      tr
+                        th {{'ArtAndDescription' | translate}}
+                        th.text-center {{'Quantity' | translate}}
+                        th.text-center {{'Price' | translate}}
+                        th.text-center {{'Discount' | translate}}
+                        th.text-center {{'Tax' | translate}} 
+                        th.text-right {{'Ammount' | translate}}
+                    tbody
+                      tr(ng-repeat="operation in drivers.invoices.invoice.operations")
+                        td {{operation.firstName}} {{operation.lastName}}
+                        td.text-center {{operation.quantity}}
+                        td.text-center {{operation.amount | currency}}
+                        td.text-center
+                          span(ng-if="operation.discountType == '%'") {{operation.discount}}{{operation.discountType}}
+                          span(ng-if="operation.discountType != '%'") {{operation.discount | currency}}
+                        td.text-center
+                          span(ng-if="operation.tax.value") {{(operation.tax.charge * operation.amount)/100 | currency}}
+                          span(ng-if="!operation.tax.value") {{ 0 | currency}}
+                        td.text-right {{operation.amount - operation.discount + ((operation.tax.charge * operation.amount)/100) | currency}}
+                      tr
+                        td(colspan="6") &nbsp;
+                      tr
+                        td(colspan="4")
+                        th.text-center {{'SubTotal' | translate}}
+                        td.text-right {{drivers.invoices.invoice.subTotal | currency}}
+                      tr 
+                        td(colspan="4")
+                        th.text-center {{'Adjustments' | translate}}
+                        td.text-right {{drivers.invoices.invoice.adjustments | currency}}
+                      tr.active 
+                        td(colspan="4")
+                        th.text-center {{'BalanceDue' | translate}}
+                        td.text-right {{drivers.invoices.invoice.total + drivers.invoices.invoice.adjustments| currency}}
+            .row
+              .col-xs-12
+                h5 {{'Comments' | translate}}
+                p(ng-if="drivers.invoices.invoice.comments") {{drivers.invoices.invoice.comments}}
+.modal.fade.recordPayment(tabindex="-1", role="dialog", aria-labelledby="record-payment", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'RecordPayment' | translate}} {{corporate.invoice.number}} 
+        .panel-body
+          div(ng-if="!drivers.invoices.payment.paymentRecibed && !drivers.invoices.payment.paymentRejected")
+            .alert.alert-danger(ng-if="!rpayment.$valid && rpayment.submited")
+              | {{'errorOnTheForm' | translate}} 
+            form(name="rpayment" ng-submit="rpayment.$valid && drivers.invoices.pay(true);rpayment.submited = false" ng-class="{submited: rpayment.submited}")
+              .row
+                form
+                  .col-xs-6
+                    .form-group
+                      label {{'AmountRecived' | translate}} 
+                      input.form-control(type="number" step="0.01" required ng-model="drivers.invoices.payment.amount")
+                    .form-group
+                      input(type="checkbox" ng-false-value="false" ng-true-value="true" ng-model="drivers.invoices.payment.taxDeducted")
+                      label {{'TaxDeducted' | translate}} 
+                  .col-xs-6
+                    .form-group
+                      label {{'BankCharges' | translate}}  
+                      input.form-control(type="number" ng-model="drivers.invoices.payment.bankCharges") 
+                  .clearfix
+                  .col-xs-6
+                    .form-group
+                      label {{'PaymentDate' | translate}}
+                      a.dropdown-toggle#dropdown6(role="button" data-toggle="dropdown" data-target="#")
+                        .input-group
+                          span.form-control
+                            span(ng-if="drivers.invoices.payment.date") {{drivers.invoices.payment.date | date : languageDateFormat  }}
+                            span(ng-if="!drivers.invoices.payment.date") --/--/----
+                          span.input-group-addon 
+                            i.fa.fa-calendar
+                      ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                        datetimepicker(data-ng-model="drivers.invoices.payment.date" required data-datetimepicker-config="{ dropdownSelector: '#dropdown6', startView:'day', minView:'day'}" tabindex="11")
+                  .col-xs-6
+                    .form-group
+                      label {{'PaymentMode' | translate}}
+                      select.form-control(ng-model="drivers.invoices.payment.mode" required)
+                        option(value="cash") {{'cash' | translate}}
+                        option(value="card") {{'card' | translate}} 
+                        option(value="bank transfer") {{'bankTransfer' | translate}}
+                  .col-xs-12
+                    .form-group
+                      label {{'Reference' | translate}}#
+                      input.form-control(ng-model="drivers.invoices.payment.reference" required)
+                    .form-group
+                      label {{'Comments' | translate}}
+                      textarea.form-control(ng-model="drivers.invoices.payment.notes")
+                  .col-xs-12
+                    .form-group
+                      input(type="checkbox" ng-false-value="false" ng-true-value="true" n ng-model="drivers.invoices.payment.thankYouNote")
+                      label {{'ThxNote' | translate}}
+                .clearfix       
+                .col-xs-12
+                  .form-group
+                    button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+                    button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit" ng-click="rpayment.submited = true") {{'RecordPayment' | translate}}
+          div.text-center(ng-if="drivers.invoices.payment.paymentRecibed")
+            img(src="assets/payment_success.png")
+            h2 {{'Congratulations' | translate}}
+            p {{'SuccessPayment' | translate}}
+            br
+            button.btn.btn-success.btn-md.panel-close(data-dismiss="modal", aria-hidden="true", type="button" ng-click="setErrorsRecordPayment(false,true)") Ok
+          div.text-center(ng-if="drivers.invoices.payment.paymentRejected")
+            img(src="assets/payment_error.png")
+            h2 {{'SomethingWrong' | translate}}
+            p {{'PaymentNotRecorded' | translate}}
+            br
+            button.btn.btn-md.btn-success(ng-click="setErrorsRecordPayment(false,false)") Ok
+
+.modal.fade.delete-payment(tabindex="-1", role="dialog", aria-labelledby="deletePayment", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeletePayment' | translate}}
+        .panel-body
+          form(name="delete-payment" ng-submit="drivers.invoices.erasePayment('',true)")
+            .row
+              .col-xs-12
+                p {{'DeletePaymentText' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px" type="submit") {{'Accept' | translate}}

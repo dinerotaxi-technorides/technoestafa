@@ -1,0 +1,12 @@
+{
+  "payments":{
+    "toPay": 2300,
+    "total" : 18105,
+    "paid"  : 85000
+  },
+  "operations":{
+    "total": 1200,
+    "lastWeek": 8650,
+    "lastMonth": 34714
+  }
+}

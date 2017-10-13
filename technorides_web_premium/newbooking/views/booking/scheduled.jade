@@ -1,0 +1,39 @@
+.row
+  .col-xs-12
+    h4.underline 
+      strong(typed-translate="") booking.scheduled.title
+  .col-xs-12
+    div(ng-repeat="op in operation.scheduled")
+      h5
+        strong {{op.date | date}}
+        
+      span {{op.date | date:'hh:mm a'}}
+      div(style="background-color: #ddd;border-top:1px solid #333;padding:15px")
+        .pull-right
+          a(href="" ng-click="operation.cancelScheduled(op)")
+            i.fa.fa-times
+        p
+          i.fa.fa-map-marker 
+          |  {{op.street}} 
+          br
+          |  - {{op.country | lowercase}}, {{op.locality}}
+          
+        p
+          i.fa.fa-map-marker 
+          |  {{op.placeTo.street}} 
+          br
+          |  -{{op.placeTo.country | lowercase}}, {{op.placeTolocality}}
+        
+        
+        .row
+          .col-xs-6(ng-if="op.floor != ''")
+            i.fa.fa-building {{op.floor}} 
+          .col-xs-6(ng-if="op.department != ''")
+            i.fa.fa-bell {{op.department}}
+        p 
+          strong(typed-translate="") booking.order.comments
+          br
+          span {{op.comments}}
+        p
+    br
+    div.text-center(ng-if="operation.scheduled.length == 0" typed-translate="") booking.scheduled.norides 

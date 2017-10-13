@@ -1,0 +1,24 @@
+{"countries":[
+    {"code":"ECU", "name":"Ecuador"},
+    {"code":"MEX", "name":"Mexico"},
+    {"code":"CHL", "name":"Chile"},
+    {"code":"DOM", "name":"Dominican Republic"},
+    {"code":"ARG", "name":"Argentina"},
+    {"code":"COL", "name":"Colombia"},
+    {"code":"PER", "name":"Peru"},
+    {"code":"URY", "name":"Uruguay"},
+    {"code":"PRY", "name":"Paraguay"},
+    {"code":"BOL", "name":"Bolivia"},
+    {"code":"BRA", "name":"Brazil"},
+    {"code":"VEN", "name":"Venezuela"},
+    {"code":"PAN", "name":"Panama"},
+    {"code":"BLZ", "name":"Belize"},
+    {"code":"HND", "name":"Honduras"},
+    {"code":"GTM", "name":"Guatemala"},
+    {"code":"SLV", "name":"El Salvador"},
+    {"code":"CRI", "name":"Costa Rica"},
+    {"code":"PRI", "name":"Puerto Rico"},
+    {"code":"USA", "name":"United States"},
+    {"code":"CAN", "name":"Canada"}
+
+]}

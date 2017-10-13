@@ -1,0 +1,59 @@
+.row
+  .col-xs-12
+    h4.underline 
+      strong(style="margin-right: 10px" ng-if="!user.profileScreen")
+        a(href="" ng-click="user.profileScreen = true")
+          i.fa.fa-arrow-left.text-technorides
+      strong(typed-translate="") booking.profile.title
+.row(ng-if="user.profileScreen")
+  form(ng-submit="user.edit()")
+    .col-xs-12
+      h5      
+        i.fa.fa-user
+        strong(typed-translate="") booking.profile.personalInfo
+      label(typed-translate="") booking.labels.name
+      .input-group.input-group-sm
+        input.form-control(ng-model="user.name")
+      label(typed-translate="") booking.labels.lastName
+      .input-group.input-group-sm
+        input.form-control(ng-model="user.lastName")
+    .col-xs-12
+      h5     
+        i.fa.fa-envelope
+        strong(typed-translate="") booking.profile.contactInformation
+      
+      label(typed-translate="") booking.labels.phoneNumber
+      .input-group.input-group-sm
+        input.form-control(ng-model="user.phone")
+    .col-xs-12
+      br
+      button.btn.btn-technorides.btn-block(type="submit" typed-translate="") booking.labels.save
+      .text-center
+        a.technorides-link(typed-translate="" href="" ng-click="user.profileScreen = false") booking.profile.changePassword
+.row(ng-if="!user.profileScreen")
+  //CHANGE PASS
+  form(name="changePass" ng-submit="changePass.$valid && user.editPassword()")
+    .col-xs-12
+      h5
+        strong
+          i.fa.fa-lock(style="margin-right:5px")
+          span(typed-translate="")   booking.profile.changePassword
+      label(typed-translate="") booking.profile.currentPass
+      .input-group.input-group-sm
+        input.form-control(ng-model="user.password" name="old" required type="password")
+      hr(style="border-top:1px solid #ccc")
+      label(typed-translate="") booking.profile.newPass
+      .input-group.input-group-sm
+        input.form-control(ng-model="user.newPassword" name="new" required type="password")
+      label(typed-translate="") booking.profile.repeatNewPass
+      .input-group.input-group-sm
+        input.form-control(ng-model="user.repeatNewPassword" pw-check="{{user.newPassword}}" name="repeated"  required type="password")
+    .col-xs-12
+      br
+
+      div(ng-show="!changePass.repeated.$valid && changePass.$submitted") 
+        p(ng-if="changePass.repeated.$error.correct" typed-translate="") booking.profile.mustBeSamePass 
+    .col-xs-12
+      br
+      button.btn.btn-technorides.btn-block(type="submit" typed-translate="") booking.profile.change
+      

@@ -1,0 +1,39 @@
+/* Medias Query */
+@media (max-width: 480px) {
+    #tr-footer-contact {
+      display: none;
+    }
+    #formNewsletter {
+      display: none;
+    }
+    .table-code {
+      display: none;
+    }
+    .table-user { 
+      display: none;
+    }
+    #content-home table {
+      font-size: 11px;
+    }
+    .actionsUser p {
+      display: none;
+    }
+}
+
+
+@media (max-width: 993px) {
+    #tr-footer-contact {
+      display: none;
+    }
+}
+
+@media (max-width: 767px) {
+  #footer-table .actions {
+    float: left;
+    margin-top: 10px;
+  }
+}
+
+
+
+

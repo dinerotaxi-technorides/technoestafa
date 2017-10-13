@@ -1,0 +1,279 @@
+@font-face{
+    font-family:'fonce';
+	src:url('/assets/FonceSans.otf');
+}
+html, body, #map-canvas {
+        height: 97%;
+        margin: 0px;
+        padding: 0px;
+		top:22px;
+      }
+#header{width:100%;float:left;position:fixed;top:0;background:url('/assets/header-bg.png') repeat-x top left transparent;z-index:5;}
+#header h2{width:99%;float:left;padding-left:25px !important;background:url('/assets/reciever.png') no-repeat 5px 3px;margin:0;padding:0;font-family:arial; font-size:18px;box-shadow:1px 1px 9px #555;position:relative;z-index:1000}
+#header div.top-options{width:auto;float:right;background:#d1dde8;padding:5px 8px;position:relative;z-index:100;-webkit-border-bottom-left-radius: 10px;-moz-border-radius-bottomleft: 10px;border-bottom-left-radius: 10px;}
+#header div.top-options img{width:auto;float:right;margin-left:10px;cursor:pointer;}
+#footer{width:100%;float:left;height:34px;background:url('/assets/footer.png') repeat-x top left;margin-top:22px;}      
+	  #panel {
+        position: absolute;
+        top: 27px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+	  #target {
+        width: 345px;
+      }
+	  #forms-panel{position: absolute;
+        top: 40%;
+        left: 5%;
+        z-index: 5;}
+	  #form {
+        padding: 10px;
+		height:auto;
+        border-radius: 10px;
+		background:#c2c3c5;
+		opacity:.8;
+		width:435px;
+		font-family:arial;
+		float:left;
+		margin-right:10px;
+      }
+	  #form h3{
+	    margin:0;padding:0;
+		border:4px solid #c2c3c5;
+		border-bottom:none;
+		background:url('/assets/minus.png') no-repeat center left #f6c18a;
+		padding:5px 5px 5px 20px;
+		border-radius:10px;
+		width:auto;
+		float:left;
+		margin-top:-20px;
+		cursor:pointer;
+	  }
+	  #form h3.close{
+	    background:url('/assets/plus.png') no-repeat center left #f0ab5c;
+	  }
+	  #form .form{
+	    width:100%;
+        float:left;	
+        background:#e5e5e5;	
+        height:100%;
+        overflow:hidden;		
+	  }
+	  #form .form form{width:100%;float:left;padding:10px;}
+	  #form .form form div.label{width:100%;float:left;font-family:arial;font-size:12px;}
+	  #form .form form div.field{width:100%;float:left;}
+	  #form .form form div.field .text-field, #form .form form .date-field , #form .form form select{width:80%;float:left;border:1px solid #555;border-radius:3px;box-shadow:1px 1px 1px #000 inset;}
+	  #form .form form div.cel{width:50%;float:left;}
+	  #form .form form div.mail{width:50%;float:left;}
+	  #form .form form div.nom{width:25%;float:left;}
+	  #form .form form div.nom .text-field{width:70%;}
+	  #form .form form div.ape{width:25%;float:left;}
+	  #form .form form div.ape .text-field{width:70%;}
+	  #form .form form div.fec{width:50%;float:left;}
+	  #form .form form div.fec select{width:30%;float:left;}
+	  #form .form form div.fec .date-field{width:60%;float:left;margin-left:5px;background:url('/assets/callender.png') no-repeat center right #fff;}
+	  #form .form form div.dire{width:100%;float:left;}
+	  #form .form form div.dire div.field .dir-field{width:45%;border:1px solid #555;border-radius:3px;box-shadow:1px 1px 1px #000 inset;}
+	  #form .form form div.dire div.field .sdir-field{width:20%;border:1px solid #555;border-radius:3px;box-shadow:1px 1px 1px #000 inset;margin=left:2px;}
+	  .form form div.dire div.field .vsdir-field{width:10%;border:1px solid #555;border-radius:3px;box-shadow:1px 1px 1px #000 inset;margin-left:2px;}
+	  #form .form form div.cal{width:100%;float:left;}
+	  #form .form form div.cal div.cal-field{width:30%;float:left;}
+	  #form .form form div.cal div.cal-field img{float:left;}
+	  #form .form form div.cal div.cal-field input.calc-field{margin-left:3px;width:70%;float:left;border:1px solid #555;border-radius:3px;box-shadow:1px 1px 1px #000 inset;}
+	  #form .form form div.cal div.load{width:10%;float:left;}
+	  #form .form form div.cal textarea{width:95%;float:left;border:1px solid #555;border-radius:3px;box-shadow:1px 1px 1px #000 inset;}
+	  #form .form form div.last{width:100%;float:left;}
+	  #form .form form div.last div.options{width:70%;float:left;}
+	  #form .form form div.last div.clear{width:30%;float:left;}
+	  #form .form form div.last div.clear input{padding:1px 30px;border:1px solid #000;border-radius:5px;background: #f89f2d; /* Old browsers */
+background: -moz-linear-gradient(top,  #f89f2d 0%, #edcb89 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f89f2d), color-stop(100%,#edcb89)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f89f2d 0%,#edcb89 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f89f2d 0%,#edcb89 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f89f2d 0%,#edcb89 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f89f2d 0%,#edcb89 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f89f2d', endColorstr='#edcb89',GradientType=0 ); /* IE6-9 */
+}
+      #ui-datepicker-div{background:#fff;padding:5px;border:4px solid #c28e50;border-radius:10px;}
+	  .ui-datepicker-header{background:#e3e5e6; font-family:arial; font-size:12px;width:100%;float:left;}
+	  .ui-datepicker-prev{width:auto;float:left;}
+	  .ui-datepicker-next{width:auto;float:right;}
+	  .ui-datepicker-title{width:80%;float:left;text-align:center;}
+	  table.ui-datepicker-calendar{width:100%;float:left;font-family:arial; font-size:12px;}
+	  table.ui-datepicker-calendar thead tr{background:#c28e50;}
+	  #form .form form div.last div.options div.msg, 
+	  #form .form form div.last div.options div.breif,
+	  #form .form form div.last div.options div.chair, 
+	  #form .form form div.last div.options div.dog, 
+	  #form .form form div.last div.options div.smoke, 
+	  #form .form form div.last div.options div.optlast{width:30px;float:left;height:30px;cursor:pointer;}
+	  .power-btn{
+		background: url(/assets/power.png) 0px 0px no-repeat;
+	  	solid #000; 
+		float: right;
+		margin-left: 10px;
+	  	padding-left:5px;
+		height: 26px;
+		width: 26px;
+	  }
+	  input[type=checkbox] {display: none;}
+	  .shipping input[type=checkbox] + label {
+		background: #fff;
+		display: inline-block;
+		width: 26px;
+		float: left;
+		height: 26px;
+		background: url(/assets/msg.png) 0px 0px no-repeat;
+		text-indent: -1000em;
+	  }
+	  .shipping input[type=checkbox]:checked + label {
+		background: url(/assets/msg-sel.png) 0px 0px no-repeat;
+	  }
+	  .luggage input[type=checkbox] + label {
+		background: #fff;
+		display: inline-block;
+		width: 26px;
+		float: left;
+		height: 26px;
+		background: url(/assets/breif.png) 0px 0px no-repeat;
+		text-indent: -1000em;
+	  }
+	  .luggage input[type=checkbox]:checked + label {
+		background: url(/assets/breif-sel.png) 0px 0px no-repeat;
+	  }
+	  .specialAssistant input[type=checkbox] + label {
+		background: #fff;
+		display: inline-block;
+		width: 26px;
+		height: 26px;
+		float: left;
+		background: url(/assets/chair.png) 0px 0px no-repeat;
+		text-indent: -1000em;
+	  }
+	  .specialAssistant input[type=checkbox]:checked + label {
+		background: url(/assets/chair-sel.png) 0px 0px no-repeat;
+	  }
+	  .pet input[type=checkbox] + label {
+		background: #fff;
+		display: inline-block;
+		width: 26px;
+		height: 26px;
+		float: left;
+		background: url(/assets/dog.png) 0px 0px no-repeat;
+		text-indent: -1000em;
+	  }
+	  .pet input[type=checkbox]:checked + label {
+		background: url(/assets/dog-sel.png) 0px 0px no-repeat;
+	  }
+	  .no_smoker input[type=checkbox] + label {
+		background: #fff;
+		display: inline-block;
+		width: 26px;
+		float: left;
+		height: 26px;
+		background: url(/assets/smoke.png) 0px 0px no-repeat;
+		text-indent: -1000em;
+	  }
+	  .no_smoker input[type=checkbox]:checked + label {
+		background: url(/assets/smoke-sel.png) 0px 0px no-repeat;
+	  }
+	  .air input[type=checkbox] + label {
+		background: #fff;
+		display: inline-block;
+		width: 26px;
+		height: 26px;
+		float: left;
+		background: url(/assets/optlast.png) 0px 0px no-repeat;
+		text-indent: -1000em;
+	  }
+	  .air input[type=checkbox]:checked + label {
+		background: url(/assets/optlast-sel.png) 0px 0px no-repeat;
+	  }
+	  #info-box {
+        padding: 10px;
+		height:auto;
+        border-radius: 10px;
+		background:#c2c3c5;
+		opacity:.8;
+		width:435px;
+		font-family:arial;
+		float:left;
+		margin-right:10px;
+      }
+	  #info-box h3{
+	    margin:0;padding:0;
+		border:4px solid #c2c3c5;
+		border-bottom:none;
+		background:url('/assets/cross.png') no-repeat 5px 10px #f6c18a;
+		padding:5px 5px 5px 20px;
+		border-radius:10px;
+		width:auto;
+		float:left;
+		margin-top:-20px;
+		cursor:pointer;
+	  }
+	  #info-box .box{width:98%;float:left;border-radius:10px;background:#fff;padding:5px;}
+	  #info-box .box .row{width:100%;float:left;border-bottom:1px solid #000;}
+	  #info-box .box .row .label{width:50%;float:left;font-size:12px;}
+	  #info-box .box .row .data{width:100%;float:left;margin-right:5% !important;margin:5px 0px;border-radius:5px;height:50px;cursor:pointer;}
+	  #info-box .box .row .data.org{background:#c4e3e2}
+	  #info-box .box .row .data.dest{background:#e0ecb7}
+	  #info-box .box .row .data .img{width:35px;float:left;}
+	  #info-box .box .row .data .meta .deg{font-size:12px;}
+	  #info-box .box .origin{width:100%;float:left;}
+	  #info-box .box .destination{width:50%;float:left;}
+@media screen and (max-width: 435px){
+	    #map-canvas{
+		  height:300% !important;
+		}
+		#panel {
+		  margin-left:0;
+		  top:60px;
+		}
+		#target{
+		width: 100%;
+	    }
+		#forms-panel{position: absolute;
+        top: 60%;
+        left: 0;
+        z-index: 5;
+		width:94%;}
+		#form {
+        padding: 10px;
+		height:auto;
+        border-radius: 10px;
+		background:#c2c3c5;
+		opacity:.8;
+		width:100%;
+		font-family:arial;
+      }
+	    #form .form form div.cel, #form .form form div.mail, #form .form form div.fec{width:97%;}
+		#form .form form div.nom, #form .form form div.ape{width:45%;}
+		#form .form form div.dire div.field .dir-field{width:55%;}
+		#form .form form div.dire div.field .sdir-field{width:25%;}
+		#form .form form div.dire div.field .vsdir-field{width:25%;}
+		#form .form form div.cal div.cal-field{width:45%;}
+		#form .form form div.last div.options{width:97%;}
+		#form .form form div.last div.clear{width:97%;}
+		#form .form form div.last div.clear input{float:right;}
+		#info-box {
+        padding: 10px;
+		height:auto;
+        border-radius: 10px;
+		background:#c2c3c5;
+		opacity:.8;
+		width:100%;
+		font-family:arial;
+		margin-top:15px;
+        }
+	  }
+@media screen and (max-width: 800px){
+                #map-canvas{
+		  height:200%;
+		}
+                #info-box {margin-top:15px;}
+  }

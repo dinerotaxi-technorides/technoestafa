@@ -1,0 +1,120 @@
+@media (max-width: 480px) {
+  #main-description .main-description-action {
+    text-align: center;
+  }
+  #products {
+    padding-top: 0px;
+  }
+  #products iframe {
+    position: absolute;
+    width: 305px;
+    height: 180px;
+    padding-left: 33px;
+    padding-top: 2px;
+  }
+  #products img {
+    width: 338px;
+  }
+  .video-container {
+      padding: 20px 0;
+      float: left;
+  }
+  .navbar-default {
+    float: none;
+  }
+  #tr-footer-contact {
+    display: none;
+  }
+}
+
+@media (max-width: 1198px) {
+    #secondary-info p {
+      max-width: none;
+    }
+    #products h1 {
+      margin-top: 32px;
+    }
+    #products h1 {
+      padding-left: 0px;
+    }
+    #products ul {
+      padding-left: 0;
+    }
+    #products ul li {
+      margin-top: 6px;
+    }
+}
+
+@media (max-width: 991px) {
+    #products h1 {
+      font-size: 24px;
+      margin-top: 14px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    #products ul {
+      font-size: 12px;
+      padding: 5px 0 0 15px;
+      text-align: center;
+      list-style: none;
+    }
+    #main-description h3 {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    #secondary-info {
+      text-align: center;
+    }
+    #secondary-info img,
+    #secondary-info ul {
+      float: none;
+      padding: 0;
+    }
+    #secondary-info ul li {
+      display: inline;
+      margin: 0 5px;
+    }
+    #secondary-info img {
+      margin: 0 auto;
+    }
+    .context-image img {
+      display: inline;
+    }
+    #more-info {
+      text-align: center;
+    }
+    #more-info img {
+      margin: 10px auto;
+      float: none;
+    }
+    #more-info p {
+      max-width: none;
+    }
+    #more-info ul {
+      padding: 15px 0;
+    }
+    #more-info ul li {
+      display: inline;
+      margin: 0 5px;
+    }
+    .cuenta-corriente {
+      margin-bottom: 30px;
+    }
+    .video-container {
+      margin: 0 auto;
+      clear: both;
+      display: block;
+      text-align: center;
+      padding: 30px 0;
+      float: none;
+    }
+}
+
+@media (max-width: 769px) {
+    #main-description {
+      text-align: center;
+    }
+    #main-description a {
+      margin: 14px 0 30px 0;  
+    }
+}

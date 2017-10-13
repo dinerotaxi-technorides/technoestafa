@@ -1,0 +1,152 @@
+body {
+  padding-bottom: 0;
+  background: #c9de96; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover,  #c9de96 0%, #ffffff 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#c9de96), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover,  #c9de96 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover,  #c9de96 0%,#ffffff 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover,  #c9de96 0%,#ffffff 100%); /* IE10+ */
+  background: radial-gradient(ellipse at center,  #c9de96 0%,#ffffff 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+/* Botons */
+.btn-primary {
+  background-color: #60B40C;
+  border-color: #4D8F0C;
+}
+.btn-primary:hover {
+  background-color: #4D8F0C;
+  border-color: #4D8F0C;
+}
+
+
+.btn-info {
+  background-color: #00ADA3;
+  border-color: #007770;
+}
+.btn-info:hover {
+  background-color: #009990;
+}
+
+/* Header */
+#tr-header {
+  background: url('..assets/background-header-login.jpg');
+  border-bottom: 1px solid #D9D9D9;
+  height: 94px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding-top: 10px;
+}
+#tr-header .container {
+  border-radius: 6px;
+  background-color: #FFF;
+  max-width: 372px;
+  box-shadow: 0px 0px 8px #CCC;
+}
+#tr-header .actionsUser {
+  float: right;
+}
+#tr-header .dropdown-language {
+  width: 100px;
+  float: left;
+}
+
+
+/* Login */
+#main-content-login {
+  background-color: #EEE;
+  border: 1px solid #89C747;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 130px;
+}
+.login {
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px #CCC;
+  background-color: #FFF;
+  max-width: 372px;
+  margin: 0 auto;
+  text-align: center;
+}
+.login h1 {
+  font-size: 22px;
+  margin: 18px 0 3px 0;
+}
+.login-recuperar-password {
+  margin-top: 10px;
+}
+.logo-login {
+  margin: 6px auto;
+}
+.login form {
+  margin-top: 15px;
+}
+.login i {
+  font-size: 24px;
+  margin-right: 0px;
+  float: left;
+  position: relative;
+  left: 46px;
+  top: 3px;
+}
+.login form input {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #CCC;
+}
+
+
+
+/* Footer Fixed */
+#wrap-push, #tr-footer {
+  height: 60px;
+  background-color: #F7F7F7;
+}
+.page-wrap {
+  min-height: 100%;
+}
+
+
+
+/* Footer */
+#tr-footer {
+  width: 100%;
+  min-height: 86px;
+  clear: both;
+  background: url('..assets/background-footer-login.jpg') repeat;
+  padding-top: 20px;
+  position: absolute;
+  bottom: 0;
+}
+#tr-footer p {
+  text-align: center;
+  color: #EEEEEE;
+}
+#tr-footer a {
+  color: #81B365;
+  font-size: 16px;
+  padding: 0 4px;
+}
+
+/* Medias Query */
+@media (max-width: 480px) {
+    #tr-footer-contact {
+      display: none;
+    }
+    #formNewsletter {
+      display: none;
+    }
+}
+
+
+@media (max-width: 993px) {
+    #tr-footer-contact {
+      display: none;
+    }
+}

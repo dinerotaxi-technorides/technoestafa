@@ -1,0 +1,86 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | {{'Configuration' | translate}} 
+    |/ {{'Operations' | translate}}
+.contentpanel
+  .alert.alert-warning.alertChrome
+    button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+    strong {{ 'alertChanges' | translate }} 
+  .row
+    .panel.panel-default
+      .panel-body
+        form(name="operationsDetails" ng-submit="editOperationsConfig(company.config.operations)")  
+          .row
+            //
+            .col-xs-6  
+              h3.underline {{'DriversQuantityTitle' | translate}}
+              .col-xs-3
+                img.img-responsive(src="assets/config/operations/dispatch_drivers_amount.png")
+              .col-xs-8
+                p {{'DriversQuantityText' | translate}}
+                h4 {{'NumberDrivers' | translate}} : {{company.config.operations.autorecieve.drivers_quantity}} {{'Drivers' | translate}}
+                input(type="range" ng-model="company.config.operations.autorecieve.drivers_quantity" min="1" max="30")
+                em {{'Recomended' | translate}}: 5 {{'Drivers' | translate}}
+            //
+            .col-xs-6
+              h3.underline {{'RecibingTripsDistanceTitle' | translate}}  
+              .col-xs-3
+                img.img-responsive(src="assets/config/operations/dispatch_first_ratio.png")
+              .col-xs-8
+                p {{'RecibingTripsDistanceText' | translate}}
+                .col-xs-12  
+                  h4 {{'Distance' | translate}} : {{company.config.operations.autorecieve.distance}} km
+                  input(type="range" ng-model="company.config.operations.autorecieve.distance" min="0.5" step="0.5" max="10")
+                  br
+                  em {{'Recomended' | translate}}: 2 km
+          
+          .col-xs-12
+            br
+            br
+            br
+            br
+
+          .row
+             //      
+            .col-xs-6
+              h3.underline {{'ResendTripDistanceTitle' | translate}}
+              .col-xs-3
+                img.img-responsive(src="assets/config/operations/dispatch_second_ratio.png")
+              .col-xs-8
+                p {{'ResendTripDistanceText' | translate}}  
+                h4 {{'Distance' | translate}} : {{company.config.operations.autorecieve.relaunch}} %
+                input(type="range" ng-model="company.config.operations.autorecieve.relaunch" min="0" max="99")
+                br
+                em {{'Recomended' | translate}}: 40% 
+
+            .col-xs-6
+              h3.underline {{'cancelTripReasonTitle' | translate}}
+              .col-xs-3
+                img.img-responsive(src="assets/config/drivers/drivers_pendingqueue_alt.png")
+              .col-xs-8
+                p {{'cancelTripReasonText' | translate}}  
+                toggle-switch(ng-model="company.config.operations.operatorCancelationReason")
+              
+          .col-xs-12
+            br
+            br
+            br
+          .row    
+            .col-xs-6.col-xs-12
+              h3.underline {{'EndlessDispatchTitle' | translate}}
+              p {{'EndlessDispatchText' | translate}}
+              toggle-switch(ng-model="company.config.operations.endlessDispatch")
+            .col-md-6.col-xs-12
+              h3.underline {{'useAdminCodeTitle' | translate}}
+              p {{'useAdminCodeText' | translate}}
+              toggle-switch(ng-model="company.config.operations.useAdminCode")
+              input.form-control(ng-if="company.config.operations.useAdminCode" required ng-model="company.config.operations.adminCode" placeholder="ex: Miami, United States")
+          .col-xs-12.text-center
+            br
+            button.btn.btn-success {{'Save' | translate}}
+            | 
+            button.btn.btn-danger(type="button" ng-click="refreshConfig()") {{'Cancel' | translate}}
+            br
+            small
+              em {{'ResendTripAdvice' | translate}}

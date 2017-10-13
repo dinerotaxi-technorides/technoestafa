@@ -1,0 +1,6 @@
+*~
+*.out
+.sass-cache
+www/
+
+common/scripts/settings.coffee

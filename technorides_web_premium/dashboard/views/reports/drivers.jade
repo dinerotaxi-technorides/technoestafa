@@ -1,0 +1,71 @@
+.pageheader
+  h2
+    i.fa.fa-area-chart
+    | {{'Reports' | translate}}
+.contentpanel
+  table.table.table-striped.table-hover.field-table
+    thead
+      tr
+        th(ng-click="driversReports.get(1,field)")
+          a(href="") {{ "month" | translate}}
+        th(ng-click="driversReports.get(1,field)")
+          a(href="") {{ "trips" | translate}}  
+        th(ng-click="driversReports.get(1,field)")
+          a(href="") {{ "driver" | translate}}      
+    tbody
+      tr(ng-repeat="report in driversReports.list")
+        td(ng-repeat="field in driversReports.fields") {{report[field]}}
+
+  button.btn.btn-technorides.pull-left(ng-click="modalExportDriver()")
+    span {{ "exportReport" | translate }}
+
+.modal.fade.exportDriverReport(tabindex="-1", role="dialog", aria-labelledby="exportReport", aria-hidden="true", style="display: none;")
+  .modal-dialog.modal-md
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{ "exportReport" | translate }}
+        .panel-body
+          form(name="DriverReportForm" ng-submit="exportDriverReport(period)")
+            .row
+              .col-xs-12
+                p {{ 'sendReport' | translate}}
+                .row
+                  .col-xs-6
+
+                    .form-group
+                      label(translate="") From
+                      .dropdown
+                        a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+                          .input-group
+                            span.form-control
+                              span.form-control(ng-if="period.fromDate" type="date" ng-model="driver.expiration" readonly name="licenceexp" value="") {{period.fromDate | date: 'dd/MM/yyyy'}}
+                              span(ng-if="!period.fromDate") --/--/----
+                            span.input-group-addon 
+                              i.fa.fa-calendar
+                        ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                          datetimepicker(data-ng-model="period.fromDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day'}" tabindex="11")
+
+                  .col-xs-6
+                    .form-group
+                      label(translate="") To 
+                      .dropdown
+                        a.dropdown-toggle#dropdown1(role="button" data-toggle="dropdown" data-target="#")
+                          .input-group
+                            span.form-control
+                              span.form-control(ng-if="period.toDate" type="date" ng-model="driver.expiration" readonly name="licenceexp" value="") {{period.toDate | date: 'dd/MM/yyyy'}}
+                              span(ng-if="!period.toDate") --/--/----
+                            span.input-group-addon 
+                              i.fa.fa-calendar
+                        ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                          datetimepicker(data-ng-model="period.toDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown1', startView:'day', minView:'day'}" tabindex="11")
+                  
+            .row
+              .col-xs-12
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                input.btn.btn-technorides.btn-md.pull-right(type="submit" value="Save" style="margin-right:10px")
+
+div(ng-include="'views/paginator.html'")

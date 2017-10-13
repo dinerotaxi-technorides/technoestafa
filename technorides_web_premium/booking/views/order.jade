@@ -1,0 +1,107 @@
+.text-center
+  br
+  img(ng-if="company.imgUrl && company.rtaxi", onerror="this.src='assets/taxi.png'", ng-src="{{company.imgUrl + company.rtaxi}}/vehicle-order.png")
+  h2(ng-if="order.id && order.status!= 'arrived'") {{ "driverOntheWay" | translate }}
+  h2(ng-if="!order.id") {{ "bookRide" | translate }}
+// if order is OFF
+div(ng-if="!order.id")
+  form(name="orderForm", ng-class="{submited: orderForm.submited}", ng-submit="orderForm.$valid && createTrip(origin ,destination, others)", novalidate="")
+    .col-xs-12
+      span.indication
+        i.fa.fa-map-marker
+        | {{"pickAddress" | translate}}
+    .col-lg-6.col-xs-12
+      label {{"City" | translate}} *
+      input(type="text", ng-model="origin.city", ng-required="true", ng-blur="geolocateOrigin(origin, priceCalculator)")
+    .col-lg-6.col-xs-12
+      label {{"Street" | translate}} *
+      input(type="text", ng-required="true", ng-model="origin.street", ng-blur="geolocateOrigin(origin, priceCalculator)")
+    .col-lg-6.col-xs-12
+      label {{"Number" | translate}} *
+      input(type="text", ng-required="true", ng-model="origin.number", ng-blur="geolocateOrigin(origin, priceCalculator)")
+    .col-lg-6.col-xs-12
+      label {{"Floor" | translate}}
+      input(type="text", ng-model="origin.floor")
+    .col-lg-6.col-xs-12
+      label {{"Apt" | translate}}
+      input(type="text", ng-model="origin.department")
+    .col-xs-12
+      br
+      span.indication
+        i.fa.fa-map-marker
+        | {{"destAddress" | translate}}
+    .col-lg-6.col-xs-12
+      label {{"City" | translate}} *
+      input(type="text", ng-model="destination.city", ng-required="true", ng-click="createDestinationMarker()", ng-blur="geolocateDestination(destination, priceCalculator)")
+    .col-lg-6.col-xs-12
+      label {{"Street" | translate}} *
+      input(type="text", ng-required="true", ng-model="destination.street", ng-blur="geolocateDestination(destination, priceCalculator)")
+    .col-lg-6.col-xs-12
+      label {{"Number" | translate}} *
+      input(type="text", ng-required="true", ng-model="destination.number", ng-blur="geolocateDestination(destination, priceCalculator)")
+    .col-lg-6.col-xs-12
+      label {{"Floor" | translate}}
+      input(type="text", ng-model="destination.floor")
+    .col-lg-6.col-xs-12
+      label {{"Apt" | translate}}
+      input(type="text", ng-model="destination.department")
+    .col-xs-12
+      label {{"Observations" | translate}}
+      textarea(ng-model="others.observations")
+    .col-xs-12(ng-if="order.amount")
+      span.indication
+        i.fa.fa-money
+        | {{"EstPrice" | translate}}
+      h4.price ${{order.amount}}
+    .col-xs-12
+      span.indication
+        i.fa.fa-clock-o
+        | {{"DateTime" | translate}}
+    .col-xs-12
+      select(ng-model="others.scheduled", ng-init="")
+        option(value="", ng-if="false")
+        option(value="false", ng-selected="true") {{"Now" | translate}}
+        option(value="true") {{"Scheduled" | translate }}
+    .col-xs-12
+      br
+      a.dropdown-toggle#dropdown5(ng-if="others.scheduled" role="button" data-toggle="dropdown" data-target="#")
+        span.form-control
+          span(ng-if="!others.date") --/--/-- --:--
+          span(ng-if="others.date") {{others.date | date : 'dd/MM/yyyy hh:mm'}}
+      ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+        datetimepicker(data-ng-model="others.date" data-datetimepicker-config="{ dropdownSelector: '#dropdown5', startView:'day'}")
+    br
+    .col-xs-12
+      br
+      button.btn.btn-default(ng-click="orderForm.submited = true") {{ "bookRide" | translate }}
+// Wating asignation
+.text-center(ng-if="order.status == 'pending' && order.id")
+  .col-xs-12
+    h4 {{"OrderID" | translate }} {{order.id }}
+    span.asigning-trip
+      i.fa.fa-refresh.fa-spin
+    br
+    button.cancel(ng-click="cancelTrip()") {{"Cancel" | translate}}
+// Asigned: display driver data
+.text-center(ng-if="order.status == 'assignedtaxi' || order.status == 'arrived'")
+  .col-xs-12
+    span.indication
+      i.fa.fa-list-alt
+      | {{ "DriverInfo" | translate }}
+    br
+    .col-xs-6
+      img.img-responsive.driver-img(ng-src="https://dinerotaxi.com/taxiApi/displayDriverLogoByEmail?email={{ driver.email }}")
+    .col-xs-6
+      ul.driver-data
+        li
+          label {{"Name" | translate}}
+          p {{ driver.firstName +" "+driver.lastName }}
+        li
+          label {{"CarNum" | translate}}
+          p {{ driver.carPlate }}
+        li
+          label {{"Model" | translate}}
+          p {{ driver.carBrand+" "+driver.carModel }}
+    br
+    button.cancel(ng-click="cancelTrip()", ng-if="order.id && order.status != 'arrived'") {{"Cancel" | translate}}
+

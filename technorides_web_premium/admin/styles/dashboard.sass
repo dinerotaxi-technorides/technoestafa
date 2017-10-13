@@ -1,0 +1,247 @@
+#map_canvas
+  width: 100%
+  height: 611px
+  position: relative
+.angular-google-map-container
+  position: absolute
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+#pmap_canvas
+  width: 100%
+  height: 800px
+  position: relative
+body
+  padding: 0px !important
+
+// JQGrid
+.ui-jqgrid .ui-pg-input
+  height: 21px
+  font-size: 10px
+  margin: 0
+  outline: 0
+  border: 0
+  text-align: center
+
+.ui-jqgrid tr.jqgrow td
+  font-size: 13px
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default
+  border: 0
+  background: #1d2939
+  font-weight: normal
+  color: #fff
+*[role="columnheader"]
+  font-size: 1.3em
+.ui-widget-header
+  border: 0
+  background: #1caf9a
+  color: #fff
+  font-weight: bold
+  padding: 10px !important
+  font-size: 17px !important
+.ui-jqgrid .ui-icon-asc
+  margin-left: 1px
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus
+  border: 0
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight
+  border: 0
+  background: #1caf9a
+  color: #fff
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus
+  background: #dadada
+.ui-jqgrid .ui-jqgrid-htable th div
+  overflow: hidden
+  position: relative
+  padding: 5px
+  height: initial
+// RANGE INPUTS (ONLY HTML5)
+input[type="range"]
+  -webkit-appearance: none
+  margin:
+    top : 20px
+    bottom: 20px
+
+  &::-webkit-slider-runnable-track
+    height: 5px
+    background: #1d2939
+    border: none
+    border-radius: 3px
+    cursor: pointer
+
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    border: none
+    height: 20px
+    width: 20px
+    border-radius: 50%
+    background: #1caf9a
+    margin-top: -7px
+
+  &:focus
+    outline: none
+
+input[type=range]:focus::-webkit-slider-runnable-track
+  background: #1d2939
+
+hr
+  margin-top: 40px
+  margin-bottom: 40px
+  border: 0
+  border-top: 2px dashed #ccc
+
+// FIX Missing styles on the theme (checkbox)
+.ckbox-success input[type="checkbox"]:checked + label:before
+  border-color: #1CAF9A
+  background-color: #1CAF9A
+.ckbox input[type="checkbox"]:checked + label::after
+  font-family: 'FontAwesome'
+  content: "\F00C"
+  position: absolute
+  top: 0
+  left: 3.5px
+  display: inline-block
+  font-size: 11px
+  width: 16px
+  height: 16px
+  color: #fff
+.logopanel
+  p
+    font-family: 'Exo', sans-serif
+    color: #404041
+    margin: 0
+    letter-spacing: 0.03em
+    span
+      font-family: 'Exo', sans-serif
+      color: #009a80
+.markerDriverLabels, .markerLabels
+  border:
+    radius: 3px
+  font:
+    size: 11px
+  padding: 0px 2px 0px 2px
+  text-align: center
+  white:
+    space: nowrap
+
+.driver-img
+  max-width: 100px
+
+.markerDriverLabels
+  width: 30px
+
+.markerLabels
+  margin:
+    left: -50px !important
+  overflow: hidden
+  text:
+    overflow: ellipsis
+  width: 100px
+
+.markerLabels, .markerDriverLabels
+  background: white
+  color: #1d2939
+  opacity: .8
+.new-lang
+  padding: 5px!important
+  cursor: pointer
+  img
+    width: 25px
+    margin-right: 5px
+#langdrop
+  &:after
+    display: none
+  &:before
+    display: none
+.ui-jqdialog
+  min-height: 160px
+
+// Employees
+.thumbnail.disabled
+  background: #eee
+
+.uppercase
+  text-transform: uppercase
+
+.underline
+  border-bottom: 1px solid #636e7b
+
+.corp-panel
+  input,select
+    padding: 6px
+
+.com-details
+  padding: 0
+  margin: 0
+  list-style-type: none
+
+.panel-stat, .panel-heading
+  color: white!important
+
+.chooseCompanySize
+  padding: 8px 53px
+  border-radius: 8px
+  border: 2px solid #1caf9a
+  background-color: white
+  color: #000
+  -webkit-box-shadow: inset 2px -13px 23px -17px #777
+  -moz-box-shadow: inset 2px -13px 23px -17px #777
+  box-shadow: inset 2px -13px 23px -17px #777
+  &:hover
+    color: #000
+  .small
+    width: 28px
+    height: 28px
+    float: left
+    background-size: 100%
+    margin-right: -2px
+    margin-top: -1px
+    background-image: url("/dashboard/assets/smallcompany_off.png")
+  .big
+    width: 28px
+    height: 28px
+    float: left
+    background-size: 100%
+    margin-right: 2px
+    margin-top: -2px
+    background-image: url("/dashboard/assets/largecompany_off.png")
+  span
+    font-weight: bold
+    display: block
+    text-align: left
+    float: left
+    line-height: 1.1
+    small
+      display: block
+      font-weight: lighter
+.chooseCompanySize.selected
+  background-color: #1caf9a
+  color: white!important
+  &:hover
+    color: white
+  .small
+    background-image: url("/dashboard/assets/smallcompany_on.png")
+  .big
+    background-image: url("/dashboard/assets/largecompany_on.png")
+.tabs-wizzard
+  li
+
+    width: 33.3333333333%
+    text-align: center
+    a
+      color: white
+      padding: 6px 20px
+      &:hover
+        text-decoration: none
+        color: white
+  .selected
+    background-color: #1caf9a
+    margin: 0
+#graphic > svg
+  width: 100%!important
+
+// Bootstrap override
+.table-hover.field-table>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th
+  background-color: #d9d9d9
+  cursor: pointer

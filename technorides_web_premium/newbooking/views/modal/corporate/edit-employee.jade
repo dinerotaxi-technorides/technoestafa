@@ -1,0 +1,34 @@
+form(name="edit",ng-submit="employees.edit()")
+  .row
+    .col-xs-12.col-sm-6
+      .form-group
+        label(typed-translate="") corporate.labels.id
+        input.form-control(ng-model="employees.employee.id", required  readonly tabindex="1")
+      .form-group
+        label(typed-translate="") corporate.labels.name
+        input.form-control(ng-model="employees.employee.name", required tabindex="3")
+      .form-group
+        label(typed-translate="") corporate.labels.password
+        input.form-control(ng-model="employees.employee.password", placeholder="Not required" tabindex="5" type="password")
+      .form-group
+        label(for="checkboxDefault") {{'corporate.labels.admin' | translate}}
+        br
+        toggle-switch(ng-model="employees.employee.admin" ng-required="employees.employee.superAdmin")     
+
+    .col-xs-12.col-sm-6
+      .form-group
+        label(for="lastname" typed-translate="") corporate.labels.lastName
+        input.form-control(type="text",   placeholder="", ng-model="employees.employee.lastName", required  tabindex="2")
+      .form-group
+        label(for="phone" typed-translate="") corporate.labels.phone
+        input.form-control(ng-model="employees.employee.phone", required tabindex="4")
+      .form-group
+        label(typed-translate="") corporate.labels.email
+        input.form-control(ng-model="employees.employee.email" type="email" required tabindex="6")
+      .form-group(ng-if="user.superUser")
+        label(for="checkboxDefault" ) {{ 'corporate.labels.companyAdmin' | translate}} 
+        br
+        toggle-switch(ng-model="employees.employee.superAdmin")     
+    .col-xs-12    
+      button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button" typed-translate="") corporate.labels.cancel
+      button.btn.btn-success.btn-md.pull-right(type="submit" style="margin-right:5px" typed-translate="") corporate.labels.ok

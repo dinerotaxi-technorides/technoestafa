@@ -1,0 +1,41 @@
+.pageheader
+  h2
+    i.fa.fa-user
+    | Clients
+.contentpanel
+  .row
+    .form-group.col-sm-8
+      button.btn.btn-success.btn-sm(modal="views/modals/client-add.html" modal-title="Add Client") + Add Client
+    
+    .form-group.col-sm-4
+      .input-group
+        input.input-sm(placeholder="Search here" ng-model="searchString" ng-change="clients.get(1, searchField, searchString)")    
+        select.input-sm(style={margin:"0 .5em"} ng-model="searchField" ng-options="option as option for option in clients.searchFields" ng-init="searchField=clients.searchFields[0]")
+    
+      
+    .table-responsive
+      table.table.table-striped.table-hover.field-table
+        thead
+          tr
+            th(ng-repeat="field in clients.fields" ng-click="clients.get(1, searchField, searchString, field)") 
+              a(href="")            
+                {{"clients." + field | translate}}
+                i.fa.fa-chevron-up(ng-if="field==clients.currentOrderField && clients.currentOrder == 'desc'")
+                i.fa.fa-chevron-down(ng-if="field==clients.currentOrderField && clients.currentOrder == 'asc'")
+            th.text-center(colspan="2" translate="general.actions")  
+        
+        tbody
+          tr(ng-repeat="client in clients.list")
+            td(ng-repeat="field in clients.fields") {{client[field]}}
+            td
+              a.label.label-danger(ng-hide="client.accountLocked" ng-click="clients.set(client, cities.list, configs.list)" modal="views/modals/client-delete.html" modal-title="Block Client" href="")
+                i.fa.fa-times-circle-o
+              span(ng-hide="client.accountLocked") &nbsp;
+              a.label.label-success(ng-click="clients.set(client, cities.list, configs.list)" modal="views/modals/client-edit.html" modal-title="Edit Client" href="")
+                i.fa.fa-pencil   
+              span &nbsp;
+              a.label.label-warning(ng-show="client.accountLocked" ng-click="clients.set(client, cities.list, configs.list)" modal="views/modals/client-rollback-delete.html" modal-title="Block Client" href="")
+                i.fa.fa-life-ring      
+  
+  div(ng-include="'views/paginator.html'")                
+  div(ng-include="'/common/scripts/modal/async.html'")

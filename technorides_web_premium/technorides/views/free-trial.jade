@@ -1,0 +1,121 @@
+.modal.fade.free-trial(tabindex="-1", role="dialog", aria-labelledby="FreeTrial", aria-hidden="false")
+      .modal-dialog.modal-lg
+        .modal-content
+          .body
+            .col-xs-12
+              button.close(aria-hidden="true", ng-click="hideFreeTrial()", type="button") &#215;
+              h2.uppercase {{'getFreeTrial' | translate}}
+              small {{'freeTrialModalSubtitle' | translate}}
+              .text-center(ng-if="plan != 'none'")
+                span.you-selected {{'YouHaveSelected' | translate}} : 
+                div(ng-hide="plan != 'basic'")
+                  .plan
+                    .icon.basic.float-left
+                      img.img-responsive(src="/technorides/assets/pricing_basic.png")
+                    .title.basic.uppercase {{'pricingLevel1Pack' | translate}} 
+                div(ng-hide="plan != 'advanced'")
+                  .plan
+                    .icon.advanced.float-left
+                      img.img-responsive(src="/technorides/assets/pricing_advanced.png")
+                    .title.advanced.uppercase {{'pricingLevel2Pack' | translate}}
+                div(ng-hide="plan != 'premium'")
+                  .plan
+                    .icon.premium.float-left
+                      img.img-responsive(src="/technorides/assets/pricing_premium.png")
+                    .title.premium.uppercase {{'pricingLevel3Pack' | translate}}
+
+                div(ng-hide="plan != 'enterprise'")
+                  .plan
+                    .icon.enterprise.float-left
+                      img.img-responsive(src="/technorides/assets/pricing_enterprise.png")
+                    .title.enterprise.uppercase {{'pricingLevel4Pack' | translate}}
+            .col-xs-12
+              .box
+                .row
+                  .col-xs-6(ng-init="fleet = 100")
+                    form(name="freeTrialModal" ng-submit="sendFreeTrial(freeTrial, plan)" )
+                      .form-group
+                        label {{'Name' | translate}}
+                        .input-group
+                          input.form-control(type="text" ng-model="freeTrial.name" required pattern="[a-zA-Z,\. ]+ |.{5,}" )
+                          span.input-group-addon
+                            i.fa.fa-user
+                      .form-group
+                        label {{'CompanyName' | translate}} 
+                        .input-group
+                          input.form-control(type="text" ng-model="freeTrial.companyName" pattern="[a-zA-Z,\. ]+ |.{5,}" required)
+                          span.input-group-addon
+                            i.fa.fa-building
+                      .form-group
+                        label {{'Email' | translate}}
+                        .input-group
+                          input.form-control(type="text" ng-model="freeTrial.email" required pattern=".+@.+\\..+")
+                          span.input-group-addon
+                            i.fa.fa-envelope
+                      .form-group
+                        label {{'Country' | translate}} 
+                        .input-group
+                          select.form-control(ng-model="freeTrial.country" ng-options="country for country in countries"  ng-init="freeTrial.country = countries[0]" required)
+                            option(value="{{location}}" ng-if="!freeTrial.country" required)
+                          span.input-group-addon
+                            i.fa.fa-globe
+                      .form-group
+                        .row
+                          .col-xs-6
+                            label {{'Phone' | translate}}
+                            .input-group
+                              input.form-control(type="text" ng-model="freeTrial.phone" required pattern="[\\d- \\+]{10,}")
+                              span.input-group-addon
+                                i.fa.fa-phone
+                          .col-xs-6
+                            label {{'Mobile' | translate}}
+                            .input-group
+                              input.form-control(type="text" ng-model="freeTrial.mobile" required pattern="[\\d- \\+]{10,}")
+                              span.input-group-addon
+                                i.fa.fa-mobile
+                        .row
+                          .col-xs-12
+                            small(style="color: black") {{"phoneWarning" | translate}}
+                      .form-group
+                        label {{'Fleet' | translate}}
+                        input(type="range" ng-model="freeTrial.fleet" min="10" max="2000")
+                        .text-center
+                          span.badge {{freeTrial.fleet}} drivers
+                      .form-group.text-center
+                        br
+                        button.btn.btn-lg.btn-technorides.uppercase(type="submit" analytics-category="betaWeb" analytics-on="click" analytics-event="free trial Sended") {{'getFreeTrial' | translate}}
+                        br
+                        .terms {{'agreeTerms' | translate}}
+                          a(href="#")  {{'TermsOfUse' | translate}}
+                          |  and 
+                          a(href="#")  {{'PrivacyPolicy' | translate}}
+
+                  .col-xs-6
+                    .row
+                      .col-xs-12
+                        small {{'stillNotSure' | translate}} :
+                        br
+                    .feature.row    
+                      .col-xs-2
+                        .text-center
+                          i.fa.fa-globe.fa-4x
+                      .col-xs-10
+                        strong {{'freeTrialFeat1Title' | translate}}
+                        br
+                        small {{'freeTrialFeat1Text' | translate}}
+                    .feature.row    
+                      .col-xs-2
+                        .text-center
+                          i.fa.fa-mobile.fa-4x
+                      .col-xs-10
+                        strong {{'freeTrialFeat2Title' | translate}}
+                        br
+                        small {{'freeTrialFeat2Text' | translate}}
+                    .feature.row    
+                      .col-xs-2
+                        .text-center
+                          i.fa.fa-star.fa-4x
+                      .col-xs-10
+                        strong {{'freeTrialFeat3Title' | translate}}
+                        br
+                        small {{'freeTrialFeat3Text' | translate}}

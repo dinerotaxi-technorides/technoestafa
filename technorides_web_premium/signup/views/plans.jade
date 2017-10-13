@@ -1,0 +1,234 @@
+.text-center
+  h2.uppercase {{'ChoosePackage' | translate}}
+#pricing
+  form(name="formStep3" ng-submit="checkStep3(user, plan, totalPrice)")
+    .row
+      .col-xs-12
+        .table-responsive
+          table.table
+            thead
+              tr.nohover
+                th.empty 
+                th.heading(ng-click="plan = 1; changePricePerDriver(user.company.fleet, plan)" style="cursor:pointer")
+                  .ball.basic
+                    img.img-responsive(src="/technorides/assets/pricing_basic.png")
+                  .level.basic
+                    h3.uppercase {{'pricingLevel1' | translate}}
+                th.heading(ng-click="plan = 2; changePricePerDriver(user.company.fleet, plan)" style="cursor:pointer") 
+                  .ball.advanced
+                    img.img-responsive(src="/technorides/assets/pricing_advanced.png")
+                  .level.advanced
+                    h3.uppercase {{'pricingLevel2' | translate}}
+                th.heading.recomended(ng-click="plan = 3; changePricePerDriver(user.company.fleet, plan)" style="cursor:pointer")
+                  .ball.premium
+                    img.img-responsive(src="/technorides/assets/pricing_premium.png")
+                  span.recomendedbadge {{'recomended' | translate}}
+                  .level.premium
+                    h3.uppercase {{'pricingLevel3' | translate}}
+                th.heading(ng-click="plan = 4; changePricePerDriver(user.company.fleet, plan)" style="cursor:pointer")
+                  .ball.enterprise
+                    img.img-responsive(src="/technorides/assets/pricing_enterprise.png")
+                  .level.enterprise
+                    h3.uppercase {{'pricingLevel4' | translate}}
+            tbody
+              tr(tooltip="{{'pricingFeat1Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat1' | translate}}
+                td.table-basic
+                  i.fa.fa-check-circle
+                td.table-advanced 
+                  i.fa.fa-check-circle
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat2Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat2' | translate}}
+                td.table-basic 
+                  i.fa.fa-check-circle
+                td.table-advanced 
+                  i.fa.fa-check-circle
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise 
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat3Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat3' | translate}}
+                td.table-basic {{minimumDrivers[user.company.region]}}
+                td.table-advanced {{minimumDrivers[user.company.region]}}
+                td.table-premium.recomended {{minimumDrivers[user.company.region]}}
+                td.table-enterprise {{minimumDrivers[user.company.region]}}
+
+              tr(tooltip="{{'pricingFeat4Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat4' | translate}}
+                td.table-basic {{'Unlimited' | translate}}
+                td.table-advanced {{'Unlimited' | translate}}
+                td.table-premium.recomended  {{'Unlimited' | translate}}
+                td.table-enterprise {{'Unlimited' | translate}}
+              tr(tooltip="{{'pricingFeat5Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat5' | translate}}
+                td.table-basic 3
+                  
+                td.table-advanced 5
+                td.table-premium.recomended  {{'Unlimited' | translate}}
+                td.table-enterprise {{'Unlimited' | translate}}
+              tr(tooltip="{{'pricingFeat7Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat7' | translate}}
+                td.table-basic
+                td.table-advanced
+                  i.fa.fa-check-circle
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat6Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat6' | translate}}
+                td.table-basic 
+                td.table-advanced 
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat8Desc' | translate}}" tooltip-append-to-body="true").hidden
+                th.feat {{'pricingFeat8' | translate}}
+                td.table-basic 
+                td.table-advanced
+                  i.fa.fa-check-circle
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat9Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat9' | translate}}
+                td.table-basic 
+                td.table-advanced 
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat10Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat10' | translate}}
+                td.table-basic 
+                td.table-advanced 
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat11Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat11' | translate}}
+                td.table-basic 
+                td.table-advanced 
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat12Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat12' | translate}}
+                td.table-basic 
+                td.table-advanced
+                td.table-premium.recomended 
+                  i.fa.fa-check-circle
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat13Desc' | translate}}" tooltip-append-to-body="true").hidden
+                th.feat {{'pricingFeat13' | translate}}
+                td.table-basic 
+                td.table-advanced
+                td.table-premium.recomended 
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr(tooltip="{{'pricingFeat14Desc' | translate}}" tooltip-append-to-body="true")
+                th.feat {{'pricingFeat14' | translate}}
+                td.table-basic 
+                td.table-advanced 
+                td.table-premium.recomended 
+                td.table-enterprise
+                  i.fa.fa-check-circle
+              tr.foot-price.nohover
+                th 
+                td.price(ng-click="plan = 1; changePricePerDriver(user.company.fleet, plan)" ng-class="{recomended: plan==1}"  style="cursor:pointer")
+                  h4.uppercase
+                    span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+                    span(ng-if="user.company.region=='europe'") &euro;
+                    span  499
+                  small {{'perMonth' | translate}} 
+                td.price(ng-click="plan = 2; changePricePerDriver(user.company.fleet, plan)" ng-class="{recomended: plan==2}" style="cursor:pointer")
+                  h4.uppercase
+                    span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+                    span(ng-if="user.company.region=='europe'") &euro;
+                    span  699
+                  small {{'perMonth' | translate}} 
+                td.price(ng-click="plan = 3; changePricePerDriver(user.company.fleet, plan)" ng-class="{recomended: plan==3}" style="cursor:pointer")
+                  h4.uppercase
+                    span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+                    span(ng-if="user.company.region=='europe'") &euro;
+                    span  999
+                  small {{'perMonth' | translate}} 
+                td.price(ng-click="plan = 4; changePricePerDriver(user.company.fleet, plan)" ng-class="{recomended: plan==4}" style="cursor:pointer")
+                    h4.uppercase
+                      span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+                      span(ng-if="user.company.region=='europe'") &euro;
+                      span  2499
+                    small {{'perMonth' | translate}}
+
+    .row
+      .col-lg-2.hidden-xs
+      .col-lg-10.col-xs-12
+        .col-xs-12.col-lg-4
+          label.factura.text-center {{'ExtraDrivers' | translate}}
+          input.form-control(type="number" name="fleet" ng-model="user.company.fleet" min="0" ng-change="changePricePerDriver(user.company.fleet, plan)")
+          br
+          div.hidden
+            label.factura.text-center {{'DiscuntCode' | translate}}
+            input.form-control(type="text" ng-change="checkCupon()" ng-model="user.company.discountCode")
+            a {{'aplyDiscount' | translate}}
+            br      
+        .col-xs-12.col-lg-4
+          .text-center
+            label.factura {{'PackegeCost' | translate}}
+            h3.uppercase(style="margin:0" ng-if="(user.company.fleet+minimumDrivers[user.company.region])<2000")
+              span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+              span(ng-if="user.company.region=='europe'") &euro;
+              span(ng-if="plan == 1")  499
+              span(ng-if="plan == 2")  699
+              span(ng-if="plan == 3")  999
+              span(ng-if="plan == 4")  2499
+            h3.uppercase(style="margin:0" ng-if="(user.company.fleet+minimumDrivers[user.company.region])>=2000") {{'askForPrice' | translate}}
+            br
+            div.hidden(ng-if="discout")
+              label.factura {{'Discount' | translate}}
+              h3.uppercase(style="margin:0")
+                span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+                span(ng-if="user.company.region=='europe'") &euro;
+                | -{{discout}}
+              br
+        .col-xs-12.col-lg-4
+          .text-center
+            label.factura {{'ExtraDriverCost' | translate}} 
+                | (
+                span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+                span(ng-if="user.company.region=='europe'") &euro;
+                |  {{pricePerDriver}})
+            h3.uppercase.extra(style="margin:0" ng-if="extraByDriver && user.company.fleet+minimumDrivers[user.company.region]<2000") 
+              span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+              span(ng-if="user.company.region=='europe'") &euro;
+              |  {{extraByDriver}}
+            h3.uppercase.extra(style="margin:0" ng-if="(user.company.fleet+minimumDrivers[user.company.region])>=2000") {{'askForPrice' | translate}}
+            br
+        .col-xs-12
+          hr
+          h2 
+            span.pull-left {{'TotalPrice' | translate}}
+            span.pull-right.uppercase(ng-if="(user.company.fleet+minimumDrivers[user.company.region])<2000")
+              span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+              span(ng-if="user.company.region=='europe'") &euro; 
+              |  {{totalPrice}}
+            span.pull-right.uppercase(ng-if="(user.company.fleet+minimumDrivers[user.company.region])>=2000") {{'askForPrice' | translate}}
+          br
+          h5.pull-left(style="margin:0;width:100%") ({{'Includes ' | translate}} {{user.company.fleet + minimumDrivers[user.company.region]}} drivers)
+          br
+          br
+          small.pull-left(style="width:100%") {{'taxesText' | translate}}
+        .col-xs-12
+          br
+          button.btn.btn-technorides.pull-left.uppercase(type="button" ng-click="backToStep(2)") {{'Back' | translate}}
+          button.btn.btn-technorides.pull-right.uppercase(type="submit") {{'Next' | translate}}

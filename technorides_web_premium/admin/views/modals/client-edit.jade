@@ -1,0 +1,91 @@
+form(name="Edit" ng-submit="Edit.$valid && clients.edit('edit')")
+  .col-xs-6
+    .form-group
+      label(translate="clients.createdDate")
+      input.form-control(type="text" ng-model="clients.client.createdDate" disabled)
+       
+  .col-xs-6  
+    .form-group
+      label(translate="clients.username")
+      input.form-control(type="email" ng-model="clients.client.username" required)
+  .col-xs-6
+    .form-group
+      label(translate="clients.password")
+      input.form-control(ng-model="clients.client.password" type="password" required)
+  .col-xs-6  
+    .form-group
+      label(translate="clients.phone")
+      input.form-control(ng-model="clients.client.phone" required)
+  .col-xs-6  
+    .form-group
+      label(translate="clients.companyName")
+      input.form-control(ng-model="clients.client.companyName" required)
+  
+  .col-xs-6  
+    .form-group
+      label(translate="clients.mailContacto")
+      input.form-control(type="email" ng-model="clients.client.mailContacto" required)
+  .col-xs-6  
+    .form-group
+      label(translate="clients.cars")
+      input.form-control(type="number" ng-model="clients.client.cars" min="1" required)
+  .col-xs-6  
+    .form-group
+      label(translate="clients.intervalPoolingTrip")
+      input.form-control(type="number" ng-model="clients.client.intervalPoolingTrip"   min="10" required)
+  .col-xs-6  
+    .form-group
+      label(translate="clients.intervalPoolingTripInTransaction")
+      input.form-control(type="number" ng-model="clients.client.intervalPoolingTripInTransaction" min="10" required)
+  .col-xs-6  
+    .form-group
+      label(translate="clients.latitude")
+      input.form-control(ng-model="clients.client.latitude" required)
+  .col-xs-6
+    .form-group
+      label(translate="clients.longitude")
+      input.form-control(ng-model="clients.client.longitude" required)
+  .col-xs-6  
+    .form-group
+      label(translate="clients.cuit")
+      input.form-control(type="text" ng-model="clients.client.cuit" required)
+  .col-xs-6
+    .form-group
+      label(translate="clients.price")
+      input.form-control(type="text" ng-model="clients.client.price" min="1" required)
+  .col-xs-3  
+    .form-group
+      label(translate="clients.agree")
+      br
+      toggle-switch(ng-model="clients.client.agree" )
+  .col-xs-3  
+    .form-group
+      label(translate="clients.enabled")
+      br
+      toggle-switch(ng-model="clients.client.enabled" ) 
+  .col-xs-3
+    .form-group
+      label(translate="clients.accountLocked")
+      br
+      toggle-switch(ng-model="clients.client.accountLocked" )
+  .col-xs-3  
+    .form-group
+      label(translate="clients.isTestUser" )
+      br
+      toggle-switch(ng-model="clients.client.isTestUser")
+  .col-xs-6  
+    .form-group
+      label(translate="clients.lang" required)
+      select.form-control(ng-model="clients.client.lang")
+        option(value="es") Español  
+        option(value="en") English              
+  .col-xs-6
+    .form-group
+      label(translate="clients.cityName")
+      select.form-control(ng-model="clients.client.city")
+        option(ng-repeat="option in cities.list" value="{{option.id}}") {{option.name}}
+  .col-xs-12 
+    br
+    .form-group
+      button.btn.btn-danger.pull-right(data-dismiss="modal") Cancel
+      button.btn.btn-success.pull-right(style="margin-right:5px") Save

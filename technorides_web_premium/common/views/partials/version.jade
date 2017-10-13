@@ -1,0 +1,8 @@
+link(rel="stylesheet" href="/common/styles/style.css")
+#version
+  {{settings.version + " (" + settings.environment.charAt(0) + ")"}}
+#stable_link(ng-if="settings.unstableVersion")
+  a(href="https://technorides.com" rel="nofollow")
+    i.fa.fa-exclamation-triangle
+    | &nbsp;
+    | {{'stableVersionLink' | translate}}

@@ -1,0 +1,168 @@
+/* Icons */
+.icon
+{
+  float: left;
+  margin: 0 7px 20px 0;
+}
+
+/* Menu */
+#menu
+{
+  float: right;
+}
+
+/* Tabs */
+#tables_container
+{
+  width: 100%;
+}
+
+#map_canvas {
+  width: 200px;
+  height: 200px;
+  background-color: #CCC !important;
+}
+
+#map_canvas div:not(.marker_label) {
+  background-color: transparent !important;
+}
+
+#parkings, #zones {
+  height: 340px;
+  overflow-y: scroll;
+}
+
+#configuration table td, #parkings table td, #parkings table th, #zones table td, #zones table th {
+  padding: 10px;
+}
+
+.help_text {
+  font-style: italic;
+  font-size: 12px;
+}
+
+.menu_disabled, .menu_disabled.active a {
+  color: gray !important;
+  cursor: help;
+  background-color: lightGray !important;
+}
+
+.menu_disabled a {
+  color: gray !important;
+}
+
+.menu_disabled a:hover {
+  color: gray !important;
+  background-color: lightGray !important;
+}
+
+.configuration_submenu ul {
+  list-style: none;
+  padding: 10px 10px 10px 0px
+}
+
+.configuration_submenu ul li a {
+  background: #224d4f;
+  border-radius: 5px;
+  box-shadow: inset 4px -4.9px 10px #000;
+  -moz-box-shadow: inset 4px -4.9px 10px #4C6319;
+  color: white;
+  float: left;
+  margin: 2px 4px;
+  padding: 5px;
+  width: 100%;
+}
+
+.configuration_submenu ul li a:hover, .configuration_submenu ul li a.active {
+  background: #50a581;
+  box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+.configuration_submenu ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.slider_container {
+  width: 200px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.slider_value {
+  width: 40px;
+}
+
+.slider .ui-slider-handle {
+  background: #224d4f;
+  border-color: #50a581;
+}
+
+.slider .ui-slider-range {
+  background: #224d4f !important;
+  border-color: #50a581 !important;
+}
+
+.slider.ui-widget-content {
+  background: #50a581 !important;
+  border-color: #50a581 !important;
+}
+
+.switch-button-background {
+  margin: 0px !important;
+}
+
+.switch-button-button, .switch-button-background {
+  clear: none !important;
+}
+
+.checked .switch-button-button {
+  background: #224d4f !important;
+  border-color: #50a581 !important;
+}
+
+.switch-button-background.checked {
+  background: #50a581 !important;
+  border-color: #50a581 !important;
+}
+
+.switch-button-label.on {
+  color: #50a581 !important;
+}
+
+#map_canvas {
+  height: 500px;
+  width: 100%;
+}
+
+.parkings_configuration #search, .zones_configuration #search {
+  width: 100%;
+}
+
+.container section article section article {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.parkings_configuration #parking_form input[type=text], .zones_configuration #zone_form input[type=text] {
+  width: 100%;
+}
+
+#configuration_form td {
+  text-align: left;
+}
+
+.marker_label
+{
+  background-color: white !important;
+  border: 1px solid gray;
+  color: black;
+  font-family: Arial;
+  font-size: 10px;
+  padding: 2px;
+  border-radius: 5px;
+  text-align: center;
+  white-space: nowrap;
+  margin-top: 5px !important;
+}

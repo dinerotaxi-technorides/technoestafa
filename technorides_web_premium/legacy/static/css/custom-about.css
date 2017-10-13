@@ -1,0 +1,261 @@
+/* Medias Query */
+@media (max-width: 480px) {
+    .nav > li > a  {
+        padding: 10px 0 10px 0;
+    }
+    #tr-footer-contact {
+      display: none;
+    }
+    #formNewsletter {
+      display: none;
+    }
+    #services .content-box-services {
+      margin-bottom: 20px;
+    }
+    .navigation-main-content img {
+      width: 230px;
+    }
+    .carousel h1 {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    #features div {
+      margin-bottom: 40px;
+    }
+    .nav > li > a {
+      padding: 15px 10px;
+    }
+    .navbar-default {
+      float: none;
+      max-width: none;
+    }
+    #main-description h3 {
+      text-align: center;
+      margin: 15px 0;
+    }
+    .main-description-action {
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 15px;
+    }
+}
+
+
+@media (max-width: 993px) {
+    .carousel img {
+      text-align: center;
+      display: inline-block;
+    }
+    #tr-footer-contact {
+      display: none;
+    }
+    #services,
+    #clients {
+      text-align: center;
+    }
+    #services figure {
+      float: none;
+      margin: 20px auto;
+    }
+    #services ul {
+      float: none;
+      padding: 0;
+    }
+    #services .content-box-services {
+      margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 994px) {
+    .carousel {
+      text-align: left;
+    }
+    #carouselHome .container {
+      padding: 18px 80px;
+    }
+    .carousel h1 {
+      font-size: 40px;
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+    .carousel p {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 20px;
+    }
+}
+
+
+
+/*///////////////////////////////////////////// */
+/* Asociados */
+#asociados {
+  background: url('/assets/background-asociados.jpg') repeat-x;
+  color: #FFF;
+}
+#asociados h1 {
+  margin-top: 72px;
+  margin-bottom: 20px;
+  padding-left: 40px;
+  font-size: 40px;
+  text-shadow: 0.1px 0.1em #111;
+}
+#asociados ul {
+  list-style: none;
+  padding-left: 40px;
+}
+#asociados ul li {
+  margin-top: 12px;
+  line-height: 18px;
+  color: #FFF;
+  text-shadow: 0.1px 0.1em #111;
+}
+
+
+#main-description a {
+  margin-top: 28px;
+}
+
+#how-associate .want-add {
+  text-align: center;
+}
+
+
+/* Shared styles */
+#companys, 
+#brands {
+  overflow: hidden;
+}
+
+#companys, 
+#brands,
+#how-associate {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #DEDEDE;
+}
+
+#how-associate h3,
+#experience h3 {
+  font-size: 22px;
+  margin-top: 0;
+  color: #01998F;
+}
+
+
+
+/* Secondary info */
+#secondary-info {
+  margin: 0 30px;
+  padding: 25px 15px;
+  border: 1px solid #D6DE8C;
+  border-radius: 4px;
+  clear: both;
+  background-color: #F4F4F4;
+  margin-bottom: 25px;
+}
+
+#carouselClients {
+  height: 90px;
+  background-color: #F4F4F4;
+  overflow: hidden;
+}
+#carouselClients figure {
+  background-color: #FFF;
+}
+#carouselClients figure img {
+  margin: 0 auto;
+}
+
+    #carousel-citys .carousel-inner {
+      text-align: center;
+    }
+
+
+#experience .sing {
+  font-size: 12px;
+  color: #333;
+}
+
+/*Company*/
+#companys ul {
+  list-style: none;
+  margin: 40px 0;
+}
+#companys ul li {
+  line-height: 24px;
+  display: inline;
+  margin: 0 5px;
+}
+#companys .city-company {
+  font-size: 20px;
+  color: #009990;
+  background: transparent;
+  text-align: center;
+}
+
+
+@media (max-width: 480px) {
+  #main-description .main-description-action {
+    text-align: center;
+  }
+}
+
+@media (max-width: 1198px) {
+    #secondary-info p {
+      max-width: none;
+    }
+    #asociados h1 {
+      margin-top: 32px;
+    }
+    #asociados h1 {
+      padding-left: 0px;
+    }
+    #asociados ul {
+      padding-left: 0;
+    }
+    #asociados ul li {
+      margin-top: 6px;
+    }
+}
+
+@media (max-width: 991px) {
+    #asociados h1 {
+      font-size: 24px;
+      margin-top: 14px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    #asociados ul {
+      font-size: 12px;
+      padding: 5px 0 0 15px;
+      text-align: center;
+      list-style: none;
+    }
+    #secondary-info {
+      text-align: center;
+    }
+    #secondary-info img,
+    #secondary-info ul {
+      float: none;
+      padding: 0;
+    }
+    #secondary-info ul li {
+      display: inline;
+      margin: 0 5px;
+    }
+    #secondary-info img {
+      margin: 0 auto;
+    }
+}
+
+
+@media (max-width: 769px) {
+  .phoneContact {
+    margin-top: 15px;
+  }
+}

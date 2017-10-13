@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TechnoRides</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="lights.css">
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="top">
+        <div class="form-group">
+          <select class="form-control" id="countries">
+          </select>
+        </div>
+    </div>
+    <div id="count" class="text-center">
+      <h5 class="uppercase" id="companies-place">World</h5>
+      <h1 id="companies-number"></h1>
+      <h3>Taxi and Limo companies</h3>
+      <small id="conditions">We’re working hard to update on real time the size of taxi companies worldwide by the time we’re helping them not to run out of business.<br> There’re millions of people who depends on this industry but they’re losing their business by having an unfair competition.<br> If you want to help us please <a id="suscribe" href="mailto:matias@technorides.com" class="uppercase">stay tuned</a>, on the next following days we’ll reveal how you can contribute. Thanks!<br>
+      <strong>Warning</strong>: The map will be a bit slowly as long as we're updating the amount of companies.</small>
+      <br>
+      <small><small id="powered">Made with &hearts; by <a id="url" href="http://angel.co/technorides" target="_blank">Technorides</a></small></small>
+    </div>
+    <!--analytics-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50209550-1', 'auto');
+      ga('send', 'pageview');
+   </script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="markerclusterer.js"></script>
+    <script type="text/javascript" src="lights.js"></script>
+    <script type="text/javascript" src="countUp.min.js"></script>
+  </body>
+</html>

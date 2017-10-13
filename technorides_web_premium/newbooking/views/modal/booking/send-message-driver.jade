@@ -1,0 +1,16 @@
+form(name="sendsms" ng-submit="sendsms.$valid && operation.sendSms(sms, true)")
+    label.message-to-driver(ng-class="{active: sms =='WAIT' }")
+      input(type="radio" name="wait" ng-model="sms" value="WAIT" ng-required="!sms")
+      span(typed-translate="") booking.modals.sendMessageToDriver.wait
+    label.message-to-driver(ng-class="{active: sms =='OK' }")
+      input(type="radio" name="ok" ng-model="sms" value="OK" ng-required="!sms")
+      span(typed-translate="") booking.modals.sendMessageToDriver.ok
+    label.message-to-driver(ng-class="{active: sms =='ON_MY_WAY' }")
+      input(type="radio" name="onway" ng-model="sms" value="ON_MY_WAY" ng-required="!sms")
+      span(typed-translate="") booking.modals.sendMessageToDriver.onMyWay
+    label.message-to-driver(ng-class="{active: sms =='WAITING' }")
+      input(type="radio" name="waiting" ng-model="sms" value="WAITING" ng-required="!sms") 
+      span(typed-translate="") booking.modals.sendMessageToDriver.waiting
+    .text-center
+      br
+      button.btn.btn-warning(type="submit" typed-translate="") booking.labels.send

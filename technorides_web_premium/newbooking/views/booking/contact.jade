@@ -1,0 +1,60 @@
+.row
+  .col-xs-12
+    h4.underline 
+      strong(typed-translate="") booking.contact.title
+    h5 {{company.info.email}}
+    h5 {{company.info.street}}, {{company.info.adminCode}}, {{company.info.country}}
+    h5 
+      
+      a(href="https://{{company.info.facebook}}" target="_blank" ng-if="company.info.facebook != ''")
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-2x.facebook
+          i.fa.fa-facebook.fa-stack-1x.fa-inverse
+
+      a(href="https://{{company.info.twitter}}" target="_blank" ng-if="company.info.twitter != ''")
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-2x.twitter
+          i.fa.fa-twitter.fa-stack-1x.fa-inverse 
+.row  
+  .col-xs-12
+    h4
+      strong(typed-translate="") booking.contact.callUs 
+    br
+    a(href="tel:{{company.info.phone}}") + {{company.info.phone}}
+    br
+    br
+    div(style="height: 1px; background-color: #333; text-align: center")
+      span(style="position:relative;background-color:#e9e9e9; top: -9px;padding:5px") Or
+    br
+    h4
+      strong(typed-translate="") booking.contact.sendUsEmail
+  form(ng-submit="user.sendEmail(mail)")
+    .col-xs-12
+      label(typed-translate="") booking.labels.mail
+      .input-group.input-group-sm
+        span.input-group-addon @
+        input.form-control(ng-model="mail.email")
+    .col-xs-12.col-md-6
+      label(typed-translate="") booking.labels.name
+      .input-group.input-group-sm
+        span.input-group-addon
+          i.fa.fa-user
+        input.form-control(ng-model="mail.name")
+    .col-xs-12.col-md-6
+      label(typed-translate="") booking.labels.phoneNumber
+      .input-group.input-group-sm
+        span.input-group-addon
+          i.fa.fa-phone
+        input.form-control(ng-model="mail.phone")
+    .col-xs-12
+      label(typed-translate="") booking.labels.subject
+      .input-group.input-group-sm
+        span.input-group-addon
+          i.fa.fa-envelope
+        input.form-control(ng-model="mail.subject")
+    .col-xs-12
+      label(typed-translate="") booking.labels.content
+      textarea.form-control(ng-model="mail.body" style="max-width: 100%;" required)
+    .col-xs-12
+      br
+      button.btn.btn-technorides.btn-block(typed-translate="") booking.labels.send

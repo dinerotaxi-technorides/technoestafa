@@ -1,0 +1,37 @@
+.pageheader
+  h2
+    i.fa.fa-user-secret
+    | Users
+.contentpanel
+  .row
+    .form-group.col-sm-8
+      button.btn.btn-success.btn-sm(ng-click="users.unset()" modal="views/modals/user-add.html" modal-title="Add User") + Add User
+  
+    .form-group.col-sm-4
+      .input-group
+        input.input-sm(placeholder="Search here" ng-model="searchString" ng-change="users.get(1, searchField, searchString)")    
+        select.input-sm(style={margin:"0 .5em"} ng-model="searchField" ng-options="option as option for option in users.searchFields" ng-init="searchField=users.searchFields[0]")    
+    
+      
+    .table-responsive
+      table.table.table-striped.table-hover.field-table
+        thead
+          tr
+            th(ng-repeat="field in users.fields" ng-click="users.get(1, searchField, searchString, field)")
+              a(href="")
+                {{"users." + field | translate}}
+                i.fa.fa-chevron-up(ng-if="field==users.currentOrderField && users.currentOrder == 'desc'")
+                i.fa.fa-chevron-down(ng-if="field==users.currentOrderField && users.currentOrder == 'asc'")
+            th.text-center(colspan="2" translate="general.actions") 
+        tbody
+          tr(ng-repeat="user in users.list")
+            td(ng-repeat="field in users.fields") {{user[field]}}
+            td.text-center
+              a.label.label-danger(ng-click="users.set(user, cities.list)" modal="views/modals/user-delete.html" modal-title="Delete User" href="")
+                i.fa.fa-times-circle-o
+              span &nbsp;
+              a.label.label-success(ng-click="users.set(user, cities.list)" modal="views/modals/user-edit.html" modal-title="Edit User" href="")
+                i.fa.fa-pencil    
+                
+  div(ng-include="'views/paginator.html'")
+  div(ng-include="'/common/scripts/modal/async.html'")

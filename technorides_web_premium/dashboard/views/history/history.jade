@@ -1,0 +1,225 @@
+.pageheader
+  h2
+    i.fa.fa-history
+    | {{'History' | translate}}
+
+.contentpanel
+  .col-xs-8
+    button.btn.btn-technorides.btn-sm.pull-left(ng-click="modalExportHistory()")
+      span.glyphicon.glyphicon-export
+
+  .col-xs-2
+    .input-group.input-sm(ng-init="searchBy = 'id'")
+      select.form-control(ng-model="searchBy")
+        option(value="id") {{'trips' | translate}}
+        option(value="driver") {{'Drivers' | translate}}
+        option(value="phone") {{'Phone' | translate}}
+  .col-xs-2
+    .input-group.input-sm
+      input.form-control(ng-model="search" ng-change="getHistory(page, {'search':search,'searchBy':searchBy,'date':searchDate })")
+      .input-group-addon
+        i.fa.fa-search
+  .col-xs-12
+    .col-xs-6
+    .col-xs-6
+      .dropdown.col-xs-6
+        a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+          .input-group.input-sm
+            span.form-control(ng-if="searchDate.start") {{searchDate.start | date: languageDateFormat}}
+            span.form-control(ng-if="!searchDate.start") --/--/----
+            span.input-group-addon
+              i.fa.fa-calendar
+        ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+          datetimepicker(data-ng-model="searchDate.start" ng-change="getHistory(page, {'search':search,'searchBy':searchBy,'date':searchDate })" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day'}" tabindex="11")
+      .dropdown.col-xs-6
+        a.dropdown-toggle#dropdown1(role="button" data-toggle="dropdown" data-target="#")
+          .input-group.input-sm
+            span.form-control(ng-if="searchDate.end") {{searchDate.end | date: languageDateFormat}}
+            span.form-control(ng-if="!searchDate.end") --/--/----
+            span.input-group-addon
+              i.fa.fa-calendar
+        ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+          datetimepicker(data-ng-model="searchDate.end" ng-change="getHistory(page, {'search':search,'searchBy':searchBy,'date':searchDate })" data-datetimepicker-config="{ dropdownSelector: '#dropdown1', startView:'day', minView:'day'}" tabindex="11")
+  .col-xs-12
+    .table-responsive
+      table.table.table-technorides
+        thead
+          tr
+            th
+            th {{'trips' | translate}}
+            th {{'date' | translate}}
+            th {{'Passengers' | translate}}
+            th {{'phone' | translate}}
+            th {{'driver' | translate}}
+            th {{'origin' | translate}}
+            th.hidden-md {{'destination' | translate}}
+            th {{'ammount' | translate}}
+            th {{'Dispatchers' | translate}}
+            th
+
+        
+        tbody(ng-repeat="row in grid.rows")
+          tr
+            td(ng-hide="showOpDetailsCurrentIds.indexOf(row.id) != -1" ng-click="showOpDetails(row.id)" style="cursor: pointer")
+              | &#9658;
+            td(ng-show="showOpDetailsCurrentIds.indexOf(row.id) != -1" ng-click="showOpDetails(row.id)" style="cursor: pointer")
+              | &#9660;
+            td {{row.id}}
+            td {{row.date | date: languageDateFormat}}
+            td {{row.firstName}} {{row.lastName}}
+            td {{row.phone}}
+            td {{row.driver}}
+            td {{row.origin.address}}
+            td.hidden-md {{row.destination}}
+            td {{row.amount != '0' && row.amount != null? company.config.fares.currency + row.amount : ''}}
+            td(ng-if="row.operator == ''") {{'byUser' | translate}}
+            td(ng-if="row.operator != ''") {{row.operator}}  
+            td.text-center
+              a(href="" ng-click="showOpHistory(row)" title="{{'viewTimeline' | translate}}")
+                i.fa.fa-area-chart
+          tr.details(ng-show="showOpDetailsCurrentIds.indexOf(row.id) != -1")
+            td(colspan="14")
+              .row        
+                .col-xs-2
+                  .map 
+                    img(ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{row.origin.latitude}},{{row.origin.longitude}}&zoom=15&size=200x70")
+                .col-xs-2
+                  strong {{'isFrequent' | translate }}
+                  br
+                  span(ng-if="row.isFrecuent") &check;
+                  span(ng-if="!row.isFrecuent") &times;
+                .col-xs-2 
+                  strong {{'device' | translate}}
+                  br
+                  span {{row.device}}
+                .col-xs-2
+                  strong {{'comments' | translate}}
+                  br
+                  span {{row.comments}}
+                .col-xs-2
+                  strong {{'options' | translate}}
+                  br
+                  span
+                    i.fa.fa-barcode(ng-if="row.options.invoice")
+                    i.fa.fa-plane(ng-if="row.options.airport")
+                    i.fa.fa-user(ng-if="row.options.vip")
+                    i.fa.fa-briefcase(ng-if="row.options.luggage")
+                    i.fa.fa-wheelchair(ng-if="row.options.specialAssistance")
+                    i.fa.fa-sun-o(ng-if="row.options.airConditioner")
+                    i.fa.fa-fire(ng-if="row.options.smoker")
+                    i.fa.fa-paw(ng-if="row.options.pet")
+                    i.fa.fa-truck(ng-if="row.options.courier")
+                .col-xs-2(ng-if="company.config.operations.operatorCancelationReason && row.status == 'CANCELED' || company.config.operations.operatorCancelationReason && row.status == 'CANCELED_EMP' || company.config.operations.operatorCancelationReason && row.status == 'CANCELED_DRIVER'")
+                  strong {{'cancelReason' | translate}} 
+                  br 
+                  span {{row.reason}}
+                
+    
+      ul.list-group(ng-if="grid.rows.length == 0")
+        li.list-group-item.text-center {{'noElementsFound' | translate}}
+      p.text-center(ng-show="historyLoader")
+        i.fa.fa-spinner.fa-pulse
+    .text-center
+      nav
+        ul.pagination
+          li(ng-class="{active: grid.page == 1}")
+            a(ng-click="getHistory(1, {'search':search,'searchBy':searchBy,'date':searchDate })" href="")
+              i.fa.fa-angle-double-left
+          li(ng-repeat="page in grid.totalPages" ng-class="{active: page == grid.page}")
+            a(ng-click="getHistory(page, {'search':search,'searchBy':searchBy,'date':searchDate })" href="")
+              {{page}}
+          li(ng-class="{active: grid.page == grid.pages}")
+            a(ng-click="getHistory(grid.pages, {'search':search,'searchBy':searchBy,'date':searchDate })" href="")
+              i.fa.fa-angle-double-right
+
+.modal.fade.exportHistory(tabindex="-1", role="dialog", aria-labelledby="exportHistory", aria-hidden="true", style="display: none")
+  .modal-dialog.modal-lg
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title Operation History
+        .panel-body
+          form(name="opHistoryExport" ng-submit="exportOperationsHistory(export)")
+            .row
+              .col-xs-12 
+                p For export operation history, please select a period between two dates, a document will be sended to the selected destination
+            .row
+              .col-xs-6
+                .form-group
+                  label From 
+                  .dropdown
+                    a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control
+                          span(ng-if="export.fromDate") {{export.fromDate | date: languageDateFormat}}
+                          span(ng-if="!export.fromDate") --/--/----
+                        span.input-group-addon 
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="export.fromDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day'}" tabindex="11")
+
+              .col-xs-6
+                .form-group
+                  label To 
+                  .dropdown
+                    a.dropdown-toggle#dropdown3(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control 
+                          span(ng-if="export.toDate") {{export.toDate | date: languageDateFormat}}
+                          span(ng-if="!export.toDate") --/--/----
+                        span.input-group-addon 
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="export.toDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown3', startView:'day', minView:'day'}" tabindex="11")
+              .col-xs-12
+                br
+                label Email
+                input.form-control(type="email" ng-model="export.email" required)
+            .row  
+              .col-xs-12
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                | 
+                input.btn.btn-technorides.btn-md.pull-right(type="submit" value="Save" style="margin-right:10px")
+
+.modal.fade.showOphistory(tabindex="-1", role="dialog", aria-labelledby="showOphistory", aria-hidden="true", style="display: none;")
+  .modal-dialog.modal-lg
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title # {{row.id}}
+        .panel-body
+          .col-xs-12
+            h4.label.label-default(ng-hide="row.status == 'COMPLETED'")
+              strong.text-danger
+                i.fa.fa-times 
+              |  {{row.status | translate}} 
+            
+            h4.label.label-default(ng-show="row.status == 'COMPLETED'")
+              strong.text-success
+                i.fa.fa-check-square 
+              |  {{row.status | translate}}   
+          .col-xs-12
+            .time-line.modal-lg#append-popover
+              .line-wrapper
+                .line
+              table
+                tr
+                  td(ng-repeat="action in timeline")
+                    .row(style="margin-left:2em;")
+                      .step-data
+                        img(src="assets/history/images/{{action.status.stateImg}}" onerror="this.src='assets/history/default.png'")
+                        p {{action.status.name | translate | limitTo: 18}} 
+                      
+                      a.step(href="" data-toggle="popover" role="button" data-trigger="focus" data-placement="bottom" data-container="#append-popover" data-html="true" data-content="<div class='col-xs-12'><h5 class='pop-date'>{{action.createdDate | date: languageDateFormat }}</h5><p class='popover-text'>{{action.user.email}}</p><p class='popover-text'>{{action.user.last_name}},{{action.user.first_name}}</p><p class='popover-text'>ID#{{action.user.user_id}}</p></div></div>")
+                    
+                    
+                      
+                    
+                

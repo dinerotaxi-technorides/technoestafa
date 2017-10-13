@@ -1,0 +1,5 @@
+form(name="delete",ng-submit="company.parking.delete()")
+  p {{'deleteParkingText' | translate}}
+  .form-group
+    button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'DontDelete' | translate}}
+    input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Delete' | translate}}")

@@ -1,0 +1,238 @@
+.pageheader
+  h2
+    i.fa.fa-building
+    | {{corporate.companies.costCenters.costCenter.name}}
+    a.btn.btn-success.btn-sm.pull-right(href="#corporate/{{corporate.companies.company.id}}/{{corporate.companies.costCenters.costCenter.id}}")  {{'GoBack' | translate}}
+.contentpanel
+  .row
+    .panel.panel-default
+      .panel-body
+        .btn-toolbar
+          .btn-group 
+            a.btn.btn-default.btn-sm(href="#corporate/{{corporate.companies.company.id}}/{{corporate.companies.costCenters.costCenter.id}}/invoice/{{corporate.companies.costCenters.invoices.invoice.id}}/edit")
+              i.fa.fa-pencil
+            button.btn.btn-default.btn-sm.hidden
+              i.fa.fa-file-pdf-o
+            button.btn.btn-default.btn-sm
+              i.fa.fa-print(ng-click="printInvoice()")
+            button.btn.btn-default.btn-sm.hidden
+              i.fa.fa-envelope
+          button.btn.btn-danger.btn-sm.pull-right(ng-click="corporate.companies.costCenters.invoices.recordPayment('', false)") {{'recordPayment' | translate}}
+        
+        
+        p.bg-warning(ng-if="(corporate.companies.costCenters.invoices.invoice.total + corporate.companies.costCenters.invoices.invoice.adjustments) < 0" style="padding:15px;border-radius: 6px;") {{'moneyInFavor' | translate}} {{corporate.companies.costCenters.invoices.invoice.total + corporate.companies.costCenters.invoices.invoice.adjustments | currency}}
+        hr
+        .invoice-history
+          p(ng-repeat="payment in corporate.companies.costCenters.invoices.invoice.payments" style="border-bottom:1px solid #ccc")
+            em
+              i.fa.fa-dollar.text-success
+              |  {{payment.date | date: languageDateFormat }}
+            em - {{'PaymentOf' | translate}} {{payment.amount | currency}} {{'received' | translate}}
+            em - {{payment.mode}}
+            em - ref: {{payment.reference}}
+            em - {{'Comments' | translate}}: {{payment.comments}}
+            strong
+              | 
+              a.pull-right.text-muted(ng-click="corporate.companies.costCenters.invoices.deletePayment(payment.id, false)")
+                i.fa.fa-times-circle
+            br
+        hr
+        #print-point
+          #bill
+            .corner-ribbon {{corporate.companies.costCenters.invoices.invoice.status}}
+            .row
+              .col-xs-6
+                img(ng-if="user.id!=98279" ng-src="{{corporate.companies.costCenters.invoices.invoice.company.image}}" err-src="/common/assets/logo/logo-sm.png").logo
+                img(ng-if="user.id==98279" src="assets/eti.jpg" style="margin-top:33px").logo
+                h5.uppercase {{corporate.companies.costCenters.invoices.invoice.company.name}} 
+                small {{user.address}}
+                small {{user.adminCode}}, {{user.country}}
+                br
+                span {{'chargeTo' | translate}} {{corporate.companies.company.name}}
+                br
+                small {{corporate.companies.company.address}}
+                br
+                small {{'Cuit' | translate}}: {{corporate.companies.company.cuit}}
+                br 
+                small Tel. {{corporate.companies.company.phone}}
+              .col-xs-6.text-right
+                h1 {{'Invoice' | translate}}
+                span {{'InvoiceNumber' | translate}} {{corporate.companies.costCenters.invoices.invoice.number}}
+                br
+                br
+
+                .col-xs-6
+                  | 
+                  span {{'InvoiceDate' | translate}} :
+                  br
+
+                  span(ng-if="corporate.companies.costCenters.invoices.invoice.lateFee.name") {{'LateFee' | translate}}:
+                  br(ng-if="corporate.companies.costCenters.invoices.invoice.lateFee.name")
+                  span(ng-if="corporate.companies.costCenters.invoices.invoice.term.name") {{'Terms' | translate}}:
+                  br(ng-if="corporate.companies.costCenters.invoices.invoice.term.name")
+                  span(ng-if="corporate.companies.costCenters.invoices.invoice.value") {{'DueDate' | translate}}: 
+                .col-xs-6
+                  em {{corporate.companies.costCenters.invoices.invoice.date | date: languageDateFormat  : "UTC"}}
+                  br
+                  em(ng-if="corporate.companies.costCenters.invoices.invoice.lateFee.name") {{corporate.companies.costCenters.invoices.invoice.lateFee.name}}
+                  br(ng-if="corporate.companies.costCenters.invoices.invoice.lateFee.name")
+                  em(ng-if="corporate.companies.costCenters.invoices.invoice.term.name") {{corporate.companies.costCenters.invoices.invoice.term.name}} 
+                  br(ng-if="corporate.companies.costCenters.invoices.invoice.term.name")
+                  em(ng-if="corporate.companies.costCenters.invoices.invoice.term.value") {{corporate.companies.costCenters.invoices.invoice.dueDate | date: languageDateFormat }}
+            .row(style="margin-top:20px")
+              .col-xs-12
+                .table-responsive
+                  table.table(style="background:none")
+                    thead
+                      tr
+                        th {{'ArtAndDescription' | translate}}
+                        th.text-center {{'Quantity' | translate}}
+                        th.text-center {{'Price' | translate}}
+                        th.text-center {{'Discount' | translate}}
+                        th.text-center {{'Tax' | translate}} 
+                        th.text-right {{'Ammount' | translate}}
+                    tbody
+                      tr(ng-repeat="operation in corporate.companies.costCenters.invoices.invoice.operations")
+                        td {{operation.firstName}} {{operation.lastName}}
+                        td.text-center {{operation.quantity}}
+                        td.text-center {{operation.amount | currency}}
+                        td.text-center
+                          span(ng-if="operation.discountType == '%'") {{operation.discount}}{{operation.discountType}}
+                          span(ng-if="operation.discountType != '%'") {{operation.discount | currency}}
+                        td.text-center
+                          span(ng-if="operation.tax.value") {{(operation.tax.charge * operation.amount)/100 | currency}}
+                          span(ng-if="!operation.tax.value") {{ 0 | currency}}
+                        td.text-right {{operation.amount - operation.discount + ((operation.tax.charge * operation.amount)/100) | currency}}
+                      tr
+                        td(colspan="6") &nbsp;
+                      tr
+                        td(colspan="4")
+                        th.text-center {{'SubTotal' | translate}}
+                        td.text-right {{corporate.companies.costCenters.invoices.invoice.subtotal | currency}}
+                      tr(ng-show="corporate.companies.costCenters.invoices.invoice.adjustments != null") 
+                        td(colspan="4")
+                        th.text-center {{'Adjustments' | translate}}
+                        td.text-right {{corporate.companies.costCenters.invoices.invoice.adjustments | currency}}
+                      
+                      tr(ng-show="corporate.companies.costCenters.invoices.invoice.discountPercentage != 0")
+                        td(colspan="4" )
+                        th.text-center {{'DiscountPercentage' | translate}}
+                        td.text-right {{corporate.companies.costCenters.invoices.invoice.discountPercentage }} %  
+                      
+                      tr(ng-show="corporate.companies.costCenters.invoices.invoice.discount != 0")
+                        td(colspan="4")
+                        th.text-center {{'Discount' | translate}}
+                        td.text-right {{corporate.companies.costCenters.invoices.invoice.discount | currency }}   
+                      
+                      tr
+                        td(colspan="4")
+                        th.text-center {{'Total' | translate}}
+                        td.text-right  {{company.config.fares.currency}} {{corporate.companies.costCenters.invoices.invoice.total |number: 2}}
+                      
+                      tr(ng-show="corporate.companies.costCenters.invoices.invoice.payments != []")
+                        td(colspan="4")
+                        th.text-center {{'Payments' | translate}}
+                        td.text-right  {{company.config.fares.currency}} {{corporate.companies.costCenters.invoices.invoice.totalPayments |number: 2}}
+                        
+                      tr.active 
+                        td(colspan="4")
+                        th.text-center {{'BalanceDue' | translate}}
+                        td.text-right  {{company.config.fares.currency}} {{corporate.companies.costCenters.invoices.invoice.balanceDue |number: 2}}
+            .row
+              .col-xs-12
+                h5 {{'Comments' | translate}}
+                p(ng-if="corporate.companies.costCenters.invoices.invoice.comments") {{corporate.companies.costCenters.invoices.invoice.comments}}
+
+.modal.fade.recordPayment(tabindex="-1", role="dialog", aria-labelledby="record-payment", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'RecordPayment' | translate}} {{corporate.invoice.number}} 
+        .panel-body
+          div(ng-if="!paymentRecibed && !paymentRejected")
+            .alert.alert-danger(ng-if="!rpayment.$valid && rpayment.submited")
+              | {{'errorOnTheForm' | translate}} 
+            form(name="rpayment" ng-submit="rpayment.$valid && corporate.companies.costCenters.invoices.recordPayment(payment, true)" ng-class="{submited: rpayment.submited}")
+              .row
+                form
+                  .col-xs-6
+                    .form-group
+                      label {{'AmountRecived' | translate}} 
+                      input.form-control(type="number" step="0.01" required ng-model="payment.amount")
+                    .form-group
+                      input(type="checkbox" ng-false-value="false" ng-true-value="true" ng-model="payment.taxDeducted")
+                      label {{'TaxDeducted' | translate}} 
+                  .col-xs-6
+                    .form-group
+                      label {{'BankCharges' | translate}}  
+                      input.form-control(type="number" ng-model="payment.bankCharges") 
+                  .clearfix
+                  .col-xs-6
+                    .form-group
+                      label {{'PaymentDate' | translate}}
+                      a.dropdown-toggle#dropdown6(role="button" data-toggle="dropdown" data-target="#")
+                        .input-group
+                          span.form-control
+                            span(ng-if="payment.date") {{payment.date | date : languageDateFormat }}
+                            span(ng-if="!payment.date") --/--/----
+                          span.input-group-addon 
+                            i.fa.fa-calendar
+                      ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                        datetimepicker(data-ng-model="payment.date" required data-datetimepicker-config="{ dropdownSelector: '#dropdown6', startView:'day', minView:'day'}" tabindex="11")
+                  .col-xs-6
+                    .form-group
+                      label {{'PaymentMode' | translate}}
+                      select.form-control(ng-model="payment.mode" required)
+                        option(value="cash") {{'cash' | translate}}
+                        option(value="card") {{'card' | translate}} 
+                        option(value="bank transfer") {{'bankTransfer' | translate}}
+                  .col-xs-12
+                    .form-group
+                      label {{'Reference' | translate}}#
+                      input.form-control(ng-model="payment.reference" required)
+                    .form-group
+                      label {{'Comments' | translate}}
+                      textarea.form-control(ng-model="payment.notes")
+                  .col-xs-12
+                    .form-group
+                      input(type="checkbox" ng-false-value="false" ng-true-value="true" n ng-model="payment.thankYouNote")
+                      label {{'ThxNote' | translate}}
+                .clearfix       
+                .col-xs-12
+                  .form-group
+                    button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+                    button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit" ng-click="rpayment.submited = true") {{'RecordPayment' | translate}}
+          div.text-center(ng-if="paymentRecibed")
+            img(src="assets/payment_success.png")
+            h2 {{'Congratulations' | translate}}
+            p {{'SuccessPayment' | translate}}
+            br
+            button.btn.btn-success.btn-md.panel-close(data-dismiss="modal", aria-hidden="true", type="button" ng-click="setErrorsRecordPayment(false,false)") Ok
+          div.text-center(ng-if="paymentRejected")
+            img(src="assets/payment_error.png")
+            h2 {{'SomethingWrong' | translate}}
+            p {{'PaymentNotRecorded' | translate}}
+            br
+            button.btn.btn-md.btn-success(ng-click="setErrorsRecordPayment(false,false)") Ok
+
+.modal.fade.delete-payment(tabindex="-1", role="dialog", aria-labelledby="deletePayment", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeletePayment' | translate}}
+        .panel-body
+          form(name="delte-company" ng-submit="corporate.companies.costCenters.invoices.deletePayment('', true)")
+            .row
+              .col-xs-12
+                p {{'DeletePaymentText' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px" type="submit") {{'Accept' | translate}}

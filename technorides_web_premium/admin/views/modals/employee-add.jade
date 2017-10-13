@@ -1,0 +1,45 @@
+form(name="Add" ng-submit="Add.$valid && employees.edit('add')")
+  .col-xs-6
+    .form-group
+      label User Name       
+      input.form-control(ng-model="employees.worker.username" required)
+    .form-group
+      label Password  
+      input.form-control(type="password" ng-model="employees.worker.password" required)
+  .col-xs-6
+    .form-group
+      label First Name
+      input.form-control(ng-model="employees.worker.firstName" required)
+    .form-group
+      label Last Name 
+      input.form-control(ng-model="employees.worker.lastName" required)
+  .col-xs-6 
+    .form-group
+      label Phone
+      input.form-control(ng-model="employees.worker.phone" required)
+  .col-xs-6
+    .form-group
+      label Type Employ
+      select.form-control(ng-model="employees.worker.typeEmploy" required)
+        option(ng-repeat="type in employees.types" value="{{type}}") {{type}}
+  .col-xs-4 
+    .form-group
+      label Agree
+      input.checkbox(type="checkbox" ng-model="employees.worker.agree" )
+  .col-xs-4  
+    .form-group
+      label Enabled
+      input.checkbox(type="checkbox" ng-model="employees.worker.enabled" )
+  .col-xs-4  
+    .form-group
+      label Account Locked
+      input.checkbox(type="checkbox" ng-model="employees.worker.accountLocked" )
+  .col-xs-4  
+    .form-group
+      label Is Test User
+      input.checkbox(type="checkbox" ng-model="employees.worker.isTestUser" )  
+  .col-xs-12 
+    br
+    .form-group
+      button.btn.btn-danger.pull-right(data-dismiss="modal") Cancel
+      button.btn.btn-success.pull-right(style="margin-right:5px") Save

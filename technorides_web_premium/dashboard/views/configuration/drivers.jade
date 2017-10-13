@@ -1,0 +1,105 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | {{'Configuration' | translate}} 
+    |/ {{'Drivers' | translate}}
+.contentpanel
+  
+  .alert.alert-warning.alertChrome
+    button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+    strong {{ 'alertChanges' | translate }} 
+  
+  .row          
+    .panel.panel-default
+      .panel-body
+        form(name="driverMovement" ng-submit="driverUpdateTime(company.config.driver)")
+          //Freq
+          .col-xs-6
+            h3.underline {{'DriversUpdateTimeTitle' | translate}}
+            .col-xs-3.text-center
+              img.img-responsive(src="assets/config/drivers/drivers_tracking_frequency.png")
+            .col-xs-8
+              p {{'DriversUpdateTimeText' | translate}}
+              h4 {{'RefreshDelay' | translate}} : 
+                span {{company.config.driver.update_delay}} {{'Seconds' | translate}} 
+              input(type="range" ng-model="company.config.driver.update_delay" min="5" max="120")
+              br
+              em {{'Recomended' | translate}}: 30 s
+            .col-xs-12
+              br
+              small 
+                i.fa.fa-info-circle 
+                |  {{'DriversUpdateTimeDetail' | translate}}
+          //set amount mandatory on driver app HIDDEN
+          .col-xs-6
+            h3.underline {{'DriverSetAmountTitle' | translate}}
+            .col-xs-3
+              img.img-responsive(src="assets/config/drivers/drivers_mobile_app.png")
+            .col-xs-8
+              p {{'DriverSetAmountText' | translate}}
+              toggle-switch(ng-model="company.config.driver.mobilePayment")
+
+          .clearfix
+          .col-xs-6
+            h3.underline {{'DriversAppOpData' | translate}}
+            .col-xs-3.text-center
+              img.img-responsive(src="assets/config/drivers/drivers_previewinfo.png")
+            .col-xs-8
+              p {{'DriversAppOpDataText' | translate}}
+              .col-lg-6.col-xs-12
+                h4 {{'Addresses' | translate}}
+                label {{'AddressFrom' | translate}}
+                br
+                toggle-switch(ng-model="company.config.driver.options.addressFrom")
+                br
+                label {{'AddressTo' | translate}}
+                br
+                toggle-switch(ng-model="company.config.driver.options.addressTo")
+                br 
+                label {{'Options' | translate}}
+                br
+                toggle-switch(ng-model="company.config.driver.options.options")
+                h4 {{'Corporate' | translate}}
+                toggle-switch(ng-model="company.config.driver.options.corporate")
+                              
+              .col-lg-6.col-xs-12
+                h4 {{'UserInformation' | translate}}
+                label {{'Name' | translate}}
+                br
+                toggle-switch(ng-model="company.config.driver.options.user.name")
+                br
+                label {{'Phone' | translate}}
+                br
+                toggle-switch(ng-model="company.config.driver.options.user.phone")
+                br
+                label {{'comments' | translate}}
+                br
+                toggle-switch(ng-model="company.config.driver.options.comments")
+          .col-xs-6
+            h3.underline {{'CallDriverOrCompany' | translate}}
+            .col-xs-3.text-center
+              img.img-responsive(src="assets/config/drivers/drivers_call.png")
+            .col-xs-8
+              p {{'CallDriverOrCompanyText' | translate}}
+              toggle-switch(ng-model="company.config.driver.options.callDriver")
+          .clearfix
+          
+          .col-xs-6
+            h3.underline {{'DriverCanEditTitle' | translate}}
+            p {{'DriverCanEdit' | translate}}
+            toggle-switch(ng-model="company.config.driver.options.driversProfileEditable")
+          
+          .col-xs-6(ng-if="false")
+            h3.underline {{'DriverDispatcher' | translate}}
+            .col-xs-3.text-center
+              img.img-responsive(src="assets/config/drivers/drivers_pendingqueue_alt.png")
+            .col-xs-8
+              p {{'DriverDispatcherText' | translate}}
+              toggle-switch(ng-model="company.config.driver.driverDispatcher")
+          
+          .clearfix
+          .col-xs-12.text-center
+            br
+            button.btn.btn-success {{'Save' | translate}}
+            | 
+            button.btn.btn-danger(type="button" ng-click="refreshConfig()") {{'Cancel' | translate}}

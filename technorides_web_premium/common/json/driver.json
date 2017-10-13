@@ -1,0 +1,22 @@
+{
+        "car": {
+            "brand": "CORSA",
+            "model": "CHEVROLET",
+            "plate": "TER435"
+        },
+        "cuit": "5353737363",
+        "email": "800@yourcompany.com",
+        "enabled": true,
+        "firstName": "Test 1 a",
+        "id": 74145,
+        "image": "http://dinerotaxi.com/taxiApi/displayDriverLogoByEmail?email=800@yourcompany.com&cache=1431529728536",
+        "lastName": "autolagos",
+        "license": {
+            "expiration": "01/09/2016",
+            "number": "6474746474"
+        },
+        "number": "800",
+        "password": "",
+        "telephone": "34263535363"
+ 
+}

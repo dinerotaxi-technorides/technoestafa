@@ -1,0 +1,290 @@
+section.header(style="background-image: url('assets/driver/bg.jpg');height: 700px")#home
+  .inner-video
+    .container
+      .col-xs-12.inner-text.text-center
+        h1.uppercase
+          span(typed-translate="") passenger.separatedTitle1
+          span &nbsp;
+          span.special(typed-translate="") passenger.separatedTitle2
+          span ,
+          span &nbsp;
+          span(typed-translate="") passenger.separatedTitle3
+        p(typed-translate="") passenger.subTitle
+        a.orange-btn.uppercase(style="margin-right:5px" href="#signup" typed-translate="" ng-click="user.userType = 'passenger'") passenger.header.button1 
+        a.inverse-white.uppercase(typed-translate="" href="#advantages" du-smooth-scroll duration="2000") passenger.header.button2
+  video(autoplay="true" loop="true" style="margin:0 auto;bottom: 431px;" )
+    source(src="assets/videos/passenger_darker.mp4" type="video/mp4")
+.clearfix
+article.apps
+  .container
+    span.pull-left.hidden-xs(style="position:relative;top30px" typed-translate="") home.downloadApps
+    a.btn-app(href="{{company.info.android}}" target="_blank")
+      img(src="assets/playstore.png")
+    a.btn-app(href="{{company.info.ios}}" target="_blank")
+      img(src="assets/appstore.png")
+
+section.advantages(style="background-color:#f2f2f2")#advantages
+  .container
+    h2.uppercase.text-center(typed-translate="") passenger.advantages.title
+    p.text-center(style="margin-bottom:30px" typed-translate="") passenger.advantages.description
+    
+    .col-xs-12.col-sm-6
+      .media
+        .media-left
+          img.media-object.img-circle(src="assets/driver/hand_feature1.png" ng-click="changeTabSlider(1)" ng-hide="featTab==1")
+          img.media-object.img-circle(src="assets/driver/hand_feature1_active.png" ng-show="featTab==1")
+        .media-body(style="padding-top:10px")
+          h4.media-heading.uppercase(ng-class="{special: featTab==1}" typed-translate="") passenger.advantages.feature1.title
+          p(typed-translate="") passenger.advantages.feature1.description 
+      .media
+        .media-left
+          img.media-object.img-circle(src="assets/driver/hand_feature2.png" ng-click="changeTabSlider(2)" ng-hide="featTab==2")
+          img.media-object.img-circle(src="assets/driver/hand_feature2_active.png" ng-show="featTab==2")
+        .media-body(style="padding-top:10px")
+          h4.media-heading.uppercase(ng-class="{special: featTab==2}" typed-translate="") passenger.advantages.feature2.title
+          p(typed-translate="") passenger.advantages.feature2.description 
+      .media
+        .media-left
+          img.media-object.img-circle(src="assets/driver/hand_feature3.png" ng-click="changeTabSlider(3)" ng-hide="featTab==3")
+          img.media-object.img-circle(src="assets/driver/hand_feature3_active.png" ng-show="featTab==3")
+        .media-body(style="padding-top:10px")
+          h4.media-heading.uppercase(ng-class="{special: featTab==3}" typed-translate="") passenger.advantages.feature3.title
+          p(typed-translate="") passenger.advantages.feature3.description 
+      .media
+        .media-left
+          img.media-object.img-circle(src="assets/driver/hand_feature4.png" ng-click="changeTabSlider(4)" ng-hide="featTab==4")
+          img.media-object.img-circle(src="assets/driver/hand_feature4_active.png" ng-show="featTab==4")
+        .media-body(style="padding-top:10px")
+          h4.media-heading.uppercase(ng-class="{special: featTab==4}" typed-translate="") passenger.advantages.feature4.title
+          p(typed-translate="") passenger.advantages.feature4.description 
+    .col-xs-12.col-sm-6
+      img.outside-phone(src="assets/passenger/animate/hand_phone.png")
+      div
+        div
+        img.inside-phone-reverse.animated( ng-if="company.info.rtaxi == '98280'" src="assets/passenger/animate/hand_phone1_et.png" ng-class="{fadeIn: featTab==1, currentphone: featTab==1, fadeOut: featTab!=1}")
+        img.inside-phone-reverse.animated( ng-if="company.info.rtaxi != '98280'" src="assets/passenger/animate/hand_phone1.png" ng-class="{fadeIn: featTab==1, currentphone: featTab==1, fadeOut: featTab!=1}")
+        div
+          img.inside-phone-reverse.animated( ng-if="company.info.businessModel == 'GENERIC'" src="assets/passenger/animate/hand_phone2.png"  ng-class="{fadeIn: featTab==2,  currentphone: featTab==2, fadeOut: featTab!=2}")
+          img.inside-phone-reverse.animated(ng-if="company.info.businessModel != 'GENERIC'" src="assets/passenger/animate/hand_phone2_moto.png"  ng-class="{fadeIn: featTab==2,  currentphone: featTab==2, fadeOut: featTab!=2}")
+        div
+          img.inside-phone-reverse.animated( ng-if="company.info.businessModel == 'GENERIC'" src="assets/passenger/animate/hand_phone3.png"  ng-class="{fadeIn: featTab==3,  currentphone: featTab==3, fadeOut: featTab!=3}")
+          img.inside-phone-reverse.animated( ng-if="company.info.businessModel != 'GENERIC'" src="assets/passenger/animate/hand_phone3_moto.png"  ng-class="{fadeIn: featTab==3,  currentphone: featTab==3, fadeOut: featTab!=3}")
+        div
+          img.inside-phone-reverse.animated(ng-if="company.info.businessModel != 'GENERIC'" src="assets/passenger/animate/hand_phone4_moto.png"  ng-class="{fadeIn: featTab==4,  currentphone: featTab==4, fadeOut: featTab!=4}")
+          img.inside-phone-reverse.animated(ng-if="company.info.businessModel == 'GENERIC'" src="assets/passenger/animate/hand_phone4.png"  ng-class="{fadeIn: featTab==4,  currentphone: featTab==4, fadeOut: featTab!=4}")
+      br.visible-xs  
+section.phoneAppsSection2.hidden-xs#apps
+  .container
+    h2.uppercase.text-center(typed-translate="") driver.apps.title
+    .row
+      .col-xs-2.col-md-3
+      .col-xs-8.col-md-6
+        .col-xs-12
+          a.col-xs-6.text-center.feat(ng-class="{active: featTab2==1}" ng-click="featTab2=1;featSubTab=1" href="")
+            i.fa.fa-android
+            span.uppercase(typed-translate="") passenger.apps.android.button
+          a.col-xs-6.text-center.feat(ng-class="{active: featTab2==2}" ng-click="featTab2=2;featSubTab=1"  href="")
+            i.fa.fa-apple 
+            span.uppercase(typed-translate="") passenger.apps.iphone.button
+        
+      .col-xs-2.col-md-3
+    .row
+      .animated.app.col-xs-12(ng-class="{slideInRight: featTab2==1}" ng-hide="featTab2!=1")
+        .android-example.app-example
+
+          .column
+            .app-feature
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature1{{featSubTab === 1 ? '_active':''}}.png" ng-click="featSubTab = 1")
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.android.feature1.title
+                  p(typed-translate="") passenger.apps.android.feature1.description              
+            
+            .app-feature
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature2{{featSubTab === 2 ? '_active':''}}.png" ng-click="featSubTab = 2")
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.android.feature2.title
+                  p(typed-translate="") passenger.apps.android.feature2.description             
+            
+            .app-feature
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature3{{featSubTab === 3 ? '_active':''}}.png" ng-click="featSubTab = 3")
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.android.feature3.title
+                  p(typed-translate="") passenger.apps.android.feature3.description
+        
+          .phone
+           
+            img.outside-phone(src="assets/driver/android.png")
+            div
+            img.inside-phone2.animated(ng-if="company.info.rtaxi == '98280' " src="assets/passenger/animate/android1_et.png" ng-class="{fadeIn: featSubTab==1, fadeOut: featSubTab!=1}")
+            img.inside-phone2.animated(ng-if="company.info.rtaxi != '98280'" src="assets/passenger/animate/android1.png" ng-class="{fadeIn: featSubTab==1, fadeOut: featSubTab!=1}")
+            
+            div
+              img.inside-phone2.animated( ng-if="company.info.businessModel == 'GENERIC'" src="assets/passenger/animate/android2.png" ng-class="{fadeIn: featSubTab==2, fadeOut: featSubTab!=2}")
+              img.inside-phone2.animated( ng-if="company.info.businessModel != 'GENERIC'" src="assets/passenger/animate/hand_phone2message_moto.png" ng-class="{fadeIn: featSubTab==2, fadeOut: featSubTab!=2}" )
+            
+            div
+              img.inside-phone2.animated( ng-if="company.info.businessModel == 'GENERIC'" src="assets/passenger/animate/android3.png" ng-class="{fadeIn: featSubTab==3, fadeOut: featSubTab!=3}")
+              
+            div
+              img.inside-phone2.animated(src="assets/passenger/animate/android4.png" ng-class="{fadeIn: featSubTab==4, fadeOut: featSubTab!=4}")
+            div
+              img.inside-phone2.animated( ng_if="company.info.businessModel== 'GENERIC'" src="assets/passenger/animate/android5.png" ng-class="{fadeIn: featSubTab==5, fadeOut: featSubTab!=5}")
+              img.inside-phone2.animated( ng_if="company.info.businessModel!= 'GENERIC'" src="assets/passenger/animate/hand_phone2_moto.png" ng-class="{fadeIn: featSubTab==5, fadeOut: featSubTab!=5}")
+            div
+              img.inside-phone2.animated(src="assets/passenger/animate/android6.png" ng-class="{fadeIn: featSubTab==6, fadeOut: featSubTab!=6}")
+                          
+          .column
+            .app-feature-inverse
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.android.feature4.title
+                  p(typed-translate="") passenger.apps.android.feature4.description
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature4{{featSubTab === 4 ? '_active':''}}.png" ng-click="featSubTab = 4")
+            .app-feature-inverse
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.android.feature5.title
+                  p(typed-translate="") passenger.apps.android.feature5.description
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature5{{featSubTab === 5 ? '_active':''}}.png" ng-click="featSubTab = 5")
+            .app-feature-inverse
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.android.feature6.title
+                  p(typed-translate="") passenger.apps.android.feature6.description
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature6{{featSubTab === 6 ? '_active':''}}.png" ng-click="featSubTab = 6")
+
+    
+      .animated.app.col-xs-12(ng-class="{slideInRight: featTab2==2}" ng-hide="featTab2!=2")
+        .ios-example.app-example
+          .column
+            .app-feature
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature1{{featSubTab === 1 ? '_active':''}}.png" ng-click="featSubTab = 1")
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.iphone.feature1.title
+                  p(typed-translate="") passenger.apps.iphone.feature1.description
+            
+            .app-feature
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature2{{featSubTab === 2 ? '_active':''}}.png" ng-click="featSubTab = 2")
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.iphone.feature2.title
+                  p(typed-translate="") passenger.apps.iphone.feature2.description            
+            
+            .app-feature
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature3{{featSubTab === 3 ? '_active':''}}.png" ng-click="featSubTab = 3")
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.iphone.feature3.title
+                  p(typed-translate="") passenger.apps.iphone.feature3.description              
+        
+          .phone
+            img.outside-phone(src="assets/passenger/animate/iphone.png")
+            div
+              img.inside-phone2.ios.animated(ng-if="company.info.businessModel == 'GENERIC'" src="assets/passenger/animate/iphone1.png" ng-class="{fadeIn: featSubTab==1, fadeOut: featSubTab!=1}")
+              img.inside-phone2.ios.animated(ng-if="company.info.businessModel == 'DELIVERY'" src="assets/passenger/animate/iphone1_moto.png" ng-class="{fadeIn: featSubTab==1, fadeOut: featSubTab!=1}")
+            div
+              img.inside-phone2.ios.animated(src="assets/passenger/animate/iphone2.png" ng-class="{fadeIn: featSubTab==2, fadeOut: featSubTab!=2}")
+            div
+              img.inside-phone2.ios.animated(src="assets/passenger/animate/iphone3.png" ng-class="{fadeIn: featSubTab==3, fadeOut: featSubTab!=3}")
+            div
+              img.inside-phone2.ios.animated(src="assets/passenger/animate/iphone4.png" ng-class="{fadeIn: featSubTab==4, fadeOut: featSubTab!=4}")
+            div
+              img.inside-phone2.ios.animated(src="assets/passenger/animate/iphone5.png" ng-class="{fadeIn: featSubTab==5, fadeOut: featSubTab!=5}")
+            div
+              img.inside-phone2.ios.animated(src="assets/passenger/animate/iphone6.png" ng-class="{fadeIn: featSubTab==6, fadeOut: featSubTab!=6}")
+                          
+                          
+          .column
+            .app-feature-inverse
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.iphone.feature4.title
+                  p(typed-translate="") passenger.apps.iphone.feature4.description         
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature4{{featSubTab === 4 ? '_active':''}}.png" ng-click="featSubTab = 4")
+            .app-feature-inverse
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.iphone.feature5.title
+                  p(typed-translate="") passenger.apps.iphone.feature5.description          
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature5{{featSubTab === 5 ? '_active':''}}.png" ng-click="featSubTab = 5")
+            .app-feature-inverse
+              .col-xs-9
+                .row
+                  h4.uppercase(typed-translate="") passenger.apps.iphone.feature6.title
+                  p(typed-translate="") passenger.apps.iphone.feature6.description            
+              .col-xs-3
+                .row
+                  img.img-responsive(src="assets/passenger/phone_feature6{{featSubTab === 6 ? '_active':''}}.png" ng-click="featSubTab = 6")
+section.howWorkPassenger#howWorks
+  .container
+    h2.uppercase.text-center(typed-translate="") index.sections.howItWorks
+    .text-center
+    .clearfix
+    .row.feature
+      .col-xs-12.animate-switch
+        .col-xs-12.animated
+          .feature-body
+            .col-xs-6.col-md-3.how-works-item
+              .media
+                .text-center
+                  img.media-object.img-circle(src="assets/enterprise/ic_company_signup.png" style="margin: 0 auto;")
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase.text-center(typed-translate="") passenger.howitWorks.step1.title
+                  p.text-center
+                    a.special(href="#signup" ng-click="user.userType = 'enterprise'")
+                      span(typed-translate="") index.sections.signup
+                      span &nbsp;
+                    span(typed-translate="passenger.howitWorks.step1.text" translate-values='{company: company.info.name}')  
+            .col-xs-6.col-md-3.how-works-item  
+              .media
+                .text-center
+                  img.media-object.img-circle(src="assets/enterprise/ic_company_training.png" style="margin: 0 auto;")
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase.text-center(typed-translate="") passenger.howitWorks.step2.title
+                  p.text-center(typed-translate="")  passenger.howitWorks.step2.text
+            .col-xs-6.col-md-3.how-works-item
+              .media
+                .text-center
+                  img.media-object.img-circle(src="assets/enterprise/ic_company_platformsetup.png" style="margin: 0 auto;") 
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase.text-center(typed-translate="") passenger.howitWorks.step3.title
+                  p.text-center(typed-translate="passenger.howitWorks.step3.text" translate-values='{company: company.info.name}') 
+            .col-xs-6.col-md-3.how-works-item
+              .media
+                .text-center
+                  img.media-object.img-circle(src="assets/enterprise/ic_company_addemployees.png" style="margin: 0 auto;") 
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase.text-center(typed-translate="") passenger.howitWorks.step4.title
+                  p.text-center(typed-translate="") passenger.howitWorks.step4.text
+    .row
+      .col-xs-12
+      img.img-responsive(ng-if="company.info.rtaxi != '98280' && company.info.businessModel == 'GENERIC'" src="assets/passenger/howitworks_feature.png")
+      img.img-responsive(ng-if="company.info.rtaxi != '98280' && company.info.businessModel != 'GENERIC'" src="assets/passenger/howitworks_feature_moto.png")
+      img.img-responsive(ng-if="company.info.rtaxi == '98280'" src="assets/passenger/howitworks_feature_et.png")
+      

@@ -1,0 +1,64 @@
+db.drivers.find({'email':/.*taxidigital.*/},{email:1})
+remove phantom operation
+db.operations.remove({'status':{$nin:['COMPLETED','CANCELED','CANCELED_EMP','PENDING','ASSIGNEDTAXI','INTRANSACTION','HOLDINGUSER']}})
+db.connections.remove({})
+db.debuglogs.remove({})
+db.driverconnectionlogs.remove({})
+db.driveroperationtopologylogs.remove({})
+db.positionlogs.remove({})
+db.pushmessages.remove({})
+db.operationlogs.remove({})
+db.operations.remove({
+    created_at: {
+        $lte: ISODate("2016-09-12T14:00:00.000Z")
+    }
+})
+db.options.remove({
+    created_at: {
+        $lte: ISODate("2016-09-12T14:00:00.000Z")
+    }
+})
+db.places.remove({
+    created_at: {
+        $lte: ISODate("2016-09-12T14:00:00.000Z")
+    }
+})
+
+
+
+db.chatmessages.count()
+db.collection.count()
+db.companies.count()
+db.companyconfigs.count()
+db.connections.count()
+db.conversations.count()
+db.debuglogs.count()
+db.driverconnectionlogs.count()
+db.driveroperationtopologylogs.count()
+db.driverparkingqueues.count()
+db.driverparkingqueueschemas.count()
+db.drivers.count()
+db.errorlogs.count()
+db.geonames.count()
+db.googleplaces.count()
+db.operationflows.count()
+db.operationlogs.count()
+db.operations.count()
+db.options.count()
+db.parkingqueues.count()
+db.parkings.count()
+db.places.count()
+db.positionlogs.count()
+db.pushmessages.count()
+db.system.indexes.count()
+db.users.count()
+db.zonepoints.count()
+db.zones.count()
+
+db.errorlogs.aggregate(
+   [{$group:{
+              _id: "$func",
+              count: {$sum:1}
+            }
+    }]
+  )

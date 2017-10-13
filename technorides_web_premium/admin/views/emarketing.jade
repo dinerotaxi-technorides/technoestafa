@@ -1,0 +1,38 @@
+.pageheader
+  h2
+    i.fa.fa-envelope
+    | Email Marketing
+.contentpanel
+
+  .row
+    .form-group.col-sm-8
+      button.btn.btn-success.btn-sm(ng-click="marketing.unset()" modal="views/modals/email-add.html" modal-title="Add email template") + Add template
+    
+    .form-group.col-sm-4
+      .input-group
+        input.input-sm(placeholder="Search here" ng-model="searchString" ng-change="marketing.get(1, searchField, searchString)")    
+        select.input-sm(style={margin:"0 .5em"} ng-model="searchField" ng-options="option as option for option in marketing.fields" ng-init="searchField=marketing.fields[0]")
+    
+    .table-responsive
+      table.table.table-striped.table-hover.field-table
+        thead
+          tr 
+            th.text-center(ng-repeat="field in marketing.showFields" ng-click="marketing.get(1, searchField, searchString, field)") 
+              a(href="")            
+                {{"marketing." + field | translate}}
+                i.fa.fa-chevron-up(ng-if="field==marketing.currentOrderField && marketing.currentOrder == 'desc'")
+                i.fa.fa-chevron-down(ng-if="field==marketing.currentOrderField && marketing.currentOrder == 'asc'")
+            th.text-center(colspan="2" translate="general.actions") 
+        tbody    
+          tr(ng-repeat="email in marketing.list")
+
+            td.text-center(ng-repeat="field in marketing.showFields") {{email[field]}}
+
+            td.text-center
+              a.label.label-warning(ng-click="marketing.preview(email.id)" modal="views/modals/email-preview.html" modal-title="{{email.subject}}" modal-size="big" href="")
+                i.fa.fa-eye
+              span &nbsp;
+              a.label.label-success(ng-click="marketing.set(email)" modal="views/modals/email-edit.html" modal-title="Edit email" href="")
+                i.fa.fa-pencil            
+div(ng-include="'views/paginator.html'")        
+div(ng-include="'/common/scripts/modal/async.html'")

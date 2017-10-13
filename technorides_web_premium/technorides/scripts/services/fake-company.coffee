@@ -1,0 +1,1 @@
+technoridesApp.factory '$company', ->

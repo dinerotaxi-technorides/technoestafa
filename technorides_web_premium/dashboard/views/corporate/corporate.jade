@@ -1,0 +1,296 @@
+.pageheader
+  h2
+    i.fa.fa-briefcase
+    | {{'Corporate' | translate}}
+.contentpanel.corp-panel
+  .row
+    .col-xs-12.col-lg-2
+        h5.uppercase.underline {{'RevenueOverview' | translate}}
+        label {{'ViewGraphic' | translate}}
+        select.form-control
+          option {{'revGraphic1' | translate}}
+
+        h5.uppercase.underline.hidden {{'billingSettings' | translate}}
+        input.form-control.hidden(type="text")
+        h5.uppercase.underline {{'PaymentsThisMonth' | translate}}
+
+        .progress.progress-lg 
+          .progress-bar.progress-bar-success(aria-valuemax="100" aria-valuenow="40" role="progressbar" style="width: {{corporate.stats.payments.montly_paid_percent}}%")
+        .text-center(style="margin: -32px")
+          span {{corporate.stats.payments.montly_paid_percent}}%
+    .col-lg-7.col-xs-12
+      #graphic(style="width:100%; height: 300px")
+    .col-lg-3.col-xs-12
+      .panel.panel-success.panel-stat
+        .panel-heading
+          .stat
+            .row
+              .col-xs-5
+                i.fa.fa-users
+              .col-xs-7
+                small.stat-label {{'CorporateMainFeat1Title' | translate}}
+                h2 {{corporate.stats.accounts.total}}
+            .mb15
+            .row
+              .col-xs-6
+                small.stat-label {{'CorporateMainFeat1Data1' | translate}}
+                h4 {{corporate.stats.accounts.enterprises}}
+              .col-xs-6
+                small.stat-label {{'CorporateMainFeat1Data2' | translate}}
+                h4 {{corporate.stats.accounts.monthly_rides}}
+      .panel.panel-success.panel-stat
+        .panel-heading
+          .stat
+            .row
+              .col-xs-4
+                i.fa.fa-money
+              .col-xs-8
+                small.stat-label {{'CorporateMainFeat2Title' | translate}}
+                h2 {{company.config.fares.currency}} {{corporate.stats.payments.expected | number:1}}
+            .mb15
+            .row
+              .col-xs-6
+                small.stat-label {{'CorporateMainFeat2Data1' | translate}}
+                h4 {{company.config.fares.currency}} {{corporate.stats.payments.unpaid | number:2}}
+              .col-xs-6
+                small.stat-label {{'CorporateMainFeat2Data2' | translate}}
+                h4 {{company.config.fares.currency}} {{corporate.stats.payments.paid | number:2}}
+  .row
+    .col-xs-3
+      button.btn-sm.btn.btn-success.pull-left(ng-click="modalNewCompany()") {{'NewAccountButton' | translate}}
+    .col-xs-3
+      select.form-control(placeholder="{{'FilterBy' | translate}}...").hidden
+    .col-xs-3
+      select.form-control.hidden
+    .col-xs-3
+      .input-group
+        input.form-control(type='text', placeholder="{{'Search' | translate}}" ng-model="companyNameSearch" ng-change="corporate.companies.getCompanies(page, companyNameSearch)")
+        span.input-group-btn
+          button.btn.btn-default.btn-sm(type='button')
+            i.fa.fa-search
+  .mb15
+  .row
+    //.col-xs-12(ng-if="corporate.companies.list.length == 0")
+      ul.list-group
+        li.list-group-item.text-center {{'noElementsFound' | translate}}
+    .col-lg-3.col-md-4.col-xs-6(ng-repeat-start="corp in corporate.companies.list")
+      .panel.panel-default(style="max-height: 180px;overflow: hidden;")
+        .panel-body
+          .row
+            .col-xs-12
+              strong.bold.com-name.pull-left
+                a(href="#corporate/{{corp.id}}") {{corp.name}}
+
+              .pull-right
+                a(ng-click="modalDeleteCompany(corp.id)" href="") &times;
+          .row
+            .col-xs-4
+              a(href="#corporate/{{corp.id}}")
+                img.com-logo.img-responsive(ng-src="{{corp.image}}" onerror="this.src='/common/assets/logo/logo-sm.png'" style="height: 100px;width: 100px;cursor:pointer")
+            .col-xs-8
+              span.due {{'AccountDue' | translate}}
+              h3.com-total(ng-class="{'text-danger': corp.settings.not_paid > 0}") {{company.config.fares.currency}}  {{corp.settings.not_paid  | number: 2}}
+              span.exp-date Cuit/Rut {{corp.cuit | limitTo: 10}}{{corp.cuit.length > 10 ? '...' : ''}}
+              br
+              a.com-mail {{corp.phone | limitTo: 16 | lowercase}}{{corp.phone.length > 16 ? '...' : ''}}
+    .clearfix.hidden-sm.hidden-xs.hidden-md(ng-if="($index+1) % 4 == 0")
+    .clearfix.visible-md(ng-if="($index+1) % 3 == 0")
+    div(ng-repeat-end="")
+
+
+.modal.fade.add-company(tabindex="-1", role="dialog", aria-labelledby="addCompany", aria-hidden="true", style="display: none;" data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-default.panel-alt
+        .panel-body.corp-panel
+          .tab-content
+            div(ng-if="NewCompanyStep == 1")
+              form(name="add",ng-submit="addNewCompany(newCompany)")
+                .row
+                  .col-xs-12
+                    h5.underline
+                      strong {{'NewAccount' | translate}} 
+                  .col-xs-12.col-sm-6.hidden
+                    img.img-responsive.hidden(ng-src="{{editCompany.image}}" onerror="this.src='/common/assets/user/profile.png'" id="company_image_preview")
+                    input.hidden(type="file" ng-model="editCompanyImage" name="editCompanyImage" id="company_image" onchange="angular.element(this).scope().previewCompanyImage(this)")
+                  .col-xs-12
+                    .form-group
+                      label {{'CompanyName' | translate}} *
+                      input.form-control(type="text",  placeholder="", ng-model="newCompany.name", required tabindex="1")
+                    .form-group
+                      label {{'PhoneNumber' | translate}} *
+                      input.form-control(type="text",  placeholder="", ng-model="newCompany.phone", required tabindex="2")
+                    .form-group
+                      label {{'Cuit' | translate}} *
+                      input.form-control(type="text", placeholder="", ng-model="newCompany.cuit", required tabindex="3")
+                    .form-group
+                      label {{'LegalAddress' | translate}} *
+                      input.form-control(type="text" ng-model="newCompany.legalAddress", required  tabindex="4")
+                  .row(ng-if="company.config.fares.fareCalculator")
+                    .col-xs-12
+                      h5.underline {{'fareDiscount' | translate}}
+                      .form-group  
+                        label {{ 'DiscountPercentage' | translate}}
+                        .input-group
+                            input.form-control(type="number" min="0" max="100" ng-init="newCompany.discount = 0" ng-model="newCompany.discount")
+                            span.input-group-addon %   
+                
+                .row.hidden
+                  br
+                  .col-xs-12.col-sm-6
+                    .form-group
+                      input.form-control.hidden(type="radio" value="small" ng-model="newCompany.size" )
+                      button.btn.btn-block.chooseCompanySize(type="button" ng-click="newCompany.size = 'small'" ng-class="{selected: newCompany.size == 'small'}")
+                        .small
+                        span {{'SmallCompany' | translate}}
+                          small {{'SmallCompanyText' | translate}}
+                  .col-xs-12.col-sm-6
+                    .form-group
+                      input.form-control.hidden(type="radio" ng-model="company.size"  value="big")
+                      button.btn.btn-block.chooseCompanySize(type="button" ng-click="newCompany.size = 'big'" ng-class="{selected: newCompany.size == 'big'}")
+                        .big
+                        span {{'LargeCompany' | translate}}
+                          small {{'LargeCompanyText' | translate}}
+                .row
+                  .col-xs-12
+                    br
+                    button.btn.btn-danger.btn-md.pull-left.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+                    button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit") {{'Next' | translate}}
+            div(ng-if="NewCompanyStep == 2 || NewCompanyStep == 3 || NewCompanyStep == 4 ")
+              ul.nav.nav-tabs.tabs-wizzard
+                li(ng-class="{selected: NewCompanyStep == 2}")
+                  a 1. {{'Managment' | translate}}
+                li(ng-class="{selected: NewCompanyStep == 3}").hidden
+                  a 2. {{'Billing' | translate}}
+                li(ng-class="{selected: NewCompanyStep == 4}")
+                  a 2. {{'Confirmation' | translate}}
+
+            div(ng-if="NewCompanyStep == 2")
+              div(ng-if="newCompany.size == 'small'")
+                form(name="defaultUser" ng-submit="defaultUser.$valid && createDefaultCostCenter(newuser)" ng-class="{submited: defaultUser.submited} ")
+                  .row
+                    .col-xs-12
+                      h5.underline {{'UserInformation' | translate}}
+                    .col-xs-12.col-sm-6
+                      .form-group
+                        label {{'Email' | translate}}
+                        input.form-control(type="email",  placeholder="", name="email" ng-model="newuser.email", required tabindex="1" ng-unique)
+                        p.text-danger(ng-show="defaultUser.submited && defaultUser.email.$error.unique") {{'ExistingEmailError' | translate}}
+                      .form-group
+                        label {{'Password' | translate}}
+                        input.form-control(type="password",  placeholder="", ng-model="newuser.password", required tabindex="3")
+                    .col-xs-12.col-sm-6
+                      .form-group
+                        label {{'Name' | translate}}
+                        input.form-control(type="text", placeholder="", ng-model="newuser.name", required tabindex="2")
+                      .form-group
+                        label {{'LastName' | translate}}
+                        input.form-control(type="text" ng-model="newuser.lastName", required  tabindex="4")
+                    .col-xs-12.col-sm-6
+                      .form-group
+                        label {{'Phone' | translate}}
+                        input.form-control(type="text" ng-model="newuser.phone" required tabindex="5")
+                        input.form-control(type="hidden" ng-model="newuser.costCenter" required)
+                                          
+                  .row
+                    .col-xs-12
+                      br
+                      button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit" ng-click="defaultUser.submited = true") {{'Next' | translate}}
+              div(ng-if="newCompany.size == 'big'")
+                .row
+                  form(name="newCostCenter" ng-submit="newCostCenter.$valid && createCostCenter(newuser)" novalidate)
+                    .col-xs-12
+                      h5.underline {{'NewCostCenter' | translate}}
+                    .col-xs-12.col-lg-6
+                      .form-group
+                        label {{'CostCenterName' | translate}}
+                        input.form-control(type="text" ng-model="newuser.costCenterName" required)
+                      .form-group
+                        label {{'UserName' | translate}}
+                        input.form-control(type="text" ng-model="newuser.name" required)
+                      .form-group
+                        label {{'Email' | translate}}
+                        input.form-control(type="text" name="email" ng-model="newuser.email" required ng-unique)
+                        p.text-danger(ng-show="newCostCenter.submited && newCostCenter.email.$error.unique") Email Already in use
+                    .col-xs-12.col-lg-6
+                      .form-group
+                        label {{'Password' | translate}}
+                        input.form-control(type="password" ng-model="newuser.password" required)
+                      .form-group
+                        label {{'LastName' | translate}}
+                        input.form-control(type="text" ng-model="newuser.lastName" required)
+                      .form-group
+                        label {{'Phone' | translate}}
+                        input.form-control(type="text" ng-model="newuser.phone" required)
+                        input(type="hidden" ng-model="newuser.costCenter")
+
+                    .col-xs-12
+                      button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit" ng-click="newCostCenter.submited = true") {{'Next' | translate}}
+
+            div(ng-if="NewCompanyStep == 3")
+              div(ng-if="newCompany.size == 'small'")
+                br
+                form(name="defaultUser" ng-submit="goToStep(4)")
+                  .row
+                    .col-xs-12.col-sm-6
+                      .form-group
+                        label {{'BillingPeriod' | translate}} *
+                        select.form-control(ng-model="newBilling.period")
+                          option Daily
+                          option Weekly
+                          option Fortnightly
+                          option Montly
+                          option 90 Days
+                          option 120 Days
+                          option 180 Days
+
+                      .form-group
+                        label Legal Representative
+                        input.form-control(type="text" ng-model="newBilling.legalRepresentative")
+                    .col-xs-12.col-sm-6
+                      .form-group
+                        label Billing Date *
+                        a.dropdown-toggle#dropdown5(role="button" data-toggle="dropdown" data-target="#")
+                          span.form-control
+                            span(ng-if="!newBilling.billingDate") --/--/--
+                            span(ng-if="newBilling.billingDate") {{newBilling.billingDate | date : languageDateFormat }}
+                        ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                          datetimepicker(data-ng-model="newBilling.billingDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown5', startView:'day', minView:'day'}" tabindex="11")
+                      .form-group
+                        label Discounts
+                        input.form-control(type="text")
+                  .row
+                    .col-xs-12
+                      br
+                      button.btn.btn-success.btn-md.pull-left(style="margin-right:5px",type="button" ng-click="goToStep(2)") {{'Back' | translate}}
+                      button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit") {{'Next' | translate}}
+              div(ng-if="newCompany.size == 'big'")
+
+
+            div(ng-if="NewCompanyStep == 4")
+              br
+              img.img-responsive(src="assets/success.png" style="margin: 0 auto")
+              br
+              .text-center
+                button.btn.btn-success.btn-md(style="margin-right:5px",type="button" ng-click="finishWizard()") {{'Finish' | translate}}
+          
+
+.modal.fade.delete-company(tabindex="-1", role="dialog", aria-labelledby="add-term", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeleteCompany' | translate}}
+        .panel-body
+          form(name="delte-company" ng-submit="deleteCompany(todeleteCompany)")
+            .row
+              .col-xs-12
+                p {{'DeleteCompanyText' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px" type="submit") {{'Accept' | translate}}
+      
+div(ng-include="'/dashboard/views/corporate/paginator.html'")

@@ -1,0 +1,214 @@
+$greenTechnorides : #009a80
+$blue : #04878f
+$violet : #09666c 
+$darkGreen : #107a68
+// NAVBAR BOOTSTRAP OVERRIDE
+*
+  font-family: 'Montserrat', sans-serif
+
+p
+  font-family: 'Exo', sans-serif
+  color: #404041
+  
+.navbar-brand
+  p 
+    font-size: 20px
+    color: #404041
+    margin-top: 2px
+    letter-spacing: 0.03em
+    span 
+      font-family: 'Exo', sans-serif
+      color: $greenTechnorides
+  img
+    width: 25px
+    margin-right: 5px
+@mixin innershadow
+  -webkit-box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+  -moz-box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+  box-shadow: inset 0px 6px 38px 3px rgba(0,0,0,0.4)
+.navbar
+  margin:
+    bottom: 0px
+  min-height: 70px
+  padding: 
+    top: 10px
+  border-radius: 0
+ul 
+  list-style-type: none
+// END BOOTSTRAP OVERRIDE
+// General styles
+input[type="range"]
+  -webkit-appearance: none
+  margin:
+    top : 20px
+    bottom: 20px
+  width: 100%
+  &::-webkit-slider-runnable-track
+    height: 5px
+    background: $darkGreen
+    border: none
+    border-radius: 3px
+    cursor: pointer
+
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    border: none
+    height: 20px
+    width: 20px
+    border-radius: 50%
+    background: $violet
+    margin-top: -7px
+  &:focus 
+    outline: none
+a
+  color: white
+  text-decoration: none
+  &:hover
+    color: white
+    text-decoration: none
+
+input[type=range]:focus::-webkit-slider-runnable-track
+  background: $darkGreen
+
+.btn-technorides
+  background-color: $greenTechnorides
+  color: white!important
+  outline: 0!important
+
+.shadow
+  text-shadow: 2px 4px #333
+
+.uppercase
+  text-transform: uppercase
+
+.no-padding
+  padding: 0!important
+
+
+.shadow-top
+  -webkit-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+  -moz-box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+  box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.3)
+
+.shadow-bottom
+  -webkit-box-shadow: 0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow:    0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+  box-shadow:         0px 5px 17px 0px rgba(0, 0, 0, 0.2)
+// Landing 1 specific styles
+.banner
+  background-image: url('../assets/bg.jpg')
+  height: 500px 
+  color: white
+.banner-image 
+  width: 480px
+  margin-top: 50px
+
+
+.panel-technorides
+  border: 0
+  margin-top: 20px
+  .panel-heading
+    color: white
+    background-color: $greenTechnorides
+    .panel-title
+      font-size: 25px
+
+label
+  color: #666
+
+.special-title
+  background-color: $greenTechnorides
+  padding: 2px 5px
+  color: white
+.black-hole
+  margin-top: -20px
+
+.negative
+  position: relative
+  top: -150px
+article
+  color : #333
+  i 
+    color: #a1a1a1
+  ul
+    li
+      margin-bottom: 20px
+      margin-top: 20px
+.testimony
+  margin-top: 25px
+footer
+  padding:
+    top: 30px
+    bottom: 30px
+  color: white
+  background-color: #252525
+  .links
+    a
+      margin-right: 10px
+      color: $greenTechnorides
+  small
+    font-size: 10px
+  .social
+    margin-left: 10px
+// FIX MODALS ERRORS
+.panel-btns
+  a
+    cursor: pointer
+    margin-left: 8px
+    float: right
+    color: #000
+    display: inline-block
+    font-weight: bold
+    opacity: 0.4
+    font-size: 16px
+    -moz-transition: all 0.2s ease-out 0s
+    -webkit-transition: all 0.2s ease-out 0s
+    transition: all 0.2s ease-out 0s
+.panel
+  border: none
+.panel-success
+  .panel-heading
+    background-color: #1CAF9A
+    color: white
+.panel-danger
+  .panel-heading
+    background-color: #D9534F
+    color: white
+.panel-warning
+  .panel-heading
+    background-color: #F0AD4E
+    color: white
+.panel-body
+  color: #333
+
+#thankyou
+  background: white
+  padding: 20px
+  position: fixed
+  top: 200px
+  width: 100%
+  z-index: 10001
+  img
+    width: 150px
+  p
+    font:
+      size: 25px
+#thankyou-background
+  background: black
+  height: 100%
+  opacity: .5
+  position: fixed
+  width: 100%
+  z-index: 10000
+.clear
+  clear: both
+  height: 0px
+  overflow: hidden
+  display: block
+input[type='number']
+  -moz-appearance:textfield
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button 
+  -webkit-appearance: none
+.submited
+  .ng-invalid
+    background-color: #e74c3c

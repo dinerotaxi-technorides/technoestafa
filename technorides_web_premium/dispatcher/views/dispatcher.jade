@@ -1,0 +1,446 @@
+.contentpanel.panel-email.operations-grid
+  .row
+    .col-sm-3.col-lg-2(ng-init="menu.tab ='pending'; orderFirst = false")
+      a.btn.btn-danger.btn-block.btn-compose-email(href="" ng-click="menu.tab = 'new'; resetNewOperationForm()")
+        strong {{'NewOperation' | translate}}
+      ul.nav.nav-pills.nav-stacked.nav-email
+        //TODO : agregar numeritos
+        li(ng-class="{active: menu.tab == 'pending'}")
+          a(href="",ng-click="menu.tab = 'pending'; orderby = 'id';")
+            span.badge.badge-danger.pull-right(ng-if="(operations | filterOperationsByStatus: 'pending').length != 0 && menu.tab != 'pending'") {{(operations | filterOperationsByStatus: 'pending').length }}
+            span.fa.fa-inbox.fa-fw
+            | {{'pending' | translate}}
+        li(ng-class="{active: menu.tab == 'intransaction'}")
+          a(href="", ng-click="menu.tab = 'intransaction' ; orderby = 'id';")
+            span.badge.badge-danger.pull-right(ng-if="(operations | filterOperationsByStatus: 'intransaction').length != 0 && menu.tab != 'intransaction'") {{(operations | filterOperationsByStatus: 'intransaction').length }}
+            span.fa.fa-play.fa-fw
+            | {{'intransaction' | translate}}
+        li(ng-class="{active: menu.tab == 'history'}")
+          a(href="", ng-click="menu.tab = 'history' ; orderby = 'id';")
+            span.badge.badge-danger.pull-right(ng-if="(operations | filterOperationsByStatus: 'history').length != 0 && menu.tab != 'history'") {{(operations | filterOperationsByStatus: 'history').length }}
+            span.fa.fa-history.fa-fw
+            | {{'history' | translate}}
+        li(ng-class="{active: menu.tab == 'scheduled'}")
+          a(href="",ng-click="menu.tab = 'scheduled'; getScheduledTrips(); orderby = 'date';orderFirst = false")
+            span.badge.badge-danger.pull-right(ng-if="(operations | filterOperationsByStatus: 'scheduled').length != 0 && menu.tab != 'scheduled'") {{(operations | filterOperationsByStatus: 'scheduled').length }}
+            span.fa.fa-calendar.fa-fw
+            | {{'scheduled' | translate}}
+        li(ng-class="{active: menu.tab == 'canceled'}")
+          a(href="", ng-click="menu.tab = 'canceled'; orderby = 'id';")
+            span.badge.badge-danger.pull-right(ng-if="(operations | filterOperationsByStatus: 'canceled').length != 0 && menu.tab != 'canceled'") {{(operations | filterOperationsByStatus: 'canceled').length }}
+            span.fa.fa-trash.fa-fw
+            | {{'canceled' | translate}}
+        li(ng-class="{active: menu.tab == 'message'}" ng-if="user.digitalRadio && user.role != 'monitor'")
+          a(href="", ng-click="menu.tab = 'message' ; orderby = 'id'; ")
+            span.badge.badge-danger.pull-right(ng-if="(radio.messages | filter:{played:false}).length != 0") {{(radio.messages | filter:{played:false}).length}}
+            span.fa.fa-microphone.fa-fw
+            | {{'messages' | translate}}
+    .col-sm-9.col-lg-10
+      .panel.panel-default
+        .panel-body
+          div(ng-include="'/dispatcher/views/newTrip.html'" ng-if="menu.tab == 'new'")
+          div(ng-include="'/dispatcher/views/messageList.html'" ng-if="menu.tab == 'message'")
+          .table-responsive.op-list(ng-if="menu.tab != 'new' || menu.tab != 'message'")
+            table.table.table-email
+              tbody
+                p.text-center.mb5(ng-if="(operations | filter: {status: menu.tab}).length == 0") {{'theresNo' | translate}} {{menu.tab | translate}} {{'Operations' | translate}}
+                button.btn.btn-success.btn-sm.btn-technorides(ng-click="orderFirst = !orderFirst" ng-show="menu.tab != 'message' && menu.tab != 'scheduled'").hidden
+                  span(ng-if="orderFirst")
+                    i.fa.fa-caret-down
+                  span(ng-if="!orderFirst")
+                    i.fa.fa-caret-up
+                tr.unread(ng-repeat="(id, operation) in operations | orderObjectBy:orderby:orderFirst" ng-if="operation.status == menu.tab" ng-class="{danger: operation.estimatedTime <= 0 && operation.status != 'pending'}")
+                  td.hidden
+                  td
+                    span.fa-stack.fa-lg(ng-click="operationLocate(operation.placeFrom.latitude,operation.placeFrom.longitude)")
+                      i.fa.fa-square.fa-stack-2x(style="color: #01839b")
+                      i.fa.fa-location-arrow.fa-inverse.fa-stack-1x
+                    // img.img-circle(ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{operation.placeFrom.latitude}},{{operation.placeFrom.longitude}}&zoom=14&size=50x50&maptype=roadmap" ng-click="operationLocate(operation.placeFrom.latitude,operation.placeFrom.longitude)")
+                  td
+                    .media
+                      .media-body
+                        .actions(ng-if="user.role != 'calltaker'")
+                          button.btn.btn-orange.btn-xs.pull-right(type="submit" title="{{'RelaunchAction' | translate}}" style="margin-right:5px" ng-click="mrelaunchOperation(operation)" ng-if="operation.status=='history' || operation.status == 'canceled' ")
+                            i.fa.fa-refresh
+                          
+                          button.btn.btn-danger.btn-xs.pull-right(title="{{'CancelAction' | translate}}" ng-click="mCancelOperation(operation.id, operation.status)", ng-if="operation.status != 'canceled' && operation.status != 'history'")
+                            i.fa.fa-times-circle
+                          
+                          button.btn.btn-black.btn-xs.pull-right(style="margin-right:5px" title="{{'FinishAction' | translate}}" ng-click="mfinishOperation(operation.id, operation.driverId)", ng-if="operation.status=='intransaction'")
+                            i.fa.fa-flag-checkered
+                            
+                          button.btn.btn-default.btn-xs.pull-right(style="margin-right:5px",  ng-click="mAssingOperation(operation)",ng-if="operation.status == 'pending' || operation.status == 'scheduled'" title="{{'AssignAction' | translate}}")
+                            i.fa.fa-thumb-tack
+                          
+                          button.pull-right.btn.btn-warning.btn-xs(style="margin-right:5px" ng-click="mFindDriver(operation)" ng-if="operation.status == 'pending'" )
+                            i.fa.fa-search
+                          
+                          button.btn.btn-primary.btn-xs.pull-right(style="margin-right:5px" title="{{'SetAmountAction' | translate}}"  ng-click="mSetAmount(operation)", ng-if="operation.status=='intransaction'")
+                              i.fa.fa-dollar
+                          
+                          button.btn.btn-success.btn-xs.pull-right(style="margin-right:5px" title="{{'OnBoardAction' | translate}}" ng-click="mPassengerOnboard(operation.id)", ng-if="operation.status=='intransaction'")
+                            i.fa.fa-car
+                                     
+                          button.btn.btn-warning.btn-xs.pull-right(style="margin-right:5px" ng-click="mRingPassenger(operation.id)", ng-if="operation.status=='intransaction'" title="{{'RingAction' | translate}}")
+                            i.fa.fa-bell
+                          
+                          button.btn.btn-brown.btn-xs.pull-right(style="margin-right:5px" title="{{'AtTheDoorAction' | translate}}" ng-click="mAtTheDoor(operation.id)", ng-if="operation.status=='intransaction'")
+                            i.fa.fa-building
+                          
+                          button.btn.btn-default.btn-xs.pull-right(style="margin-right:5px" ng-click="mEditOperation(operation)", ng-if="operation.status == 'scheduled' " title="{{'Edit' | translate}}")
+                            i.fa.fa-pencil
+
+                        h4.text-primary(ng-click="operationDetails(operation)")
+                          | {{operation.id}}
+                          | &nbsp; 
+                          span.media-meta {{ operation.createdAt | date: "d MMM. hh:mm a" }}
+
+                        p.email-summary
+                          i.fa.fa-map-marker.fa-fw
+                          | {{operation.placeFrom.street}}
+                          | {{operation.placeFrom.number}}
+
+                        p.email-summary(ng-if="operation.placeTo.street")
+                          i.fa.fa-flag.fa-fw
+                          | {{operation.placeTo.street}}
+                          | {{operation.placeTo.number}}
+
+                        p.email-summary(ng-if="operation.comments")
+                          i.fa.fa-comments.fa-fw
+                          | {{operation.comments | limitTo: 20}}
+
+                        p.email-summary(ng-if="(menu.tab == 'intransaction' || menu.tab == 'history' || menu.tab == 'canceled') && operation.estimatedTimeOriginal > 0")
+                          i.fa.fa-clock-o.fa-fw
+                          | {{operation.estimatedTimeOriginal | timer}}
+                        
+                        p.email-summary(ng-if="operation.driver == 'Not Found'" ng-hide="menu.tab == 'history' || menu.tab == 'canceled'")
+                          span.fa-stack
+                            i.fa.fa-taxi.fa-stack-1x
+                            i.fa.fa-ban.fa-stack-2x.text-danger
+                          span {{'driverNotFound' | translate}} ({{operation.try}}/{{operation.trylimit}})
+                        
+                        p.email-summary(ng-if="operation.driver == 'serching'" ng-hide="menu.tab == 'history' || menu.tab == 'canceled'")
+                          i.fa.fa-spinner.fa-pulse
+                          span {{'searching' | translate}}
+
+                        p.email-summary(ng-if="operation.driver.id != undefined")
+                          i.fa.fa-taxi.fa-fw
+                          | {{operation.driver.id}}
+                          span(ng-if="menu.tab == 'intransaction'")
+                            i.fa.fa-clock-o.fa-fw.fa-spin(ng-if="operation.estimatedTime > 0")
+                            i.fa.fa-exclamation-circle.fa-fw(ng-if="operation.estimatedTime <= 0")
+                            | {{operation.estimatedTime | timer}}
+
+                        p.email-summary(ng-if="menu.tab == 'scheduled'")
+                          i.fa.fa-calendar
+                          |  {{operation.date | date: "d MMM. hh:mm a"}}
+
+                        p.email-summary(ng-if="operation.amount")
+                          i.fa.fa-dollar
+                          | {{operation.amount}}
+
+// MODALS
+// Find Driver
+.modal.fade.find-driver(tabindex="-1", role="dialog", aria-labelledby="editOperation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title Operation nº {{toFind.id}} 
+
+        .panel-body
+          p {{'ResearchDriver' | translate}}
+          form(name="reserch",ng-submit="researchDriver(toFind.id)" novalidate  ng-class="{submited: reserch.submited}")
+            .form-group
+              .col-xs-12
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Ok' | translate}}" ng-click="reserch.submited = true" analytics-category="dispatcher" analytics-on="click"  analytics-label="assigned operation from dispatcher panel" analytics-event="assing operation") 
+
+// Edit Scheduled
+.modal.fade.edit-operation(tabindex="-1", role="dialog", aria-labelledby="editOperation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Edit' | translate}} op nº {{toEdit.id}} 
+        .panel-body
+          form(name="editOp",ng-submit="editOperation(toEdit)" novalidate  ng-class="{submited: editOp.submited}")
+            .form-group
+              label.col-sm-3.control-label {{'Date' | translate}} 
+              .col-sm-6
+                .dropdown
+                  a#dropdown2.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#')
+                    .input-group
+                      .input-group-addon
+                        i.glyphicon.glyphicon-calendar
+                      span.form-control(readonly type='text', placeholder="{{'Date' | translate}}") {{toEdit.date | date: 'd MMM. hh:mm a'}}
+                  ul.dropdown-menu(role='menu', aria-labelledby='dLabel' style="width:100%")
+                    datetimepicker(data-ng-model='toEdit.date', data-before-render="beforeRender($dates)" ,data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }")
+            .form-group
+              label.col-sm-3.control-label(for="driverid") {{'Driver' | translate}} ID
+              .col-sm-6
+                input.form-control(type="text", id="toEdit.driver.id" , placeholder="", ng-model="edit.driverId")
+            .form-group
+              .col-xs-12
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Edit' | translate}}" ng-click="editOp.submited = true" analytics-category="dispatcher" analytics-on="click"  analytics-label="assigned operation from dispatcher panel" analytics-event="assing operation") 
+
+//assign
+.modal.fade.assing-operation(tabindex="-1", role="dialog", aria-labelledby="assingOperation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Assign' | translate}} op nº {{toAssign.id}}
+        .panel-body
+          form(name="assign",ng-submit="assignOperation(op,toAssign)" novalidate  ng-class="{submited: assign.submited}")
+            .form-group
+              label.col-sm-3.control-label(for="driverid") ID
+              .col-sm-6
+                input.form-control(type="text", id="driverid" , placeholder="", ng-model="op.driverId" required)
+            .form-group
+              label.col-sm-3.control-label(for="estimatedTime") {{'EstimatedTime' | translate}}
+              .col-sm-6
+                input.form-control(type="text",id="estimatedTime", placeholder="", ng-model="op.estimatedTime" required)
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Assign' | translate}}" ng-click="assign.submited = true" analytics-category="dispatcher" analytics-on="click"  analytics-label="assigned operation from dispatcher panel" analytics-event="assing operation") 
+
+//relaunch
+.modal.fade.relaunch-operation(tabindex="-1", role="dialog", aria-labelledby="relaunch-operation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Relaunch' | translate}} op nº {{toRelaunch.id}}
+        .panel-body
+          form(name="cancel",ng-submit="relaunchOperation(toRelaunch)")
+            p {{'SureRelaunchOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'BackToDispatch' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="canceled operation from dispatcher panel" analytics-event="cancel operation") 
+
+//cancel
+.modal.fade.cancel-operation(tabindex="-1", role="dialog", aria-labelledby="cancel-operation", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Cancel' | translate}} op nº {{toCancel.id}}
+        .panel-body
+          form(name="cancel",ng-submit="cancelOperation(toCancel)")
+            p {{'SureCancelOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="canceled operation from dispatcher panel" analytics-event="cancel operation") 
+// At the door
+.modal.fade.at-the-door(tabindex="-1", role="dialog", aria-labelledby="at-the-door", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'AtTheDoor' | translate}} op nº {{toAtTheDoor}}
+        .panel-body
+          form(name="at-the-door",ng-submit="atTheDoor(toAtTheDoor)")
+            p
+            |  {{'SureAtTheDoorOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="at the door from dispatcher panel" analytics-event="at the door") 
+//ring
+.modal.fade.ring-passenger(tabindex="-1", role="dialog", aria-labelledby="ring-passenger", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Ring' | translate}} op nº {{toRing}}
+        .panel-body
+          form(name="ring",ng-submit="ringPassenger(toRing)")
+            p
+            |  {{'SureRingOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="Ring!!" analytics-category="dispatcher" analytics-on="click"  analytics-label="ringed passenger from dispatcher panel" analytics-event="ring passenger") 
+//onboard
+.modal.fade.set-passenger-on-board(tabindex="-1", role="dialog", aria-labelledby="set-passenger-on-board", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'SetOnboard' | translate}} op nº {{toSetonboard}}
+        .panel-body
+          form(name="ring",ng-submit="setPassengerOnboard(toSetonboard)")
+            p
+            | {{'SureSetonboardOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'setBoardButton' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="set on board operation from dispatcher panel" analytics-event="set on board operation")
+//setamount
+.modal.fade.set-amount(tabindex="-1", role="dialog", aria-labelledby="company-set-amount", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'setAmount' | translate}} op nº {{toSetAmount.id}}
+        .panel-body
+          form(name="assign",ng-submit="setAmount(amount,toSetAmount)")
+            .form-group
+              label.col-sm-3.control-label(for="amount") {{'Amount' | translate}}
+              .col-sm-6
+                input.form-control(type="text", id="amount" , placeholder="", ng-model="amount", required)
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'setAmountButton' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="set ammount of operation from dispatcher panel" analytics-event="set amount operation") 
+
+// Show operation
+.modal.fade.op-info.in(tabindex="-1", role="dialog", aria-labelledby="op-info", aria-hidden="false", style="display: none;")
+  .modal-dialog.modal-photo-viewer
+    .modal-content
+      .row
+        .col-sm-8.modal-photo-left
+          .modal-photo
+            img.photo.img-responsive(src="https://maps.googleapis.com/maps/api/staticmap?center={{showOp.placeFrom.latitude}},{{showOp.placeFrom.longitude}}&zoom=14&size=1000x700&maptype=roadmap&markers=icon:https://technorides.com/common/assets/markers/operation_{{showOp.status == 'pending' || showOp.status == 'intransaction' ? showOp.status : 'pending'}}.png%7C{{showOp.placeFrom.latitude}},{{showOp.placeFrom.longitude}}", alt="")
+            //img.photo.img-responsive(src="holder.js/1000x700", alt="")
+        .col-sm-4.modal-photo-right
+          .media-details
+            button.close(aria-hidden="true", data-dismiss="modal", type="button") &#215;
+            span.categ {{showOp.createdAt | date: "d MMM. hh:mm a"}}
+            h3.media-title {{showOp.id}}
+            .details
+              div(ng-if="showOp.comments || showOp.options.invoice || showOp.options.airport || showOp.options.vip || showOp.options.luggage || showOp.options.specialAssitance || showOp.options.smoker || showOp.options.pet || showOp.options.courier")
+                h4 {{'OperationDetails' | translate}}
+                p(ng-if="showOp.comments")
+                  i.fa.fa-comments.fa-fw
+                  em {{showOp.comments}}
+                table.table(ng-if="showOp.options.invoice || showOp.options.airport || showOp.options.vip || showOp.options.luggage || showOp.options.specialAssitance || showOp.options.smoker || showOp.options.pet || showOp.options.courier")
+                  tbody
+                    tr(ng-if="showOp.options.invoice")
+                      td
+                        i.fa.fa-barcode
+                        strong.pull-right  {{'Invoice' | translate}}
+                    tr(ng-if="showOp.options.airport")
+                      td
+                        i.fa.fa-plane
+                        strong.pull-right {{'Airport' | translate}} 
+                    tr(ng-if="showOp.options.vip")
+                      td
+                        i.fa.fa-user
+                        strong.pull-right {{'VIP' | translate}}
+                    tr(ng-if="showOp.options.luggage")
+                      td
+                        i.fa.fa-briefcase
+                        strong.pull-right {{'Luggage' | translate}}
+                    tr(ng-if="showOp.options.specialAssitance")
+                      td
+                        i.fa.fa-wheelchair
+                        strong.pull-right {{'SpecialAssistance' | translate}}
+                    tr(ng-if="showOp.options.airConditioner")
+                      td
+                        i.fa.fa-sun-o
+                        strong.pull-right {{'AirConditioner' | translate}}
+                    tr(ng-if="showOp.options.smoker")
+                      td
+                        i.fa.fa-fire
+                        strong.pull-right {{'Smoker' | translate}}
+                    tr(ng-if="showOp.options.pet")
+                      td
+                        i.fa.fa-paw
+                        strong.pull-right {{'Pet' | translate}}
+                    tr
+                      td(ng-if="showOp.options.courier")
+                        i.fa.fa-truck 
+                        strong.pull-right {{'Messaging' | translate}}
+              h4 {{'UserInformation' | translate}}
+              p
+                i.fa.fa-user.fa-fw
+                | {{showOp.user.firstName}} {{showOp.user.lastName}}
+                br
+                i.fa.fa-envelope.fa-fw
+                | {{showOp.user.email}}
+                br
+                i.fa.fa-phone.fa-fw
+                | {{showOp.user.phone}}
+              strong(ng-if="showOp.user.isFrequent")
+                i.fa.fa-star.fa-fw
+                small  {{'FrequentUser' | translate}}
+              strong(ng-if="showOp.user.isCorporative")
+                i.fa.fa-copyright.fa-fw
+                small  {{'CorporateUser' | translate}}
+// Finish Op
+.modal.fade.finish-operation(tabindex="-1", role="dialog", aria-labelledby="finish-op", aria-hidden="true", style="display: none;",data-backdrop="static")
+   .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'Finish' | translate}} op nº {{toFinish}}
+        .panel-body
+          form(name="ring",ng-submit="finishOperation(toFinish)")
+            p {{'SureFinishOp' | translate}}
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Finish' | translate}}" analytics-category="dispatcher" analytics-on="click"  analytics-label="finish operation from dispatcher panel" analytics-event="finish operation")
+
+// Parking positions
+.modal.fade.parking-positions(tabindex="-1", role="dialog", aria-labelledby="parking-positions", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{map.parking.name}}
+        .panel-body
+          .row
+            .col-xs-12
+              strong {{map.parking.drivers.length}} {{'Drivers' | translate}}
+          .row
+            .col-xs-3
+              img(src="https://maps.googleapis.com/maps/api/staticmap?center={{map.parking.latitude}},{{map.parking.longitude}}&zoom=16&size=150x400&sensor=false&markers=icon:http://technorides.com/common/assets/markers/parking.png|{{map.parking.latitude}},{{map.parking.longitude}}" style="width: 100%")
+            .col-xs-9
+              .row
+                .col-xs-6.driver(ng-repeat="driver in map.parking.drivers")
+                  .row
+                    .col-xs-2.number
+                      | {{driver.position}}
+                    .col-xs-10
+                      .row
+                        .col-xs-4
+                          img(ng-src='http://dinerotaxi.com/taxiApi/displayDriverLogoByEmail?email={{driver.driver_email}}' onerror='this.src=\"/common/assets/user/profile.png\"')
+                        .col-xs-8
+                          strong {{'Driver' | translate}} {{driver.driver_email.split("@")[0]}}
+                          br
+                          | {{driver.driver_name}}
+                          | {{driver.driver_last_name}}

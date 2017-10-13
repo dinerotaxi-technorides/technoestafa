@@ -1,0 +1,65 @@
+/*
+	Description: 3BO Grid Structure
+	Media: Screen
+	Version: 1.5
+	Author: Rodrigo Galindez
+	Author URI: http://www.rodrigogalindez.com
+	Description: A basic 960px width grid.
+*/
+
+.col {
+	margin-right: 24px;
+	float: left;
+}
+
+.span-1 {
+	width: 58px;
+}
+
+.span-2 {
+	width: 140px;
+}
+
+.span-3 {
+	width: 222px;
+}
+
+.span-4 {
+	width: 304px;
+}
+
+.span-5 {
+	width: 386px;
+}
+
+.span-6 {
+	width: 468px;
+}
+
+.span-7 {
+	width: 550px;
+}
+
+.span-8 {
+	width: 632px;
+}
+
+.span-9 {
+	width: 714px;
+}
+
+.span-10 {
+	width: 796px;
+}
+
+.span-11 {
+	width: 878px;
+}
+
+.span-12 {
+	width: 960px;
+}
+
+.last {
+	margin: 0;
+}

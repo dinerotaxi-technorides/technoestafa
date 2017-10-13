@@ -1,0 +1,86 @@
+.pageheader
+  h2
+    i.fa.fa-cog
+    | {{'Configuration' | translate}} 
+    |/ {{'Scheduled' | translate}}
+.contentpanel
+  
+  .alert.alert-warning.alertChrome
+    button(type="button" class="close" data-dismiss="alert" area-hidden="true") x
+    strong {{ 'alertChanges' | translate }}   
+  .row
+    .panel.panel-default
+      .panel-body
+        form(name="operationsDetails" ng-submit="editScheduledConfig(company.config.operations.scheduled)")  
+          .row
+            //
+            .col-xs-6
+              h3.underline {{'ScheduledExecutionTitle' | translate}}
+              .col-xs-3
+                img.img-responsive(src="assets/config/scheduled/dispatch_scheduled_rides.png")
+              .col-xs-8
+                p {{'ScheduledExecutionText' | translate}}
+                h4 {{'Time' | translate}} : {{company.config.operations.scheduled.executiontime}} Min
+                input(type="range" ng-model="company.config.operations.scheduled.executiontime" min="16" max="120")
+          
+          
+            .col-xs-6
+              h3.underline {{'ScheduledExecuitionPresets' | translate}} 
+              .col-xs-3
+
+                img.img-responsive(src="assets/config/scheduled/dispatch_executiontime.png")
+              .col-xs-8
+                p {{'ScheduledExecuitionPresetsText' | translate}}
+                a(href="" ng-click="addScheduledPreset('',false)") + {{'AddScheduledPreset' | translate}}
+                div(style="max-height: 200px;overflow-y: auto;")
+                  ul.list-group
+                    li.list-group-item(ng-repeat="preset in scheduledPresets") {{preset.name}} - {{preset.time}} min
+                      a.pull-right(ng-click="deleteScheduledPreset(preset.id)" href="")
+                        i.fa.fa-times.text-danger
+                
+
+          .col-xs-12.text-center
+            br
+            button.btn.btn-success {{'Save' | translate}}
+            | 
+            button.btn.btn-danger(type="button" ng-click="refreshConfig()") {{'Cancel' | translate}}
+            br
+          
+.modal.fade.add-scheduled-preset(tabindex="-1", role="dialog", aria-labelledby="reload-zone", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'AddScheduledPreset' | translate}}
+        .panel-body
+          form(name="delete",ng-submit="addScheduledPreset(preset, true)")
+            label {{'Name' | translate}}
+            input.form-control(ng-model="preset.name")
+            br
+            label {{'Time' | translate}}
+            input.form-control(ng-model="preset.time")
+            br
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}} 
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Accept' | translate}}")
+
+.modal.fade.delete-scheduled-preset(tabindex="-1", role="dialog", aria-labelledby="reload-zone", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeleteScheduledPreset' | translate}}
+        .panel-body
+          form(name="delete",ng-submit="delSchedulePresets(todeletepreset.id)")
+            
+            select.form-control(ng-model="todeletepreset" ng-options="preset.name for preset in deleteSchedulePresets track by preset.id")
+            br
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}} 
+              input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'Accept' | translate}}")

@@ -1,0 +1,57 @@
+ES
+
+CONDUCTORES
+
+
+Frecuencia de rastreo de conductores
+
+
+Tiempo medido en segundos en el que la ubicación del conductor es actualizada en el mapa del panel Operador.
+
+A menor tiempo de actualización, mejor será la precisión del rastreo. No obstante, mayor será el tráfico de datos, lo que ocasionará un mayor consumo de banda en los celulares de sus conductores
+
+Frequency
+
+Recomendado: 30s
+
+
+
+Aplicación móvil del conductor
+
+Obliga el uso de la feature "Monto a pagar", cuando es requerido saber el costo de las operaciones realizadas por los conductores.
+
+Ej.: mejores métricas para un mayor control de sus ingresos.
+
+Monto a pagar obligatorio
+
+
+GUARDAR / REVERTIR CAMBIOS
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EN
+
+DRIVERS
+
+
+Drivers' tracking frequency
+
+
+Amount of time measured in seconds that drivers’ location is updated on Dispatcher Dashboard’s map.
+
+The lower the frequency, the more accurate it is the tracking. However, it will increase the data traffic, which may incur in a higher bandwidth consumption on drivers’ smartphones
+
+Recommended: 30s
+
+
+
+Mobile Driver App
+
+Make Set Amount mandatory when the cost of the trip is required.
+
+Ex.: more accurate metrics if you want to have more contorl of your revenue.
+
+Set amount ON/OFF
+
+
+SAVE / REVERT CHANGES

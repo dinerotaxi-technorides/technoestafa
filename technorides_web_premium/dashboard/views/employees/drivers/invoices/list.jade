@@ -1,0 +1,41 @@
+.pageheader
+  h2
+    i.fa.fa-cab
+    | {{'Invoices' | translate}} 
+.contentpanel
+  .row
+    ol.breadcrumb
+      li 
+        a(href="#employees/drivers") {{'Drivers' | translate}} 
+      li
+        a(href="#employees/driver/{{drivers.driver.id}}") {{drivers.driver.firstName}} {{drivers.driver.lastName}} 
+      li {{'Invoice' | translate }}
+    .panel.panel-default
+      .panel-body
+      .panel.panel-default
+        .panel-body    
+          .table-responsive
+              table.table(style="background:none")
+                thead
+                  tr 
+                    th 
+                    th {{'date' | translate}}
+                    th.text-center {{'Invoice' | translate}}#
+                    th.text-center {{'ammount' | translate}}
+                    th.text-center {{'comments' | translate}}
+                    
+                tbody
+                  tr(ng-repeat="invoice in drivers.invoices.list")
+                    td
+                      input(type="checkbox" ng-model="invoice.pay" ng-change="drivers.invoices.calculatePartialCharge()")
+                    td {{invoice.date | date : languageDateFormat }}
+                    td.text-center # {{invoice.id}}
+                    td.text-center {{company.config.fares.currency}} {{invoice.amount}}
+    
+                    td.text-center(style="text-transform: capitalize")  {{invoice.comments | limitTo:10}}
+                    
+              p(ng-if="drivers.invoices.list.length == 0").text-center  {{'noElementsFound' | translate}}
+          
+          h3 {{ 'totalToCharge' | translate}} {{company.config.fares.currency}} {{drivers.invoices.total}}
+          button.btn.btn-success(ng-click="drivers.invoices.chargePartialy()") Cobrar
+          

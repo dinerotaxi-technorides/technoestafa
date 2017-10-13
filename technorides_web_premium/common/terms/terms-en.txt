@@ -1,0 +1,110 @@
+TERMS & CONDITIONS
+
+IMPORTANT NOTICE: PLEASE READ CAREFULLY BEFORE REGISTERING
+This terms of use and licence agreement (Licence) is a legal agreement between you (Licensee, User or you) and Dinero Taxi LLC, registered address 16192 Coastal Highway, Lewes, Delaware 19958, USA (Technorides, Licensor, us or we), the provider of Technorides’ cloud-based booking and dispatching tools for fleet management (Product).
+THE PRODUCT REQUIRES A RELIABLE INTERNET CONNECTION AND IS OPTIMISED FOR THE BROWSER GOOGLE CHROME. BY REGISTERING AND USING THIS PRODUCT, YOU AGREE TO THE TERMS OF THIS LICENCE WHICH WILL BIND YOU. IF YOU DO NOT AGREE TO THE TERMS OF THIS LICENCE, WE ARE UNWILLING TO LICENSE THE PRODUCT TO YOU AND YOU MUST DISCONTINUE USE OF THE PRODUCT IMMEDIATELY.
+1. GRANT AND SCOPE OF LICENCE
+In consideration of you agreeing to abide by the terms of this Licence, the Licensor hereby grants to you a non-exclusive, non-transferable licence to use the Product on the terms of this Licence. You may:
+1.1) use the Product only for fleet management, customer relationship management, booking and dispatching vehicles; and
+1.2) benefit from any free Product update incorporating corrections of errors as may be provided by the Licensor from time to time.
+2. LICENSEE’S UNDERTAKINGS
+Except as expressly set out in this Licence or as permitted by any local law, you agree and undertake:
+2.1) that you have validly registered business or operating licence;
+2.2) that you have authority to bind any business on whose behalf you use the Product;
+2.3) not to copy the Product except where such copying is incidental to normal use of the Product or where it is necessary for the purpose of back-up or operational security;
+2.4) not to rent, lease, sub-license, loan, translate, merge, adapt, vary or modify the Product;
+2.5) not to make alterations to, or modifications of, the whole or any part of the Product nor permit the Product or any part of it to be combined with, or become incorporated in, any other programs;
+2.6) not to disassemble, de-compile, reverse engineer or create derivative works based on the whole or any part of the Product nor attempt to do any such things except to the extent that (by virtue of section 296A of the Copyright, Designs and Patents Act 1988) such actions cannot be prohibited because they are essential for the purpose of achieving inter-operability of the Product with another Product program, and provided that the information obtained by you during such activities:
+2.7) that this License is used only for the purpose of achieving inter-operability of the Product with another Product program;
+2.8) not to disclose or communicate without the Licensor’s prior written consent to any third party to whom it is not necessary to disclose or communicate it; and
+2.9) not used to create any Product which is substantially similar to the Product;
+2.10) to replace the current version of the Product with any updated or upgraded version or new release provided by the Licensor under the terms of this Licence immediately on receipt of such version or release;
+2.11) to include the copyright notice of the Licensor on all entire and partial copies of the Product in any form; and
+2.12) not to provide, or otherwise make available, the Product in any form, in whole or in part (including, but not limited to, program listings, object and source program listings, object code and source code) to any person without prior written consent from the Licensor;
+2.13) that you are solely responsible, as between Technorides and User, for the service provided to your customers and you shall make your customers aware of your obligations under these terms and conditions.
+You agree that when using the Product you will comply with all applicable local laws and this Licence. In particular, but without limitation, you agree not to:
+2.14) use the Product in any unlawful manner or in a manner which promotes or encourages illegal activity including (without limitation) copyright infringement; or
+2.15) attempt to gain unauthorised access to the Product or any networks, servers or computer systems connected to the Product.
+You agree to indemnify us in full and on demand from and against any loss, damage, costs or expenses which they suffer or incur directly or indirectly as a result of your use of the Product otherwise than in accordance with this Licence or any applicable laws.
+3. PRICE AND PAYMENT
+3.1) The price plans for the Product are set out in the Schedule to those terms.
+3.2) You agree to pay for the required price plan of the Product in advance, on a rolling monthly subscription basis by either, direct debit, standing order, credit or debit card.
+3.3) You are able to upgrade or downgrade, or terminate use of, the Product each calendar month.
+4. REGISTRATION
+4.1) You acknowledge that in order to use the Product you must register an account with Technorides and use the username and password issued to you upon registration.
+4.2) You represent to Technorides that you have a validly registered operating license number in respect of each vehicle which directly or indirectly is associated with the Product.
+5. INTELLECTUAL PROPERTY RIGHTS
+5.1) You acknowledge that all intellectual property rights in the Product throughout the world belong or have been licensed to the Licensor, that rights in the Product are licensed (not sold) to you, and that you have no rights in, or to, the Product other than the right to use the Product in accordance with the terms of this Licence.
+5.2) The trade marks, service marks, and logos (Trade Marks) contained on or in the Product are owned by Dinero Taxi LLC, our group companies or third party partners of Dinero Taxi LLC. You cannot use, copy, edit, vary, reproduce, publish, display, distribute, store, transmit, commercially exploit or disseminate the Trade Marks without the prior written consent of Dinero Taxi LLC, the relevant group company or the relevant third party partner of Dinero Taxi LLC.
+5.3) You acknowledge that you have no right to have access to the Product in source code form or in unlocked coding or with comments.
+5.4) The integrity of this Product is protected by technical protection measures (TPM) so that the intellectual property rights, including copyright, in the Product of the Licensor are not misappropriated. You must not attempt in any way to remove or circumvent any such TPM, nor to apply, manufacture for sale, hire, import, distribute, sell, nor let, offer, advertise or expose for sale or hire, nor have in your possession for private or commercial purposes, any means whose sole intended purpose is to facilitate the unauthorised removal or circumvention of such TPM.
+6. NO WARRANTY
+6.1) You acknowledge that the Product has not been developed to meet your individual requirements and that it is therefore your responsibility to ensure that the facilities and functions of the Product meet your requirements.
+6.2) You acknowledge that the Product is built and optimised for Google Chrome and you agree that any failure or limited functionality of the Product as a result of alternative or outdated internet browsers shall not constitute a breach of this Licence.
+6.3) You acknowledge that the Product may not be free of bugs or errors and you agree that the existence of any minor errors shall not constitute a breach of this Licence.
+6.4) Use of the Product is at your own risk. The Product is provided on an “as is” basis. The Licensor does not warrant or guarantee that the Product will be always available or that its use will not be interrupted.
+7. LICENSOR’S LIABILITY
+This condition sets out the entire financial liability of the parties (including any liability for the acts or omissions of their respective employees, agents and subcontractors) to each other in respect of:
+7.1) any breach of this Licence however arising;
+7.2) any use made or resale (to the extent approved by the Licensor) of the Product by you, or of any product or service incorporating any of the Product; and
+7.3) any representation, statement or tortious act or omission (including negligence) arising under or in connection with this Licence.
+Nothing in this Licence shall limit or exclude the liability of either party for:
+7.4) death or personal injury resulting from negligence; or
+7.5) fraud or fraudulent misrepresentation; or
+7.6) breach of the terms implied by section 12 of the Sale of Goods Act 1979; or
+7.7) breach of section 2 of the Consumer Protection Act 1987; or
+7.8) the deliberate default or wilful misconduct of that party, its employees, agents or subcontractors.
+Without prejudice to condition 7.2, and to the maximum extent permitted by law the Licensor disclaims all liability whatsoever, whether arising in contract, tort (including negligence) or otherwise in relation to the Product, including (but not limited to):
+7.9) loss caused by networking and hosting issues caused by a third party. You agree that your only recourse for such loss will be against the networking and hosting provider which is currently Amazon Web Services. The relevant terms and conditions to Amazon Web Services can be found at: http://aws.amazon.com/legal/;
+7.10) any consequential loss or loss of business for the Users or its customers;
+7.11) all implied warranties, terms and conditions relating to the Product (whether implied by statue, common law or otherwise), including (without limitation) any warranty, term or condition as to accuracy, completeness, satisfactory quality, performance, fitness for purpose or any special purpose, availability, non infringement, information accuracy, interoperability, quiet enjoyment and title are, as between Technorides and you;
+7.12) any loss of data or information;
+7.13) any loss whatsoever in relation to the services the Licensee provides to their customers, including but without limitation passenger safety, car pick-up arrival times, customer satisfaction, complaint handling and upholding bookings. It is the Licensee’s sole responsibility to make their customers aware of their terms and conditions, including those agreed to when subscribing to the Product;
+7.14) any technical failure of the internet and/or the Product; or
+7.15) any damage to Licensee or their equipment or to their customers as a result of or relating to use of the Product. Your statutory rights are not affected.
+Subject to condition 7.2 and condition 7.3, the Licensor’s maximum aggregate liability under or in connection with this Licence, or any collateral contract, whether in contract, tort (including negligence) or otherwise, shall in all circumstances be limited to a sum equal to one month’s fee calculated as the monthly fee paid by the User during the calendar month prior to the cause of action.
+7.16) Subject to condition 7.2, condition 7.3 and condition 7.4, the Licensor’s liability for infringement of third party intellectual property rights shall be limited to breaches of rights subsisting in the USA.
+7.17) You agree and acknowledge that this Licence sets out the full extent of the Licensor’s obligations and liabilities in respect of the supply of the Product. In particular, there are no conditions, warranties, representations or other terms, express or implied, that are binding on the Licensor except as specifically stated in this Licence. Any condition, warranty, representation or other term concerning the supply of the Product and Documentation which might otherwise be implied into, or incorporated in, this Licence, or any collateral contract, whether by statute, common law or otherwise, is hereby excluded to the fullest extent permitted by law.
+8. DATA AND SECURITY
+8.1) We maintain the right to collect and use statistical and analytical information gathered from your use of the Product [however, such information shall not be given to third parties].
+8.2) All information held by Technorides is protected and complies with PCI Security Standards. In the event the Product is hacked, Technorides will not be liable for any lost or shared information.
+8.3) The Licensee acknowledges and agrees that, whilst on duty, Licensee’s vehicles will be tracked by GPS. This data will not be communicated by Technorides to any third party.
+9. ADDITIONAL SERVICES
+We may offer additional services to the core product, which incur an additional cost. These services are optional, where you are required to manually opt in. By choosing to use these additional services, you agree for the advertised fees to be added to your monthly payment to Technorides. Additional services include, but are not limited to:
+9.1) Voice Over IP. To integrate a phone line with the internet system, we pass on line rental and call costs from the provider. A complete call list is available to view inside the system. Technorides will not be held responsible for the level of service offered by the provider, which may be subject to internet connection quality.
+9.2) SMS Notifications. Text messages to customers are customisable, and charged per message. Technorides will not be held responsible for the level of service offered by the provider, which may be subject to network availability.
+10. TERMINATION
+Both parties may terminate this Licence immediately at the end of any calendar month. Upon termination for any reason:
+10.1) all rights granted to you under this Licence shall cease;
+10.2) you must cease all activities authorised by this Licence;
+10.3) your login will be blocked and you will no longer be able to access the Product. Provided this License has not terminated as a result of any breach by you, your account can be reactivated at any time within one year from the termination date and you will be able to access all information previously held in the Product. You agree that you are responsible for exporting data and information if you wish to terminate this agreement; and
+10.4) your access to any websites and apps created by Technorides will be blocked.
+10.4) you must notify the company in writing of termination, via email or letter.
+11. TRIAL PERIOD
+By using Technorides in a trial period, you agree to the terms and conditions herewith.
+11.1) No payment will be due for the agreed term of the trial period.
+11.2) If you continue use of Technorides with one or more active drivers after the trial period, without notifying cancellation in writing, you may be subject to paying a subscription for this service.
+12. TRANSFER OF RIGHTS AND OBLIGATION
+12.1) This Licence is binding on you and us and on our respective successors and assignees.
+12.2) You may not transfer, assign, charge or otherwise dispose of this Licence, or any of your rights or obligations arising under it, without our prior written consent.
+12.3) The Licensor may transfer, assign, charge, sub-contract or otherwise dispose of this Licence, or any of his rights or obligations arising under it, at any time during the term of the Licence.
+13. NOTICES
+All notices given by you to the Licensor must be given to Dinero Taxi LLC, registered address 16192 Coastal Highway, Lewes, Delaware 19958, United States of America. The Licensor may give notice to you at either the e-mail or postal address you provided when registering for the Product. Notice will be deemed received and properly served 24 hours after an e-mail is sent, or three days after the date of posting of any letter. In proving the service of any notice, it will be sufficient to prove, in the case of a letter, that such letter was properly addressed, stamped and placed in the post and, in the case of an e-mail, that such e-mail was sent to the specified e-mail address of the addressee.
+14. EVENTS OUTSIDE THE LICENSOR’S CONTROL
+The Licensor will not be liable or responsible for any failure to perform, or delay in performance of, any of his obligations under this Licence or in your use of the Product that is caused by an event outside his reasonable control.
+15. WAIVER
+15.1) If the Licensor fails, at any time during the term of this Licence, to insist on strict performance of any of your obligations under this Licence, or if the Licensor fails to exercise any of the rights or remedies to which he is entitled under this Licence, this shall not constitute a waiver of such rights or remedies and shall not relieve you from compliance with such obligations.
+15.2) A waiver by the Licensor of any default shall not constitute a waiver of any subsequent default.
+15.3) No waiver by the Licensor of any of these terms and conditions shall be effective unless it is expressly stated to be a waiver and is communicated to you in writing.
+16. SEVERABILITY
+If any of the terms of this Licence are determined by any competent authority to be invalid, unlawful or unenforceable to any extent, such term, condition or provision will to that extent be severed from the remaining terms, conditions and provisions which will continue to be valid to the fullest extent permitted by law.
+17. ENTIRE AGREEMENT
+17.1) This Licence and any document expressly referred to in it constitute the whole agreement between us and supersedes any previous arrangement, understanding or agreement between us, relating to the licensing of the Product.
+17.2) We each acknowledge that, in entering into this Licence (and the documents referred to in it), neither of us relies on any statement, representation, assurance or warranty (Representation) of any person (whether a party to this Licence or not) other than as expressly set out in this Licence or those documents.
+17.3) Each of us agrees that the only rights and remedies available to us arising out of or in connection with a Representation shall be for breach of contract as provided in this Licence.
+17.4) Nothing in this clause shall limit or exclude any liability for fraud.
+17.5) This contract is between you and us and no other person shall have any rights to enforce any of its terms, whether under the Contracts (Rights of Third Parties Act) 1999 or otherwise.
+18. LAW AND JURISDICTION
+This Licence, its subject matter or its formation (including non-contractual disputes or claims) shall be governed by and construed in accordance with the law of the Republic of the United States of America, Delaware.
+
+

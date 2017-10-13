@@ -1,0 +1,182 @@
+.pageheader
+    h2
+      i.fa.fa-building
+      | {{corporate.companies.company.name}}
+      a.btn.btn-success.btn-sm.pull-right(href="#corporate") {{'GoBack' | translate}}
+  .contentpanel.corp-panel
+    .row
+      .panel.panel-default
+        .panel-body
+          .col-xs-2
+            img.com-logo-edit.img-responsive(style="cursor:pointer" img-preload  ng-src="{{corporate.companies.company.image}}" error-img="/common/assets/logo/logo-sm.png" ng-click="modalChangeCompanyLogo()")
+            .loading
+              span
+                i.fa.fa-spinner.fa-pulse 
+          .col-xs-4
+            h5.uppercase.underline {{corporate.companies.company.name}}
+              a.pull-right(ng-show="!editcompanyview" href="" ng-click="showEditCorpCompany(true)")
+                i.fa.fa-pencil
+              
+              a.pull-right(ng-show="editcompanyview" href="" ng-click="showEditCorpCompany(false)")
+                i.fa.fa-times-circle
+            
+            ul.com-details(ng-show="!editcompanyview")
+              li 
+                i.fa.fa-map-marker
+                |  {{corporate.companies.company.address}}
+              li
+                i.fa.fa-phone
+                |  {{corporate.companies.company.phone}}
+              li
+                strong {{'Cuit' | translate}}
+                | {{corporate.companies.company.cuit}}
+            form(ng-show="editcompanyview" name="editingCompany" ng-submit="editCorporateCompany(corporate.companies.company)")
+              ul.com-details
+                li
+                  .input-group
+                    span.input-group-addon
+                      i.fa.fa-map-marker
+                    input.input-small.form-control(ng-model="corporate.companies.company.address")
+                  br
+                li
+                  .input-group
+                    span.input-group-addon
+                      i.fa.fa-phone
+                    input.input-small.form-control(ng-model="corporate.companies.company.phone")
+                  br
+                li
+                  .input-group
+                    span.input-group-addon
+                      |{{'Cuit' | translate}}
+                    input.input-small.form-control(ng-model="corporate.companies.company.cuit")
+                  br
+                  .input-group
+                    span.input-group-addon
+                      |{{ 'DiscountPercentage' | translate}}
+                    input.input-small.form-control( type="number" ng-model="corporate.companies.company.discount" ng-init="corporate.companies.company.discount = 0" min="0" max="100")  
+                li
+                  br
+                  button.btn.btn-sm.btn-success {{'Save' | translate}}
+          
+          .col-xs-6
+            .col-xs-4(style="max-height: 130px;overflow: hidden;")
+              .panel.panel-dark.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'CorporateMainFeat2Data2' | translate}}
+                    br
+                    h3 {{company.config.fares.currency}}{{corporate.companies.company.settings.paid  | limitTo: 8}}{{corporate.companies.company.settings.not_paid.length > 5 ? '...' : ''}}
+                    br
+            .col-xs-4(style="max-height: 130px;overflow: hidden;")
+              .panel.panel-primary.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'CorporateMainFeat2Data1' | translate}}
+                    br
+                    h3 {{company.config.fares.currency}}{{corporate.companies.company.settings.not_paid | limitTo: 8 }}{{corporate.companies.company.settings.not_paid.length > 5 ? '...' : ''}}
+                    br 
+            .col-xs-4(style="max-height: 130px;overflow: hidden;")
+              .panel.panel-success.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'Employees' | translate}}
+                    br
+                    h3 {{corporate.companies.company.settings.users}}
+                    br
+                    
+
+    .row
+      .col-xs-9
+        button.btn.btn-success.btn-sm(style="margin-bottom: 10px" ng-click="modalAddCostCenter()") {{'AddCostCenterButton' | translate}}
+      .col-xs-3
+        .input-group
+          input.form-control(type='text', placeholder="{{'Search' | translate}}" ng-model="searchString" ng-change="corporate.companies.costCenters.getCostCenters(corporate.companies.company.id, page, searchString)")
+          span.input-group-btn
+            button.btn.btn-default.btn-sm(type='button')
+              i.fa.fa-search
+           
+    .row
+      .col-lg-3.col-md-4.col-xs-6(ng-repeat="costCenter in corporate.companies.costCenters.list")
+          .panel.panel-default
+            .panel-body
+              .row
+                .col-xs-12
+                  strong.com-name.pull-left
+                    a(href="#corporate/{{corporate.companies.company.id}}/{{costCenter.id}}") {{costCenter.name}}
+                  .pull-right
+                    a(ng-click="corporate.companies.costCenters.deleteCostCenter(costCenter.id, false)" href="") &times;
+              .row                 
+                .col-xs-8
+                  span.due {{'AccountDue' | translate}}
+                  h3.com-total(ng-class="{'text-danger': costCenter.statics.not_paid > 0}") {{company.config.fares.currency}} {{costCenter.statics.not_paid | number: 2}} 
+                  
+                  br 
+                  span.com-mail {{'Employees' | translate}} {{costCenter.statics.users}}
+      
+      .clearfix
+      .text-center
+        nav
+          ul.pagination
+            li(ng-repeat="page in corporate.companies.costCenters.pages" ng-class="{active: corporate.companies.costCenters.page == page }")
+              a(ng-click="corporate.companies.costCenters.getCostCenters(corporate.companies.company.id, page)" href="") {{page}}
+
+.modal.fade.del-costCenter(tabindex="-1", role="dialog", aria-labelledby="delCostcenter", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'DelCostCenter' | translate}}
+      .panel-body
+        p {{'delCostcenterText' | translate}}
+        button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+        input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" ng-click="corporate.companies.costCenters.deleteCostCenter('', true)")
+
+.modal.fade.edit-company-image(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'ChangeCompanyLogo' | translate}}
+      .panel-body
+
+        form(name="newimg" ng-submit="corporate.companies.uploadImage(user.token)"  enctype="multipart/form-data")
+
+          img#company-image-preview(src="{{corporate.company.image}}" onerror="this.src='/common/assets/logo/logo-sm.png'" style="width:200px; height:200px;")
+          br
+          br
+          input#company-file-image(type="file" ng-model="corporate.company.image" name="company-file-image" onchange="angular.element(this).injector().get('$corporate').companies.previewImage(this)" required)
+          .form-group
+            button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+            input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" )
+
+.modal.fade.add-costCenter(tabindex="-1", role="dialog", aria-labelledby="add-costCenter", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'NewCostCenter' | translate}}
+        .panel-body
+          form(name="costCenter" ng-submit="corporate.companies.costCenters.addCostCenter(newuser)" ng-class="{submited: costCenter.submited}")
+            .row
+              .col-xs-12
+                .form-group
+                  label {{'Phone' | translate}}
+                  input.form-control(type="text" ng-model="newuser.phone" required)
+                .form-group
+                  label {{'Address' | translate}}
+                  input.form-control(type="text" ng-model="newuser.address" required)
+                .form-group
+                  label {{'Name' | translate}}
+                  input.form-control(type="text", ng-model="newuser.name", required)
+                br
+            .row
+              br
+              .col-xs-12
+                button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit" ng-click="costCenter.submited = true") {{'Accept' | translate}}

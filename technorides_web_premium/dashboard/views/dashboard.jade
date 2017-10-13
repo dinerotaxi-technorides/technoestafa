@@ -1,0 +1,87 @@
+.pageheader
+  h2
+    i.fa.fa-tachometer
+    | {{'Dashboard' | translate}}
+.contentpanel
+  .row
+    .col-sm-6.col-md-3
+      .panel.panel-success.panel-stat
+        .panel-heading
+          .stat
+            .row
+              .col-xs-4
+                img(src='/common/libs/template/images/is-money.png', alt='')
+              .col-xs-8
+                small.stat-label Visits Today
+                h1 900k+
+            .mb15
+            .row
+              .col-xs-6
+                small.stat-label Pages / Visit
+                h4 7.80
+              .col-xs-6
+                small.stat-label % New Visits
+                h4 76.43%
+       
+    .col-sm-6.col-md-3
+      .panel.panel-danger.panel-stat
+        .panel-heading
+          .stat
+            .row
+              .col-xs-4
+                img(src='/common/libs/template/images/is-document.png', alt='')
+              .col-xs-8
+                small.stat-label % Unique Visitors
+                h1 54.40%
+            .mb15
+            small.stat-label Avg. Visit Duration
+            h4 01:80:22
+
+    .col-sm-6.col-md-3
+      .panel.panel-primary.panel-stat
+        .panel-heading
+          .stat
+            .row
+              .col-xs-4
+                img(src='/common/libs/template/images/is-document.png', alt='')
+              .col-xs-8
+                small.stat-label Page Views
+                h1 300k+
+
+            .mb15
+            small.stat-label % Bounce Rate
+            h4 34.23%
+  
+    .col-sm-6.col-md-3
+      .panel.panel-dark.panel-stat
+        .panel-heading
+          .stat
+            .row
+              .col-xs-4
+                img(src='/common/libs/template/images/is-money.png', alt='')
+              .col-xs-8
+                small.stat-label Today's Earnings
+                h1 $655
+
+            .mb15
+            .row
+              .col-xs-6
+                small.stat-label Last Week
+                h4 $32,322
+              .col-xs-6
+                small.stat-label Last Month
+                h4 $503,000
+  .row
+    .col-xs-6
+      .panel.panel-default
+        .panel-body
+          div(area-chart area-data='[{ y: "2006", a: 100, b: 90 },{ y: "2007", a: 75,  b: 65 },{ y: "2008", a: 50,  b: 40 },{ y: "2009", a: 75,  b: 65 },{ y: "2010", a: 50,  b: 40 }, { y: "2011", a: 75,  b: 65 }, { y: "2012", a: 100, b: 90 }]' area-xkey='y' area-ykeys='["a", "b"]' area-labels='["Serie A", "Serie B"]' line-colors='["#31C0BE", "#c7254e"]')
+    .col-xs-6
+      .col-xs-6
+        .panel.panel-default
+          .panel-body
+            div(donut-chart donut-data='[{label: "Download Sales", value: 12},{label: "In-Store Sales",value: 30},{label: "Mail-Order Sales", value: 20}]' donut-colors='["#31C0BE","#c7254e","#98a0d3"]')
+      .col-xs-6
+        .panel.panel-default
+          .panel-body
+            div(donut-chart donut-data='[{label: "Download Sales", value: 12},{label: "In-Store Sales",value: 30},{label: "Mail-Order Sales", value: 20}]' donut-colors='["#31C0BE","#c7254e","#98a0d3"]')

@@ -1,0 +1,56 @@
+/* Medias Query */
+@media (max-width: 480px) {
+    #tr-footer-contact {
+      display: none;
+    }
+    #formNewsletter {
+      display: none;
+    }
+    .table-code {
+      display: none;
+    }
+    .table-user { 
+      display: none;
+    }
+    #content-home table {
+      font-size: 11px;
+    }
+    .actionsUser p {
+      display: none;
+    }
+}
+
+
+@media (max-width: 993px) {
+    #tr-footer-contact {
+      display: none;
+    }
+}
+
+@media (max-width: 767px) {
+  #footer-table .actions {
+    float: left;
+    margin-top: 10px;
+  }
+}
+
+.search_form, .export
+{
+  background: none !important;
+  float: right;
+  margin-top: -8px;
+}
+
+.search_form #query
+{
+  background: url(/static/images/panels/company/search.png) #FFF no-repeat 1% 90%;
+  border: 0px;
+  border-radius: 10px;
+  padding-left: 22px;
+  outline: none;
+}
+
+.google-visualization-table-table
+{
+  width: 100%;
+}

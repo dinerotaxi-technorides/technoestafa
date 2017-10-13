@@ -1,0 +1,132 @@
+.cardify_container
+{
+  float: left;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.cardify
+{
+  border: 3px solid #A7BDC1;
+  border-radius: 5px;
+  clear: none !important;
+  float: left;
+  margin: 10px;
+  padding: 5px;
+  width: 23%;
+  text-transform: capitalize;
+
+  box-shadow: 3px 3px 3px #AAA;
+  background: -webkit-linear-gradient(white, #CCC); /* For Safari */
+  background: -o-linear-gradient(white, #CCC); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(white, #CCC); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(white, #CCC); /* Standard syntax (must be last) */
+}
+
+.cardify .cardify_image
+{
+  border: 1px solid black;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+  position: absolute;
+  float: left;
+}
+
+.cardify .cardify_row
+{
+  background: url(/static/images/panels/company/cardify/background.png) no-repeat right top;
+  margin: 0px;
+  padding: 0px;
+}
+
+.cardify .cardify_row .cardify_title
+{
+  font-weight: bold;
+}
+
+.cardify .cardify_row .cardify_cell
+{
+  list-style: none;
+}
+
+.cardify .cardify_edit, .cardify .cardify_show, .cardify_show_1, .cardify .cardify_destroy
+{
+  border-radius: 5px;
+  float: right;
+  height: 22px;
+  margin: 0px 3px;
+  outline: none;
+  width: 22px;
+}
+
+.cardify .cardify_edit
+{
+  background: url(/static/images/panels/company/cardify/edit.png);
+}
+
+.cardify .cardify_show
+{
+  background: url(/static/images/panels/company/cardify/show.png);
+}
+
+.cardify .cardify_show_1
+{
+  background: url(/static/images/panels/company/cardify/show_1.png);
+}
+
+.cardify .cardify_destroy
+{
+  background: url(/static/images/panels/company/cardify/destroy.png);
+}
+
+.cardify_paginator
+{
+  float: left;
+  margin: 10px;
+}
+
+.cardify_paginator .cardify_paginator_link
+{
+  background: url(/static/images/panels/company/cardify/link_background.png);
+  border-radius: 5px;
+  color: black;
+  font-size: 12px;
+  height: 22px;
+  outline: none;
+  padding: 1px;
+  width: 22px;
+}
+
+.cardify_paginator .cardify_paginator_link.current
+{
+  background: #FFF;
+  font-weight: bold;
+}
+
+.cardify_image_container
+{
+  cursor: pointer;
+  float: left;
+  height: 100px;
+  margin-right: 5px;
+  width: 100px;
+}
+
+.cardify_image_edit
+{
+  border: 1px solid black;
+  float: right;
+  position: relative;
+}
+
+#edit_driver_image #image
+{
+  border: 1px solid black;
+}
+
+#edit_driver_image input[type=file]
+{
+  outline: none;
+  width: 250px;
+}

@@ -1,0 +1,74 @@
+h2.title(ng-hide="user.superUser")
+  span.fa-stack
+    i.fa.fa-circle-thin.fa-stack-2x
+    i.fa.fa-money.fa-stack-1x
+  span(typed-translate="") corporate.sections.billing
+.container-fluid
+  .col-xs-12(style="margin-bottom:10px")
+    .row
+      .col-xs-12.col-md-6
+        
+      .col-xs-12.col-md-6
+        .col-xs-6
+          label(typed-translate="") corporate.orderBy
+          select.form-control(ng-model="orderBy" ng-change="corporate.invoices.get(1,search, orderBy, filterBy)")
+            option(value="" typed-translate="") corporate.orders.noOrder
+            option(value="total-asc") {{'corporate.orders.amount'| translate}} &uarr;
+            option(value="total-desc") {{'corporate.orders.amount'| translate}} &darr;
+            option(value="createdDate-asc") {{'corporate.orders.date' | translate}} &uarr;
+            option(value="createdDate-desc") {{'corporate.orders.date' | translate}} &darr;
+            option(value="dueDate-asc") {{'corporate.orders.dueDate' | translate}} &uarr;
+            option(value="dueDate-desc") {{'corporate.orders.dueDate' | translate}} &darr;
+        .col-xs-6
+          label(typed-translate="") corporate.filterBy
+          select.form-control(ng-model="filterBy" ng-change="corporate.invoices.get(1,search, orderBy, filterBy)")
+            option(value="" typed-translate="") corporate.filters.noFilter
+            option(value="pending" typed-translate="") corporate.filters.pending  
+            option(value="overdue" typed-translate="") corporate.filters.overdue
+            option(value="paid" typed-translate="") corporate.filters.paid 
+            option(value="partially_paid" typed-translate="") corporate.filters.partialyPaid
+        .col-xs-12
+          br
+          .input-group
+            input.form-control(ng-model="search" ng-change="corporate.invoices.get(1,search, orderBy, filterBy)")
+            span.input-group-addon 
+              i.fa.fa-search
+  .col-xs-12
+    .table-responsive 
+      table.table.table-striped
+        thead.box-technorides
+          tr
+            th.text-left(typed-translate="") corporate.labels.date
+            th.text-center(typed-translate="") corporate.labels.invoice
+            th.text-center(typed-translate="") corporate.labels.amount
+            th.text-center(typed-translate="") corporate.labels.balanceDue
+            th.text-center(typed-translate="") corporate.labels.status 
+            th.text-center(typed-translate="") corporate.labels.dueDate
+            th.text-right 
+        tbody
+          tr(ng-show="corporate.invoices.list.length == 0")
+            td.text-center(colspan="7" typed-translate="") corporate.NoRecordsAvailable
+          tr(ng-repeat="invoice in corporate.invoices.list")
+            td.text-left {{invoice.date | date}}
+            td.text-center
+              a(ng-click="corporate.invoices.view(invoice.id);changeTab('invoice')" href="") {{invoice.number}}
+            td.text-center {{company.info.currency}}{{invoice.amount}}
+            td.text-center {{company.info.currency}}{{invoice.balance}}
+            td.text-center {{'corporate.invoice.'+invoice.status | translate}}
+            td.text-center(style="width:200px") {{invoice.dueDate | date}}
+            td.text-left.informPayment 
+              a(href="" ng-if="invoice.status=='PENDING' || invoice.status=='PARTIALLY_PAID'" modal="views/modal/corporate/inform-payment.html" modal-title="Inform Payment" typed-translate="" title="{{informPayment}}") corporate.billing.informPayment
+            td.text-center.informButton 
+              a.btn.btn-success.btn-sm.center(href="" ng-if="invoice.status=='PENDING' || invoice.status=='PARTIALLY_PAID'" modal="views/modal/corporate/inform-payment.html" modal-title="Inform Payment" class="" title="{{'corporate.billing.informPayment' | translate}}") 
+                i.fa.fa-money
+    .text-center
+      nav(ng-show="corporate.invoices.pages.length > 1") 
+        ul.pagination
+          li(ng-show="corporate.invoices.page != 1")
+            a(href="" aria-label="Previous" ng-click="corporate.invoices.get(1,search, orderBy, filterBy)")
+              i.fa.fa-angle-left
+          li(ng-repeat="page in corporate.invoices.pages")
+            a(href="" ng-click="corporate.invoices.get(1,search, orderBy, filterBy)") {{page+1}} 
+          li
+            a(href="" aria-label="Next" ng-click="corporate.invoices.get(1,search, orderBy, filterBy)")
+              i.fa.fa-angle-right

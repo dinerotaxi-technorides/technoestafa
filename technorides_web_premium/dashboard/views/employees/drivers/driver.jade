@@ -1,0 +1,505 @@
+.pageheader
+  h2
+    i.fa.fa-male
+    | {{'Employees' | translate}}
+.contentpanel
+  .contentpanel
+    .row
+      .panel.panel-default
+        .panel-body
+          .col-xs-2
+            a.pull-right.edit-driver-but(ng-click="drivers.editImage(false)" href="")
+              fa.fa.fa-pencil 
+            img.img-responsive#driverimg(ng-src="{{drivers.driver.image}}" onerror="this.src='/common/assets/user/profile.png'" style="cursor: pointer" ng-click="drivers.editImage(false)")
+            
+          .col-xs-5
+            h5.uppercase.underline {{drivers.driver.firstName}}  {{drivers.driver.lastName}}
+              a.pull-right(ng-show="!editcompanyview" href="" ng-click="drivers.editDriver(false)")
+                i.fa.fa-pencil
+              
+              a.pull-right(ng-show="" href="" ng-click="")
+                i.fa.fa-times-circle
+            ul.com-details()
+              li 
+                i.fa.fa-taxi
+                |  {{drivers.driver.vehicle.brand}} {{drivers.driver.vehicle.model}} [{{drivers.driver.vehicle.plate}}]
+              li
+                i.fa.fa-phone
+                |  {{drivers.driver.phone}}
+              li
+                strong cuit
+                |   {{drivers.driver.cuit}}
+            form(ng-show="editcompanyview" name="editingCompany")
+              ul.com-details
+                li
+                  .input-group
+                    span.input-group-addon
+                      i.fa.fa-map-marker
+                    input.input-small.form-control(ng-model="corporate.company.address")
+                  br
+                li
+                  .input-group
+                    span.input-group-addon
+                      i.fa.fa-phone
+                    input.input-small.form-control(ng-model="corporate.company.phone")
+                  br
+                li
+                  .input-group
+                    span.input-group-addon
+                      |CUIT
+                    input.input-small.form-control(ng-model="corporate.company.cuit")
+                li
+                  br
+                  button.btn.btn-sm.btn-success {{'Save' | translate}}
+          .col-xs-5
+            .col-xs-4
+              .panel.panel-dark.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'billingStatus' | translate}}
+                    br
+                    h3 USD 0
+                    small
+                      em {{'expiresOn' | translate}}
+                        br
+                        | 02/28/2015 - 7.30hs
+            .col-xs-4
+              .panel.panel-primary.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'LastPayment' | translate}}
+                    br
+                    h3 0
+                    small
+                      em {{'LastUpdateOn' | translate}}
+                        br
+                        | 02/28/2015 - 7.30hs
+            .col-xs-4
+              .panel.panel-success.panel-stat
+                .panel-heading
+                  .text-center
+                    strong.uppercase {{'Operations' | translate}}
+                    br
+                    h3 0
+                    small
+                      em {{'LastUpdateOn' | translate}}
+                        br
+                        | 02/28/2015 - 7.30hs
+    .row
+      .col-sm-3.col-lg-2
+        ul.nav.nav-pills.nav-stacked.nav-email
+          li(ng-class="{active : drivers.tab == 1}").hidden
+            a(ng-click="drivers.tab = 1" href="")
+              i.fa.fa-credit-card
+              | {{'Billing' | translate}}
+          li(ng-class="{active : drivers.tab == 2}")
+            a(ng-click="drivers.tab = 2;drivers.getHistory(1,'')"  href="")
+              i.fa.fa-map-marker
+              | {{'Operations' | translate}}
+          li(ng-class="{active : drivers.tab == 3}")
+            a(ng-click="drivers.tab = 3;drivers.getBilling()" href="")
+              i.fa.fa-credit-card
+              | {{'Billing' | translate}}
+          li(ng-class="{active : drivers.tab == 4}")
+            a(ng-click="drivers.tab = 4" href="")
+              i.fa.fa-times
+              | {{'BlockDriver' | translate}}
+          li(ng-class="{active : drivers.tab == 5}")
+            a(ng-click="drivers.tab = 5;getLogs();" href="")
+              i.fa.fa-file-o
+              | {{'Logs' | translate}}
+      .col-sm-9.col-lg-10
+        .panel.panel-default
+          .panel-body(ng-show="drivers.tab == 1")
+            h2.underline Current Invoice
+            p Period: from {{date | date: languageDateFormat }} to {{date | date: languageDateFormat}}
+              span.uppercase.pull-right
+                strong invoice nº
+                | 14121231
+            p.uppercase
+              span invoice date {{date | date: languageDateFormat}}
+              span.pull-right due date: 
+                span.text-danger {{date | date: languageDateFormat}}
+            br
+            .table-responsive
+              table.table.table-striped(style="background: transparent")
+                tr
+                  th.uppercase service
+                  th.uppercase amount
+                  th.uppercase interest
+                  th.uppercase.text-right total amount
+                tr
+                  td Monthly fee for radio services
+                  td USD 350
+                  td -
+                  td.text-right USD 352
+                tr
+                  td Past Debts 
+                  td USD 250
+                  td USD 50
+                  td.text-right USD 300
+                tr
+                  td Corporate Rides
+                  td (USD 100)
+                  td -
+                  td.text-right (USD 100)
+            h2.text-right Total 
+              span.uppercase  USD 500
+          .panel-body(ng-show="drivers.tab == 2")
+            h2.underline {{'Operations' | translate}}
+            .col-lg-8.col-xs-12
+            .col-xs-4.col-xs-12
+              .input-group.hidden
+                input.form-control.input-sm(placeholder="{{'Search' | translate}}..." ng-model="search" ng-change="drivers.getHistory(1,search)" )
+                .input-group-btn
+                  button.btn.btn-technorides.btn-sm(style="margin-top:2px" ng-click="drivers.getHistory(1,search)")
+                    i.fa.fa-search
+            .col-xs-12
+              br
+              .table-responsive
+                table.table.table-technorides
+                  thead
+                    tr
+                      th.text-left {{'id' | translate}}
+                      th.text-center {{'date' | translate}}
+                      th.text-center {{'type' | translate}}
+                      th.text-center {{'paidAmount' | translate}}
+                      
+                  tbody
+                    tr(ng-repeat="operation in drivers.history.operations")
+                      td 
+                        a(href="" ng-click="modalOperationDriver(operation)")  
+                          {{operation.id}}
+                      td.text-center {{operation.date | date:'dd/MM/yyyy hh:mm'}}
+                      td.text-center
+                        span(ng-if="operation.corporate") {{'Corporate' | translate}}
+                        span(ng-if="!operation.corporate") Normal
+                      td.text-center()
+                        span {{company.config.fares.currency}} 
+                        span(ng-if="operation.amount") {{operation.amount}} 
+                        span(ng-if="!operation.amount") 0
+                button.btn.btn-technorides.pull-left(ng-click="modalExportDriver()")
+                  span {{ "exportReport" | translate }}        
+              //PAGINATION
+              .text-center
+                nav
+                  ul.pagination
+                    li(ng-class="{active: drivers.history.page == 1}")
+                      a(ng-click="drivers.getHistory(1, search)" href="")
+                        i.fa.fa-angle-double-left
+                    li(ng-repeat="page in drivers.history.pages" ng-class="{active: page == drivers.history.page}")
+                      a(ng-click="drivers.getHistory(page, search)" href="")  {{page}}
+                    li(ng-class="{active: drivers.history.page == drivers.history.totalPages}")
+                      a(ng-click="drivers.getHistory(drivers.history.totalPages, search)" href="")
+                        i.fa.fa-angle-double-right   
+          
+          .panel-body(ng-show="drivers.tab == 3")
+            h2.underline {{'Billing' | translate}}
+            .col-xs-6
+              h3 {{'totalOwns' | translate}} {{company.config.fares.currency}} {{drivers.driver.billing.totalOwns}}
+              a.btn.btn-success(href="#employees/driver/{{drivers.driver.id}}/invoices") {{'partialCharge' | translate}}
+              a.btn.btn-success(href="#employees/driver/{{drivers.driver.id}}/history_invoices") {{'chargeHistory' | translate}}
+              button.btn.btn-success(style="margin-left:2px" ng-click="drivers.invoices.chargeTotal(false)") {{'chargeTotal' | translate}}
+            .col-xs-6
+              h3.text-right {{'totalOwned' | translate}} {{company.config.fares.currency}} {{drivers.driver.billing.totalOwned}}
+              button.btn.pull-right.btn-warning(style="margin-left:5px" ng-click="drivers.receipts.payTotal(false)") {{'totalPayment' | translate}}
+              a.btn.pull-right.btn-warning(href="#employees/driver/{{drivers.driver.id}}/receipts") {{'partialPayment' | translate}}
+              a.btn.pull-right.btn-warning(href="#employees/driver/{{drivers.driver.id}}/history_receipts") {{'paymentHistory' | translate}}
+              
+            .col-xs-12
+              .text-center
+                button.btn.btn-default(ng-click="drivers.ballanceAccount(false)") {{'calculatDedebt' | translate}}
+          .panel-body(ng-show="drivers.tab == 4")
+              h2.underline {{'BlockDriver' | translate}} 
+            
+              br
+              toggle-switch(ng-model="drivers.driver.enabled" ng-change="drivers.activateDriver()")
+              .text-center(ng-if="drivers.driver.blockLoader")
+                i.fa.fa-spinner.fa-pulse 
+                |  {{'DisconnectingDriver' | translate}}
+          
+          .panel-body(ng-show="drivers.tab == 5")
+            .h2.underline {{'Logs' | translate}}
+            p {{'logsSubt' | translate}}
+            .col-xs-4
+              .list-group(style="max-height: 700px;overflow-y: auto;")
+                a.list-group-item(ng-repeat="log in drivers.logs" ng-click="logmap.focusDriver(log.location, log.status)" style="cursor:pointer")
+                  h5.list-group-item-heading {{log.status | translate}} - {{log.date | date: 'dd/MM/yyyy hh:mm a'}}
+
+              .text-center
+                nav
+                  ul.pagination
+                    //- li(ng-class="{active: drivers.logs.page == 1}")
+                    //-   a(ng-click="drivers.getLogs(1)" href="")
+                    //-     i.fa.fa-angle-double-left
+                    li(ng-class="{active: drivers.logs.page == 0}")
+                      a(ng-click="drivers.getLogs(0)" href="")  1   
+                    li(ng-class="{active: drivers.logs.page == 1}")
+                      a(ng-click="drivers.getLogs(1)" href="")  2
+                    li(ng-class="{active: drivers.logs.page == 2}")
+                      a(ng-click="drivers.getLogs(2)" href="")  3
+                    li(ng-class="{active: drivers.logs.page == 3}")
+                      a(ng-click="drivers.getLogs(3)" href="")  4
+                    li(ng-class="{active: drivers.logs.page == 4}")
+                      a(ng-click="drivers.getLogs(4)" href="")  5
+                                     
+                    
+                    //- li(ng-class="{active: drivers.logs.page == 5}")
+                    //-   a(ng-click="drivers.getLogs(5)" href="")
+                    //-     i.fa.fa-angle-double-right        
+            
+            .col-xs-8
+              #pmap_canvas
+              
+
+.modal.fade.edit-driver-image(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'EditDriver' | translate}}
+      .panel-body
+        form(name="newimg"  enctype="multipart/form-data")
+          img#driver_image_preview(ng-src="{{drivers.driver.image}}" onerror="this.src='/common/assets/user/profile.png'" style="width:200px; height:200px;")
+          br
+          br
+          input(type="file" ng-model="driverImage" name="editDriverImage" id="driver_image" onchange="angular.element(this).injector().get('$drivers').previewImage(this)" required)
+          .form-group
+            button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}} 
+            input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" ng-click="drivers.editImage(true)")
+
+.modal.fade.ballance-account(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'ballanceDriverTotal' | translate}}
+      .panel-body  
+          p {{'balanceDriverTotalText' | translate}}
+          p Total : {{drivers.driver.billing.totalOwns - drivers.driver.billing.totalOwned}}
+          
+          .form-group
+            button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+            input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" ng-click="drivers.ballanceAccount(true)")
+
+
+.modal.fade.charge-total(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'chargeDriverTotal' | translate}}
+      .panel-body
+          p {{'chargeDriverTotalText' | translate}}
+          .form-group
+            button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+            input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" ng-click="drivers.invoices.chargeTotal(true)")
+
+.modal.fade.pay-total(tabindex="-1", role="dialog", aria-labelledby="changeImg", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title {{'PayDriverTotal' | translate}}
+      .panel-body       
+          p {{'PayDriverTotalText' | translate}}
+          .form-group
+            button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+            input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'ImSure' | translate}}" ng-click="drivers.receipts.payTotal(true)")
+
+
+.modal.fade.edit-driver(tabindex="-1", role="dialog", aria-labelledby="editDriver", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'EditDriver' | translate}}
+        .panel-body
+          form(name="add",ng-submit="drivers.editDriver(true)")
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="driverid") {{'id' | translate}}*
+                  input.form-control(ng-model="drivers.driver.number", required  readonly tabindex="1")
+                .form-group
+                  label(for="name") {{'Name' | translate}}*
+                  input.form-control(ng-model="drivers.driver.firstName", required tabindex="3")
+                .form-group
+                  label(for="phone") {{'Phone' | translate}}*
+                  input.form-control( ng-model="drivers.driver.phone", required tabindex="5")
+                .form-group
+                  label(for="brand") {{'Brand' | translate}}*
+                  input.form-control(ng-model="drivers.driver.vehicle.brand", required  tabindex="7")
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="password") {{'Password' | translate}}*
+                  input.form-control(type="password" ng-model="drivers.driver.password" tabindex="2")
+                .form-group
+                  label(for="lastname") {{'LastName' | translate}}*
+                  input.form-control(type="text",   placeholder="", ng-model="drivers.driver.lastName", required  tabindex="4")
+                .form-group
+                  label(for="cuit") {{'Cuit' | translate}}
+                  input.form-control(type="text", placeholder="", ng-model="drivers.driver.cuit",  tabindex="6")
+                .form-group
+                  label(for="model") {{'Model' | translate}}*
+                  input.form-control(ng-model="drivers.driver.vehicle.model", required tabindex="8")
+              
+              .col-xs-12
+                .form-group
+                  label(for="plate") {{'Plate' | translate}}*
+                  input.form-control(ng-model="drivers.driver.vehicle.plate", required tabindex="9")
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="licence") {{'LicenceNumber' | translate}}
+                  input.form-control(placeholder="" ng-model="drivers.driver.licence.number" tabindex="10")
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="licenceexp") {{'LicenceExpirationDate' | translate}} 
+                  .dropdown
+                    a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control {{drivers.driver.licence.expiration | date: languageDateFormat}}
+                        span.input-group-addon
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="drivers.driver.licence.expiration" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day'}" tabindex="11")
+            
+            .row
+              .col-xs-12.col-sm-6
+                .form-group
+                  label(for="driverType") {{'type' | translate}}
+                  .form-group
+                    .col-xs-3.text-center
+                      label {{'Regular' | translate}}
+                      input.form-control( type="checkbox" ng-model="drivers.driver.isRegular" tabindex="8")  
+                    .col-xs-3.text-center  
+                      label{{'Corporate' | translate}}
+                      input.form-control( type="checkbox" ng-model="drivers.driver.isCorporate" tabindex="8")  
+                    .col-xs-3.text-center  
+                      label {{'Vip' | translate}}
+                      input.form-control( type="checkbox" ng-model="drivers.driver.isVip" tabindex="8")  
+              
+            
+            
+            .row
+              .col-xs-12
+                  br
+                  button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button", ng-click="drivers.getDriver(drivers.driver.id)") {{'Cancel' | translate}}
+                  input.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit", value="{{'EditDriver' | translate}}")
+
+.modal.fade.exportHistory(tabindex="-1", role="dialog", aria-labelledby="exportHistory", aria-hidden="true", style="display: none;")
+  .modal-dialog.modal-lg
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title Operation History
+        .panel-body
+          form(name="opExport" ng-submit="DriverOpExport(date, drivers.driver)")
+            .row
+              .col-xs-12 
+                p For export operation history, please select a period between two dates, a document will be sended to the selected destination
+            .row
+              .col-xs-6
+                .form-group
+                  label From 
+                  .dropdown
+                    a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control
+                          span(ng-if="date.fromDate") {{date.fromDate | date: languageDateFormat}}
+                          span(ng-if="!date.fromDate") --/--/----
+                        span.input-group-addon 
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="date.fromDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day'}" tabindex="11")
+
+              .col-xs-6
+                .form-group
+                  label To 
+                  .dropdown
+                    a.dropdown-toggle#dropdown3(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control 
+                          span(ng-if="date.toDate") {{date.toDate | date: languageDateFormat}}
+                          span(ng-if="!date.toDate") --/--/----
+                        span.input-group-addon 
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="date.toDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown3', startView:'day', minView:'day'}" tabindex="11")
+              
+            .row  
+              .col-xs-12
+                br
+                button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button") {{'Cancel' | translate}}
+                | 
+                input.btn.btn-technorides.btn-md.pull-right(type="submit" value="Save" style="margin-right:10px")
+
+.modal.fade.operationLogDriver(tabindex="-1", role="dialog", aria-labelledby="operationLogDriver", aria-hidden="true", style="display: none;")
+  .modal-dialog.modal-lg
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title # {{driverOp.id}}
+        .panel-body(style="max-height: 950px")
+            .row
+              .col-xs-6.modal-photo-left
+                .map 
+                  img.modal-photo(ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{driverOp.origin.lat}},{{driverOp.origin.lng}}&zoom=15&size=400x400&markers=icon:http://technorides.com/common/assets/markers/operation_pending.png%7c{{driverOp.origin.lat}},{{driverOp.origin.lng}}")
+              .col-xs-6.modal-photo-right
+                
+                .media-details
+                  label.media-title {{'details' | translate}}
+                  
+                  .form-group
+                    strong {{'status' | translate}}  
+                    p {{driverOp.status}}
+                  
+                  .form-group(ng-if=" driverOp.firstName != '' ")  
+                    strong {{'Passengers' | translate}}  
+                    p {{driverOp.firstName}} {{driverOp.lastName}}
+                  
+                  .form-group
+                    strong {{'isFrequent' | translate }}  
+                    span(ng-if="driverOp.isFrequent" style="color: green; font-size: 1.5em;") &check;
+                    span(ng-if="!driverOp.isFrequent" style="color: red; font-size: 1.5em;") &times;    
+                  
+                  .form-group(ng-if=" driverOp.origin.address != '' ")  
+                    strong {{'origin' | translate}}  
+                    p {{driverOp.origin.address}}
+                  
+                  .form-group(ng-if=" driverOp.destination != '' ")  
+                    strong {{'destination' | translate}}  
+                    p {{driverOp.destination}}
+                  
+                  .form-group(ng-if=" driverOp.phone != '' ")  
+                    strong {{'phone' | translate}}  
+                    p {{driverOp.phone}}  
+                  
+                  .form-group(ng-if=" driverOp.operator != '' ")  
+                    strong {{'Dispatchers' | translate}}  
+                    p {{driverOp.operator}}    
+                  
+                  //- .form-group(ng-if=" driverOp.comments != null ")  
+                  //-   strong {{'comments' | translate}}
+                  //-   p {{driverOp.comments}}
+                  
+                  .form-group 
+                    strong {{'device' | translate}}
+                    p {{driverOp.device}}

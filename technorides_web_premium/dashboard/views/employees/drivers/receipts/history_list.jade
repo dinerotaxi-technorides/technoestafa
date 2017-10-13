@@ -1,0 +1,44 @@
+.pageheader
+  h2
+    i.fa.fa-cab
+    | {{'receipts' | translate}}
+.contentpanel
+  .row
+    ol.breadcrumb
+      li 
+        a(href="#employees/drivers") {{'Drivers' | translate}} 
+      li
+        a(href="#employees/driver/{{drivers.driver.id}}") {{drivers.driver.firstName}} {{drivers.driver.lastName}} 
+      li {{'History' | translate}}
+    .panel.panel-default
+      .panel-body
+      .panel.panel-default
+        .panel-body    
+          .table-responsive
+              table.table(style="background:none")
+                thead
+                  tr 
+                    th {{'date' | translate}}
+                    th.text-center {{'ID' | translate}}#
+                    th.text-center {{'CostCenterName' | translate}}
+                    th.text-center {{'Company' | translate}}
+                    th.text-center {{'ammount' | translate}}
+                    th.text-center {{'device' | translate}}
+                    th.text-center {{'status' | translate}}
+                    th.text-center {{'From' | translate}}
+                    th.text-center {{'To' | translate}}
+                tbody
+                  tr(ng-repeat="receipt in drivers.receipts.list")
+                    td {{receipt.date | date: languageDateFormat }}
+                    td.text-center {{receipt.id}}
+                    td.text-center {{receipt.costCenter}}
+                    td.text-center {{receipt.company}}
+                    td.text-center {{company.config.fares.currency}} {{receipt.amount}}
+                    td.text-center {{receipt.device}}
+                    td.text-center(style="text-transform: capitalize")  {{receipt.status | lowercase}}
+                    td.text-center {{receipt.from}}
+                    td.text-right {{receipt.to}}
+                    
+              p(ng-if="drivers.receipts.list.length == 0").text-center  {{'noElementsFound' | translate}}
+          
+          

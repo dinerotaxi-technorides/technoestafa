@@ -1,0 +1,747 @@
+/* ----------------------------------------------------------------
+ *	CSS Specific to the One Page Module
+ *
+ *	Some of the CSS Codes have been modified from the Original
+ *	style.css File to match the Minimal Styling of this Module
+ *
+ *	Version: 3.1
+ *-----------------------------------------------------------------
+
+/* ----------------------------------------------------------------------------
+ *	Header
+ *----------------------------------------------------------------------------
+
+#header
+  border-bottom: 0
+  #header-wrap
+    z-index: 199
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    background-color: #FFF
+    border-bottom: 1px solid #F5F5F5
+    -webkit-transition: height .4s ease, background-color .4s ease, opacity .3s ease
+    -o-transition: height .4s ease, background-color .4s ease, opacity .3s ease
+    transition: height .4s ease, background-color .4s ease, opacity .3s ease
+  &.full-header
+    &:not(.border-full-header):not(.sticky-header) #header-wrap
+      border-bottom: 0
+    &.border-full-header #header-wrap
+      border-bottom-color: rgba(0, 0, 0, 0.05) !important
+
+.dark #header.full-header.border-full-header #header-wrap
+  border-bottom-color: rgba(255, 255, 255, 0.15) !important
+
+#header
+  &.dark.full-header.border-full-header #header-wrap
+    border-bottom-color: rgba(255, 255, 255, 0.15) !important
+  &.transparent-header
+    &:not(.sticky-header) #header-wrap
+      background-color: transparent
+    +
+      #slider, #page-title.page-title-parallax, #google-map
+        top: -70px
+        margin-bottom: -70px
+
+#slider + #header.transparent-header
+  top: -70px
+  margin-bottom: -70px
+
+#header
+  &.full-header
+    #logo
+      border-right: 0
+    #primary-menu > ul
+      padding-right: 0
+      margin-right: 0
+      border-right: 0
+  &.show-on-sticky
+    #header-wrap
+      opacity: 0
+      pointer-events: none
+    &.sticky-header #header-wrap
+      opacity: 1
+      pointer-events: auto
+  height: 70px
+  -webkit-transition: height .4s ease, opacity .3s ease
+  -o-transition: height .4s ease, opacity .3s ease
+  transition: height .4s ease, opacity .3s ease
+
+#header-wrap
+  height: 70px
+  -webkit-transition: height .4s ease, opacity .3s ease
+  -o-transition: height .4s ease, opacity .3s ease
+  transition: height .4s ease, opacity .3s ease
+
+#logo
+  height: 70px
+  -webkit-transition: height .4s ease, opacity .3s ease
+  -o-transition: height .4s ease, opacity .3s ease
+  transition: height .4s ease, opacity .3s ease
+  img
+    height: 70px
+    -webkit-transition: height .4s ease, opacity .3s ease
+    -o-transition: height .4s ease, opacity .3s ease
+    transition: height .4s ease, opacity .3s ease
+
+#primary-menu:not(.style-2)
+  height: 70px
+  -webkit-transition: height .4s ease, opacity .3s ease
+  -o-transition: height .4s ease, opacity .3s ease
+  transition: height .4s ease, opacity .3s ease
+  > ul
+    height: 70px
+    -webkit-transition: height .4s ease, opacity .3s ease
+    -o-transition: height .4s ease, opacity .3s ease
+    transition: height .4s ease, opacity .3s ease
+
+/* Sticky Header
+ *----------------------------------------------------------------------------
+
+#header
+  &.sticky-header #header-wrap, &.full-header.border-full-header.sticky-header #header-wrap
+    box-shadow: none
+    border-bottom: 1px solid #F5F5F5 !important
+    -webkit-backface-visibility: hidden
+
+/* Side Header
+ *----------------------------------------------------------------------------
+
+@media (min-width: 992px)
+  .side-header
+    #header
+      #header-wrap
+        position: relative
+      height: 100%
+    #header-wrap
+      height: 100%
+      width: 300px !important
+    #logo
+      height: auto
+      img
+        height: auto
+    #primary-menu:not(.style-2)
+      height: auto
+      > ul
+        height: auto
+
+/* Primary Menu
+ *----------------------------------------------------------------------------
+
+#primary-menu ul li a
+  height: 70px
+  line-height: 70px
+  padding: 0 22px
+  font-size: 12px
+  font-weight: 400
+  letter-spacing: 3px
+
+/* Side Panel
+ *----------------------------------------------------------------------------
+
+body.side-push-panel
+  &.stretched #header .container
+    right: 0
+  &.side-panel-open.stretched #header .container
+    right: 300px
+
+#side-panel-trigger
+  margin-top: 25px
+  margin-bottom: 25px
+
+/* ----------------------------------------------------------------------------
+ *	Page Section
+ *----------------------------------------------------------------------------
+
+.page-section
+  padding: 80px 0
+
+#section-features, #section-testimonials
+  padding: 0 !important
+
+/* ----------------------------------------------------------------------------
+ *	Heading Block
+ *----------------------------------------------------------------------------
+
+.subscribe-widget h1
+  font-weight: 600
+  font-family: 'Roboto', sans-serif
+  color: #FFF
+
+.heading-block h2
+  font-weight: 500
+  letter-spacing: 3px
+  font-family: 'Roboto', sans-serif
+
+.subscribe-widget span
+  color: #FFF !important
+
+/* ----------------------------------------------------------------------------
+ *	Portfolio Overlay
+ *----------------------------------------------------------------------------
+
+.portfolio-overlay
+  background-color: rgba(255, 255, 255, 0.9)
+  .portfolio-desc
+    h3
+      font-size: 22px
+      font-weight: 300
+      text-transform: uppercase
+      letter-spacing: 2px
+      a
+        color: #333 !important
+        text-shadow: none
+    span
+      margin-top: 12px
+      text-transform: uppercase
+      font-size: 14px
+      letter-spacing: 1px
+      font-weight: 300
+      a
+        color: #999 !important
+        text-shadow: none
+
+/* ----------------------------------------------------------------------------
+ *	Buttons
+ *----------------------------------------------------------------------------
+
+.button
+  &.button-border
+    font-weight: 400
+    letter-spacing: 2px
+    font-size: 13px
+    &.button-large
+      font-size: 15px
+    &.button-light
+      border-color: #F9F9F9
+      color: #F9F9F9
+      &:hover
+        background-color: #F9F9F9
+        color: #333
+        text-shadow: none
+  &.button-circle
+    border-radius: 20px
+  &.button-large.button-circle
+    border-radius: 23px
+  &.button-padded
+    padding: 0 50px
+    i:last-child
+      position: absolute
+      line-height: 38px
+      left: auto
+      right: 20px
+      font-size: 20px
+  &.button-border.button-fill
+    overflow: hidden
+    &:hover
+      background-color: transparent !important
+      border-color: #444 !important
+    &.button-light:hover
+      border-color: #F9F9F9 !important
+    &:before
+      content: ''
+      position: absolute
+      background-color: #444
+      z-index: -1
+      top: 0
+      left: 0
+      width: 0
+      height: 100%
+      -webkit-transition: all .3s ease
+      -o-transition: all .3s ease
+      transition: all .3s ease
+      -webkit-backface-visibility: hidden
+    &.button-light:before
+      background-color: #FFF
+    &.fill-from-right:before
+      left: auto
+      right: 0
+    &:hover:before
+      width: 100%
+    &.fill-zoom
+      &:before
+        width: 100%
+        -webkit-transform: scale(0)
+        -o-transform: scale(0)
+        transform: scale(0)
+      &:hover:before
+        -webkit-transform: scale(1)
+        -o-transform: scale(1)
+        transform: scale(1)
+    &.fill-from-top
+      &:before
+        width: 100%
+        height: 0
+      &:hover:before
+        height: 100%
+    &.fill-from-bottom
+      &:before
+        width: 100%
+        height: 0
+        top: auto
+        bottom: 0
+      &:hover:before
+        height: 100%
+    i:last-child
+      opacity: 0
+      right: 30px
+      -webkit-transform: scale(0.2)
+      -o-transform: scale(0.2)
+      transform: scale(0.2)
+      -webkit-transition: all .3s ease
+      -o-transition: all .3s ease
+      transition: all .3s ease
+    &:hover i:last-child
+      opacity: 1
+      right: 20px
+      -webkit-transform: scale(1)
+      -o-transform: scale(1)
+      transform: scale(1)
+
+/* More Link
+ *----------------------------------------------------------------------------
+
+.more-link
+  font-weight: 400
+  border-bottom-width: 1px
+  font-style: normal
+  i.icon-angle-right
+    position: relative
+    top: 2px
+    margin-left: 3px
+
+.link-border
+  font-weight: 600
+  border-bottom: 3px solid #1ABC9C
+  -webkit-transition: all .3s ease
+  -o-transition: all .3s ease
+  transition: all .3s ease
+  &:hover
+    border-color: #FFF
+
+/* ----------------------------------------------------------------------------
+ *	Team & Testimonials
+ *----------------------------------------------------------------------------
+
+.team-title
+  h4
+    font-weight: 600
+    font-size: 17px
+    letter-spacing: 2px
+  span
+    font-style: normal
+    color: #999
+    text-transform: uppercase
+    font-size: 14px
+    letter-spacing: 1px
+    margin-top: 2px
+
+.team-social-icons
+  position: absolute
+  width: 100%
+  bottom: 20px
+
+.dark .team-overlay:before
+  background-color: rgba(0, 0, 0, 0.9)
+
+.parallax
+  .fslider
+    *
+      -webkit-backface-visibility: hidden !important
+    .flex-control-paging *
+      -webkit-backface-visibility: visible !important
+  .testimonial
+    .testi-content p
+      line-height: 1.6 !important
+      font-size: 24px
+      letter-spacing: 1px
+      font-weight: 300
+      font-family: 'Lato', sans-serif
+      font-style: italic
+    .testi-meta
+      margin-top: 20px
+      font-size: 15px
+      letter-spacing: 2px
+      font-weight: 500
+      span
+        font-weight: 300
+        font-size: 14px
+        letter-spacing: 1px
+
+/* Page Menu - Dots Style
+ *-----------------------------------------------------------------
+
+#page-menu.dots-menu nav
+  ul li
+    margin: 15px 6px
+  li
+    a
+      background-color: rgba(0, 0, 0, 0.3)
+      &:hover
+        background-color: rgba(0, 0, 0, 0.65) !important
+    &.current a
+      background-color: rgba(0, 0, 0, 0.65) !important
+    .dots-menu-caption
+      background-color: #EEE !important
+      color: #333
+      text-shadow: none
+      text-transform: uppercase
+      font-size: 13px
+      letter-spacing: 2px
+      font-weight: 400
+      &:after
+        border-left: 6px solid #EEE !important
+
+/* Border Form Design
+ *----------------------------------------------------------------------------
+
+.border-form-control
+  height: 48px
+  padding: 8px 4px
+  font-size: 21px
+  letter-spacing: 1px
+  background-color: transparent !important
+  border-top: transparent
+  border-right: transparent
+  border-left: transparent
+  border-bottom-width: 1px
+  font-family: 'Source Sans Pro', sans-serif
+  &::-moz-placeholder, &:-ms-input-placeholder, &::-webkit-input-placeholder
+    font-weight: 300
+
+textarea.border-form-control
+  resize: none
+  overflow: hidden
+  word-wrap: break-word
+
+/* ----------------------------------------------------------------------------
+ *	Helper CSS Styles
+ *----------------------------------------------------------------------------
+
+.font-body
+  font-family: 'Exo', sans-serif !important
+  font-weight: 400 !important
+
+.font-primary
+  font-family: 'Source Sans Pro', sans-serif !important
+
+/* ----------------------------------------------------------------------------
+ *	Footer Widgets
+ *----------------------------------------------------------------------------
+
+#footer .widget
+  padding: 30px 0
+  > h4
+    margin-bottom: 50px
+    font-size: 20px
+    font-weight: 300
+    letter-spacing: 3px
+    text-transform: uppercase
+  ul.footer-site-links li
+    margin: 5px 0
+    font-size: 17px
+    letter-spacing: 1px
+    font-weight: 300
+  .form-control
+    text-align: center
+
+.widget p.lead
+  font-size: 17px
+  letter-spacing: 1px
+  line-height: 1.6
+
+/* ----------------------------------------------------------------------------
+ *	Services Grid
+ *----------------------------------------------------------------------------
+
+.grid-border
+  overflow: hidden
+  [class^=col-]
+    &:before, &:after
+      content: ''
+      position: absolute
+    &:before
+      height: 100%
+      top: 0
+      left: -1px
+      border-left: 1px solid rgba(0, 0, 0, 0.05)
+    &:after
+      width: 100%
+      height: 0
+      top: auto
+      left: 0
+      bottom: -1px
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05)
+
+.dark .grid-border [class^=col-]
+  &:before, &:after
+    border-color: rgba(255, 255, 255, 0.05)
+
+/* ----------------------------------------------------------------------------
+ *	One Page Module: Slider Specifics
+ *----------------------------------------------------------------------------
+
+.one-page-arrow i
+  -webkit-animation-duration: 1.5s !important
+  animation-duration: 1.5s !important
+
+/* Large One Word in Slider
+ *----------------------------------------------------------------------------
+
+.opm-large-word
+  font-size: 116px
+
+.device-sm .opm-large-word
+  font-size: 96px
+
+.device-xs .opm-large-word
+  font-size: 72px
+
+.device-xxs .opm-large-word
+  font-size: 54px
+
+/* Medium One Word in Slider
+ *----------------------------------------------------------------------------
+
+.opm-medium-word
+  font-size: 96px
+
+.device-sm .opm-medium-word
+  font-size: 80px
+
+.device-xs .opm-medium-word
+  font-size: 60px
+
+.device-xxs .opm-medium-word
+  font-size: 48px
+
+/* Medium Before Heading
+ *----------------------------------------------------------------------------
+
+.before-heading.opm-medium
+  font-size: 30px
+  font-style: normal
+  margin: 0 0 0 5px
+  line-height: 1
+  letter-spacing: 12px
+
+.device-sm .before-heading.opm-medium
+  font-size: 22px
+
+.device-xs .before-heading.opm-medium
+  font-size: 18px
+
+.device-xxs .before-heading.opm-medium
+  font-size: 14px
+
+/* Large Counter in Slider
+ *----------------------------------------------------------------------------
+
+.opm-large-counter
+  font-size: 480px
+  color: #F2F2F2
+  line-height: 1
+
+.device-sm .opm-large-counter
+  font-size: 360px
+
+.device-xs .opm-large-counter
+  font-size: 220px
+
+.device-xxs .opm-large-counter
+  font-size: 150px
+
+/* Slider Grid Blocks
+ *----------------------------------------------------------------------------
+
+.half-screen
+  position: relative
+  height: 50%
+
+.videoplay-on-hover
+  .vertical-middle
+    z-index: 2
+  .video-wrap
+    z-index: 1
+  .vertical-middle h2
+    font-size: 40px
+    font-weight: bold
+
+.device-xs .videoplay-on-hover .vertical-middle h2
+  font-size: 32px
+
+.device-xxs .videoplay-on-hover .vertical-middle h2
+  font-size: 26px
+
+/* Content Switch
+ *----------------------------------------------------------------------------
+
+.con-switch
+  position: relative
+  display: block
+  overflow: hidden
+  -webkit-backface-visibility: hidden
+  .con-default
+    display: block
+    opacity: 1
+    -webkit-transition: opacity .4s ease
+    -o-transition: opacity .4s ease
+    transition: opacity .4s ease
+  .con-show
+    display: block
+    opacity: 1
+    -webkit-transition: opacity .4s ease
+    -o-transition: opacity .4s ease
+    transition: opacity .4s ease
+    position: absolute
+    opacity: 0
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    z-index: 1
+    text-align: center
+  &:hover
+    .con-show
+      opacity: 1
+    .con-default
+      opacity: 0
+
+/* Hero Video Play Event
+ *----------------------------------------------------------------------------
+
+.big-video-button
+  display: inline-block
+  width: 64px
+  height: 64px
+  line-height: 64px
+  border-radius: 50%
+  background-color: #333
+  color: #F5F5F5 !important
+  font-size: 24px
+  text-align: center
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1)
+  opacity: 1
+  -webkit-transition: opacity .3s ease
+  -o-transition: opacity .3s ease
+  transition: opacity .3s ease
+  &:hover
+    opacity: 0.9
+
+.dark .big-video-button
+  background-color: #F5F5F5
+  color: #333 !important
+  text-shadow: none
+
+.big-video-button
+  &.dark
+    background-color: #F5F5F5
+    color: #333 !important
+    text-shadow: none
+  i
+    &:nth-of-type(1)
+      position: relative
+      left: 3px
+    &:nth-of-type(2)
+      display: none
+  &.video-played
+    i
+      &:nth-of-type(1)
+        display: none
+      &:nth-of-type(2)
+        display: block
+    opacity: 0.1
+
+#slider:hover .big-video-button.video-played
+  opacity: 1
+
+.slider-caption
+  h2
+    font-size: 78px
+    letter-spacing: 3px
+    text-transform: lowercase
+    margin-bottom: 50px
+  p
+    font-weight: 300
+    text-transform: lowercase
+    font-size: 26px
+    line-height: 1.8
+    max-width: 600px
+    margin-left: auto
+    margin-right: auto
+
+.testimonials-lg
+  overflow: visible
+  &:before
+    position: absolute
+    top: -20px
+    left: -30px
+    color: rgba(0, 0, 0, 0.07)
+    font-size: 144px
+    line-height: 1
+    font-family: 'Passion One'
+  .testi-content p
+    font-size: 26px
+    line-height: 1.6
+    font-style: normal
+    font-weight: 300
+    font-family: 'Roboto', sans-serif
+    color: #111
+    &:before, &:after
+      content: ''
+  .testi-meta
+    font-size: 14px
+    font-weight: 400
+    margin-top: 30px
+    color: #999
+    span
+      font-size: 13px
+      font-weight: 300
+      color: #BBB
+
+/* ----------------------------------------------------------------------------
+ *	Dark
+ *----------------------------------------------------------------------------
+
+.dark #header.sticky-header #header-wrap, #header.sticky-header.dark #header-wrap
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important
+
+/* ----------------------------------------------------------------------------
+ *	Responsive
+ *----------------------------------------------------------------------------
+
+@media (max-width: 991px)
+  #logo
+    height: 70px !important
+  #header
+    min-height: 70px
+    &.transparent-header
+      &:not(.sticky-header) #header-wrap
+        background-color: #FFF
+        border-bottom: 1px solid #EEE
+      &.dark:not(.sticky-header) #header-wrap
+        background-color: #333
+        border-bottom-color: rgba(255, 255, 255, 0.1) !important
+      &:not(.hidden) +
+        #slider, #page-title.page-title-parallax, #google-map
+          top: 0
+          margin-bottom: 0
+  #slider + #header.transparent-header:not(.hidden)
+    top: 0
+    margin-bottom: 0
+  #primary-menu-trigger
+    top: 10px !important
+  #side-panel-trigger
+    margin: 25px 0 !important
+    right: 15px !important
+  .dark #header
+    &.transparent-header #header-wrap, &.semi-transparent #header-wrap
+      background-color: #333
+      border-bottom-color: rgba(255, 255, 255, 0.1)
+  #header.dark
+    &.transparent-header #header-wrap, &.semi-transparent #header-wrap
+      background-color: #333
+      border-bottom-color: rgba(255, 255, 255, 0.1)
+  .dark.overlay-menu #primary-menu:not(.not-dark) ul, .overlay-menu #primary-menu.dark ul
+    background-color: transparent

@@ -1,0 +1,148 @@
+section.header(style="background-image: url('assets/videos/header.jpg')")#home
+  .inner-video
+    .container
+      .col-xs-12.col-sm-6.inner-text
+        h1.uppercase
+          span(typed-translate="") home.separatedTitle1 
+          span &nbsp;
+          span.special(typed-translate="")  home.separatedTitle2 
+          span ,
+          br
+          span(typed-translate="") home.separatedTitle3
+        p(typed-translate="") home.headerDescription
+        a.orange-btn.uppercase(style="margin-right:5px" href="#signup" typed-translate="" ng-click="user.userType = 'passenger'") home.header.button1
+        a.inverse-white.uppercase(typed-translate="" href="#features" du-smooth-scroll duration="2000") home.header.button2
+      .col-xs-12.col-sm-6
+        img.img-responsive.hidden-xs( ng-if="company.info.rtaxi == '98280'" src="assets/featured_et.png")
+        img.img-responsive.hidden-xs( ng-if="company.info.businessModel == 'DELIVERY' && company.info.rtaxi != '98280'" src="assets/featured_moto.png")
+        img.img-responsive.hidden-xs( ng-if="company.info.businessModel == 'GENERIC' && company.info.rtaxi != '98280' " src="assets/featured.png")
+  
+  video(autoplay="true" loop="true" style="margin:0 auto")
+    source(src="assets/videos/header.ogv" type="video/ogg")
+    source(src="assets/videos/header.mp4" type="video/mp4")
+    
+.clearfix
+article.apps
+  .container
+    span.pull-left.hidden-xs(style="position:relative;top30px" typed-translate="") home.downloadApps
+    a.btn-app(href="{{company.info.android}}" target="_blank")
+      img(src="assets/playstore.png")
+    a.btn-app(href="{{company.info.ios}}" target="_blank")
+      img(src="assets/appstore.png")
+section.users
+  .container 
+    h2.uppercase.text-center
+      span(typed-translate="") home.users.title1
+      span &nbsp;
+      span.special(typed-translate="") home.users.title2
+      span &nbsp;
+      span(typed-translate="") home.users.title3
+    .col-xs-12.col-sm-4.text-center
+      h3.uppercase(typed-translate="" ng-click="changePage('passenger')") index.sections.passengers
+      a(href="" ng-mouseover="passengersHover=true" ng-mouseleave="passengersHover=false" ng-click="changePage('passenger')")
+        img.img-circle.img-responsive(src="assets/passenger_landing.png" style="margin:0 auto" ng-show="!passengersHover")
+        img.img-circle.img-responsive(src="assets/passenger_landing_hover.png" style="margin:0 auto" ng-show="passengersHover")
+    .col-xs-12.col-sm-4.text-center
+      h3.uppercase(typed-translate="" ng-click="changePage('enterprise')") index.sections.enterprises
+      a(href="" ng-mouseover="enterpriseHover=true" ng-mouseleave="enterpriseHover=false" ng-click="changePage('enterprise')")
+        img.img-circle.img-responsive(src="assets/enterprise_landing.png" style="margin:0 auto" ng-show="!enterpriseHover")
+        img.img-circle.img-responsive(src="assets/enterprise_landing_hover.png" style="margin:0 auto" ng-show="enterpriseHover")
+    .col-xs-12.col-sm-4.text-center
+      h3.uppercase(typed-translate="" ng-click="changePage('driver')") index.sections.drivers
+      a(href="" ng-mouseover="driverHover=true" ng-mouseleave="driverHover=false" ng-click="changePage('driver')")
+        img.img-circle.img-responsive(src="assets/driver_landing.png" style="margin:0 auto" ng-show="!driverHover")
+        img.img-circle.img-responsive(src="assets/driver_landing_hover.png" style="margin:0 auto" ng-show="driverHover")
+section.features#features
+  .container
+    h2.uppercase.text-center(typed-translate="") home.features.title
+    .col-xs-2
+    .col-xs-8
+      .col-xs-12(style="padding: 0 16px")
+        hr.hidden-xs
+      .col-xs-4
+        .text-left
+          h4.uppercase.hidden-xs(ng-class="{special: featTab==1}" typed-translate="") index.sections.passengers
+        a.feat(href="" ng-click="featTab=1")
+          img.img-circle.img-responsive.pull-left(src="assets/ic_passenger_active.png" ng-if="featTab==1")
+          img.img-circle.img-responsive.pull-left(src="assets/ic_passenger.png" ng-if="featTab!=1 ")
+      .col-xs-4
+        .text-center
+          h4.uppercase.hidden-xs(ng-class="{special: featTab==2}" typed-translate="") index.sections.enterprises
+        a.feat(href="" ng-click="featTab=2")
+          img.img-circle.img-responsive(src="assets/ic_enterprise_active.png" style="margin:0 auto" ng-if="featTab==2")
+          img.img-circle.img-responsive(src="assets/ic_enterprise.png" style="margin:0 auto" ng-if="featTab!=2")
+      .col-xs-4
+        .text-right
+          h4.uppercase.hidden-xs(ng-class="{special: featTab==3}" style="padding-right:15px" typed-translate="") index.sections.drivers
+        a.feat(href="" ng-click="featTab=3")
+          img.img-responsive.img-circle.pull-right(src="assets/ic_driver_active.png" ng-if="featTab==3")
+          img.img-responsive.img-circle.pull-right(src="assets/ic_driver.png" ng-if="featTab!=3")
+    .col-xs-2
+    .clearfix
+    .row.feature(ng-switch="featTab")
+      .col-xs-12.animate-switch(ng-switch-when="1")
+        .col-xs-12.col-sm-6.animated(ng-class="{fadeIn: featTab==1 }")
+          img.img-responsive(src="assets/passenger_et.png" style="margin:0 auto" ng-if="company.info.rtaxi == '98280'")
+          img.img-responsive(src="assets/passenger.png" style="margin:0 auto" ng-if="company.info.businessModel == 'GENERIC' && company.info.rtaxi != '98280'")
+          img.img-responsive(src="assets/passenger_moto.png" style="margin:0 auto" ng-if="company.info.businessModel == 'DELIVERY' &&  company.info.rtaxi != '98280'")
+        .col-xs-12.col-sm-6.animated(ng-class="{bounceInRight: featTab==1 }")
+          .feature-head 
+            p.uppercase
+              span.title(typed-translate="") index.sections.passengers
+              a.iverse-orange.uppercase.pull-right( href="#signup" typed-translate="" ng-click="user.userType = 'passenger'") home.features.learnMore
+          .feature-body
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/ic_passenger_booking.png") 
+              .media-body
+                h4.media-heading.uppercase(typed-translate="") home.features.passengers.feat1 
+                p(typed-translate="") home.features.passengers.feat1Text
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/ic_passenger_mobile.png") 
+              .media-body
+                h4.media-heading.uppercase(typed-translate="") home.features.passengers.feat2 
+                p(typed-translate="") home.features.passengers.feat2Text
+      .col-xs-12.animate-switch(ng-switch-when="2")
+        .col-xs-12.col-sm-6.animated(ng-class="{fadeIn: featTab==2 }")
+          img.img-responsive(src="assets/enterprise.png" style="margin:0 auto")
+        .col-xs-12.col-sm-6.animated(ng-class="{bounceInRight: featTab==2 }")
+          .feature-head
+            p.uppercase
+              span.title(typed-translate="") index.sections.enterprises
+              a.iverse-orange.uppercase.pull-right( href="#signup" typed-translate="" ng-click="user.userType = 'enterprise'") home.features.learnMore
+          .feature-body
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/ic_enterprise_metrics.png") 
+              .media-body
+                h4.media-heading.uppercase(typed-translate="")  home.features.enterprises.feat1
+                p(typed-translate="") home.features.enterprises.feat1Text
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/ic_enterprise_employees.png") 
+              .media-body
+                h4.media-heading.uppercase(typed-translate="") home.features.enterprises.feat2
+                p(typed-translate="") home.features.enterprises.feat2Text
+      .col-xs-12.animate-switch(ng-switch-when="3")
+        .col-xs-12.col-sm-6.animated(ng-class="{fadeIn: featTab==3 }")
+        img.img-responsive(src="assets/driver.png"  ng-if="company.info.rtaxi != '98280'" style="margin:0 auto")
+        img.img-responsive(src="assets/driver_et.png" ng-if="company.info.rtaxi == '98280'" style="margin:0 auto")
+        .col-xs-12.col-sm-6.animated(ng-class="{bounceInRight: featTab==3 }")
+          .feature-head 
+            p.uppercase
+              span.title(typed-translate="") index.sections.drivers
+              a.iverse-orange.uppercase.pull-right( href="#signup" typed-translate="" ng-click="user.userType = 'driver'") home.features.learnMore
+          .feature-body
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/ic_driver_trips.png") 
+              .media-body
+                h4.media-heading.uppercase(typed-translate="") home.features.drivers.feat1
+                p(typed-translate="") home.features.drivers.feat1Text
+            .media
+              .media-left
+                img.media-object.img-circle(src="assets/ic_driver_communication.png") 
+              .media-body
+                h4.media-heading.uppercase(typed-translate="") home.features.drivers.feat2
+                p(typed-translate="") home.features.drivers.feat2Text

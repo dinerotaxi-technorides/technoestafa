@@ -1,0 +1,234 @@
+section.header(style="background-image: url('assets/enterprise/bg.jpg');height: 700px")#home
+  .inner-video
+    .container
+      .col-xs-12.inner-text.text-center
+        h1.uppercase
+          span(typed-translate="") enterprise.separatedTitle1
+          span &nbsp;
+          span.special(typed-translate="") enterprise.separatedTitle2
+          span ,
+          span &nbsp;
+          span(typed-translate="") enterprise.separatedTitle3
+        p(typed-translate="") enterprise.subTitle
+        a.orange-btn.uppercase(style="margin-right:5px" href="#signup" typed-translate="" ng-click="user.userType = 'enterprise'") enterprise.header.button1 
+        a.inverse-white.uppercase(typed-translate="" href="#features" du-smooth-scroll duration="2000") enterprise.header.button2
+  video(autoplay="true" loop="true" style="margin:0 auto;bottom: 431px;")
+    source(src="assets/videos/corporate_darker.mp4" type="video/mp4")
+.clearfix
+article.apps
+  .container
+    span.pull-left.hidden-xs(style="position:relative;top30px" typed-translate="") home.downloadApps
+    a.btn-app(href="{{company.info.android}}" target="_blank")
+      img(src="assets/playstore.png")
+    a.btn-app(href="{{company.info.ios}}" target="_blank")
+      img(src="assets/appstore.png")
+
+section.features(style="background-color:#f2f2f2")#features
+  .container.features-enterprise
+    h2.uppercase.text-center(typed-translate="") enterprise.features.title
+    .col-xs-2
+    .col-xs-8
+      a.col-xs-4.text-center.feat(ng-class="{active: featTab==1}" ng-click="featTab=1;featSubTab=1" href="")
+        i.fa.fa-bar-chart 
+        span.uppercase(typed-translate="") enterprise.features.feature1.title
+      a.col-xs-4.text-center.feat(ng-class="{active: featTab==2}" ng-click="featTab=2;featSubTab=1"  href="")
+        i.fa.fa-database 
+        span.uppercase(typed-translate="") enterprise.features.feature2.title
+      a.col-xs-4.text-center.feat(ng-class="{active: featTab==3}" ng-click="featTab=3;featSubTab=1"  href="")
+        i.fa.fa-desktop 
+        span.uppercase(typed-translate="") enterprise.features.feature3.title
+    .col-xs-2
+    .clearfix
+    .row.feature(ng-switch="featTab")
+      .col-xs-12.animate-switch(ng-switch-when="1")
+        .col-xs-12.col-sm-6.animated(ng-class="{fadeIn: featTab==1 }")
+          div(ng-switch="featSubTab")
+            div(ng-switch-when="1")
+              img.img-responsive.animated( ng-if="company.info.rtaxi != '98280'" src="assets/enterprise/keepcontrol_feature.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==1 }")
+              img.img-responsive.animated( ng-if="company.info.rtaxi == '98280'" src="assets/enterprise/keepcontrol_feature_et.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==1 }")
+            div(ng-switch-when="2")
+              img.img-responsive.animated( ng-if="company.info.rtaxi != '98280'" src="assets/enterprise/keepcontrol_feature2.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==2 }")
+              img.img-responsive.animated( ng-if="company.info.rtaxi == '98280'" src="assets/enterprise/keepcontrol_feature2_et.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==2 }")
+            div(ng-switch-when="3")
+              img.img-responsive.animated( ng-if="company.info.rtaxi != '98280'" src="assets/enterprise/keepcontrol_feature3.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==3 }")
+              img.img-responsive.animated( ng-if="company.info.rtaxi == '98280'" src="assets/enterprise/keepcontrol_feature3_et.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==3 }")
+          
+        .col-xs-12.col-sm-6.animated(ng-class="{bounceInRight: featTab==1 }")
+          .feature-head 
+            p.uppercase
+              span.title(typed-translate="") enterprise.features.feature1.title
+          .feature-body
+            .col-xs-12 
+              p(typed-translate="") enterprise.features.feature1.description
+              br
+            .col-xs-4.text-center
+              img.img-circle(src="assets/enterprise/keepcontrol_metrics.png" style="margin:0 auto" ng-show="featSubTab != 1" ng-click="featSubTab=1")
+              img.img-circle(src="assets/enterprise/keepcontrol_metrics_active.png" style="margin:0 auto" ng-show="featSubTab == 1")
+              h5.uppercase(ng-class="{special: featSubTab==1}" typed-translate="") enterprise.features.feature1.subfeature1
+            .col-xs-4.text-center
+              img.img-circle(src="assets/enterprise/keepcontrol_costcenters.png" style="margin:0 auto" ng-click="featSubTab=2" ng-show="featSubTab != 2")
+              img.img-circle(src="assets/enterprise/keepcontrol_costcenters_active.png" style="margin:0 auto" ng-show="featSubTab == 2")
+              h5.uppercase(ng-class="{special: featSubTab==2}" typed-translate="") enterprise.features.feature1.subfeature2
+            .col-xs-4.text-center
+              img.img-circle(src="assets/enterprise/keepcontrol_employees.png" style="margin:0 auto" ng-show="featSubTab != 3" ng-click="featSubTab=3")
+              img.img-circle(src="assets/enterprise/keepcontrol_employees_active.png" style="margin:0 auto" ng-show="featSubTab == 3")
+              h5.uppercase(ng-class="{special: featSubTab==3}" typed-translate="") enterprise.features.feature1.subfeature3
+      .col-xs-12.animate-switch(ng-switch-when="2")
+        .col-xs-12.col-sm-6.animated(ng-class="{fadeIn: featTab==2 }")
+          div(ng-switch="featSubTab")
+            div(ng-switch-when="1")
+              img.img-responsive.animated(src="assets/enterprise/reducecosts_feature.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==1 }")
+            div(ng-switch-when="2")
+              img.img-responsive.animated(src="assets/enterprise/reducecosts_feature2.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==2 }")
+            div(ng-switch-when="3")
+              img.img-responsive.animated(src="assets/enterprise/reducecosts_feature3.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==3 }")
+          
+        .col-xs-12.col-sm-6.animated(ng-class="{bounceInRight: featTab==2 }")
+          .feature-head 
+            p.uppercase
+              span.title(typed-translate="") enterprise.features.feature2.title
+          .feature-body
+            .col-xs-12 
+              p(typed-translate="") enterprise.features.feature2.description
+              br
+            .col-xs-4.text-center
+              img.img-circle(src="assets/enterprise/reducecosts_history.png" style="margin:0 auto" ng-show="featSubTab != 1" ng-click="featSubTab=1")
+              img.img-circle(src="assets/enterprise/reducecosts_history_active.png" style="margin:0 auto" ng-show="featSubTab == 1")
+              h5.uppercase(ng-class="{special: featSubTab==1}" typed-translate="") enterprise.features.feature2.subfeature1
+            .col-xs-4.text-center
+              img.img-circle(src="assets/enterprise/reducecosts_reports.png" style="margin:0 auto" ng-show="featSubTab != 2" ng-click="featSubTab=2")
+              img.img-circle(src="assets/enterprise/reducecosts_reports_active.png" style="margin:0 auto" ng-show="featSubTab == 2")
+              h5.uppercase(ng-class="{special: featSubTab==2}" typed-translate="") enterprise.features.feature2.subfeature2
+            .col-xs-4.text-center
+              img.img-circle(src="assets/enterprise/reducecosts_billing.png" style="margin:0 auto" ng-show="featSubTab != 3" ng-click="featSubTab=3")
+              img.img-circle(src="assets/enterprise/reducecosts_billing_active.png" style="margin:0 auto" ng-show="featSubTab == 3")
+              h5.uppercase(ng-class="{special: featSubTab==3}" typed-translate="") enterprise.features.feature2.subfeature3
+      .col-xs-12.animate-switch(ng-switch-when="3")
+        .col-xs-12.col-sm-6.animated(ng-class="{fadeIn: featTab==3 }")
+          div(ng-switch="featSubTab")
+            div(ng-switch-when="1")
+              img.img-responsive.animated( ng-if="company.info.rtaxi == '98280'" src="assets/enterprise/orderanywhere_feature2_et.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==1 }")
+              img.img-responsive.animated( ng-if="company.info.rtaxi != '98280'" src="assets/enterprise/orderanywhere_feature2.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==1 }")
+              
+            div(ng-switch-when="2")
+              img.img-responsive.animated(src="assets/enterprise/orderanywhere_feature3.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==2 }")
+            div(ng-switch-when="3")
+              img.img-responsive.animated( ng-if="company.info.rtaxi == '98280'" src="assets/enterprise/orderanywhere_feature_et.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==3 }")
+              img.img-responsive.animated( ng-if="company.info.rtaxi != '98280'" src="assets/enterprise/orderanywhere_feature.png" style="margin:0 auto" ng-class="{fadeIn: featSubTab==3 }")
+          
+        .col-xs-12.col-sm-6.animated(ng-class="{bounceInRight: featTab==3 }")
+          .feature-head 
+            p.uppercase
+              span.title(typed-translate="") enterprise.features.feature3.title
+          .feature-body
+            .col-xs-12 
+              p(typed-translate="") enterprise.features.feature3.description
+              br
+              .col-xs-4.text-center
+                img.img-circle(src="assets/enterprise/orderanywhere_android.png" style="margin:0 auto" ng-show="featSubTab != 1" ng-click="featSubTab=1")
+                img.img-circle(src="assets/enterprise/orderanywhere_android_active.png" style="margin:0 auto" ng-show="featSubTab == 1")
+                h5.uppercase(ng-class="{special: featSubTab==1}" typed-translate="") enterprise.features.feature3.subfeature1
+              .col-xs-4.text-center
+                img.img-circle(src="assets/enterprise/orderanywhere_iphone.png" style="margin:0 auto" ng-show="featSubTab != 2" ng-click="featSubTab=2")
+                img.img-circle(src="assets/enterprise/orderanywhere_iphone_active.png" style="margin:0 auto" ng-show="featSubTab == 2")
+                h5.uppercase(ng-class="{special: featSubTab==2}" typed-translate="") enterprise.features.feature3.subfeature2
+              .col-xs-4.text-center
+                img.img-circle(src="assets/enterprise/orderanywhere_web.png" style="margin:0 auto" ng-show="featSubTab != 3" ng-click="featSubTab=3")
+                img.img-circle(src="assets/enterprise/orderanywhere_web_active.png" style="margin:0 auto" ng-show="featSubTab == 3")
+                h5.uppercase(ng-class="{special: featSubTab==3}" typed-translate="") enterprise.features.feature3.subfeature3
+section.features#howWorks
+  .container
+    h2.uppercase.text-center(typed-translate="") enterprise.howItWorks.title
+    .col-xs-2.col-md-4
+    .col-xs-8.col-md-4
+      .col-xs-12(style="padding: 0 16px")
+        hr.hidden-xs
+      .col-xs-6
+        .text-left
+          h4.uppercase(ng-class="{special: workTab==1}" typed-translate="") enterprise.howItWorks.tab1.title
+        a.feat(href="" ng-click="workTab=1")
+          img.img-circle.img-responsive.pull-left(src="assets/ic_passenger_active.png" ng-if="workTab==1")
+          img.img-circle.img-responsive.pull-left(src="assets/ic_passenger.png" ng-if="workTab!=1")
+      .col-xs-6
+        .text-right
+          h4.uppercase(ng-class="{special: workTab==2}" typed-translate="") enterprise.howItWorks.tab2.title
+        a.feat(href="" ng-click="workTab=2")
+          img.img-circle.img-responsive.pull-right(src="assets/ic_enterprise_active.png" ng-if="workTab==2")
+          img.img-circle.img-responsive.pull-right(src="assets/ic_enterprise.png" ng-if="workTab!=2")
+      
+    .col-xs-2.col-md-4
+    .clearfix
+    .row.feature(ng-switch="workTab")
+      .col-xs-12.animate-switch(ng-switch-when="1")
+        .col-xs-12.animated(ng-class="{slideInRight: workTab==1 }")
+          .feature-head 
+            p.uppercase
+              span.title(typed-translate="") enterprise.howItWorks.tab1.title
+              a.iverse-orange.uppercase.pull-right(href="#signup" typed-translate="" ng-click="user.userType = 'enterprise'") enterprise.howItWorks.tab1.titleButton
+          .feature-body
+            .col-xs-12.col-sm-6.how-works-item
+              .media
+                .media-left
+                  img.media-object.img-circle(src="assets/enterprise/ic_company_signup.png")
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase(typed-translate="") enterprise.howItWorks.tab1.step1.title
+                  p
+                    a.special(href="#signup" ng-click="user.userType = 'enterprise'")
+                      span(typed-translate="") index.sections.signup
+                      span &nbsp;
+                    span(typed-translate="enterprise.howItWorks.tab1.step1.text" translate-values='{company: company.info.name}')  
+              .media
+                .media-left
+                  img.media-object.img-circle(src="assets/enterprise/ic_company_training.png")
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase(typed-translate="") enterprise.howItWorks.tab1.step2.title
+                  p(typed-translate="")  enterprise.howItWorks.tab1.step2.text
+            .col-xs-12.col-sm-6.how-works-item
+              .media
+                .media-left
+                  img.media-object.img-circle(src="assets/enterprise/ic_company_platformsetup.png") 
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase(typed-translate="") enterprise.howItWorks.tab1.step3.title
+                  p(typed-translate="enterprise.howItWorks.tab1.step3.text" translate-values='{company: company.info.name}') 
+              .media
+                .media-left
+                  img.media-object.img-circle(src="assets/enterprise/ic_company_addemployees.png") 
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase(typed-translate="") enterprise.howItWorks.tab1.step4.title
+                  p(typed-translate="") enterprise.howItWorks.tab1.step4.text
+      .col-xs-12.animate-switch(ng-switch-when="2")
+        .col-xs-12.animated(ng-class="{slideInRight: workTab==2 }")
+          .feature-head 
+            p.uppercase
+              span.title(typed-translate="") enterprise.howItWorks.tab2.title
+              a.iverse-orange.uppercase.pull-right(href="#signup" typed-translate="" ng-click="user.userType = 'enterprise'") enterprise.howItWorks.tab2.titleButton
+          .feature-body
+            .col-xs-12.col-sm-6.how-works-item
+              .media
+                .media-left
+                  img.media-object.img-circle(src="assets/enterprise/ic_employee_register.png")
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase(typed-translate="") enterprise.howItWorks.tab2.step1.title
+                  p(typed-translate="") enterprise.howItWorks.tab2.step1.text
+              .media
+                .media-left
+                  img.media-object.img-circle(src="assets/enterprise/ic_employee_login.png")
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase(typed-translate="") enterprise.howItWorks.tab2.step2.title
+                  p(typed-translate="")  enterprise.howItWorks.tab2.step2.text
+            .col-xs-12.col-sm-6.how-works-item
+              .media
+                .media-left
+                  img.media-object.img-circle(src="assets/enterprise/ic_employee_order.png") 
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase(typed-translate="") enterprise.howItWorks.tab2.step3.title
+                  p(typed-translate="") enterprise.howItWorks.tab2.step3.text 
+              .media
+                .media-left
+                  img.media-object.img-circle(src="assets/enterprise/ic_employee_pay.png") 
+                .media-body(style="padding-top:30px")
+                  h4.media-heading.uppercase(typed-translate="") enterprise.howItWorks.tab2.step4.title
+                  p(typed-translate="") enterprise.howItWorks.tab2.step4.text
+section.woring-with-us.hidden()
+  .container
+    h2.uppercase.text-center Working with us

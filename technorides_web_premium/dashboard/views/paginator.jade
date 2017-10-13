@@ -1,0 +1,10 @@
+nav.text-center
+  ul.pagination(ng-if="paginator.pages.length > 1")
+    li
+      a(ng-click="paginator.get(1)")
+        i.fa.fa-angle-double-left
+    li(ng-repeat="page in paginator.pages" ng-class="{active: page==paginator.page}" ng-if="(paginator.page - 1 == page) || ((paginator.page + 4 > page) && (paginator.page - 5 <= page))")
+      a(ng-click="paginator.get(page+1)") {{page+1}}
+    li
+      a(ng-click="paginator.get(paginator.pages.length)")
+        i.fa.fa-angle-double-right

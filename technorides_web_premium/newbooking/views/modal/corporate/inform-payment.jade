@@ -1,0 +1,23 @@
+form(name="pay",ng-submit="pay.$valid && corporate.invoices.informPayment(payment)")
+  .row(ng-init="payment.method = 'Cash'")
+    .col-xs-12.col-md-6
+      .form-group
+        label
+          span(typed-translate="") corporate.labels.paymentMethod
+          span  *
+        select.form-control(ng-model="payment.method", required  tabindex="1" ng-options="(item.name | translate) as item.name for item in presets.payments.methods")
+      .form-group
+        label
+          span(typed-translate="") corporate.labels.amount
+          span  *
+        input.form-control(ng-model="payment.amount", required  tabindex="3")
+    .col-xs-12.col-md-6
+      .form-group
+        label(typed-translate="") corporate.labels.reference
+        input.form-control(ng-model="payment.reference" tabindex="2")
+      .form-group
+        label(typed-translate="") corporate.labels.comments
+        textarea.form-control(ng-model="payment.comments" tabindex="4")
+    .col-xs-12    
+      button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true",type="button" typed-translate="") corporate.labels.cancel
+      button.btn.btn-success.btn-md.pull-right(type="submit" style="margin-right:5px" typed-translate="") corporate.labels.ok

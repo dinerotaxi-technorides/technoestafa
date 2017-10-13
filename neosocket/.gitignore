@@ -1,0 +1,7 @@
+node_modules
+gen
+./config.json
+backup
+.idea
+beta.pem
+*.log

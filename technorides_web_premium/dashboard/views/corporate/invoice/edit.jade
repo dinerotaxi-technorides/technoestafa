@@ -1,0 +1,352 @@
+.pageheader
+  h2
+    i.fa.fa-building
+    | {{corporate.companies.costCenters.costCenter.name}}
+    a.btn.btn-success.btn-sm.pull-right(href="#corporate/{{corporate.companies.company.id}}/{{corporate.companies.costCenters.costCenter.id}}/invoice/{{corporate.companies.costCenters.invoices.invoice.id}}")  {{'GoBack' | translate}}
+.contentpanel
+  .row
+    .panel.panel-default
+      .panel-body
+        p.text-warning(ng-if="(corporate.companies.costCenters.invoices.invoice.subTotal + corporate.companies.costCenters.invoices.invoice.adjustments) < 0") {{'invoiceCredits' | translate}}
+        br
+        form(novalidate name="editInvoice" ng-submit="editInvoice.$valid && corporate.companies.costCenters.invoices.editInvoice()" ng-class="{submited: editInvoice.submited}")
+          .col-xs-12
+            h2.underline {{'EditInvoice' | translate}}
+            br
+          .col-xs-12(ng-if="!editInvoice.$valid && editInvoice.submited")
+            .alert.alert-danger
+              button.close(type='button', data-dismiss='alert', aria-label='Close')
+              strong {{'errorOnTheForm' | translate}}
+              br
+              ul
+                li(ng-show="!editInvoice.adjust.$valid") {{'adjustmentValid' | translate}}
+                li(ng-show="!editInvoice.discount.$valid") {{'opDiscoutValid' | translate}}
+          .col-xs-6
+            .form-group
+              .col-lg-4.col-xs-12
+                label {{'CostCenterName' | translate}}
+              .col-lg-8.col-xs-12
+                input.form-control(readonly value="alo taxis" required ng-model="corporate.companies.costCenters.costCenter.name")
+                span.label.label-default USD
+                | |
+                i.fa.fa-marker
+                |  {{user.country}}, {{user.adminCode}}
+            .form-group
+              .col-lg-4.col-xs-12
+                label {{'InvoiceNumber' | translate}}
+              .col-lg-8.col-xs-12
+                input.form-control(required ng-model="corporate.companies.costCenters.invoices.invoice.number")
+
+            .form-group
+              .col-lg-4.col-xs-12
+                label {{'InvoiceDate' | translate}}
+              .col-lg-8.col-xs-12
+                .dropdown
+                  a.dropdown-toggle#dropdown1(role="button" data-toggle="dropdown" data-target="#")
+                    .input-group
+                      span.form-control
+                            span(ng-if="corporate.companies.costCenters.invoices.invoice.date") {{corporate.companies.costCenters.invoices.invoice.date | date : languageDateFormat }}
+                            span(ng-if="!corporate.companies.costCenters.invoices.invoice.date") --/--/----
+                      span.input-group-addon
+                        i.fa.fa-calendar
+
+                  ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                    datetimepicker(data-ng-model="corporate.companies.costCenters.invoices.invoice.date" name="date" required data-datetimepicker-config="{ dropdownSelector: '#dropdown1', startView:'day', minView:'day'}" tabindex="11")
+            .form-group
+              .col-lg-4.col-xs-12
+                label {{'Terms' | translate}}
+              .col-lg-8.col-xs-12
+                select.form-control(ng-change="corporate.terms.add(corporate.companies.costCenters.invoices.invoice.term, false)" required name="terms" ng-model="corporate.companies.costCenters.invoices.invoice.term" ng-options="item.name for item in corporate.terms.list track by item.value")
+                  option(style="display:none" value="") Select Term
+            .form-group
+              .col-lg-4.col-xs-12
+                label {{'LateFee' | translate}}
+              .col-lg-8.col-xs-12
+                select.form-control(ng-change="corporate.lateFees.add(corporate.companies.costCenters.invoices.invoice.lateFee, false)" required name="lateFee" ng-model="corporate.companies.costCenters.invoices.invoice.lateFee" ng-options="item.name for item in corporate.lateFees.list track by item.value")
+
+          .col-xs-12
+            br
+            .table-responsive
+              table.table(style="background: none")
+                thead
+                  tr.active
+                    th.text-left {{'ArtAndDescription' | translate}}
+                    th.text-center {{'Date' | translate}}
+                    th.text-center {{'Price' | translate}}
+                    th.text-center {{'Discount' | translate}}
+                    th.text-center {{'Tax' | translate}}
+                    th.text-right {{'Ammount' | translate}}
+
+                tbody
+                  tr(ng-repeat="record in corporate.companies.costCenters.invoices.invoice.operations | orderBy:'opDate'" ng-init="record.discountType = 2")
+                    td.text-left {{record.firstName}} {{record.lastName}}
+                    td.text-center {{record.quantity}}
+                    td.text-center
+                      input.form-control.input-sm(type="number" ng-model="record.amount" ng-change="corporate.companies.costCenters.invoices.recalculateInvoiceTotal(corporate.companies.costCenters.invoices.invoice.operations)" required)
+
+                    td.taxes
+                      div(ng-show="!record.discountType || record.discountType == 2")
+                        input.input-sm.form-control(ng-change="corporate.companies.costCenters.invoices.recalculateInvoiceTotal(corporate.companies.costCenters.invoices.invoice.operations)" name="discount" ng-model="record.discount" type="number" min="0")
+                      div(ng-show="record.discountType == 1")
+                        input.input-sm.form-control(ng-change="corporate.companies.costCenters.invoices.recalculateInvoiceTotal(corporate.companies.costCenters.invoices.invoice.operations)" name="discount" ng-model="record.discount" type="number" max="100" min="0")
+                      select.input-sm.form-control(ng-model="record.discountType" ng-change="corporate.companies.costCenters.invoices.recalculateInvoiceTotal(corporate.companies.costCenters.invoices.invoice.operations)")
+                        option(value="2") $
+                        option(value="1") %
+                    td
+                      select.input-sm.form-control(ng-model="record.tax" ng-change="corporate.companies.costCenters.invoices.recalculateInvoiceTotal(corporate.companies.costCenters.invoices.invoice.operations);corporate.taxes.add(record.tax,$index,false)" ng-options="item.name for item in corporate.taxes.list track by item.value")
+                    td.text-right
+                      div(ng-if="record.tax.value == 0")
+                        span(ng-show="!record.discountType || record.discountType == ''") {{record.amount | currency}}
+                        span(ng-show="record.discountType == 2") {{record.amount - record.discount | currency}}
+                        span(ng-show="record.discountType == 1") {{record.amount - (record.discount * record.amount)/100 | currency}}
+                      div(ng-if="record.tax.value != 0")
+                        span(ng-show="record.discountType == 2") {{(record.amount - record.discount) + ((record.amount * record.tax.charge)/100) | currency}}
+                        span(ng-show="record.discountType == 1") {{(record.amount + (record.amount*record.tax.charge) / 100) - (record.discount * record.amount) / 100 | currency}}
+                  tr.active
+                    td(colspan="6")
+          .col-xs-6
+
+          .col-xs-6
+            br
+            .table-responsive
+              table.table(style="background: none")
+                tbody
+                  tr
+                    th {{'SubTotal' | translate}}
+                    td.text-right {{corporate.companies.costCenters.invoices.invoice.subtotal | currency}} 
+                  tr
+                    th {{'Adjustments' | translate}}
+                    td
+                      input.form-control.text-right.input-sm(type="number" name="adjust" ng-model="corporate.companies.costCenters.invoices.invoice.adjustments")
+                  tr
+                    th {{'Discount' | translate}}
+                    td
+                      .input-group   
+                        input.form-control.text-right.input-sm(type="number" name="discount" ng-model="corporate.companies.costCenters.invoices.invoice.discountPercentage" style="margin: 0" ng-init="corporate.companies.costCenters.invoices.invoice.discountPercentage = 0" min="0" ng-change="calculateDiscount()")
+                        span.input-group-addon % 
+                    td.hidden
+                      input(ng-model="corporate.companies.costCenters.invoices.invoice.discount")    
+                  
+                  tr.active
+                    th {{'Total' | translate}}
+                    td.text-right {{(corporate.companies.costCenters.invoices.invoice.subtotal + corporate.companies.costCenters.invoices.invoice.adjustments) - corporate.companies.costCenters.invoices.invoice.discount   | currency}}
+          .col-xs-6
+            .form-group
+              .col-lg-4.col-xs-12
+                label {{'comments' | translate}}
+              .col-lg-8.col-xs-12
+                textarea.form-control(ng-model="corporate.companies.costCenters.invoices.comments")
+          
+            .form-group
+              .col-lg-4.col-xs-12
+                label {{'emailTo' | translate}}
+              .col-lg-8.col-xs-12
+                .well.well-sm(ng-repeat="user in corporate.companies.costCenters.admins")
+                  input(type="checkbox" ng-model="corporate.companies.costCenters.invoices.invoice.emailIds[$index]" ng-true-value="{{user.id}}" ng-false-value="''")
+                  label {{user.mail}}
+          
+          .col-xs-12
+            br
+            button.btn.btn-sm.btn-default(type="submit" ng-click="corporate.companies.costCenters.invoices.invoice.draft = true") {{'SaveAsDraft' | translate}}
+              
+            button.btn.btn-sm.btn-danger(type="submit" ng-click="corporate.companies.costCenters.invoices.invoice.draft = false; editInvoice.submited = true; corporate.companies.costCenters.invoices.invoice.status = 'PENDING'" ) {{'SaveAndSend' | translate}}
+          
+            button.btn.btn-sm.btn-default(type="button" href="#corporate/{{corporate.companies.company.id}}/{{corporate.companies.costCenters.costCenter.id}}/invoice/{{corporate.companies.costCenters.invoices.invoice.id}}") {{'Cancel' | translate}}
+
+//costCenter
+.modal.fade.add-term(tabindex="-1", role="dialog", aria-labelledby="add-term", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'AddTerms' | translate}}
+        .panel-body
+          form(ng-submit="corporate.terms.add(term, true)" ng-class="{submited: termForm.submited}")
+            .row
+              .col-xs-6
+                .col-xs-6
+                  .text-center {{'showitAs' | translate}}
+                  input.form-control(required ng-model="term.name")
+                .col-xs-6
+                  .text-center {{'NetDays' | translate}}
+                  input.form-control(type="number" ng-model="term.days" required)
+              .clearfix
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",ng-click="termForm.submited = true" type="submit") {{'Save' | translate}}
+
+.modal.fade.addLateFee(tabindex="-1", role="dialog", aria-labelledby="addLateFee", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'AddLateFee' | translate}}
+        .panel-body
+          form(ng-submit="corporate.lateFees.add(fee, true)" ng-class="{submited: lateFeeForm.submited}")
+            .row
+              .col-xs-12
+                .col-xs-6
+                  label {{'Name' | translate}}
+                  input.form-control(ng-model="fee.name" required)
+                  br
+                .clearfix
+                .col-xs-6
+                  label {{'Charge' | translate}}
+                  input.form-control(type="number" step="0.01" ng-model="fee.charge" required)
+                  br
+                .col-xs-6
+                  label
+                  select.form-control(ng-model="fee.percentage" required  ng-options="et.value as et.name for et in fee.chargeType")
+                    option(style="display:none" value="") select a type
+                .clearfix
+                .col-xs-6
+                  br
+                  label {{'Frequency' | translate}}
+                  select.form-control(ng-model="fee.frequency" required ng-options="item.value as item.name for item in fee.frequencyOptions")
+                    option(style="display:none" value="") select a type
+
+
+              .col-xs-6
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px" ng-click="lateFeeForm.submited = true" type="submit") {{'Save' | translate}}
+
+.modal.fade.addTax(tabindex="-1", role="dialog", aria-labelledby="add-tax", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'NewTax' | translate}}
+        .panel-body
+          form(ng-submit="corporate.taxes.add(tax,'',true)" ng-class="{submited: taxForm.submited}")
+            .row
+              .col-xs-8
+                .form-group
+                  label {{'Name' | translate}}
+                  input.form-control(ng-model="tax.name" required)
+                .form-group
+                  label {{'Rate' | translate}} (%)
+                  .input-group
+                    input.form-control(type="number" step="0.01" min="0" ng-model="tax.rate" required)
+                    span.input-group-addon %
+                .form-group
+                  input(type="checkbox" ng-model="tax.compound")
+                  label {{'ItCompoundTax' | translate}}
+              .clearfix
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              input.btn.btn-success.btn-md.pull-right(type="submit" ng-click="taxForm.submited = true" value="{{'Save' | translate}}" style="margin-right:5px")
+
+.modal.fade.changebillingPeriod(tabindex="-1", role="dialog", aria-labelledby="changePeriod", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'ChangeBillingPeriod' | translate}}
+        .panel-body
+          .alert.alert-danger(ng-if="!changeperiod.$valid && changeperiod.submited")
+            | {{'errorOnTheForm' | translate}}
+          form(name="changeperiod" ng-submit="changeperiod.$valid && corporate.companies.costCenters.invoices.choosePeriod(invoice.period, false)" ng-class="{submited: changeperiod.submited}")
+            .row
+              .col-xs-6
+                .form-group
+                  label {{'From' | translate}}
+                  .dropdown
+                    a.dropdown-toggle#dropdown2(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control
+                          span(ng-if="invoice.period.fromDate") {{invoice.period.fromDate | date : languageDateFormat }}
+                          span(ng-if="!invoice.period.fromDate") --/--/----
+                        span.input-group-addon
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="invoice.period.fromDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day'}" tabindex="11")
+
+              .col-xs-6
+                .form-group
+                  label {{'To' | translate}}
+                  .dropdown
+                    a.dropdown-toggle#dropdown3(role="button" data-toggle="dropdown" data-target="#")
+                      .input-group
+                        span.form-control
+                          span(ng-if="invoice.period.toDate") {{invoice.period.toDate | date : languageDateFormat }}
+                          span(ng-if="!invoice.period.toDate") --/--/----
+                        span.input-group-addon
+                          i.fa.fa-calendar
+                    ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                      datetimepicker(data-ng-model="invoice.period.toDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown3', startView:'day', minView:'day'}" tabindex="11")
+
+
+            .form-group
+              br
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px",type="submit" ng-click="changeperiod.submited = true") {{'Accept' | translate}}
+
+.modal.fade.delete-term(tabindex="-1", role="dialog", aria-labelledby="delelte-term", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeleteTerm' | translate}}
+        .panel-body
+          form(name="deleteTerms" ng-submit="deleteTerms.$valid && corporate.terms.delete(termId.value)" ng-class="{submited: deleteTerms.submited}")
+            .form-group
+              label {{'Term' | translate}}
+              select.form-control(ng-model="termId" ng-options="item.name for item in corporate.terms.list track by item.value" required)
+
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px" ng-click="deleteTerms.submited = true" type="submit") {{'Delete' | translate}}
+
+.modal.fade.delete-latefee(tabindex="-1", role="dialog", aria-labelledby="delelte-lateFee", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeleteLateFee' | translate}}
+        .panel-body
+          form(name="deleteLates" ng-submit="deleteLates.$valid && corporate.lateFees.delete(termId.value)" ng-class="{submited: deleteTerms.submited}")
+            .form-group
+              label {{'LateFee' | translate}}
+              select.form-control(ng-model="termId" ng-options="item.name for item in corporate.lateFees.list track by item.value" required)
+
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px" ng-click="deleteLates.submited = true" type="submit") {{'Delete' | translate}}
+
+.modal.fade.delete-tax(tabindex="-1", role="dialog", aria-labelledby="delelte-tax", aria-hidden="true", style="display: none;",data-backdrop="static")
+  .modal-dialog
+    .modal-content
+      .panel.panel-dark.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          // panel-btns
+          h3.panel-title {{'DeleteTax' | translate}}
+        .panel-body
+          form(name="deletetaxes" ng-submit="deletetaxes.$valid && corporate.taxes.delete(termId.value)" ng-class="{submited: deleteTerms.submited}")
+            .form-group
+              label {{'Tax' | translate}}
+              select.form-control(ng-model="termId" ng-options="item.name for item in corporate.taxes.list track by item.value" required)
+
+            .form-group
+              button.btn.btn-danger.btn-md.pull-right.panel-close(data-dismiss="modal", aria-hidden="true", type="button") {{'Cancel' | translate}}
+              button.btn.btn-success.btn-md.pull-right(style="margin-right:5px" ng-click="deletetaxes.submited = true" type="submit") {{'Delete' | translate}}

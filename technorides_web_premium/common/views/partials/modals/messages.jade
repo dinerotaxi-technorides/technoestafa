@@ -1,0 +1,32 @@
+.modal.fade.error-modal(tabindex="-1", role="dialog", aria-labelledby="error", aria-hidden="true", style="display: none;")
+  .modal-dialog
+    .modal-content
+      .panel.panel-danger.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title Error
+        .panel-body
+          p {{error.description | translate}}
+
+.modal.fade.success-modal(tabindex="-1", role="dialog", aria-labelledby="success", aria-hidden="true", style="display: none;")
+  .modal-dialog
+    .modal-content
+      .panel.panel-success.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title Success
+        .panel-body
+          p {{success.description | translate}}
+
+.modal.fade.warning-modal(tabindex="-1", role="dialog", aria-labelledby="warning", aria-hidden="true", style="display: none;")
+  .modal-dialog
+    .modal-content
+      .panel.panel-warning.panel-alt
+        .panel-heading
+          .panel-btns
+            a.panel-close(data-dismiss="modal", aria-hidden="true") &#215;
+          h3.panel-title Warning
+        .panel-body
+          p {{warning.description | translate}}

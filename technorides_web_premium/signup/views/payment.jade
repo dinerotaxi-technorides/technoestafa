@@ -1,0 +1,103 @@
+.text-center
+  h2.uppercase {{'CongratsTitle' | translate}}
+.row
+  .col-xs-12
+    .text-center {{'CongratsSubtitle' | translate}}
+    ul(style="list-style-type:none; margin:0")
+      h2 {{'step2Title' | translate}}
+      li {{'CompanyName' | translate}}: {{user.company.name}}
+      li {{'CompanyCategory' | translate}}: {{user.company.category}}
+      li {{'CompanyBirth' | translate}}: {{user.company.birthDate}}
+      li {{'CompanyCuit' | translate}}: {{user.company.cuit}}
+      li {{'Region' | translate}}: {{user.company.region}}
+      li {{'CompanyEmail' | translate}}: {{user.company.email}}
+      li {{'CompanyType' | translate}}: {{user.company.type}}
+      li {{'CompanyPhone' | translate}}: {{user.company.phone}}
+      li {{'CompanyBookingPhone' | translate}}: {{user.company.bookingPhone}}
+      li {{'CompanyAddress' | translate}}: {{user.company.address}}
+
+    ul(style="list-style-type:none; margin:0")
+      h2 {{'step1Title' | translate}}
+      li {{'Name' | translate}}: {{user.name}}
+      li {{'lastName' | translate}}: {{user.lastName}}
+      li {{'Email' | translate}}: {{user.email}}
+      li {{'Passaport' | translate}}: {{user.passaport}}
+      li {{'Phone' | translate}}: {{user.phone}}
+      li {{'AltPhone' | translate}}: {{user.altphone}}
+    ul(style="list-style-type:none; margin:0")
+      h2 Plan
+      li 
+        span(ng-if="plan == 1")  {{'pricingLevel1' | translate}}
+        span(ng-if="plan == 2")  {{'pricingLevel2' | translate}}
+        span(ng-if="plan == 3")  {{'pricingLevel3' | translate}}
+        span(ng-if="plan == 4")  {{'pricingLevel4' | translate}}
+      
+      li(ng-if="user.company.fleet") {{user.company.fleet}}
+      li(ng-if="(user.company.fleet+minimumDrivers[user.company.region])<2000")
+        span(ng-if="user.company.region=='usa' || user.company.region=='latam'") usd
+        span(ng-if="user.company.region=='europe'") &euro;
+        |  {{totalPrice}}
+      li(ng-if="(user.company.fleet+minimumDrivers[user.company.region])>=2000")
+    br
+    .pull-right
+      a.btn.btn-technorides.uppercase(href="/") {{'Finish' | translate}}
+    .pull-left
+      ul
+        button.btn.btn-technorides.pull-left.uppercase(type="button" ng-click="backToStep(3)") {{'Back' | translate}}
+.row.hidden
+  .text-center
+    //- form(name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post")
+    //-   input(type="hidden" name="cmd" value="_xclick-subscriptions")
+    //-   input(type="hidden" name="business" value="{{settings.paypalMerchantId}}")
+    //-   input(type="hidden" name="currency_code" value="USD")
+    //-   input(type="hidden" name="no_shipping" value="1")
+    //-   input(type="image" src="https://www.paypal.com/en_US/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!")
+    //-   // Regular subscription price.
+    //-   input(type="hidden" name="a3" value="{{total}}" id="paypal_price")
+    //-   input(type="hidden" name="p3" value="1")
+    //-   input(type="hidden" name="t3" value="M")
+    //-   input(type="hidden" name="src" value="1")
+    //-   input(type="hidden" name="sra" value="1")
+    //-   input(type="hidden" name="return" value="https://www.technorides.com/signup/finish")
+.row.hidden
+  //- form(name="formStep1" ng-submit="checkStep3()")
+  //-   .col-xs-12.col-lg-6
+  //-     label Tipo de pago
+  //-     select.form-control(ng-model="user.company.name")
+  //-     br
+  //-     label Número de la tarjeta*
+  //-     input.form-control(type="text" ng-model="user.name" required)
+  //-     br
+  //-     label Pais
+  //-     input.form-control(ng-model="user.phone")
+  //-     br
+  //-     label Ciudad
+  //-     select.form-control(ng-model="user.phone")
+  //-   .col-xs-12.col-lg-6
+  //-     label Nombre completo del titular
+  //-     input.form-control(required ng-model="user.country")
+  //-     br
+  //-   .col-xs-12.col-lg-6.no-padding
+  //-     .col-xs-12.col-lg-4
+  //-       label CVV
+  //-       input.form-control()
+  //-     .col-xs-12.col-lg-4
+  //-       label mes
+  //-       select.form-control()
+  //-     .col-xs-12.col-lg-4
+  //-       label año
+  //-       select.form-control()
+  //-   .col-xs-12.col-lg-6    
+  //-     br
+  //-     label E-mail de contacto*
+  //-     input.form-control(type="email" required ng-model="user.email")
+  //-     br
+  //-     label Telefono alternativo (fijo o movil)*
+  //-     input.form-control(type="text" required ng-model="user.altphone")
+  //-     br
+  //-     br
+  //-     br
+  //-   .col-xs-12
+  //-     .text-center
+  //-       button.btn.btn-technorides.pull-left.uppercase(type="submit") volver
+  //-       button.btn.btn-technorides.uppercase(type="submit") terminar

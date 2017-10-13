@@ -1,0 +1,25 @@
+.careers {
+  width: 100%;
+}
+
+.careers td {
+  padding-bottom: 20px;
+}
+
+.career_title {
+  width: 40%;
+}
+
+.career_title h3 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.career_description, .career_apply {
+  font-size: 16px;
+}
+
+.career_apply {
+  margin-top: 5px;
+  margin-left: 22px;
+}

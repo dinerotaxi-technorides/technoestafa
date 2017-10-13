@@ -1,0 +1,136 @@
+.login
+  div(ng-include="'/common/views/partials/version.html'")
+  .work-for-us(ng-hide="add").hidden
+    .container 
+      button(type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="add = true")
+        span(aria-hidden="true") &times;
+      span(typed-translate="") index.banner.text
+      a.uppercase.iverse-orange(href="") join now
+  nav.shadow-bottom
+    .top-nav.hidden-xs
+      .container 
+        ul.pull-left
+          li.uppercase.dropdown
+            a(href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") 
+              span(typed-translate="{{company.info.lang}}") 
+              span.caret(style="margin-left:5px")
+            ul.dropdown-menu(style="min-width: 0px")
+              li
+                a(href="" ng-click="changeLang('en')") English
+              li
+                a(href="" ng-click="changeLang('es')") Español
+          
+        ul.pull-right
+          li.uppercase 
+            a(href="" ng-class="{special: page == 'passengers'}" ng-click="changePage('passenger')" typed-translate="") index.sections.passengers
+          li.uppercase 
+            a(href="" ng-class="{special: page == 'driver'}" ng-click="changePage('driver')" typed-translate="") index.sections.drivers
+          li.uppercase 
+            a(href="" ng-class="{special: page == 'enterprise'}" ng-click="changePage('enterprise')" typed-translate="") index.sections.enterprises
+    .main-nav
+      .container
+        div(ng-switch="page")
+          div(ng-switch-when="home")
+            div(ng-include="'views/landings/home-nav.html'")
+          div(ng-switch-when="enterprise")
+            div(ng-include="'views/landings/enterprise-nav.html'")
+          div(ng-switch-when="driver")
+            div(ng-include="'views/landings/driver-nav.html'")
+          div(ng-switch-when="passenger")
+            div(ng-include="'views/landings/passenger-nav.html'")
+        .logo 
+          img(ng-if="company.info.imgUrl", ng-click="changePage('home')" ng-src="https://technorides.com/common/assets/newbooking/{{user.rtaxi}}/logo-top.png")
+          //- a(href="" ng-if="!company.info.imgUrl" ng-click="changePage('home')") {{company.info.name}}
+  div(ng-switch="page")
+    div(ng-switch-when="home")
+      div(ng-include="'views/landings/home.html'")
+    div(ng-switch-when="enterprise")
+      div(ng-include="'views/landings/enterprise.html'")
+    div(ng-switch-when="driver")
+      div(ng-include="'views/landings/driver.html'")
+    div(ng-switch-when="passenger")
+      div(ng-include="'views/landings/passenger.html'")    
+  section.contact
+    .container
+      h2.uppercase.text-center(typed-translate="") index.sections.contactUs
+      .col-xs-4
+        .text-center
+          span.fa-stack.fa-lg
+            i.fa.fa-phone.fa-stack-1x
+            i.fa.fa-circle-thin.fa-stack-2x
+        br
+        .contact-data
+          h5.text-center.uppercase(typed-translate="") index.labels.phone 
+          h4.text-center {{company.info.bookingPhone}}
+      .col-xs-4
+        .text-center
+          span.fa-stack.fa-lg
+            i.fa.fa-map-marker.fa-stack-1x
+            i.fa.fa-circle-thin.fa-stack-2x
+        br
+        .contact-data
+          h5.text-center.uppercase(typed-translate="") index.labels.address
+          h4.text-center {{company.info.street}}, {{company.info.state}} 
+      .col-xs-4
+        .text-center
+          span.fa-stack.fa-lg
+            i.fa.fa-envelope.fa-stack-1x
+            i.fa.fa-circle-thin.fa-stack-2x
+        br
+        .contact-data
+          h5.text-center.uppercase(typed-translate="") index.labels.email
+          h4.text-center {{company.info.email}}
+      .clearfix
+      .col-xs-12
+        form.row(name="sendMail" ng-submit="sendMail.$valid && user.contact(email) && resetForm()")#contact
+          .col-xs-12.col-md-6
+            .col-xs-12.col-md-6
+                .form-group
+                  label(typed-translate="") index.labels.name 
+                  input.form-control(ng-model="email.name")
+            .col-xs-12.col-md-6
+                .form-group
+                  label(typed-translate="") index.labels.youare
+                  select.form-control(ng-model="email.userType")
+                    option(value="PASSENGER" typed-translate="") index.labels.passenger
+                    option(value="DRIVER" typed-translate="") index.labels.driverInfo
+                    option(value="ENTERPRISE" typed-translate="") index.labels.enterprise
+            .col-xs-12
+              .form-group
+                label(typed-translate="") index.labels.email
+                input.form-control(ng-model="email.email")
+            .col-xs-12  
+              .form-group
+                label(typed-translate="") index.labels.phone
+                input.form-control(ng-model="email.phone")
+            .col-xs-12
+              .form-group
+                label(typed-translate="") index.labels.subject
+                input.form-control(ng-model="email.subject")
+          .col-xs-12.col-md-6
+            .col-xs-12
+              .form-group
+                label(typed-translate="") index.labels.message
+                textarea.form-control(rows="12" ng-model="email.body")
+          .col-xs-12
+            .col-xs-12
+              button.orange-btn.uppercase.pull-right(style="margin-right:5px" typed-translate="") index.labels.send 
+  #map
+  footer
+    .container
+      span &copy; {{company.info.name}} Inc. 2015
+      .pull-right
+        a(href="https://{{company.info.linkedin}}" ng-if="company.info.linkedin" target="_blank")
+          span.fa-stack.fa-lg
+            i.fa.fa-linkedin.fa-stack-1x
+            i.fa.fa-circle-thin.fa-stack-2x
+        a(href="https://{{company.info.facebook}}" ng-if="company.info.facebook" target="_blank")
+          span.fa-stack.fa-lg
+            i.fa.fa-facebook.fa-stack-1x
+            i.fa.fa-circle-thin.fa-stack-2x
+        a(href="https://{{company.info.twitter}}" ng-if="company.info.twitter" target="_blank")
+          span.fa-stack.fa-lg
+            i.fa.fa-twitter.fa-stack-1x
+            i.fa.fa-circle-thin.fa-stack-2x
+// This modal takes data from service $modal
+div(ng-include="'views/modal/async.html'")

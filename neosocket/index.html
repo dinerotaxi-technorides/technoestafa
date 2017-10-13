@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>WebSocket example: echo service</title>
+  </head>
+  <body>
+    <h1>WebSocket console</h1>
+
+    <label>Text to send</label>
+    <input type="text" id="input" value="" />
+
+    <button id="send">Send</button>
+    <button id="connect">Connect</button>
+
+    <br />
+
+    <textarea id="log" style="width: 600px;height: 300px"></textarea>
+
+
+    <script type="text/javascript">
+      var Socket = window.WebSocket;
+
+      if ("MozWebSocket" in window)
+        Socket = window.MozWebSocket;
+
+      $log     = document.getElementById('log');
+      $send    = document.getElementById('send');
+      $connect = document.getElementById('connect');
+
+      log = function(text) {
+        $log.value += text + "\n"
+        $log.scrollTop = $log.scrollHeight;
+      }
+
+      reconnect = function() {
+        log("Connecting...");
+
+        var ws = new Socket("ws://localhost:8345/driver" + "?id=1&token=123123&rtaxi=0");
+
+        ws.onmessage = function(evt) {
+          log(evt.data);
+        };
+
+        ws.onopen = function(evt) {
+          log("Connected");
+
+          $connect.innerHTML = 'Connected';
+          $connect.disabled  = true;
+        };
+
+        ws.onerror = function(evt) {
+          log("Disconnected: network error");
+
+          $connect.innerHTML = 'Reconnect (Error)';
+          $connect.disabled  = false;
+        };
+
+        ws.onclose = function(evt) {
+          log("Disconnected: remote closed");
+
+          $connect.innerHTML = 'Reconnect (Closed)';
+          $connect.disabled  = false;
+        };
+
+        $send.onclick = function() {
+            ws.send(document.getElementById('input').value);
+        };
+      }
+
+      $connect.onclick = reconnect;
+
+      reconnect();
+    </script>
+  </body>
+</html>

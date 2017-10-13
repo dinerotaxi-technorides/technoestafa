@@ -1,0 +1,49 @@
+form(name="Add" ng-submit="Add.$valid && cities.edit('add')")
+  .col-xs-6
+    .form-group
+      label(translate="cities.name")
+      input.form-control(ng-model="cities.city.name" required)
+    .form-group
+      label(translate="cities.country") 
+      input.form-control(ng-model="cities.city.Country" required)
+  .col-xs-6
+    .form-group
+      label(translate="cities.admin1Code")
+      input.form-control(ng-model="cities.city.admin1Code" required)
+    .form-group
+      label(translate="cities.locality") 
+      input.form-control(ng-model="cities.city.locality" required)
+  .col-xs-6  
+    .form-group
+      label(translate="cities.countryCode")
+      input.form-control(ng-model="cities.city.countryCode" required)
+  .col-xs-6  
+    .form-group
+      label(translate="cities.timeZone")
+      input.form-control(ng-model="cities.city.timeZone" required)
+  .col-xs-6  
+    .form-group
+      label(translate="cities.northEastLatBound")
+      input.form-control(ng-model="cities.city.northEastLatBound" required)
+  .col-xs-6  
+    .form-group
+      label(translate="cities.northEastLngBound")
+      input.form-control(ng-model="cities.city.northEastLngBound" required)
+  .col-xs-6  
+    .form-group
+      label(translate="cities.southWestLatBound")
+      input.form-control(ng-model="cities.city.southWestLatBound" required)
+  .col-xs-6  
+    .form-group
+      label(translate="cities.southWestLngBound")
+      input.form-control(ng-model="cities.city.southWestLngBound" required)
+  .col-xs-6  
+    .form-group
+      label(translate="cities.enabled")
+      input.checkbox(type="checkbox" ng-model="cities.city.enabled")
+      
+  .col-xs-12 
+    br
+    .form-group
+      button.btn.btn-danger.pull-right(data-dismiss="modal") Cancel
+      button.btn.btn-success.pull-right(style="margin-right:5px") Save

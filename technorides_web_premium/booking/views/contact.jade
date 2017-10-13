@@ -1,0 +1,30 @@
+.text-center
+  br
+  img(src="assets/contact.png")
+  h2 {{"Contact" | translate}}
+form.text-center(ng-submit="contactForm.$valid && contact(credentials)", ng-class="{submited: contactForm.submited}", role="form", novalidate="", name="contactForm")
+  p {{"weWillAnswer" | translate}}
+  .col-xs-12
+    .input-group
+      span.input-group-addon @
+      input.form-control(type="email", placeholder="{{'Email' | translate}}", ng-model="credentials.from", ng-required="true")
+  .col-xs-12
+    .input-group
+      span.input-group-addon
+        i.fa.fa-user
+      input.form-control(type="text", placeholder="{{'Name'| translate}}", ng-model="credentials.name")
+  .col-xs-12
+    .input-group
+      span.input-group-addon
+        i.fa.fa-mobile
+      input.form-control(type="text", placeholder="{{'Phone'| translate}}", ng-model="credentials.phone")
+  .col-xs-12
+    .input-group
+      span.input-group-addon
+        i.fa.fa-envelope
+      input.form-control(type="text", placeholder="{{'Subjet'| translate}}", ng-model="credentials.subject", ng-required="true")
+  .col-xs-12
+    textarea(placeholder="{{'YourMessage' | translate}}", ng-model="credentials.message", ng-required="true")
+  .col-xs-12
+    button.btn.btn-default(ng-click="contactForm.submited = true") {{"Send" | translate}}
+
